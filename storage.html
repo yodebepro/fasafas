@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Auto-Record Setup</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Auto-Record Setup</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link active" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">⏺</span>
+      <h1 class="hero-title"><em>Auto-Record Setup</em></h1>
+      <p class="hero-desc">Auto-record starts the cloud recording automatically when the meeting begins — so you never forget to hit record for important calls.</p>
+      <div class="hero-tags"><span class="h-tag">Auto-Start</span><span class="h-tag">On Meeting Begin</span><span class="h-tag">Admin Policy</span><span class="h-tag">Per-Meeting</span><span class="h-tag">Consent Announcement</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-setup')">Configuring Auto-Record</div>
+<div class="tab " onclick="sw(this,'t-consent')">Consent & Notifications</div>
+<div class="tab " onclick="sw(this,'t-admin')">Admin Policy</div></div>
+    <div class="content">
+      <div id="t-setup" class="tab-pane active"><div class="ph1">How to Enable Auto-Record</div>
+<div class="g2">
+<div class="card"><div class="ph3">Per-Meeting (Schedule Form)</div><ol class="steps">
+<li><div><div class="step-title">Open Schedule Meeting → scroll to Advanced Options</div></div></li>
+<li><div><div class="step-title">Set "Auto-recording" to "Record to Cloud"</div></div></li>
+<li><div><div class="step-title">Save. Recording starts automatically at meeting begin.</div></div></li>
+</ol></div>
+<div class="card"><div class="ph3">Personal Default (Settings)</div><ol class="steps">
+<li><div><div class="step-title">Go to Settings → Recording</div></div></li>
+<li><div><div class="step-title">Enable "Automatic Cloud Recording for all my meetings"</div></div></li>
+<li><div><div class="step-title">All future scheduled and instant meetings will auto-record.</div></div></li>
+</ol></div>
+</div>
+<div class="hl"><div class="hl-title">Auto-record respects the host's join</div>
+<div class="hl-body">If "Allow participants to join before host" is disabled, auto-recording starts when the host joins — not when the first participant enters the waiting room. This prevents recording a silent waiting room.</div></div></div>
+<div id="t-consent" class="tab-pane "><div class="ph1">Consent and Participant Notifications</div>
+<div class="card"><ul class="fl">
+<li>When auto-recording starts, all participants see a red banner: "This meeting is being recorded"</li>
+<li>A red recording dot appears in the meeting toolbar for all participants</li>
+<li>Audio announcement (configurable): "This meeting is now being recorded" plays when recording begins</li>
+<li>Late joiners: see the recording indicator and hear the announcement immediately on join</li>
+<li>Mandatory — cannot be suppressed by host or admin (regulatory requirement in most jurisdictions)</li>
+<li>Participants can leave the meeting if they do not consent to being recorded</li>
+<li>Recording consent is logged in the meeting audit trail (time + who was present)</li>
+</ul></div></div>
+<div id="t-admin" class="tab-pane "><div class="ph1">Admin-Level Recording Policy</div>
+<div class="card"><ul class="fl">
+<li>Admin Panel → Meeting Controls → "Auto Cloud Recording" — applies to all meetings in the account</li>
+<li>Override options: all meetings record / host can choose / recording disabled for all</li>
+<li>Set which recording layouts are available to hosts (e.g., disable Gallery View recording)</li>
+<li>Restrict participants from starting or stopping recording (host-only control)</li>
+<li>Set auto-delete policy: recordings deleted after X days automatically</li>
+<li>Restrict downloading: participants can watch but not download MP4</li>
+<li>Require passcode on all shared recording links</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <div class="nav-pg end">← Start</div>
+      <span class="nav-counter">Feature 1 of 11</span>
+      <a class="nav-pg" href="layouts.html"><div><div class="nav-label">Next</div><div class="nav-title">Recording Layouts</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

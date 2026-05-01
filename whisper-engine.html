@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — My Notes</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">My Notes</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link active" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">📒</span>
+      <h1 class="hero-title"><em>My Notes</em></h1>
+      <p class="hero-desc">My Notes is an AI-assisted note-taking sidebar that runs during any meeting — Zoom or third-party via browser extension. Combine your own notes with AI-captured highlights in one unified view.</p>
+      <div class="hero-tags"><span class="h-tag">Side Panel</span><span class="h-tag">AI + Personal Notes</span><span class="h-tag">Tag System</span><span class="h-tag">Hub Sync</span><span class="h-tag">3rd Party Meetings</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-interface')">Notes Interface</div>
+<div class="tab " onclick="sw(this,'t-ai')">AI Capture</div>
+<div class="tab " onclick="sw(this,'t-access')">Access After Meeting</div></div>
+    <div class="content">
+      <div id="t-interface" class="tab-pane active"><div class="ph1">My Notes Interface</div>
+<div class="g2">
+<div class="card"><div class="ph3">Layout</div><ul class="fl">
+<li>Opens as a panel alongside the meeting video (resizable)</li>
+<li>Two sections: YOUR notes (top) + AI Highlights (bottom)</li>
+<li>Your notes: markdown editor — type freely, supports headers, bold, lists, code</li>
+<li>AI Highlights: auto-populated as the meeting progresses</li>
+<li>Click any AI highlight → "Add to My Notes" moves it to your section</li>
+<li>Dismiss any AI highlight you don't want to keep</li>
+<li>Timestamps auto-added to every entry (click to jump to that moment in recording later)</li>
+</ul></div>
+<div class="card"><div class="ph3">Organization</div><ul class="fl">
+<li>Tag any note: #decision #action #question #risk #idea #follow-up</li>
+<li>Tagged notes appear in dedicated sections for quick scanning</li>
+<li>Star important notes — they appear at the top of your Hub notes list</li>
+<li>Assign action items from notes directly to Tasks (person + due date)</li>
+<li>Notes autosave every 10 seconds — no data loss on browser crash</li>
+</ul></div>
+</div></div>
+<div id="t-ai" class="tab-pane "><div class="ph1">What AI Automatically Captures</div>
+<div class="card"><ul class="fl">
+<li><b>Decisions:</b> phrases like "we decided", "let's go with", "agreed to", "confirmed" → added with #decision tag</li>
+<li><b>Action items:</b> "will take care of", "can you please", "action for [name]", "by [date]" → added with #action tag</li>
+<li><b>Questions:</b> open questions raised but not answered → flagged with #question tag</li>
+<li><b>Numbers & dates:</b> budget figures, deadlines, milestones → highlighted for attention</li>
+<li><b>Name mentions:</b> "[Name] will lead the project" → captured with context</li>
+<li>AI confidence score shown per capture: high / medium / review-needed</li>
+<li>"Review needed" items require your confirmation before being saved permanently</li>
+</ul></div></div>
+<div id="t-access" class="tab-pane "><div class="ph1">Accessing Notes After the Meeting</div>
+<div class="card"><ul class="fl">
+<li>Notes auto-synced to Hub → Summaries → My Notes within seconds of meeting end</li>
+<li>Searchable across all past notes from all meetings (full-text search)</li>
+<li>Filter by: tag, date, meeting title, person mentioned</li>
+<li>Export options: copy to clipboard, push to Docs, email to self, download as PDF</li>
+<li>Notes linked to the recording: click any timestamped note → recording jumps to that moment</li>
+<li>Share individual notes with colleagues (via link, with edit or view access)</li>
+<li>In-person meetings: My Notes works via FasaFas browser extension — transcribes via your device mic (90 min/mo Basic, unlimited Pro+)</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="smart-recog.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Smart Recognition</div></div></a>
+      <span class="nav-counter">Feature 5 of 11</span>
+      <a class="nav-pg" href="ai-summary.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Meeting Summary</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

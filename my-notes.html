@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Timer & Auto-Close</title>
+<link rel="stylesheet" href="../../../assets/css/breakout.css">
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../breakout-rooms.html">← Breakout Rooms</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../../../index.html">Meetings</a><span class="bc-sep">/</span>
+  <a href="../breakout-rooms.html">Breakout Rooms</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Timer & Auto-Close</span>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-head">Breakout Room Features</div>
+    <a class="sb-link" href="create-rooms.html"><span class="sb-num">1</span><span class="sb-icon">🏗️</span>Create Rooms</a>
+<a class="sb-link" href="assign-participants.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Assign Participants</a>
+<a class="sb-link" href="rename-rooms.html"><span class="sb-num">3</span><span class="sb-icon">✏️</span>Rename Rooms</a>
+<a class="sb-link active" href="timer-settings.html"><span class="sb-num">4</span><span class="sb-icon">⏱️</span>Timer & Auto-Close</a>
+<a class="sb-link" href="broadcast.html"><span class="sb-num">5</span><span class="sb-icon">📢</span>Broadcast</a>
+<a class="sb-link" href="host-roaming.html"><span class="sb-num">6</span><span class="sb-icon">🚶</span>Host Roaming</a>
+<a class="sb-link" href="raise-hand.html"><span class="sb-num">7</span><span class="sb-icon">🙋</span>Raise Hand</a>
+<a class="sb-link" href="move-participants.html"><span class="sb-num">8</span><span class="sb-icon">↔️</span>Move Participants</a>
+<a class="sb-link" href="share-files.html"><span class="sb-num">9</span><span class="sb-icon">📁</span>Share Files</a>
+<a class="sb-link" href="whiteboard.html"><span class="sb-num">10</span><span class="sb-icon">🖼️</span>Whiteboard</a>
+<a class="sb-link" href="return-main.html"><span class="sb-num">11</span><span class="sb-icon">🏠</span>Return to Main</a>
+
+    <div class="sb-divider"></div>
+    <a class="sb-back" href="../breakout-rooms.html">← Back to Overview</a>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eyebrow">🚪 Breakout Rooms Feature</div>
+      <span class="hero-icon">⏱️</span>
+      <h1 class="hero-title"><em>Timer & Auto-Close</em></h1>
+      <p class="hero-desc">Set a timer so breakout rooms automatically close after a defined period. A visible countdown appears for all participants, and a warning banner appears before the time is up.</p>
+      <div class="hero-tags"><span class="h-tag">1–120 Minutes</span><span class="h-tag">Countdown Banner</span><span class="h-tag">Warning at 60s</span><span class="h-tag">Extend Time</span><span class="h-tag">Auto-Close</span></div>
+    </div>
+
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-setup')">Timer Setup</div>
+<div class="tab " onclick="sw(this,'t-experience')">Participant View</div>
+<div class="tab " onclick="sw(this,'t-extend')">Extending Time</div></div>
+
+    <div class="content">
+      <div id="t-setup" class="tab-pane active"><div class='ph1'>Setting Up the Timer</div>
+<div class='g2'>
+<div class='card'><div class='ph3'>Timer Configuration</div><ul class='fl'>
+<li>Enable timer: toggle <strong>Set a timer for breakout rooms</strong> before opening rooms</li>
+<li>Duration: type any value from <strong>1 to 120 minutes</strong></li>
+<li>Timer starts as soon as you click <strong>Open All Rooms</strong></li>
+<li>Timer applies to all rooms simultaneously — not per-room</li>
+<li>All rooms close at the same time when timer hits 0</li>
+<li>Host can close rooms early at any point regardless of timer</li>
+</ul></div>
+<div class='card'><div class='ph3'>Warning Settings</div><ul class='fl'>
+<li>Default warning: 60 seconds before auto-close</li>
+<li>Configurable: 30 seconds / 1 minute / 2 minutes</li>
+<li>Warning appears as a red banner at top of participant's screen</li>
+<li>Warning banner text: "Breakout rooms will close in X seconds"</li>
+<li>Audio chime plays with the warning (configurable)</li>
+<li>Host receives a separate alert that time is almost up</li>
+</ul></div>
+</div>
+<div class='spec'><div class='spec-head'>⏱️ Timer Behavior Summary</div>
+<div class='spec-row'><span class='sk'>Timer range</span><span class='sv'>1 minute minimum · 120 minutes maximum</span></div>
+<div class='spec-row'><span class='sk'>Countdown display</span><span class='sv'>Visible timer in top-right of every participant's room</span></div>
+<div class='spec-row'><span class='sk'>Warning trigger</span><span class='sv'>30s / 60s / 2min before close (host configures)</span></div>
+<div class='spec-row'><span class='sk'>When timer hits 0</span><span class='sv'>All rooms auto-close, all participants returned to main session</span></div>
+<div class='spec-row'><span class='sk'>Early close</span><span class='sv'>Host can click "Close All Rooms" at any time to override timer</span></div>
+</div></div>
+<div id="t-experience" class="tab-pane "><div class='ph1'>What Participants See</div>
+<div class='g2'>
+<div class='card'><div class='ph3'>During the Session</div><ul class='fl'>
+<li>A small countdown timer appears in the top-right corner of their room view</li>
+<li>Format: "14:32 remaining" updating every second</li>
+<li>Timer is always visible — participants can manage their time accordingly</li>
+<li>If host extends time, timer updates live with the new remaining time</li>
+</ul></div>
+<div class='card'><div class='ph3'>At Warning Time</div><ul class='fl'>
+<li>A bold red/amber banner appears across the top of their screen</li>
+<li>"⚠️ Breakout rooms will close in 60 seconds. Please wrap up."</li>
+<li>Audio chime plays once (can be muted in personal settings)</li>
+<li>Participants should save any notes, share conclusions in chat, etc.</li>
+<li>No action required from participants — they're automatically returned</li>
+</ul></div>
+</div>
+<div class='hl'><div class='hl-title'>What happens at exactly 0:00?</div><div class='hl-body'>All breakout rooms close simultaneously. Every participant is automatically moved back to the main session — no manual action needed by host or participants. Video and audio reconnect to the main session immediately.</div></div></div>
+<div id="t-extend" class="tab-pane "><div class='ph1'>Extending Time Mid-Session</div>
+<div class='card'><ol class='steps'>
+<li><div><div class='step-title'>Open Breakout Rooms panel</div><div class='step-desc'>The panel shows the current timer countdown alongside each room's participant count.</div></div></li>
+<li><div><div class='step-title'>Click "Add Time"</div><div class='step-desc'>A small dialog lets you add time in 1-minute increments or type a custom value.</div></div></li>
+<li><div><div class='step-title'>Confirm</div><div class='step-desc'>The timer updates immediately for all participants in all rooms. Their countdown resets to the new extended time. All participants see the timer update live.</div></div></li>
+</ol></div>
+<div class='hl'><div class='hl-title'>Participants Can Request an Extension</div><div class='hl-body'>Participants can click <strong>Ask for More Time</strong> in their room (if the host enables this). The host receives a notification and can choose to extend with one click from the main session.</div></div></div>
+    </div>
+
+    <div class="next-prev">
+      <a class="nav-pg" href="rename-rooms.html"><div>←</div><div><div class="nav-pg-label">Previous</div><div class="nav-pg-title">Rename Rooms</div></div></a>
+      <span style="font-size:12px;color:var(--text3)">Feature 4 of 11</span>
+      <a class="nav-pg" href="broadcast.html"><div><div class="nav-pg-label">Next</div><div class="nav-pg-title">Broadcast Messages</div></div><div>→</div></a>
+    </div>
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

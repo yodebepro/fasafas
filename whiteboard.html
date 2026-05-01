@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — ICE Negotiation</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">ICE Negotiation</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link active" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">🧊</span>
+      <h1 class="hero-title"><em>ICE Negotiation</em></h1>
+      <p class="hero-desc">ICE (Interactive Connectivity Establishment) is the protocol that finds and validates the best network path between your device and the SFU — testing multiple routes and picking the fastest.</p>
+      <div class="hero-tags"><span class="h-tag">ICE Candidates</span><span class="h-tag">Connectivity Checks</span><span class="h-tag">Trickle ICE</span><span class="h-tag">ICE Restart</span><span class="h-tag">Priority Order</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-what')">How ICE Works</div>
+<div class="tab " onclick="sw(this,'t-trickle')">Trickle ICE</div>
+<div class="tab " onclick="sw(this,'t-restart')">ICE Restart</div></div>
+    <div class="content">
+      <div id="t-what" class="tab-pane active"><div class="ph1">How ICE Works</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Gather candidates</div><div class="step-desc">ICE agent collects all possible IP:port pairs: local network addresses (host candidates), public IP via STUN (server reflexive), TURN relay address (relay candidate).</div></div></li>
+<li><div><div class="step-title">Exchange candidates via signaling</div><div class="step-desc">Each candidate is sent to the remote peer (SFU) via the signal:ice-candidate WebSocket event as it's discovered (trickle ICE).</div></div></li>
+<li><div><div class="step-title">Connectivity checks (STUN binding requests)</div><div class="step-desc">ICE sends STUN binding requests to every candidate pair (local × remote) in parallel. Checks with successful responses become valid pairs.</div></div></li>
+<li><div><div class="step-title">Select the best pair</div><div class="step-desc">Valid pairs are sorted by priority: host &gt; server-reflexive &gt; TURN UDP &gt; TURN TCP. The highest-priority valid pair is used for media.</div></div></li>
+</ol></div></div>
+<div id="t-trickle" class="tab-pane "><div class="ph1">Trickle ICE — Faster Connection Setup</div>
+<div class="hl"><div class="hl-title">Why Trickle ICE matters</div>
+<div class="hl-body">Traditional ICE waited until ALL candidates were gathered before starting connectivity checks — this could take 1–2 seconds. Trickle ICE sends candidates to the remote peer as they're discovered, so connectivity checks can start immediately. This typically cuts connection setup time from 1–2s to under 300ms.</div></div>
+<div class="card"><ul class="fl">
+<li>Host candidates (LAN IPs) are discovered instantly — connectivity checks start right away</li>
+<li>STUN server reflexive candidates arrive ~50–100ms later — added to the candidate list</li>
+<li>TURN relay candidates arrive ~200–500ms later — added last as fallback</li>
+<li>ICE selects the best working pair as soon as it has a valid candidate — doesn't wait for all</li>
+<li>Result: most connections established in under 300ms from ICE start</li>
+</ul></div></div>
+<div id="t-restart" class="tab-pane "><div class="ph1">ICE Restart — Reconnection After Network Change</div>
+<div class="card"><ul class="fl">
+<li>If your device changes network (e.g., WiFi → cellular, VPN connect/disconnect), the ICE candidates may become invalid</li>
+<li>ICE Restart re-runs the entire ICE gathering and connectivity check process without tearing down the session</li>
+<li>Triggered automatically when: connection times out, DTLS transport fails, network interface change detected</li>
+<li>From the user perspective: a brief "reconnecting…" indicator may appear for 1–3 seconds</li>
+<li>Audio may drop momentarily but video session is preserved</li>
+<li>If ICE Restart fails after 3 attempts, the session falls back to TURN relay</li>
+<li>If all paths fail, Socket.io reconnects and a full re-join is initiated (seamless from UI perspective)</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="turn.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">TURN Relay Servers</div></div></a>
+      <span class="nav-counter">Feature 5 of 11</span>
+      <a class="nav-pg" href="simulcast.html"><div><div class="nav-label">Next</div><div class="nav-title">Simulcast</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

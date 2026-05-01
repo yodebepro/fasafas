@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Simulcast</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Simulcast</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link active" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">📶</span>
+      <h1 class="hero-title"><em>Simulcast</em></h1>
+      <p class="hero-desc">Simulcast means sending three quality layers simultaneously — 1080p, 480p, and 240p. The SFU forwards whichever layer is right for each subscriber's network, without any re-encoding.</p>
+      <div class="hero-tags"><span class="h-tag">3 Quality Layers</span><span class="h-tag">SFU Layer Selection</span><span class="h-tag">VP9 SVC</span><span class="h-tag">Safari H.264</span><span class="h-tag">Seamless Switch</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How Simulcast Works</div>
+<div class="tab " onclick="sw(this,'t-svc')">VP9 SVC Alternative</div>
+<div class="tab " onclick="sw(this,'t-layers')">Layer Selection Logic</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">How Simulcast Works</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Your browser encodes 3 streams from one camera input</div><div class="step-desc">WebRTC encodes your video at three resolutions simultaneously using different spatial and temporal scalability. All three share the same RTP session with different SSRCs.</div></div></li>
+<li><div><div class="step-title">All three streams uploaded to the SFU</div><div class="step-desc">Total upload: ~3.5 Mbps (1080p: 2.5 Mbps + 480p: 0.8 Mbps + 240p: 0.15 Mbps). The SFU receives all three on the same WebRtcTransport.</div></div></li>
+<li><div><div class="step-title">SFU creates one Consumer per subscriber</div><div class="step-desc">Each subscriber has their own Consumer, which is independently configured to receive any simulcast layer. Consumers for different subscribers can receive different layers from the same Producer.</div></div></li>
+<li><div><div class="step-title">SFU selects layer per Consumer based on subscriber's BWE</div><div class="step-desc">The SFU watches REMB/TWCC feedback from each subscriber and sets their Consumer's preferred layer accordingly. Switches happen in real-time as network conditions change.</div></div></li>
+</ol></div></div>
+<div id="t-svc" class="tab-pane "><div class="ph1">VP9 SVC — The Simulcast Alternative</div>
+<div class="g2">
+<div class="card"><div class="ph3">SVC vs Simulcast</div><ul class="fl">
+<li>Simulcast: 3 completely separate encodings (3× encode CPU on sender)</li>
+<li>SVC: 1 encoding with embedded quality layers (more efficient for sender)</li>
+<li>VP9 with SVC saves ~30% upload bandwidth vs simulcast</li>
+<li>Both give the SFU the same flexibility to forward different qualities per subscriber</li>
+<li>FasaFas uses SVC on Chrome/Edge (VP9 supported) automatically</li>
+<li>Falls back to simulcast on Safari (H.264 only, no SVC)</li>
+</ul></div>
+<div class="card"><div class="ph3">Spatial vs Temporal Layers</div><ul class="fl">
+<li><b>Spatial layers</b>: different resolutions (1080p → 480p → 240p)</li>
+<li><b>Temporal layers</b>: same resolution, different frame rates (30fps → 15fps → 7fps)</li>
+<li>FasaFas uses both: spatial for resolution drops, temporal for frame rate drops</li>
+<li>Temporal-only drops are imperceptible at first — video just looks slightly less smooth</li>
+<li>Spatial drops are more noticeable but happen only with significant bandwidth loss</li>
+</ul></div>
+</div></div>
+<div id="t-layers" class="tab-pane "><div class="ph1">Layer Selection Logic</div>
+<div class="spec"><div class="spec-head">📶 When Each Layer is Sent</div>
+<div class="spec-row"><span class="sk">1080p → subscriber</span><span class="sv">Subscriber download &gt; 2 Mbps AND is an active speaker / pinned tile</span></div>
+<div class="spec-row"><span class="sk">480p → subscriber</span><span class="sv">Subscriber download 500kbps–2Mbps OR tile is a gallery thumbnail</span></div>
+<div class="spec-row"><span class="sk">240p → subscriber</span><span class="sv">Subscriber download &lt;500kbps OR on a poor mobile connection</span></div>
+<div class="spec-row"><span class="sk">Layer switch delay</span><span class="sv">500ms after BWE change is stable — avoids rapid oscillation</span></div>
+<div class="spec-row"><span class="sk">Switch signal</span><span class="sv">SFU sends PLI (Picture Loss Indication) to request a keyframe at the new layer</span></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="ice.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">ICE Negotiation</div></div></a>
+      <span class="nav-counter">Feature 6 of 11</span>
+      <a class="nav-pg" href="bwe.html"><div><div class="nav-label">Next</div><div class="nav-title">Bandwidth Estimation</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

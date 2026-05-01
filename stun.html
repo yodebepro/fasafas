@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Speaker View</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#60a5fa;--fc-bg:rgba(96,165,250,.14);--fc-b:rgba(96,165,250,.3);--fc-dim:rgba(96,165,250,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../hd-video.html">HD Video</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../hd-video.html">HD Video</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Speaker View</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">HD Video Features</div>
+    <a class="sb-link" href="resolution.html"><span class="sb-num">1</span><span class="sb-icon">🖥️</span>1080p Resolution</a>
+<a class="sb-link" href="adaptive.html"><span class="sb-num">2</span><span class="sb-icon">📶</span>Adaptive Bitrate</a>
+<a class="sb-link" href="backgrounds.html"><span class="sb-num">3</span><span class="sb-icon">🌄</span>Virtual Backgrounds</a>
+<a class="sb-link" href="blur.html"><span class="sb-num">4</span><span class="sb-icon">🎨</span>Background Blur</a>
+<a class="sb-link" href="studio.html"><span class="sb-num">5</span><span class="sb-icon">💄</span>Studio Effects & Lighting</a>
+<a class="sb-link" href="avatar-real.html"><span class="sb-num">6</span><span class="sb-icon">🧑</span>AI Avatar (Realistic)</a>
+<a class="sb-link" href="avatar-style.html"><span class="sb-num">7</span><span class="sb-icon">🎭</span>AI Avatar (Stylized)</a>
+<a class="sb-link" href="gallery.html"><span class="sb-num">8</span><span class="sb-icon">⬛</span>Gallery View</a>
+<a class="sb-link active" href="speaker.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Speaker View</a>
+<a class="sb-link" href="dynamic.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Dynamic Gallery (AI)</a>
+<a class="sb-link" href="camera.html"><span class="sb-num">11</span><span class="sb-icon">📷</span>Camera & Device Settings</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../hd-video.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📹 HD Video Feature</div>
+      <span class="hero-icon">🎙️</span>
+      <h1 class="hero-title"><em>Speaker View</em></h1>
+      <p class="hero-desc">Speaker View shows the current active speaker in a large main area with a row of thumbnails for other participants — so the focus is always on who's talking.</p>
+      <div class="hero-tags"><span class="h-tag">Active Speaker Detect</span><span class="h-tag">Large Main View</span><span class="h-tag">Thumbnail Strip</span><span class="h-tag">VAD Switching</span><span class="h-tag">Smooth Transition</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How It Works</div>
+<div class="tab " onclick="sw(this,'t-controls')">Speaker Controls</div>
+<div class="tab " onclick="sw(this,'t-vad')">Voice Detection</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">Speaker View — How It Works</div>
+<div class="g2">
+<div class="card"><div class="ph3">Main + Thumbnail Layout</div><ul class="fl">
+<li>Active speaker fills ~75% of the screen at 1080p</li>
+<li>A row of thumbnail tiles at the bottom or side shows other participants</li>
+<li>Thumbnail strip is scrollable for large meetings</li>
+<li>When speaker changes, main view transitions with a smooth 0.3s crossfade</li>
+<li>Your own tile appears in the thumbnail strip (not in main) by default</li>
+<li>Main view can be any shared screen when someone is screen sharing</li>
+</ul></div>
+<div class="card"><div class="ph3">Side-by-Side Mode</div><ul class="fl">
+<li>When someone shares their screen, main view splits into two panels</li>
+<li>Left panel: shared screen content</li>
+<li>Right panel: active speaker video</li>
+<li>Draggable divider to resize each panel</li>
+<li>Can revert to full-screen share with toggle</li>
+</ul></div>
+</div></div>
+<div id="t-controls" class="tab-pane "><div class="ph1">Speaker View Controls</div>
+<div class="card"><ul class="fl">
+<li>Switch to Speaker View: View → Speaker (or keyboard Alt+S on Windows)</li>
+<li>Swap positions: click the swap icon to put speaker video in thumbnail and screen share in main</li>
+<li>Pin a participant: hover their thumbnail → Pin → they stay in main view regardless of who speaks</li>
+<li>Resize thumbnail strip: drag the top edge of the strip up or down</li>
+<li>Hide thumbnail strip: click the collapse arrow — speaker fills full screen</li>
+<li>Reorder thumbnails: drag thumbnails to rearrange within the strip</li>
+<li>Double-click any thumbnail → that participant goes to main view</li>
+</ul></div></div>
+<div id="t-vad" class="tab-pane "><div class="ph1">Voice Activity Detection (VAD) — Speaker Switching</div>
+<div class="card"><ul class="fl">
+<li>VAD runs on the SFU — analyzes audio energy levels from all participants in real time</li>
+<li>The participant with the highest audio energy for &gt;500ms becomes the "active speaker"</li>
+<li>500ms threshold prevents switching on brief interjections ("uh-huh", "yeah")</li>
+<li>Noise suppression runs before VAD — keyboard sounds, background noise excluded</li>
+<li>If background noise triggers false switches, increase your noise suppression level</li>
+<li>Host can pin a participant to prevent VAD from switching away from them</li>
+<li>Speaker history: the last 3 speakers' thumbnails are highlighted in the strip</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="gallery.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Gallery View</div></div></a>
+      <span class="nav-counter">Feature 9 of 11</span>
+      <a class="nav-pg" href="dynamic.html"><div><div class="nav-label">Next</div><div class="nav-title">Dynamic Gallery (AI)</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

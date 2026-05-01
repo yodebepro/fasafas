@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Share Files</title>
+<link rel="stylesheet" href="../../../assets/css/breakout.css">
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../breakout-rooms.html">← Breakout Rooms</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../../../index.html">Meetings</a><span class="bc-sep">/</span>
+  <a href="../breakout-rooms.html">Breakout Rooms</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Share Files</span>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-head">Breakout Room Features</div>
+    <a class="sb-link" href="create-rooms.html"><span class="sb-num">1</span><span class="sb-icon">🏗️</span>Create Rooms</a>
+<a class="sb-link" href="assign-participants.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Assign Participants</a>
+<a class="sb-link" href="rename-rooms.html"><span class="sb-num">3</span><span class="sb-icon">✏️</span>Rename Rooms</a>
+<a class="sb-link" href="timer-settings.html"><span class="sb-num">4</span><span class="sb-icon">⏱️</span>Timer & Auto-Close</a>
+<a class="sb-link" href="broadcast.html"><span class="sb-num">5</span><span class="sb-icon">📢</span>Broadcast</a>
+<a class="sb-link" href="host-roaming.html"><span class="sb-num">6</span><span class="sb-icon">🚶</span>Host Roaming</a>
+<a class="sb-link" href="raise-hand.html"><span class="sb-num">7</span><span class="sb-icon">🙋</span>Raise Hand</a>
+<a class="sb-link" href="move-participants.html"><span class="sb-num">8</span><span class="sb-icon">↔️</span>Move Participants</a>
+<a class="sb-link active" href="share-files.html"><span class="sb-num">9</span><span class="sb-icon">📁</span>Share Files</a>
+<a class="sb-link" href="whiteboard.html"><span class="sb-num">10</span><span class="sb-icon">🖼️</span>Whiteboard</a>
+<a class="sb-link" href="return-main.html"><span class="sb-num">11</span><span class="sb-icon">🏠</span>Return to Main</a>
+
+    <div class="sb-divider"></div>
+    <a class="sb-back" href="../breakout-rooms.html">← Back to Overview</a>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eyebrow">🚪 Breakout Rooms Feature</div>
+      <span class="hero-icon">📁</span>
+      <h1 class="hero-title"><em>Share Files</em></h1>
+      <p class="hero-desc">Push files, documents, whiteboards, or links to all breakout rooms simultaneously — or to a single room. Every participant receives the material instantly without leaving their room.</p>
+      <div class="hero-tags"><span class="h-tag">All Rooms at Once</span><span class="h-tag">Single Room</span><span class="h-tag">Docs & Links</span><span class="h-tag">Whiteboard Share</span><span class="h-tag">No Disruption</span></div>
+    </div>
+
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-types')">What Can Be Shared</div>
+<div class="tab " onclick="sw(this,'t-how')">How to Share</div>
+<div class="tab " onclick="sw(this,'t-receive')">Receiving Files</div></div>
+
+    <div class="content">
+      <div id="t-types" class="tab-pane active"><div class='ph1'>What Can Be Shared to Rooms</div>
+<div class='g2'>
+<div class='card'><div class='ph3'>Supported Content Types</div><ul class='fl'>
+<li><strong>FasaFas Docs</strong> — share a collaborative doc (participants can open and edit immediately)</li>
+<li><strong>Whiteboards</strong> — share a whiteboard link (participants can collaborate in real time)</li>
+<li><strong>External Links</strong> — any URL (opens in participants' browser)</li>
+<li><strong>Files</strong> — PDF, DOCX, PPTX, images (download link appears in room chat)</li>
+<li><strong>Clips</strong> — async video clips (plays inline in room)</li>
+<li><strong>Poll</strong> — launch a poll in all rooms simultaneously</li>
+</ul></div>
+<div class='card'><div class='ph3'>File Size Limits</div><ul class='fl'>
+<li>PDF / DOCX / PPTX: up to 512 MB per file</li>
+<li>Images (JPG, PNG, GIF): up to 100 MB</li>
+<li>Videos (MP4): up to 1 GB</li>
+<li>Links: no size limit — just a URL</li>
+<li>Total per session: no limit (storage quota applies separately)</li>
+</ul></div>
+</div></div>
+<div id="t-how" class="tab-pane "><div class='ph1'>How to Share Files to Rooms</div>
+<div class='card'><ol class='steps'>
+<li><div><div class='step-title'>Open Breakout Rooms panel</div><div class='step-desc'>From the main session. Files can only be pushed from the main session — not from inside a breakout room.</div></div></li>
+<li><div><div class='step-title'>Click "Share to All Rooms" or "Share to Room X"</div><div class='step-desc'>The Share panel opens. Choose whether to send to all rooms at once or select individual rooms.</div></div></li>
+<li><div><div class='step-title'>Select content</div><div class='step-desc'>Browse your FasaFas files (Docs, Whiteboards, Clips) or upload a new file. Paste a URL for external links.</div></div></li>
+<li><div><div class='step-title'>Click Share</div><div class='step-desc'>The file or link appears instantly in every selected room's chat as a highlighted message from "Host". Participants receive a notification chime.</div></div></li>
+</ol></div>
+<div class='hl'><div class='hl-title'>Sharing to a Single Room</div><div class='hl-body'>You can also join a specific room first, then share your screen or upload a file from inside that room — this only affects participants in that room. Use this for room-specific materials that shouldn't go to everyone.</div></div></div>
+<div id="t-receive" class="tab-pane "><div class='ph1'>How Participants Receive Shared Files</div>
+<div class='card'><ul class='fl'>
+<li>A notification banner appears at the top of their room: "The host has shared a file"</li>
+<li>The file link or Docs/Whiteboard link appears as a pinned message in their room chat</li>
+<li>Click the link to open the file — it opens in a new browser tab or inline (for Docs/Whiteboards)</li>
+<li>For collaborative Docs and Whiteboards: all participants in the room can edit simultaneously</li>
+<li>Shared files remain in room chat history for the duration of the session</li>
+<li>Participants can re-access files by scrolling up in the room chat at any time</li>
+<li>Files are not deleted when the room closes — they remain accessible in participants' Hub after the meeting</li>
+</ul></div></div>
+    </div>
+
+    <div class="next-prev">
+      <a class="nav-pg" href="move-participants.html"><div>←</div><div><div class="nav-pg-label">Previous</div><div class="nav-pg-title">Move Participants</div></div></a>
+      <span style="font-size:12px;color:var(--text3)">Feature 9 of 11</span>
+      <a class="nav-pg" href="whiteboard.html"><div><div class="nav-pg-label">Next</div><div class="nav-pg-title">Whiteboard per Room</div></div><div>→</div></a>
+    </div>
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Live Captions</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Live Captions</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link active" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">📝</span>
+      <h1 class="hero-title"><em>Live Captions</em></h1>
+      <p class="hero-desc">Live captions appear as a scrolling text overlay at the bottom of the screen — updated every few seconds as speech is recognized. Every participant can toggle captions independently.</p>
+      <div class="hero-tags"><span class="h-tag">Real-Time</span><span class="h-tag">1–2s Delay</span><span class="h-tag">Scrolling Panel</span><span class="h-tag">Font Size</span><span class="h-tag">Toggle Per User</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-display')">Caption Display</div>
+<div class="tab " onclick="sw(this,'t-control')">Participant Controls</div>
+<div class="tab " onclick="sw(this,'t-access')">Accessibility</div></div>
+    <div class="content">
+      <div id="t-display" class="tab-pane active"><div class="ph1">Caption Display Options</div>
+<div class="g2">
+<div class="card"><div class="ph3">Caption Overlay</div><ul class="fl">
+<li>Displayed at the bottom of the video area as a semi-transparent text bar</li>
+<li>Shows the last 2–3 sentences of recognized speech</li>
+<li>Updates approximately every 0.5–1 second as speech is processed</li>
+<li>Total display latency: 1–2 seconds behind actual speech</li>
+<li>Speaker name shown before each caption line (if diarization is enabled)</li>
+<li>Your own speech is highlighted in a different color</li>
+</ul></div>
+<div class="card"><div class="ph3">Caption Customization</div><ul class="fl">
+<li>Font size: Small / Medium / Large / Extra Large</li>
+<li>Background opacity: transparent → dark semi-transparent → solid</li>
+<li>Position: bottom (default) / top / floating overlay</li>
+<li>Caption history: open the full transcript sidebar to see all past lines</li>
+<li>Show / hide speaker labels in caption bar</li>
+<li>Captions persist on screen for 3 seconds after each update then fade</li>
+</ul></div>
+</div></div>
+<div id="t-control" class="tab-pane "><div class="ph1">Turning Captions On and Off</div>
+<div class="card"><ul class="fl">
+<li>Toggle captions: click More (···) in the meeting toolbar → Show Captions</li>
+<li>Each participant independently decides whether to see captions — it's a local setting only</li>
+<li>Host can enable captions for all participants via meeting settings (forces it for everyone)</li>
+<li>Admin can set "Enable live transcription for all meetings" account-wide (admin panel → AI Settings)</li>
+<li>Consent required: a banner shows "This meeting is being transcribed" when AI transcript starts — required for all plans</li>
+<li>Turning off captions doesn't stop the transcript — it just hides the overlay for you</li>
+</ul></div></div>
+<div id="t-access" class="tab-pane "><div class="ph1">Accessibility Benefits</div>
+<div class="card"><ul class="fl">
+<li>WCAG 2.1 AA compliant caption rendering</li>
+<li>High-contrast mode: white text on black background option for low-vision users</li>
+<li>Font family can be set to a dyslexia-friendly font (OpenDyslexic) in accessibility settings</li>
+<li>Screen reader integration: caption text exposed via ARIA live region for screen reader users</li>
+<li>Caption history accessible via keyboard shortcut (Alt+C on Windows)</li>
+<li>Translated Captions add-on allows deaf users to read in their preferred language</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <div class="nav-pg end">← Start</div>
+      <span class="nav-counter">Feature 1 of 11</span>
+      <a class="nav-pg" href="whisper-engine.html"><div><div class="nav-label">Next</div><div class="nav-title">Whisper STT Engine</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

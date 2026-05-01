@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — TURN Relay Servers</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">TURN Relay Servers</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link active" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">🔄</span>
+      <h1 class="hero-title"><em>TURN Relay Servers</em></h1>
+      <p class="hero-desc">TURN servers relay media when a direct WebRTC connection is impossible — typically behind strict corporate firewalls, symmetric NAT, or networks that block UDP.</p>
+      <div class="hero-tags"><span class="h-tag">coturn</span><span class="h-tag">UDP 3478</span><span class="h-tag">TCP 443</span><span class="h-tag">HMAC-SHA1 Auth</span><span class="h-tag">10 Gbps</span><span class="h-tag">20-40ms Extra</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-what')">What TURN Does</div>
+<div class="tab " onclick="sw(this,'t-auth')">TURN Authentication</div>
+<div class="tab " onclick="sw(this,'t-infra')">TURN Infrastructure</div></div>
+    <div class="content">
+      <div id="t-what" class="tab-pane active"><div class="ph1">What TURN Does and When It's Needed</div>
+<div class="card"><ul class="fl">
+<li>~20–30% of enterprise users need TURN — their firewall or NAT prevents direct connections</li>
+<li>TURN = Traversal Using Relays around NAT (RFC 5766)</li>
+<li>Instead of connecting directly, you connect to the TURN server, which relays your media to the SFU</li>
+<li>ICE tests direct paths first (lowest latency) and only falls back to TURN if direct fails</li>
+<li>TURN over TCP port 443: works through the strictest firewalls that only allow HTTPS traffic</li>
+<li>Adds 20–40ms latency compared to a direct connection (relay adds one extra network hop)</li>
+<li>TURN handles all media — audio, video, data channels — not just signaling</li>
+</ul></div></div>
+<div id="t-auth" class="tab-pane "><div class="ph1">TURN Server Authentication</div>
+<div class="card"><ul class="fl">
+<li>TURN requires authentication to prevent abuse (anyone can't just relay through your TURN)</li>
+<li>FasaFas uses HMAC-SHA1 time-limited credentials (RFC 8489)</li>
+<li>When your ICE agent requests TURN credentials, signal-service generates a temporary TURN username + password</li>
+<li>Username format: <code>timestamp:userId</code></li>
+<li>Password: <code>HMAC-SHA1(username, turnSharedSecret)</code></li>
+<li>TTL: 24 hours — credentials expire after the meeting session</li>
+<li>TURN server validates credentials on each allocation request</li>
+<li>No TURN credential reuse across meetings — new credentials per session</li>
+</ul></div></div>
+<div id="t-infra" class="tab-pane "><div class="ph1">FasaFas TURN Infrastructure (coturn)</div>
+<div class="spec"><div class="spec-head">🔄 TURN Server Specs</div>
+<div class="spec-row"><span class="sk">Software</span><span class="sv">coturn 4.6 (open-source STUN/TURN server)</span></div>
+<div class="spec-row"><span class="sk">Total nodes</span><span class="sv">10 regional nodes (matches STUN deployment)</span></div>
+<div class="spec-row"><span class="sk">UDP protocol</span><span class="sv">UDP 3478 — standard TURN, lowest latency relay</span></div>
+<div class="spec-row"><span class="sk">TCP protocol</span><span class="sv">TCP 443 — firewall bypass (looks like HTTPS to corporate DPI)</span></div>
+<div class="spec-row"><span class="sk">TLS TURN</span><span class="sv">TLS 1.3 on port 443 for encrypted relay</span></div>
+<div class="spec-row"><span class="sk">Bandwidth capacity</span><span class="sv">10 Gbps per node · ~500 concurrent relay pairs per node</span></div>
+<div class="spec-row"><span class="sk">Added latency</span><span class="sv">20–40ms vs direct path (single extra network hop)</span></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="stun.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">STUN Servers</div></div></a>
+      <span class="nav-counter">Feature 4 of 11</span>
+      <a class="nav-pg" href="ice.html"><div><div class="nav-label">Next</div><div class="nav-title">ICE Negotiation</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Adaptive Bitrate</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#60a5fa;--fc-bg:rgba(96,165,250,.14);--fc-b:rgba(96,165,250,.3);--fc-dim:rgba(96,165,250,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../hd-video.html">HD Video</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../hd-video.html">HD Video</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Adaptive Bitrate</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">HD Video Features</div>
+    <a class="sb-link" href="resolution.html"><span class="sb-num">1</span><span class="sb-icon">🖥️</span>1080p Resolution</a>
+<a class="sb-link active" href="adaptive.html"><span class="sb-num">2</span><span class="sb-icon">📶</span>Adaptive Bitrate</a>
+<a class="sb-link" href="backgrounds.html"><span class="sb-num">3</span><span class="sb-icon">🌄</span>Virtual Backgrounds</a>
+<a class="sb-link" href="blur.html"><span class="sb-num">4</span><span class="sb-icon">🎨</span>Background Blur</a>
+<a class="sb-link" href="studio.html"><span class="sb-num">5</span><span class="sb-icon">💄</span>Studio Effects & Lighting</a>
+<a class="sb-link" href="avatar-real.html"><span class="sb-num">6</span><span class="sb-icon">🧑</span>AI Avatar (Realistic)</a>
+<a class="sb-link" href="avatar-style.html"><span class="sb-num">7</span><span class="sb-icon">🎭</span>AI Avatar (Stylized)</a>
+<a class="sb-link" href="gallery.html"><span class="sb-num">8</span><span class="sb-icon">⬛</span>Gallery View</a>
+<a class="sb-link" href="speaker.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Speaker View</a>
+<a class="sb-link" href="dynamic.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Dynamic Gallery (AI)</a>
+<a class="sb-link" href="camera.html"><span class="sb-num">11</span><span class="sb-icon">📷</span>Camera & Device Settings</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../hd-video.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📹 HD Video Feature</div>
+      <span class="hero-icon">📶</span>
+      <h1 class="hero-title"><em>Adaptive Bitrate</em></h1>
+      <p class="hero-desc">Adaptive bitrate streaming ensures everyone sees the best video quality their network can support — automatically, invisibly, and without ever freezing or dropping the call.</p>
+      <div class="hero-tags"><span class="h-tag">Simulcast</span><span class="h-tag">3 Quality Layers</span><span class="h-tag">Auto-Switch</span><span class="h-tag">REMB/TWCC</span><span class="h-tag">Zero Freeze</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How It Works</div>
+<div class="tab " onclick="sw(this,'t-layers')">Quality Layers</div>
+<div class="tab " onclick="sw(this,'t-signals')">Network Signals</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">Adaptive Bitrate — How It Works</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">You send 3 streams simultaneously (Simulcast)</div><div class="step-desc">Your browser encodes your video at 1080p, 480p, and 240p at the same time and sends all three to the SFU. Total upload: ~3.5 Mbps.</div></div></li>
+<li><div><div class="step-title">SFU monitors each subscriber's network</div><div class="step-desc">Using REMB (Receiver Estimated Max Bitrate) and TWCC (Transport Wide Congestion Control) feedback packets, the SFU knows exactly how much bandwidth each subscriber can receive in real time.</div></div></li>
+<li><div><div class="step-title">SFU selects the right layer per subscriber</div><div class="step-desc">If subscriber A has 3 Mbps download → gets your 1080p layer. If subscriber B has 400 kbps → gets your 240p layer. Each subscriber gets an independent stream.</div></div></li>
+<li><div><div class="step-title">Switch happens seamlessly</div><div class="step-desc">If your network degrades mid-call, the SFU switches to a lower layer for your stream. No freeze, no rebuffering — just a brief quality change. Typically imperceptible.</div></div></li>
+</ol></div></div>
+<div id="t-layers" class="tab-pane "><div class="ph1">The Three Quality Layers</div>
+<div class="spec"><div class="spec-head">📶 Simulcast Layers Sent Simultaneously</div>
+<div class="spec-row"><span class="sk">HIGH — 1080p</span><span class="sv">1920×1080 · 30fps · ~2.5 Mbps · active speaker, pinned tiles</span></div>
+<div class="spec-row"><span class="sk">MEDIUM — 480p</span><span class="sv">854×480 · 30fps · ~800 kbps · gallery thumbnails, good network</span></div>
+<div class="spec-row"><span class="sk">LOW — 240p</span><span class="sv">426×240 · 15fps · ~150 kbps · poor network or mobile data subscribers</span></div>
+</div>
+<div class="hl"><div class="hl-title">VP9 SVC — Even More Efficient</div>
+<div class="hl-body">On Chrome and Edge, FasaFas uses VP9 Scalable Video Coding (SVC) instead of simulcast. SVC embeds all three quality layers in a single stream — saving upload bandwidth while giving the SFU the same flexibility to forward any layer.</div></div></div>
+<div id="t-signals" class="tab-pane "><div class="ph1">How the SFU Measures Your Network</div>
+<div class="g2">
+<div class="card"><div class="ph3">REMB (Receiver Estimated Max Bitrate)</div><ul class="fl">
+<li>Each subscriber sends REMB feedback to the SFU every 1 second</li>
+<li>Reports the maximum bitrate it believes it can receive</li>
+<li>Calculated by measuring actual received packet rate vs expected rate</li>
+<li>SFU reads REMB → picks simulcast layer accordingly</li>
+<li>If REMB drops below 800 kbps → switch from 1080p to 480p</li>
+<li>If REMB drops below 200 kbps → switch from 480p to 240p</li>
+</ul></div>
+<div class="card"><div class="ph3">TWCC (Transport Wide Congestion Control)</div><ul class="fl">
+<li>More modern and accurate than REMB</li>
+<li>Sender uses feedback to estimate path capacity (not just receive side)</li>
+<li>Implemented in Chrome, Edge, Firefox (not Safari)</li>
+<li>Allows probing: sender temporarily increases bitrate to test headroom</li>
+<li>Reacts to congestion 2–3× faster than REMB-only systems</li>
+<li>Enables smoother quality transitions with less visible switching</li>
+</ul></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="resolution.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">1080p Resolution</div></div></a>
+      <span class="nav-counter">Feature 2 of 11</span>
+      <a class="nav-pg" href="backgrounds.html"><div><div class="nav-label">Next</div><div class="nav-title">Virtual Backgrounds</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

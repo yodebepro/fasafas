@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Studio Effects & Lighting</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#60a5fa;--fc-bg:rgba(96,165,250,.14);--fc-b:rgba(96,165,250,.3);--fc-dim:rgba(96,165,250,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../hd-video.html">HD Video</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../hd-video.html">HD Video</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Studio Effects & Lighting</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">HD Video Features</div>
+    <a class="sb-link" href="resolution.html"><span class="sb-num">1</span><span class="sb-icon">🖥️</span>1080p Resolution</a>
+<a class="sb-link" href="adaptive.html"><span class="sb-num">2</span><span class="sb-icon">📶</span>Adaptive Bitrate</a>
+<a class="sb-link" href="backgrounds.html"><span class="sb-num">3</span><span class="sb-icon">🌄</span>Virtual Backgrounds</a>
+<a class="sb-link" href="blur.html"><span class="sb-num">4</span><span class="sb-icon">🎨</span>Background Blur</a>
+<a class="sb-link active" href="studio.html"><span class="sb-num">5</span><span class="sb-icon">💄</span>Studio Effects & Lighting</a>
+<a class="sb-link" href="avatar-real.html"><span class="sb-num">6</span><span class="sb-icon">🧑</span>AI Avatar (Realistic)</a>
+<a class="sb-link" href="avatar-style.html"><span class="sb-num">7</span><span class="sb-icon">🎭</span>AI Avatar (Stylized)</a>
+<a class="sb-link" href="gallery.html"><span class="sb-num">8</span><span class="sb-icon">⬛</span>Gallery View</a>
+<a class="sb-link" href="speaker.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Speaker View</a>
+<a class="sb-link" href="dynamic.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Dynamic Gallery (AI)</a>
+<a class="sb-link" href="camera.html"><span class="sb-num">11</span><span class="sb-icon">📷</span>Camera & Device Settings</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../hd-video.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📹 HD Video Feature</div>
+      <span class="hero-icon">💄</span>
+      <h1 class="hero-title"><em>Studio Effects & Lighting</em></h1>
+      <p class="hero-desc">Studio Effects enhance your on-camera appearance automatically — fixing poor lighting, smoothing appearance, and adding subtle cosmetic adjustments without heavy editing.</p>
+      <div class="hero-tags"><span class="h-tag">Auto Lighting</span><span class="h-tag">Skin Smoothing</span><span class="h-tag">Lip Color</span><span class="h-tag">Eyebrows</span><span class="h-tag">Low-Light AI</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-effects')">Available Effects</div>
+<div class="tab " onclick="sw(this,'t-lighting')">AI Lighting</div>
+<div class="tab " onclick="sw(this,'t-access')">Accessing Effects</div></div>
+    <div class="content">
+      <div id="t-effects" class="tab-pane active"><div class="ph1">Studio Effects Available</div>
+<div class="g2">
+<div class="card"><div class="ph3">Appearance Effects</div><ul class="fl">
+<li><b>Touch up my appearance</b> — skin smoothing slider (0–100% intensity)</li>
+<li><b>Lip color</b> — subtle lip tint (natural shades only)</li>
+<li><b>Eyebrow definition</b> — enhances brow visibility</li>
+<li><b>Facial hair styling</b> — subtle beard shaping</li>
+<li>All effects are processed on-device via WebGL — no video is uploaded for effect processing</li>
+<li>Preview in real time before joining (Camera Settings panel)</li>
+</ul></div>
+<div class="card"><div class="ph3">Lighting Effects</div><ul class="fl">
+<li><b>Adjust for low light (Auto)</b> — AI brightens your face automatically when ambient light is poor</li>
+<li><b>Adjust for low light (Manual)</b> — brightness/contrast slider for fine control</li>
+<li>Works by boosting brightness and reducing noise in the video frame</li>
+<li>Particularly useful for evening calls, dark home offices, or backlit settings</li>
+<li>Does not affect other participants' video — only your outgoing feed</li>
+</ul></div>
+</div></div>
+<div id="t-lighting" class="tab-pane "><div class="ph1">AI Low-Light Enhancement</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Light level detection</div><div class="step-desc">The model analyzes average luminance across face pixels in each frame. If below threshold (~80 nits), enhancement activates.</div></div></li>
+<li><div><div class="step-title">Gamma correction applied</div><div class="step-desc">Gamma curve adjusted to boost mid-tones where most facial detail lives — avoids blowing out highlights or crushing shadows.</div></div></li>
+<li><div><div class="step-title">Noise reduction</div><div class="step-desc">Low-light cameras produce grain. A lightweight temporal denoiser removes grain without smearing facial details.</div></div></li>
+<li><div><div class="step-title">Real-time adaptation</div><div class="step-desc">Enhancement adjusts dynamically as room lighting changes — if you switch on a lamp mid-meeting, the enhancement reduces automatically.</div></div></li>
+</ol></div></div>
+<div id="t-access" class="tab-pane "><div class="ph1">How to Access Studio Effects</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Before joining</div><div class="step-desc">Click the gear icon in the meeting join preview screen → Video → Studio Effects. Preview all effects before the meeting starts.</div></div></li>
+<li><div><div class="step-title">During a meeting</div><div class="step-desc">Click the caret (∨) next to the Stop Video button → Video Settings → Studio Effects tab.</div></div></li>
+<li><div><div class="step-title">Adjust intensity</div><div class="step-desc">Each effect has a slider. Drag to set the level. The live preview updates immediately so you can fine-tune without leaving settings.</div></div></li>
+</ol></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="blur.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Background Blur</div></div></a>
+      <span class="nav-counter">Feature 5 of 11</span>
+      <a class="nav-pg" href="avatar-real.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Avatar (Realistic)</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Breakout Rooms</title>
+<link rel="stylesheet" href="../../assets/css/features.css">
+<style>
+:root{--hero-glow:rgba(245,158,11,.12);--hero-color:#fcd34d;--hero-eyebrow-bg:rgba(245,158,11,.1);--hero-eyebrow-b:rgba(245,158,11,.25);--hero-eyebrow-c:#fcd34d;--tab-color:#fcd34d}
+
+/* Feature cards grid */
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0}
+@media(max-width:860px){.feat-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.feat-cards{grid-template-columns:1fr}}
+
+.feat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:22px 20px;cursor:pointer;transition:all .2s;
+  text-decoration:none;display:flex;flex-direction:column;gap:10px;
+  position:relative;overflow:hidden;
+}
+.feat-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;
+  background:radial-gradient(circle at 20% 20%,rgba(245,158,11,.08),transparent 70%)}
+.feat-card:hover{border-color:var(--amber);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.feat-card:hover::before{opacity:1}
+.fc-top{display:flex;align-items:center;gap:12px}
+.fc-icon{width:42px;height:42px;border-radius:10px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.fc-num{position:absolute;top:12px;right:14px;font-size:10px;font-weight:700;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 7px}
+.fc-title{font-size:14px;font-weight:800;letter-spacing:-.2px;color:var(--text)}
+.fc-desc{font-size:12.5px;color:var(--text2);line-height:1.6}
+.fc-arrow{font-size:18px;color:var(--text3);position:absolute;bottom:14px;right:16px;transition:all .2s}
+.feat-card:hover .fc-arrow{color:var(--amber);transform:translate(2px,-2px)}
+.fc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.fc-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+</style>
+</head>
+<body>
+
+<header class="f-header">
+  <a class="f-logo" href="../../index.html"><div class="f-logo-dot"></div>FasaFas</a>
+  <nav class="f-nav">
+    <a class="f-back" href="../../index.html">← Back to Platform</a>
+    <a class="f-schedule" href="../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="../../index.html">Home</a><span class="sep">/</span>
+  <a href="../../index.html">Meetings</a><span class="sep">/</span>
+  <span class="cur">Breakout Rooms</span>
+</div>
+
+<div class="f-hero">
+  <div class="hero-eyebrow">🚪 Meetings Feature</div>
+  <span class="f-hero-icon">🚪</span>
+  <h1 class="f-hero-title">Powerful <em>Breakout Rooms</em></h1>
+  <p class="f-hero-desc">Split any meeting into up to 50 smaller rooms — each with full video, audio, chat, and whiteboard. Assign participants automatically or manually, broadcast to all rooms at once, and return everyone with a single click. Click any feature below to explore it in depth.</p>
+  <div class="hero-badges">
+    <span class="h-badge">Up to 50 Rooms</span>
+    <span class="h-badge">3 Assignment Modes</span>
+    <span class="h-badge">Broadcast to All</span>
+    <span class="h-badge">Host Roaming</span>
+    <span class="h-badge">Per-Room Whiteboard</span>
+    <span class="h-badge">Saved Assignments</span>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--border);background:var(--bg2)">
+  <div style="padding:18px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Max Rooms</div>
+    <div style="font-size:26px;font-weight:900;letter-spacing:-.5px;color:var(--amber)">50</div>
+    <div style="font-size:11px;color:var(--text3)">per meeting session</div>
+  </div>
+  <div style="padding:18px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Assignment Modes</div>
+    <div style="font-size:26px;font-weight:900;letter-spacing:-.5px;color:var(--green)">3</div>
+    <div style="font-size:11px;color:var(--text3)">Auto · Manual · Self-select</div>
+  </div>
+  <div style="padding:18px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Timer Range</div>
+    <div style="font-size:26px;font-weight:900;letter-spacing:-.5px;color:var(--accent2)">120</div>
+    <div style="font-size:11px;color:var(--text3)">minutes maximum per session</div>
+  </div>
+  <div style="padding:18px 28px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Feature Pages</div>
+    <div style="font-size:26px;font-weight:900;letter-spacing:-.5px;color:var(--purple)">11</div>
+    <div style="font-size:11px;color:var(--text3)">individual feature guides below</div>
+  </div>
+</div>
+
+<!-- 11 FEATURE CARDS -->
+<div style="padding:36px 44px;background:var(--bg)">
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:8px">All Breakout Room Features</div>
+  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:6px">Click any feature to explore it fully</h2>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:24px;line-height:1.7">Every breakout room capability has its own dedicated page with step-by-step instructions, participant and host perspectives, and configuration options.</p>
+
+  <div class="feat-cards">
+
+    <a class="feat-card" href="breakout/create-rooms.html">
+      <div class="fc-num">01</div>
+      <div class="fc-top"><div class="fc-icon">🏗️</div><div class="fc-title">Create up to 50 Rooms</div></div>
+      <div class="fc-desc">Create rooms instantly during a live meeting or pre-configure them before the session starts. Up to 50 rooms per meeting with no per-room participant cap.</div>
+      <div class="fc-tags"><span class="fc-tag">50 rooms max</span><span class="fc-tag">Pre-configure</span><span class="fc-tag">Templates</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/assign-participants.html">
+      <div class="fc-num">02</div>
+      <div class="fc-top"><div class="fc-icon">👥</div><div class="fc-title">Assign: Auto / Manual / Self-Select</div></div>
+      <div class="fc-desc">Three flexible assignment modes — let FasaFas divide participants evenly, assign each person manually via drag-and-drop, or let participants choose their own room.</div>
+      <div class="fc-tags"><span class="fc-tag">Automatic</span><span class="fc-tag">Drag & Drop</span><span class="fc-tag">Self-Select</span><span class="fc-tag">CSV Import</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/rename-rooms.html">
+      <div class="fc-num">03</div>
+      <div class="fc-top"><div class="fc-icon">✏️</div><div class="fc-title">Rename Each Room Individually</div></div>
+      <div class="fc-desc">Replace default "Breakout Room 1" labels with meaningful names — team names, topics, project codes, or emoji-enhanced labels. Rooms update live for all participants.</div>
+      <div class="fc-tags"><span class="fc-tag">Click to edit</span><span class="fc-tag">Emoji support</span><span class="fc-tag">Saved in templates</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/timer-settings.html">
+      <div class="fc-num">04</div>
+      <div class="fc-top"><div class="fc-icon">⏱️</div><div class="fc-title">Auto-Close Timer with Countdown</div></div>
+      <div class="fc-desc">Set a 1–120 minute timer. A visible countdown appears for all participants. A warning banner fires before time is up. Rooms close automatically at zero — no host action needed.</div>
+      <div class="fc-tags"><span class="fc-tag">1–120 min</span><span class="fc-tag">Warning banner</span><span class="fc-tag">Extend time</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/broadcast.html">
+      <div class="fc-num">05</div>
+      <div class="fc-top"><div class="fc-icon">📢</div><div class="fc-title">Broadcast to All Rooms at Once</div></div>
+      <div class="fc-desc">Send a text message that appears as a banner overlay in every active room simultaneously. Instant delivery — under 1 second. Perfect for time warnings, pivots, or encouragement.</div>
+      <div class="fc-tags"><span class="fc-tag">Instant delivery</span><span class="fc-tag">All rooms at once</span><span class="fc-tag">Host only</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/host-roaming.html">
+      <div class="fc-num">06</div>
+      <div class="fc-top"><div class="fc-icon">🚶</div><div class="fc-title">Host Can Join / Leave Any Room</div></div>
+      <div class="fc-desc">Roam freely between all breakout rooms and the main session. Join a room to listen, guide, or support. Leave without disrupting the group. Co-hosts can roam independently.</div>
+      <div class="fc-tags"><span class="fc-tag">Unlimited moves</span><span class="fc-tag">Observe mode</span><span class="fc-tag">Co-host support</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/raise-hand.html">
+      <div class="fc-num">07</div>
+      <div class="fc-top"><div class="fc-icon">🙋</div><div class="fc-title">Participants Raise Hand for Help</div></div>
+      <div class="fc-desc">Any participant can click "Ask for Help" inside their room. The host receives an instant notification with the room name — and can join that room directly with one click.</div>
+      <div class="fc-tags"><span class="fc-tag">Instant alert</span><span class="fc-tag">One-click join</span><span class="fc-tag">No disruption</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/move-participants.html">
+      <div class="fc-num">08</div>
+      <div class="fc-top"><div class="fc-icon">↔️</div><div class="fc-title">Move Participants Mid-Session</div></div>
+      <div class="fc-desc">Reassign any participant to a different room at any time — before rooms open or while they're actively running. The participant moves in under 3 seconds with no disruption to either room.</div>
+      <div class="fc-tags"><span class="fc-tag">Instant move</span><span class="fc-tag">Drag & drop</span><span class="fc-tag">No interruption</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/share-files.html">
+      <div class="fc-num">09</div>
+      <div class="fc-top"><div class="fc-icon">📁</div><div class="fc-title">Share Files to All Rooms at Once</div></div>
+      <div class="fc-desc">Push docs, whiteboards, links, PDFs, or Clips to every room simultaneously — or to a specific room. Files appear in each room's chat as a pinned message from the host.</div>
+      <div class="fc-tags"><span class="fc-tag">All rooms or one</span><span class="fc-tag">Docs & Links</span><span class="fc-tag">Whiteboard share</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/whiteboard.html">
+      <div class="fc-num">10</div>
+      <div class="fc-top"><div class="fc-icon">🖼️</div><div class="fc-title">Whiteboard per Breakout Room</div></div>
+      <div class="fc-desc">Every room gets its own dedicated infinite collaborative canvas. Participants draw, annotate, and brainstorm together in real time using CRDT sync — separate from every other room.</div>
+      <div class="fc-tags"><span class="fc-tag">Per-room canvas</span><span class="fc-tag">Real-time CRDT</span><span class="fc-tag">Auto-saved</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="breakout/return-main.html">
+      <div class="fc-num">11</div>
+      <div class="fc-top"><div class="fc-icon">🏠</div><div class="fc-title">Return All to Main Session</div></div>
+      <div class="fc-desc">One click brings every participant from every room back to the main session simultaneously. A countdown banner prepares everyone. No participant action required — the move is automatic.</div>
+      <div class="fc-tags"><span class="fc-tag">One click</span><span class="fc-tag">All rooms at once</span><span class="fc-tag">Countdown option</span></div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+  </div><!-- /feat-cards -->
+</div>
+
+<!-- Feature navigation strip (between the 5 top features) -->
+<div class="feat-nav">
+  <a class="feat-nav-item" href="hd-video.html"><div class="fni-icon">📹</div><div class="fni-label">HD Video</div></a>
+  <a class="feat-nav-item" href="webrtc-sfu.html"><div class="fni-icon">📡</div><div class="fni-label">WebRTC SFU</div></a>
+  <a class="feat-nav-item current" href="breakout-rooms.html"><div class="fni-icon">🚪</div><div class="fni-label">Breakout Rooms</div></a>
+  <a class="feat-nav-item" href="ai-transcription.html"><div class="fni-icon">🤖</div><div class="fni-label">AI Transcription</div></a>
+  <a class="feat-nav-item" href="cloud-recording.html"><div class="fni-icon">☁️</div><div class="fni-label">Cloud Recording</div></a>
+</div>
+
+<script src="../../assets/js/translate.js"></script>
+</body>
+</html>
