@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — WebRTC SFU</title>
+<link rel="stylesheet" href="../../assets/css/features.css">
+<style>
+:root{--hero-glow:rgba(16,185,129,.14);--hero-color:#10b981;--hero-eyebrow-bg:rgba(16,185,129,.14);--hero-eyebrow-b:rgba(16,185,129,.3);--hero-eyebrow-c:#10b981;--tab-color:#10b981}
+.var(--bg){background:var(--bg)}
+</style>
+
+<style>
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.feat-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.feat-cards{grid-template-columns:1fr}}
+.feat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px 18px;cursor:pointer;transition:all .2s;
+  text-decoration:none;display:flex;flex-direction:column;gap:9px;
+  position:relative;overflow:hidden;
+}
+.feat-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;
+  background:radial-gradient(circle at 20% 20%,var(--card-glow,rgba(37,99,235,.07)),transparent 70%)}
+.feat-card:hover{border-color:var(--card-c,var(--accent));transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.feat-card:hover::before{opacity:1}
+.fc-top{display:flex;align-items:center;gap:11px}
+.fc-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--card-ibg,rgba(37,99,235,.12));border:1px solid var(--card-ib,rgba(37,99,235,.2))}
+.fc-num{position:absolute;top:11px;right:13px;font-size:10px;font-weight:700;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 7px}
+.fc-title{font-size:13.5px;font-weight:800;letter-spacing:-.2px;color:var(--text)}
+.fc-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.fc-tags-str{font-size:10.5px;color:var(--card-c,var(--accent3));font-weight:600;opacity:.8}
+.fc-arrow{font-size:16px;color:var(--text3);position:absolute;bottom:12px;right:14px;transition:all .2s}
+.feat-card:hover .fc-arrow{color:var(--card-c,var(--accent));transform:translate(2px,-2px)}
+</style>
+
+</head>
+<body>
+<header class="f-header">
+  <a class="f-logo" href="../../index.html"><div class="f-logo-dot"></div>FasaFas</a>
+  <nav class="f-nav">
+    <a class="f-back" href="../../index.html">← Back to Platform</a>
+    <a class="f-schedule" href="../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="breadcrumb">
+  <a href="../../index.html">Home</a><span class="sep">/</span>
+  <a href="../../index.html">Meetings</a><span class="sep">/</span>
+  <span class="cur">WebRTC SFU</span>
+</div>
+
+<div class="f-hero">
+  <div class="hero-eyebrow">📹 Meetings Feature</div>
+  <span class="f-hero-icon">📡</span>
+  <h1 class="f-hero-title"><em>WebRTC SFU</em></h1>
+  <p class="f-hero-desc">The Selective Forwarding Unit is the backbone of every FasaFas meeting. Understand every layer from SFU architecture to ICE negotiation, STUN/TURN, and error recovery.</p>
+</div>
+
+<!-- STAT STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--border);background:var(--bg2)">
+
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Architecture</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#10b981">SFU</div>
+    <div style="font-size:11px;color:var(--text3)">Mediasoup + Rust</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Max Per Room</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#10b981">500+</div>
+    <div style="font-size:11px;color:var(--text3)">Participants</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Codecs</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#10b981">5</div>
+    <div style="font-size:11px;color:var(--text3)">VP8→AV1</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Latency</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#10b981"><100ms</div>
+    <div style="font-size:11px;color:var(--text3)">End-to-end</div>
+  </div>
+</div>
+
+<!-- FEATURE CARDS -->
+<div style="padding:32px 44px 48px;background:var(--bg)">
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:6px">Feature Details</div>
+  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px">Click any feature to explore it fully</h2>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:22px;line-height:1.7">Every capability has its own dedicated page with step-by-step explanations, technical details, and configuration guides.</p>
+  <div class="feat-cards">
+
+    <a class="feat-card" href="webrtc/sfu-vs.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">01</div>
+      <div class="fc-top"><div class="fc-icon">📊</div><div class="fc-title">SFU vs P2P vs MCU</div></div>
+      <div class="fc-desc">Why SFU is the right choice at scale</div>
+      <div class="fc-tags-str">P2P · MCU · Scale · Latency · Cost</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/mediasoup.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">02</div>
+      <div class="fc-top"><div class="fc-icon">⚙️</div><div class="fc-title">Mediasoup Architecture</div></div>
+      <div class="fc-desc">How FasaFas's SFU is built internally</div>
+      <div class="fc-tags-str">Workers · Routers · Producers/Consumers</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/stun.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">03</div>
+      <div class="fc-top"><div class="fc-icon">🔍</div><div class="fc-title">STUN Servers</div></div>
+      <div class="fc-desc">Discovering your public IP for NAT traversal</div>
+      <div class="fc-tags-str">NAT · Public IP · UDP 3478 · Anycast</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/turn.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">04</div>
+      <div class="fc-top"><div class="fc-icon">🔄</div><div class="fc-title">TURN Relay Servers</div></div>
+      <div class="fc-desc">Routing media when direct connection fails</div>
+      <div class="fc-tags-str">coturn · TCP 443 · HMAC-SHA1 · 10 Gbps</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/ice.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">05</div>
+      <div class="fc-top"><div class="fc-icon">🧊</div><div class="fc-title">ICE Negotiation</div></div>
+      <div class="fc-desc">How two peers find and validate a connection</div>
+      <div class="fc-tags-str">Candidates · Trickle ICE · ICE Restart</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/simulcast.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">06</div>
+      <div class="fc-top"><div class="fc-icon">📶</div><div class="fc-title">Simulcast</div></div>
+      <div class="fc-desc">Sending 3 quality layers simultaneously</div>
+      <div class="fc-tags-str">3 Layers · SFU Select · VP9 SVC</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/bwe.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">07</div>
+      <div class="fc-top"><div class="fc-icon">📡</div><div class="fc-title">Bandwidth Estimation</div></div>
+      <div class="fc-desc">REMB and TWCC — real-time network measurement</div>
+      <div class="fc-tags-str">REMB · TWCC · Packet Loss · Congestion</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/audio.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">08</div>
+      <div class="fc-top"><div class="fc-icon">🎵</div><div class="fc-title">Audio Processing</div></div>
+      <div class="fc-desc">Opus, AEC, noise suppression, VAD, AGC</div>
+      <div class="fc-tags-str">Opus · AEC3 · RNNoise · 48kHz</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/codecs.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">09</div>
+      <div class="fc-top"><div class="fc-icon">🎞️</div><div class="fc-title">Video Codecs</div></div>
+      <div class="fc-desc">VP8, VP9, H.264, H.265, AV1 — which & when</div>
+      <div class="fc-tags-str">VP8 · VP9 · H.264 · AV1 · Browser Compat</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/recovery.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">10</div>
+      <div class="fc-top"><div class="fc-icon">🔁</div><div class="fc-title">Error Recovery</div></div>
+      <div class="fc-desc">ICE restart, reconnection, quality fallback</div>
+      <div class="fc-tags-str">NACK · FEC · Layer Drop · Reconnect</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="webrtc/regions.html"
+       style="--card-c:#10b981;--card-glow:rgba(16,185,129,.14);--card-ibg:rgba(16,185,129,.14);--card-ib:rgba(16,185,129,.3)">
+      <div class="fc-num">11</div>
+      <div class="fc-top"><div class="fc-icon">🌍</div><div class="fc-title">Regional Server Clusters</div></div>
+      <div class="fc-desc">Global infrastructure and traffic routing</div>
+      <div class="fc-tags-str">8 Regions · Anycast · Data Compliance</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- FEATURE NAV STRIP -->
+<div class="feat-nav">
+  <a class="feat-nav-item " href="hd-video.html"><div class="fni-icon">📹</div><div class="fni-label">HD Video</div></a>
+  <a class="feat-nav-item current" href="webrtc-sfu.html"><div class="fni-icon">📡</div><div class="fni-label">WebRTC SFU</div></a>
+  <a class="feat-nav-item " href="breakout-rooms.html"><div class="fni-icon">🚪</div><div class="fni-label">Breakout Rooms</div></a>
+  <a class="feat-nav-item " href="ai-transcription.html"><div class="fni-icon">🤖</div><div class="fni-label">AI Transcription</div></a>
+  <a class="feat-nav-item " href="cloud-recording.html"><div class="fni-icon">☁️</div><div class="fni-label">Cloud Recording</div></a>
+</div>
+<script src="../../assets/js/translate.js"></script>
+</body>
+</html>

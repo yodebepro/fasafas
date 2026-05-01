@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Transcript Viewer</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Transcript Viewer</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link active" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">🔍</span>
+      <h1 class="hero-title"><em>Transcript Viewer</em></h1>
+      <p class="hero-desc">The Transcript Viewer shows the complete labeled transcript — searchable by keyword, clickable to jump to any moment in the recording, and downloadable in multiple formats.</p>
+      <div class="hero-tags"><span class="h-tag">Full-Text Search</span><span class="h-tag">Speaker Jump</span><span class="h-tag">Download VTT</span><span class="h-tag">Clickable Timestamps</span><span class="h-tag">In-Meeting & Post</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-features')">Viewer Features</div>
+<div class="tab " onclick="sw(this,'t-search')">Search Capabilities</div>
+<div class="tab " onclick="sw(this,'t-download')">Download Formats</div></div>
+    <div class="content">
+      <div id="t-features" class="tab-pane active"><div class="ph1">Transcript Viewer Features</div>
+<div class="g2">
+<div class="card"><div class="ph3">During the Meeting</div><ul class="fl">
+<li>Opens as a scrollable panel alongside the video</li>
+<li>Auto-scrolls to follow the live transcription as it appears</li>
+<li>Click any line → audio jumps to that moment (if host enabled it)</li>
+<li>Your own speech highlighted in a distinct color</li>
+<li>Search bar at top — results highlighted inline</li>
+<li>Time-lock toggle: pause auto-scroll to read a specific section</li>
+</ul></div>
+<div class="card"><div class="ph3">Post-Meeting Viewer</div><ul class="fl">
+<li>Full transcript shown alongside the recording player</li>
+<li>Transcript line highlighted in real time as recording plays</li>
+<li>Click any transcript line → player jumps to that timestamp</li>
+<li>Speaker filter: show only one speaker's lines</li>
+<li>Chapter filter: show only lines from a specific smart chapter</li>
+<li>Add comments to any transcript line (timestamped)</li>
+<li>Flag lines for review ("this seems incorrect — edit")</li>
+</ul></div>
+</div></div>
+<div id="t-search" class="tab-pane "><div class="ph1">Search Capabilities</div>
+<div class="card"><ul class="fl">
+<li>Keyword search: highlights all occurrences across the full transcript</li>
+<li>Jump between results: ← → arrows navigate through matches</li>
+<li>Phrase search: wrap in quotes for exact phrase — "budget approved"</li>
+<li>Speaker filter: search within one speaker's lines only</li>
+<li>Time range filter: only show lines within a specific time window</li>
+<li>Search from Hub: search across ALL your past meeting transcripts at once</li>
+<li>AI semantic search: "find where we discussed the Q3 forecast" — finds relevant sections even without keyword match</li>
+<li>Results ranked by relevance (semantic search) or chronological (keyword)</li>
+</ul></div></div>
+<div id="t-download" class="tab-pane "><div class="ph1">Download Transcript Formats</div>
+<div class="spec"><div class="spec-head">📥 Available Formats</div>
+<div class="spec-row"><span class="sk">VTT (WebVTT)</span><span class="sv">Standard caption format — works in video players, accessibility tools, Final Cut Pro</span></div>
+<div class="spec-row"><span class="sk">SRT (SubRip)</span><span class="sv">Subtitle format — compatible with YouTube, Premiere Pro, DaVinci Resolve</span></div>
+<div class="spec-row"><span class="sk">JSON (structured)</span><span class="sv">Full transcript with word-level timestamps, speaker labels, confidence scores</span></div>
+<div class="spec-row"><span class="sk">Plain TXT</span><span class="sv">Readable text with speaker labels and timestamps — no markup</span></div>
+<div class="spec-row"><span class="sk">DOCX</span><span class="sv">Formatted Word document — table of speakers, timestamp, content per row</span></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="translated.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Translated Captions</div></div></a>
+      <span class="nav-counter">Feature 10 of 11</span>
+      <a class="nav-pg" href="privacy.html"><div><div class="nav-label">Next</div><div class="nav-title">Privacy & Consent</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Translated Captions</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Translated Captions</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link active" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">🌐</span>
+      <h1 class="hero-title"><em>Translated Captions</em></h1>
+      <p class="hero-desc">The Translated Captions add-on displays live captions in any of 30+ languages — so participants can follow a meeting conducted in a language they don't speak.</p>
+      <div class="hero-tags"><span class="h-tag">30+ Languages</span><span class="h-tag">Real-Time</span><span class="h-tag">$5/user Add-On</span><span class="h-tag">DeepL + Google</span><span class="h-tag">500ms Delay</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How Translation Works</div>
+<div class="tab " onclick="sw(this,'t-languages')">Supported Languages</div>
+<div class="tab " onclick="sw(this,'t-setup')">Setup & Pricing</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">How Live Translation Works</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Whisper transcribes the original language speech</div><div class="step-desc">The same Whisper pipeline that powers standard captions produces the original-language text with ~1–2s latency.</div></div></li>
+<li><div><div class="step-title">Translation API called per caption segment</div><div class="step-desc">Each caption segment is sent to DeepL (primary — highest quality for European languages) or Google Translate (fallback, better for Asian languages). Best-of routing selects the provider per language pair.</div></div></li>
+<li><div><div class="step-title">Translated text returned in ~200–400ms</div><div class="step-desc">Translation adds 200–400ms to the total caption delay. Total display latency: 1.5–2.5 seconds behind actual speech.</div></div></li>
+<li><div><div class="step-title">Each participant selects their preferred caption language</div><div class="step-desc">Translation is applied per-subscriber independently. Participant A sees French captions while Participant B sees Spanish — from the same English-speaking presenter.</div></div></li>
+</ol></div></div>
+<div id="t-languages" class="tab-pane "><div class="ph1">Supported Languages</div>
+<div class="g2">
+<div class="card"><div class="ph3">High Quality (DeepL)</div><ul class="fl">
+<li>English, French, German, Spanish, Portuguese</li>
+<li>Italian, Dutch, Polish, Russian, Swedish</li>
+<li>Norwegian, Danish, Finnish, Romanian, Hungarian</li>
+<li>Czech, Slovak, Bulgarian, Greek, Turkish</li>
+<li>Chinese (Simplified), Japanese, Korean</li>
+</ul></div>
+<div class="card"><div class="ph3">Good Quality (Google Translate)</div><ul class="fl">
+<li>Arabic, Hebrew, Hindi, Bengali, Urdu</li>
+<li>Indonesian, Malay, Vietnamese, Thai</li>
+<li>Swahili, Amharic, Yoruba, Hausa</li>
+<li>Ukrainian, Croatian, Serbian, Slovenian</li>
+<li>Any language pair not covered by DeepL</li>
+</ul></div>
+</div></div>
+<div id="t-setup" class="tab-pane "><div class="ph1">Setup and Pricing</div>
+<div class="spec"><div class="spec-head">💰 Translated Captions Add-On</div>
+<div class="spec-row"><span class="sk">Price</span><span class="sv">$5 per user per month (billed monthly)</span></div>
+<div class="spec-row"><span class="sk">Requires</span><span class="sv">Any paid base plan (Pro, Business, or Enterprise)</span></div>
+<div class="spec-row"><span class="sk">Activation</span><span class="sv">Admin: Account Settings → Add-Ons → Translated Captions → Enable</span></div>
+<div class="spec-row"><span class="sk">Per-user toggle</span><span class="sv">Each user enables and selects their language in the meeting (More → Show Translated Captions)</span></div>
+<div class="spec-row"><span class="sk">Available in</span><span class="sv">All meeting types: scheduled, instant, webinars, Zoom Rooms</span></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="action-items.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Action Item Extraction</div></div></a>
+      <span class="nav-counter">Feature 9 of 11</span>
+      <a class="nav-pg" href="transcript-view.html"><div><div class="nav-label">Next</div><div class="nav-title">Transcript Viewer</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

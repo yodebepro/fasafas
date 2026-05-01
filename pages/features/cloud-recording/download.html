@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Download Formats</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Download Formats</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link active" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">⬇️</span>
+      <h1 class="hero-title"><em>Download Formats</em></h1>
+      <p class="hero-desc">Download your recording in the format you need — full video MP4, audio-only M4A, machine-readable transcript JSON, or formatted VTT captions for use in video editors.</p>
+      <div class="hero-tags"><span class="h-tag">MP4</span><span class="h-tag">M4A</span><span class="h-tag">VTT</span><span class="h-tag">JSON</span><span class="h-tag">Chat TXT</span><span class="h-tag">DOCX</span><span class="h-tag">Batch Export</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-formats')">Output Formats</div>
+<div class="tab " onclick="sw(this,'t-how')">How to Download</div>
+<div class="tab " onclick="sw(this,'t-batch')">Batch Export</div></div>
+    <div class="content">
+      <div id="t-formats" class="tab-pane active"><div class="ph1">All Download Formats</div>
+<div class="spec"><div class="spec-head">📥 Available Recording Output Files</div>
+<div class="spec-row"><span class="sk">MP4 (Video + Audio)</span><span class="sv">Full meeting recording with selected layout. H.264 encoded. ~0.8 GB/hour at 1080p.</span></div>
+<div class="spec-row"><span class="sk">M4A (Audio Only)</span><span class="sv">AAC audio from all speakers mixed together. ~50 MB/hour. Great for podcast-style meetings.</span></div>
+<div class="spec-row"><span class="sk">VTT (Captions)</span><span class="sv">WebVTT caption file with speaker labels and timestamps. Works in YouTube, Premiere Pro, Final Cut.</span></div>
+<div class="spec-row"><span class="sk">SRT (Subtitles)</span><span class="sv">SubRip format — compatible with VLC, DaVinci Resolve, social media upload.</span></div>
+<div class="spec-row"><span class="sk">JSON (Structured)</span><span class="sv">Full transcript with word-level timestamps, speaker IDs, confidence scores.</span></div>
+<div class="spec-row"><span class="sk">Chat (TXT)</span><span class="sv">All in-meeting chat messages with sender name and timestamp. Plain text.</span></div>
+<div class="spec-row"><span class="sk">Summary (PDF/DOCX)</span><span class="sv">AI summary formatted as a professional document with all sections and action items.</span></div>
+</div></div>
+<div id="t-how" class="tab-pane "><div class="ph1">How to Download Recordings</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Go to Hub → Recordings or Meetings → [Past Meeting] → Recordings tab</div></div></li>
+<li><div><div class="step-title">Click the ⬇ Download button on the recording tile</div><div class="step-desc">A download options panel appears listing all available files for this recording.</div></div></li>
+<li><div><div class="step-title">Select the file(s) you want</div><div class="step-desc">Check one or multiple formats. Click "Download Selected" to start downloading all checked files.</div></div></li>
+<li><div><div class="step-title">Files arrive in your Downloads folder</div><div class="step-desc">Large MP4 files may take a few minutes depending on your connection speed. VTT, JSON, and TXT files download instantly.</div></div></li>
+</ol></div>
+<div class="hl"><div class="hl-title">Download restrictions</div>
+<div class="hl-body">Admin can restrict MP4 download to host-only. Participants can still watch via the streaming player but cannot download the file. VTT and TXT files may still be downloadable even when MP4 is restricted, depending on admin settings.</div></div></div>
+<div id="t-batch" class="tab-pane "><div class="ph1">Batch Recording Export</div>
+<div class="card"><ul class="fl">
+<li>Export multiple recordings at once: Hub → Recordings → select checkboxes → "Download Selected"</li>
+<li>ZIP file created containing all selected files (all formats you specify)</li>
+<li>Batch export via API: GET /api/v1/recordings?date_from=&date_to= with format parameters</li>
+<li>Scheduled export: admin can configure daily/weekly export to a customer-owned S3 bucket</li>
+<li>Compliance export: eDiscovery API allows bulk export for legal hold purposes</li>
+<li>Large exports (&gt;5 recordings or &gt;1 GB) are processed asynchronously — you receive an email with a download link when ready</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="share-link.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Share Link & Passcode</div></div></a>
+      <span class="nav-counter">Feature 9 of 11</span>
+      <a class="nav-pg" href="storage.html"><div><div class="nav-label">Next</div><div class="nav-title">Storage & Retention</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

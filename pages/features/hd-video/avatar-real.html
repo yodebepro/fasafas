@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — AI Avatar (Realistic)</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#60a5fa;--fc-bg:rgba(96,165,250,.14);--fc-b:rgba(96,165,250,.3);--fc-dim:rgba(96,165,250,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../hd-video.html">HD Video</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../hd-video.html">HD Video</a><span class="bc-sep">/</span>
+  <span class="bc-cur">AI Avatar (Realistic)</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">HD Video Features</div>
+    <a class="sb-link" href="resolution.html"><span class="sb-num">1</span><span class="sb-icon">🖥️</span>1080p Resolution</a>
+<a class="sb-link" href="adaptive.html"><span class="sb-num">2</span><span class="sb-icon">📶</span>Adaptive Bitrate</a>
+<a class="sb-link" href="backgrounds.html"><span class="sb-num">3</span><span class="sb-icon">🌄</span>Virtual Backgrounds</a>
+<a class="sb-link" href="blur.html"><span class="sb-num">4</span><span class="sb-icon">🎨</span>Background Blur</a>
+<a class="sb-link" href="studio.html"><span class="sb-num">5</span><span class="sb-icon">💄</span>Studio Effects & Lighting</a>
+<a class="sb-link active" href="avatar-real.html"><span class="sb-num">6</span><span class="sb-icon">🧑</span>AI Avatar (Realistic)</a>
+<a class="sb-link" href="avatar-style.html"><span class="sb-num">7</span><span class="sb-icon">🎭</span>AI Avatar (Stylized)</a>
+<a class="sb-link" href="gallery.html"><span class="sb-num">8</span><span class="sb-icon">⬛</span>Gallery View</a>
+<a class="sb-link" href="speaker.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Speaker View</a>
+<a class="sb-link" href="dynamic.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Dynamic Gallery (AI)</a>
+<a class="sb-link" href="camera.html"><span class="sb-num">11</span><span class="sb-icon">📷</span>Camera & Device Settings</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../hd-video.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📹 HD Video Feature</div>
+      <span class="hero-icon">🧑</span>
+      <h1 class="hero-title"><em>AI Avatar (Realistic)</em></h1>
+      <p class="hero-desc">A photorealistic 3D avatar built from a brief 30-second video capture. It mirrors your facial expressions, head movement, and lip sync in real time — so you stay present without being on camera.</p>
+      <div class="hero-tags"><span class="h-tag">Realistic 3D</span><span class="h-tag">Expression Mirror</span><span class="h-tag">Lip Sync</span><span class="h-tag">GPU Required</span><span class="h-tag">Anti-Misuse Auth</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-setup')">Setup Process</div>
+<div class="tab " onclick="sw(this,'t-tech')">Technology</div>
+<div class="tab " onclick="sw(this,'t-use')">When to Use</div></div>
+    <div class="content">
+      <div id="t-setup" class="tab-pane active"><div class="ph1">Setting Up Your Realistic Avatar</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Go to Settings → Video → AI Avatar</div><div class="step-desc">Click "Create Realistic Avatar". This is a one-time setup process.</div></div></li>
+<li><div><div class="step-title">Record a 30-second face scan</div><div class="step-desc">Follow the on-screen prompts: look straight, then left, right, up, down. Ensure good lighting. The scan is processed locally on your device (no video uploaded).</div></div></li>
+<li><div><div class="step-title">AI builds your avatar model (1–2 minutes)</div><div class="step-desc">A lightweight 3D facial mesh is created using your face geometry. The model is stored encrypted in your account.</div></div></li>
+<li><div><div class="step-title">Authenticate with liveness check</div><div class="step-desc">Before using your avatar in any meeting, a liveness check confirms you are the registered person — preventing misuse by others with access to your device.</div></div></li>
+<li><div><div class="step-title">Activate in a meeting</div><div class="step-desc">In the meeting join preview or during a meeting: click caret next to Stop Video → Choose Virtual Camera → AI Avatar (Realistic).</div></div></li>
+</ol></div></div>
+<div id="t-tech" class="tab-pane "><div class="ph1">Technology Behind the Realistic Avatar</div>
+<div class="g2">
+<div class="card"><div class="ph3">Face Tracking</div><ul class="fl">
+<li>52 facial action unit detection (based on Apple ARKit model)</li>
+<li>Head pose estimation: pitch, yaw, roll angles</li>
+<li>Eye blink and gaze direction tracking</li>
+<li>Lip shape tracking (viseme mapping for lip sync)</li>
+<li>Emotion blendshapes: smile, frown, surprise, etc.</li>
+<li>Runs at 30fps on CPU / 60fps with GPU acceleration</li>
+</ul></div>
+<div class="card"><div class="ph3">Rendering</div><ul class="fl">
+<li>3D mesh rendered via WebGL in the browser</li>
+<li>PBR (Physically Based Rendering) for realistic skin texture</li>
+<li>Dynamic lighting follows your real background lighting conditions</li>
+<li>Hair and eyebrows rendered separately for realism</li>
+<li>Anti-aliasing applied before frame export to WebRTC</li>
+<li>Requires: NVIDIA GTX 1060+ or Apple M1+ or equivalent</li>
+</ul></div>
+</div></div>
+<div id="t-use" class="tab-pane "><div class="ph1">When to Use Your Realistic Avatar</div>
+<div class="g2">
+<div class="card"><div class="ph3">Good Use Cases</div><ul class="fl">
+<li>Days when you're not camera-ready (bad hair, no makeup, illness)</li>
+<li>Traveling — unpredictable or poor backgrounds</li>
+<li>Long back-to-back meetings where camera fatigue sets in</li>
+<li>Recording async Clips without needing to look at a camera</li>
+<li>Presenting in large webinars where expression presence matters</li>
+</ul></div>
+<div class="card"><div class="ph3">Limitations</div><ul class="fl">
+<li>Glasses tracking can occasionally slip</li>
+<li>Extreme head rotations (&gt;45°) may lose tracking momentarily</li>
+<li>Very dark rooms can confuse the face detection model</li>
+<li>Not suitable for video calls requiring recording for legal purposes</li>
+<li>Visible latency of ~80–100ms between real expression and avatar</li>
+</ul></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="studio.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Studio Effects & Lighting</div></div></a>
+      <span class="nav-counter">Feature 6 of 11</span>
+      <a class="nav-pg" href="avatar-style.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Avatar (Stylized)</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

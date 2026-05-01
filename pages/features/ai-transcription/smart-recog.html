@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Smart Recognition</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Smart Recognition</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link active" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">🎤</span>
+      <h1 class="hero-title"><em>Smart Recognition</em></h1>
+      <p class="hero-desc">Smart Recognition maps the automatic 'Speaker 1, Speaker 2' labels to real participant names by matching live speech against enrolled voice embeddings — fully opt-in and stored encrypted.</p>
+      <div class="hero-tags"><span class="h-tag">Voice Enrollment</span><span class="h-tag">30-Sec Scan</span><span class="h-tag">Name Mapping</span><span class="h-tag">Encrypted</span><span class="h-tag">Opt-In Only</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-enroll')">Enrollment</div>
+<div class="tab " onclick="sw(this,'t-how')">Live Matching</div>
+<div class="tab " onclick="sw(this,'t-privacy')">Privacy Controls</div></div>
+    <div class="content">
+      <div id="t-enroll" class="tab-pane active"><div class="ph1">Voice Enrollment Process</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Go to Profile → Settings → Smart Recognition</div><div class="step-desc">Toggle "Enroll Voice for Smart Recognition". This is an opt-in feature — off by default.</div></div></li>
+<li><div><div class="step-title">Read the enrollment script aloud (30 seconds)</div><div class="step-desc">A short passage is displayed. Read it clearly in your natural speaking voice. The system needs enough audio to build an accurate voice embedding.</div></div></li>
+<li><div><div class="step-title">Voice embedding generated on-device</div><div class="step-desc">A 192-dimensional vector representation of your voice characteristics is computed locally. This is a mathematical fingerprint — NOT a recording of you speaking.</div></div></li>
+<li><div><div class="step-title">Embedding encrypted and stored in your account</div><div class="step-desc">The embedding is encrypted with your account key before being uploaded. FasaFas staff cannot listen to or reconstruct any speech from it.</div></div></li>
+</ol></div></div>
+<div id="t-how" class="tab-pane "><div class="ph1">Live Name Matching During Meetings</div>
+<div class="card"><ul class="fl">
+<li>As audio segments arrive, the diarization engine extracts a voice embedding per speaker segment</li>
+<li>Each segment embedding is compared against all enrolled embeddings in the account using cosine similarity</li>
+<li>Match threshold: 0.85 cosine similarity (tunable by admin — lower = more matches, higher = stricter)</li>
+<li>If a match is found, the speaker label is updated from "Speaker 2" to "Marcus Smith" retroactively</li>
+<li>Matching improves as more of the meeting passes — a 30-second segment gives better accuracy than a 3-second one</li>
+<li>Unmatched speakers retain the "Speaker X" label in the final transcript</li>
+</ul></div></div>
+<div id="t-privacy" class="tab-pane "><div class="ph1">Privacy and Data Controls</div>
+<div class="card"><ul class="fl">
+<li>Opt-in only — never automatic enrollment from meeting audio</li>
+<li>Voice embeddings are mathematical vectors, not audio recordings — cannot be reversed to speech</li>
+<li>Stored encrypted at rest (AES-256) with account-specific key</li>
+<li>Never shared with other accounts or used to train AI models</li>
+<li>Delete your enrollment: Profile → Smart Recognition → Delete Voice Data</li>
+<li>Admin can disable Smart Recognition feature account-wide</li>
+<li>GDPR: voice data included in "download my data" and "delete my data" requests</li>
+<li>Matching only runs against enrolled users in the same account — no cross-account matching</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="diarization.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Speaker Diarization</div></div></a>
+      <span class="nav-counter">Feature 4 of 11</span>
+      <a class="nav-pg" href="my-notes.html"><div><div class="nav-label">Next</div><div class="nav-title">My Notes</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

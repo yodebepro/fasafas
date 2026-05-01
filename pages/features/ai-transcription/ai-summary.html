@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — AI Meeting Summary</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">AI Meeting Summary</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link active" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">📋</span>
+      <h1 class="hero-title"><em>AI Meeting Summary</em></h1>
+      <p class="hero-desc">After every meeting with AI enabled, FasaFas generates a structured summary — covering the meeting's purpose, key decisions, outcomes, and next steps. Ready in minutes, editable before sharing.</p>
+      <div class="hero-tags"><span class="h-tag">Auto-Generated</span><span class="h-tag">3–5 Paragraphs</span><span class="h-tag">Editable</span><span class="h-tag">Share to Slack</span><span class="h-tag">Custom Templates</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-generation')">How Summary is Generated</div>
+<div class="tab " onclick="sw(this,'t-content')">Summary Structure</div>
+<div class="tab " onclick="sw(this,'t-share')">Sharing & Templates</div></div>
+    <div class="content">
+      <div id="t-generation" class="tab-pane active"><div class="ph1">How the Summary is Generated</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Meeting ends — transcript finalized</div><div class="step-desc">Whisper transcription of the full meeting is assembled with speaker labels and timestamps. This becomes the input to the summary generation.</div></div></li>
+<li><div><div class="step-title">Claude Sonnet processes the transcript</div><div class="step-desc">Anthropic Claude 3.5 Sonnet receives the full transcript (up to 200,000 tokens — handling meetings up to ~8 hours). A structured prompt instructs it to produce the summary in sections.</div></div></li>
+<li><div><div class="step-title">Summary generated in 30–90 seconds</div><div class="step-desc">Total pipeline time: transcription + diarization + summary = typically 3–8 minutes after meeting end. Host receives a notification when ready.</div></div></li>
+<li><div><div class="step-title">Host reviews and edits before sharing</div><div class="step-desc">The summary is shown to the host with an "Edit" mode. Names, decisions, and figures can be corrected before the summary is published or shared.</div></div></li>
+</ol></div></div>
+<div id="t-content" class="tab-pane "><div class="ph1">What the Summary Contains</div>
+<div class="spec"><div class="spec-head">📋 Standard Summary Sections</div>
+<div class="spec-row"><span class="sk">Meeting Overview</span><span class="sv">Topic, date, attendees, duration, purpose of the meeting</span></div>
+<div class="spec-row"><span class="sk">Key Discussion Points</span><span class="sv">3–5 bullet summary of major topics covered</span></div>
+<div class="spec-row"><span class="sk">Decisions Made</span><span class="sv">Numbered list of confirmed decisions extracted from transcript</span></div>
+<div class="spec-row"><span class="sk">Action Items</span><span class="sv">Task, assignee (if mentioned), due date (if mentioned)</span></div>
+<div class="spec-row"><span class="sk">Next Steps</span><span class="sv">Forward-looking items and upcoming milestones discussed</span></div>
+<div class="spec-row"><span class="sk">Open Questions</span><span class="sv">Questions raised that were not conclusively answered</span></div>
+</div></div>
+<div id="t-share" class="tab-pane "><div class="ph1">Sharing and Templates</div>
+<div class="g2">
+<div class="card"><div class="ph3">Sharing Options</div><ul class="fl">
+<li>Share via link (view-only, no account needed)</li>
+<li>Push to Slack channel: one-click, includes summary text + recording link</li>
+<li>Email draft: pre-composed email with summary text — send directly from FasaFas</li>
+<li>Export to Doc: creates a Docs page with the full summary and action items</li>
+<li>Push action items to Tasks (one-click for all items at once)</li>
+<li>Webhook: summary pushed to your endpoint on meeting.summary.completed event</li>
+</ul></div>
+<div class="card"><div class="ph3">Custom Templates</div><ul class="fl">
+<li>AI Companion add-on: 8 custom summary templates (e.g., Sales Call, Sprint Review, 1:1, Board Meeting)</li>
+<li>Custom AI add-on: unlimited custom templates with your own section structure</li>
+<li>Template example — Sales Call: includes Prospect Name, Pain Points, Next Steps, Deal Stage</li>
+<li>Admins can set organization-wide default summary template</li>
+<li>Templates applied at meeting creation time or retroactively from recordings</li>
+</ul></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="my-notes.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">My Notes</div></div></a>
+      <span class="nav-counter">Feature 6 of 11</span>
+      <a class="nav-pg" href="smart-chapters.html"><div><div class="nav-label">Next</div><div class="nav-title">Smart Chapters</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

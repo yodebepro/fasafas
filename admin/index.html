@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Admin Portal</title>
+<style>
+:root{
+  --bg:#07101f;--bg2:#0d1b2e;--bg3:#132039;--card:#0f1f35;
+  --border:#1e3050;--accent:#2563eb;--accent2:#3b82f6;--accent3:#60a5fa;
+  --green:#10b981;--amber:#f59e0b;--red:#ef4444;--purple:#8b5cf6;
+  --teal:#14b8a6;--pink:#ec4899;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
+  --font:'Segoe UI',system-ui,sans-serif;--mono:'Consolas','SF Mono',monospace;
+  --sidebar:240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* ═══════════════ LOGIN SCREEN ═══════════════ */
+#login-screen{
+  position:fixed;inset:0;z-index:9999;
+  background:radial-gradient(ellipse at 20% 50%,rgba(37,99,235,.18),transparent 55%),
+             radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.12),transparent 55%),
+             #07101f;
+  display:flex;align-items:center;justify-content:center;
+}
+.login-box{
+  width:100%;max-width:420px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:18px;
+  padding:40px 36px;box-shadow:0 24px 80px rgba(0,0,0,.6);
+}
+.login-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.login-logo-dot{width:10px;height:10px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.login-logo-text{font-size:22px;font-weight:900;color:var(--accent2);letter-spacing:-.5px}
+.login-logo-badge{
+  margin-left:auto;padding:3px 10px;border-radius:6px;
+  background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);
+  color:#fca5a5;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+}
+.login-title{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+.login-sub{color:var(--text2);font-size:13px;margin-bottom:28px}
+
+/* Login form */
+.lf-group{margin-bottom:18px}
+.lf-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;
+  color:var(--text3);margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;
+}
+.lf-input{
+  width:100%;padding:12px 14px;border-radius:9px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--text);font-family:var(--font);font-size:14px;outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+.lf-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.14)}
+.lf-input::placeholder{color:var(--text3)}
+.lf-input-wrap{position:relative}
+.lf-input-wrap .lf-input{padding-right:44px}
+.lf-eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:4px}
+.lf-eye:hover{color:var(--text2)}
+
+/* Error msg */
+.login-error{
+  background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);
+  border-radius:8px;padding:10px 14px;font-size:13px;color:#fca5a5;
+  margin-bottom:16px;display:none;align-items:center;gap:8px;
+}
+.login-error.show{display:flex}
+
+/* Login button */
+.login-btn{
+  width:100%;padding:13px;border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;
+  transition:all .2s;font-family:var(--font);margin-top:4px;
+}
+.login-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,99,235,.35)}
+.login-btn:active{transform:translateY(0)}
+.login-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* Credentials hint card */
+.creds-card{
+  background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);
+  border-radius:10px;padding:14px 16px;margin-top:18px;
+}
+.creds-title{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.cred-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(16,185,129,.1)}
+.cred-row:last-child{border:none}
+.cred-key{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+.cred-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+.cred-copy{background:none;border:1px solid var(--border);border-radius:5px;padding:2px 8px;font-size:10px;color:var(--text3);cursor:pointer;font-family:var(--font);transition:all .15s}
+.cred-copy:hover{border-color:var(--green);color:var(--green)}
+
+.login-footer{margin-top:20px;text-align:center;font-size:11px;color:var(--text3)}
+.login-footer a{color:var(--accent3);cursor:pointer}
+
+/* ═══════════════ ADMIN LAYOUT ═══════════════ */
+#admin-screen{display:none;height:100vh;overflow:hidden}
+.admin-layout{display:flex;height:100%}
+
+/* Sidebar */
+.admin-sidebar{
+  width:var(--sidebar);min-width:var(--sidebar);
+  background:var(--bg2);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+  position:relative;
+}
+.sidebar-top{padding:18px 16px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
+.sidebar-logo{font-size:17px;font-weight:900;color:var(--accent2);display:flex;align-items:center;gap:8px;letter-spacing:-.3px}
+.sidebar-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
+.sidebar-badge{
+  font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;
+  background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.25);
+  letter-spacing:.5px;text-transform:uppercase;
+}
+.sidebar-user{display:flex;align-items:center;gap:9px;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.sidebar-avatar{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#2563eb,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.sidebar-user-name{font-size:13px;font-weight:700}
+.sidebar-user-role{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+
+.sidebar-nav{flex:1;overflow-y:auto;padding:8px 0}
+.nav-section-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:10px 16px 4px}
+.nav-item{
+  display:flex;align-items:center;gap:9px;padding:8px 16px;
+  color:var(--text3);cursor:pointer;transition:all .15s;border-left:3px solid transparent;
+  font-size:13px;font-weight:500;
+}
+.nav-item:hover{background:var(--bg3);color:var(--text2);border-left-color:var(--border)}
+.nav-item.active{background:rgba(37,99,235,.12);color:var(--accent3);border-left-color:var(--accent)}
+.nav-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+.nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px}
+.nav-badge.amber{background:var(--amber)}
+.nav-badge.green{background:var(--green)}
+
+.sidebar-bottom{padding:12px 16px;border-top:1px solid var(--border);flex-shrink:0}
+.logout-btn{
+  width:100%;padding:9px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--text3);font-size:13px;font-weight:600;
+  cursor:pointer;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:all .15s;
+}
+.logout-btn:hover{background:rgba(239,68,68,.1);border-color:var(--red);color:#fca5a5}
+
+/* Main content */
+.admin-main{flex:1;overflow-y:auto;display:flex;flex-direction:column}
+.admin-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:56px;background:var(--bg2);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:10;flex-shrink:0;
+}
+.topbar-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.topbar-title .page-icon{font-size:18px}
+.topbar-actions{display:flex;gap:8px;align-items:center}
+.tb-btn{padding:6px 14px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;display:flex;align-items:center;gap:5px}
+.tb-btn:hover{background:var(--bg3);color:var(--text);border-color:var(--accent2)}
+.tb-btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.tb-btn.pri:hover{background:#1d4ed8}
+.tb-btn.danger{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:#fca5a5}
+.tb-btn.danger:hover{background:rgba(239,68,68,.2)}
+
+/* Content panels */
+.admin-content{padding:28px;flex:1}
+.panel{display:none}.panel.active{display:block}
+
+/* Stat cards */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px;position:relative;overflow:hidden;
+}
+.stat-card::after{content:var(--sc-icon,'');position:absolute;right:16px;top:14px;font-size:28px;opacity:.15}
+.stat-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:6px}
+.stat-val{font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:4px}
+.stat-delta{font-size:12px;display:flex;align-items:center;gap:4px}
+.delta-up{color:var(--green)}.delta-down{color:var(--red)}
+
+/* Section heading */
+.section-h{font-size:16px;font-weight:700;letter-spacing:-.3px;margin:24px 0 14px;display:flex;align-items:center;gap:8px}
+.section-h:first-child{margin-top:0}
+.section-h .sh-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+.section-h .sh-action{margin-left:auto;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s}
+.section-h .sh-action:hover{border-color:var(--accent2);color:var(--accent3)}
+
+/* Data table */
+.data-table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px}
+.table-toolbar{padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.table-search{padding:8px 12px;border-radius:7px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;outline:none;min-width:200px;transition:border-color .15s}
+.table-search:focus{border-color:var(--accent)}
+.table-search::placeholder{color:var(--text3)}
+.table-filter{padding:7px 10px;border-radius:7px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-family:var(--font);font-size:12px;cursor:pointer;outline:none}
+.table-count{margin-left:auto;font-size:12px;color:var(--text3)}
+.dtable{width:100%;border-collapse:collapse}
+.dtable th{background:var(--bg3);color:var(--text3);padding:9px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+.dtable td{padding:11px 14px;border-bottom:1px solid rgba(30,48,80,.35);font-size:13px;vertical-align:middle}
+.dtable tr:last-child td{border:none}
+.dtable tr:hover td{background:rgba(19,32,57,.5)}
+.user-cell{display:flex;align-items:center;gap:10px}
+.user-av{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.user-name{font-weight:600;font-size:13px}
+.user-email{font-size:11px;color:var(--text3)}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700}
+.b-active{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.25)}
+.b-pending{background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.25)}
+.b-inactive{background:rgba(100,116,139,.15);color:var(--text3);border:1px solid rgba(100,116,139,.2)}
+.b-admin{background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.2)}
+.b-member{background:rgba(37,99,235,.12);color:#93c5fd;border:1px solid rgba(37,99,235,.2)}
+.b-owner{background:rgba(139,92,246,.15);color:#c4b5fd;border:1px solid rgba(139,92,246,.25)}
+.b-pro{background:rgba(37,99,235,.15);color:#93c5fd;border:1px solid rgba(37,99,235,.25)}
+.b-basic{background:rgba(100,116,139,.12);color:var(--text2);border:1px solid rgba(100,116,139,.2)}
+.b-business{background:rgba(16,185,129,.12);color:#6ee7b7;border:1px solid rgba(16,185,129,.2)}
+.action-dots{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:2px 6px;border-radius:5px}
+.action-dots:hover{background:var(--bg3);color:var(--text)}
+
+/* Toggle */
+.tog{width:36px;height:20px;border-radius:10px;background:var(--accent);position:relative;flex-shrink:0;cursor:pointer}
+.tog.off{background:var(--border)}
+.tog::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .15s}
+.tog:not(.off)::after{left:19px}
+.tog-switch{position:relative;width:36px;height:20px;flex-shrink:0}
+.tog-switch input{opacity:0;width:0;height:0;position:absolute}
+.tog-slider{position:absolute;inset:0;border-radius:10px;background:var(--border);cursor:pointer;transition:.2s}
+.tog-slider::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+.tog-switch input:checked+.tog-slider{background:var(--accent)}
+.tog-switch input:checked+.tog-slider::before{left:19px}
+
+/* Setting row */
+.setting-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.setting-section-head{padding:12px 18px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent3);display:flex;align-items:center;gap:8px}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid rgba(30,48,80,.4)}
+.setting-row:last-child{border:none}
+.setting-info .sl{font-size:13px;font-weight:600}
+.setting-info .sd{font-size:11px;color:var(--text3);margin-top:2px}
+.setting-control{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.ctrl-input{padding:6px 10px;border-radius:7px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;outline:none;width:120px;transition:border-color .15s}
+.ctrl-input:focus{border-color:var(--accent)}
+.ctrl-select{padding:6px 10px;border-radius:7px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:12px;cursor:pointer;outline:none}
+
+/* Chart bar */
+.bar-chart{display:flex;flex-direction:column;gap:8px;padding:4px 0}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.bar-label{width:110px;color:var(--text2);text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.bar-value{width:40px;color:var(--text2);font-weight:600;font-size:11px}
+
+/* Audit log */
+.audit-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(30,48,80,.4)}
+.audit-item:last-child{border:none}
+.audit-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.audit-body{flex:1}
+.audit-action{font-size:13px;font-weight:500}
+.audit-meta{font-size:11px;color:var(--text3);margin-top:2px;display:flex;gap:12px}
+.audit-time{font-size:11px;color:var(--text3);white-space:nowrap}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;max-width:460px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.modal-title{font-size:17px;font-weight:800;margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--text2);margin-bottom:20px}
+.modal-field{margin-bottom:14px}
+.modal-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:5px;display:block}
+.modal-input{width:100%;padding:10px 12px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;outline:none;transition:border-color .15s}
+.modal-input:focus{border-color:var(--accent)}
+.modal-input::placeholder{color:var(--text3)}
+.modal-select{width:100%;padding:10px 12px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;cursor:pointer;outline:none}
+.modal-footer{display:flex;gap:8px;margin-top:20px;justify-content:flex-end}
+.modal-btn{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all .15s}
+.modal-btn.cancel{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.modal-btn.cancel:hover{color:var(--text)}
+.modal-btn.confirm{background:var(--accent);color:#fff}
+.modal-btn.confirm:hover{background:#1d4ed8}
+.modal-btn.danger{background:var(--red);color:#fff}
+.modal-btn.danger:hover{background:#dc2626}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9998;background:var(--bg2);border:1px solid var(--green);border-radius:10px;padding:12px 18px;display:flex;align-items:center;gap:10px;color:var(--text);font-size:13px;font-weight:600;transform:translateY(80px);opacity:0;transition:all .3s;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* Billing plan card */
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px}
+.plan-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.plan-name{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.plan-price{font-size:24px;font-weight:800;letter-spacing:-.5px}
+.plan-status{display:flex;align-items:center;gap:6px}
+
+/* Progress bar */
+.progress-wrap{margin:8px 0}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:5px}
+.progress-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;transition:width .5s}
+
+/* Quick actions grid */
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+@media(max-width:800px){.quick-grid{grid-template-columns:repeat(2,1fr)}}
+.quick-act{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:12px}
+.quick-act:hover{border-color:var(--accent2);background:var(--bg2);transform:translateY(-1px)}
+.qa-icon{font-size:22px;flex-shrink:0}
+.qa-label{font-size:13px;font-weight:700}
+.qa-desc{font-size:11px;color:var(--text3);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════
+     LOGIN SCREEN
+═══════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-dot"></div>
+      <div class="login-logo-text">FasaFas</div>
+      <div class="login-logo-badge">🔐 Admin Portal</div>
+    </div>
+
+    <h2 class="login-title">Administrator Login</h2>
+    <p class="login-sub">This area is restricted. Enter your admin credentials to continue.</p>
+
+    <div class="login-error" id="login-error">
+      <span>⚠</span> <span id="login-error-msg">Invalid username or password. Please try again.</span>
+    </div>
+
+    <div class="lf-group">
+      <label class="lf-label">Username / Email</label>
+      <input class="lf-input" id="l-user" type="text" placeholder="admin@fasafas.com" autocomplete="username"
+        onkeydown="if(event.key==='Enter')document.getElementById('l-pass').focus()">
+    </div>
+
+    <div class="lf-group">
+      <label class="lf-label">
+        Password
+        <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--accent3);cursor:pointer" onclick="alert('Password reset email sent to admin@fasafas.com')">Forgot?</span>
+      </label>
+      <div class="lf-input-wrap">
+        <input class="lf-input" id="l-pass" type="password" placeholder="Enter admin password" autocomplete="current-password"
+          onkeydown="if(event.key==='Enter')doLogin()">
+        <button class="lf-eye" onclick="togglePw()">👁</button>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:13px;color:var(--text2)">
+      <label style="display:flex;align-items:center;gap:7px;cursor:pointer">
+        <input type="checkbox" id="remember" style="accent-color:var(--accent);width:14px;height:14px"> Keep me signed in
+      </label>
+    </div>
+
+    <button class="login-btn" id="login-btn" onclick="doLogin()">Sign In to Admin Portal →</button>
+
+    <!-- Credentials hint -->
+    <div class="creds-card">
+      <div class="creds-title">🗝 Default Admin Credentials</div>
+      <div class="cred-row">
+        <span class="cred-key">Username</span>
+        <span class="cred-val">
+          admin@fasafas.com
+          <button class="cred-copy" onclick="fillField('l-user','admin@fasafas.com')">Use</button>
+        </span>
+      </div>
+      <div class="cred-row">
+        <span class="cred-key">Password</span>
+        <span class="cred-val">
+          FasaFas@2026
+          <button class="cred-copy" onclick="fillField('l-pass','FasaFas@2026')">Use</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="login-footer">
+      <a onclick="location.href='../index.html'">← Back to FasaFas</a> ·
+      <a onclick="location.href='signin.html'">User Login</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     ADMIN DASHBOARD
+═══════════════════════════════ -->
+<div id="admin-screen">
+  <div class="admin-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-logo">
+          <div class="sidebar-dot"></div>
+          FasaFas
+          <span class="sidebar-badge">Admin</span>
+        </div>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">SA</div>
+        <div>
+          <div class="sidebar-user-name">Super Admin</div>
+          <div class="sidebar-user-role">Owner · All Access</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Overview</div>
+        <div class="nav-item active" onclick="switchPanel('dashboard',this)">
+          <span class="nav-icon">📊</span> Dashboard
+        </div>
+        <div class="nav-item" onclick="switchPanel('audit',this)">
+          <span class="nav-icon">📋</span> Audit Log
+          <span class="nav-badge">12</span>
+        </div>
+
+        <div class="nav-section-label">People</div>
+        <div class="nav-item" onclick="switchPanel('users',this)">
+          <span class="nav-icon">👥</span> Users
+          <span class="nav-badge green">247</span>
+        </div>
+        <div class="nav-item" onclick="switchPanel('groups',this)">
+          <span class="nav-icon">🏢</span> Groups & Roles
+        </div>
+        <div class="nav-item" onclick="switchPanel('invites',this)">
+          <span class="nav-icon">✉️</span> Pending Invites
+          <span class="nav-badge amber">5</span>
+        </div>
+
+        <div class="nav-section-label">Meetings</div>
+        <div class="nav-item" onclick="switchPanel('meetings',this)">
+          <span class="nav-icon">🎥</span> All Meetings
+        </div>
+        <div class="nav-item" onclick="switchPanel('recordings',this)">
+          <span class="nav-icon">⏺</span> Recordings
+        </div>
+
+        <div class="nav-section-label">Platform</div>
+        <div class="nav-item" onclick="switchPanel('ai',this)">
+          <span class="nav-icon">🤖</span> AI Settings
+        </div>
+        <div class="nav-item" onclick="switchPanel('security',this)">
+          <span class="nav-icon">🔒</span> Security & SSO
+        </div>
+        <div class="nav-item" onclick="switchPanel('billing',this)">
+          <span class="nav-icon">💳</span> Billing & Plans
+        </div>
+        <div class="nav-item" onclick="switchPanel('integrations',this)">
+          <span class="nav-icon">🔌</span> Integrations
+        </div>
+
+        <div class="nav-section-label">Config</div>
+        <div class="nav-item" onclick="switchPanel('settings',this)">
+          <span class="nav-icon">⚙️</span> Account Settings
+        </div>
+        <div class="nav-item" onclick="switchPanel('admins',this)">
+          <span class="nav-icon">🛡️</span> Admin Accounts
+        </div>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="logout-btn" onclick="doLogout()">🚪 Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <div class="admin-main">
+
+      <!-- Topbar (dynamic) -->
+      <div class="admin-topbar">
+        <div class="topbar-title">
+          <span class="page-icon" id="tb-icon">📊</span>
+          <span id="tb-title">Dashboard</span>
+        </div>
+        <div class="topbar-actions" id="tb-actions">
+          <button class="tb-btn" onclick="showToast('Report exported!')">⬇ Export</button>
+          <button class="tb-btn" onclick="showToast('Data refreshed!')">↺ Refresh</button>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="admin-content">
+
+        <!-- ── DASHBOARD ── -->
+        <div id="panel-dashboard" class="panel active">
+          <div class="stats-grid">
+            <div class="stat-card" style="--sc-icon:'👥'">
+              <div class="stat-label">Total Users</div>
+              <div class="stat-val" style="color:var(--accent2)">247</div>
+              <div class="stat-delta"><span class="delta-up">↑ 12</span> this month</div>
+            </div>
+            <div class="stat-card" style="--sc-icon:'🎥'">
+              <div class="stat-label">Meetings Today</div>
+              <div class="stat-val" style="color:var(--green)">38</div>
+              <div class="stat-delta"><span class="delta-up">↑ 7%</span> vs yesterday</div>
+            </div>
+            <div class="stat-card" style="--sc-icon:'⏱'">
+              <div class="stat-label">Meeting Minutes</div>
+              <div class="stat-val" style="color:var(--amber)">4,821</div>
+              <div class="stat-delta"><span class="delta-up">↑ 3%</span> this week</div>
+            </div>
+            <div class="stat-card" style="--sc-icon:'💳'">
+              <div class="stat-label">Monthly Revenue</div>
+              <div class="stat-val" style="color:var(--purple)">$3,281</div>
+              <div class="stat-delta"><span class="delta-up">↑ $240</span> vs last month</div>
+            </div>
+          </div>
+
+          <div class="section-h"><div class="sh-dot"></div>Usage by Module (This Month)</div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px">
+            <div class="bar-chart">
+              <div class="bar-row"><div class="bar-label">Meetings</div><div class="bar-track"><div class="bar-fill" style="width:82%;background:var(--accent2)"></div></div><div class="bar-value">1,284</div></div>
+              <div class="bar-row"><div class="bar-label">Team Chat</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:var(--teal)"></div></div><div class="bar-value">48,320</div></div>
+              <div class="bar-row"><div class="bar-label">AI Summaries</div><div class="bar-track"><div class="bar-fill" style="width:61%;background:var(--purple)"></div></div><div class="bar-value">856</div></div>
+              <div class="bar-row"><div class="bar-label">Phone Calls</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:var(--green)"></div></div><div class="bar-value">632</div></div>
+              <div class="bar-row"><div class="bar-label">Whiteboards</div><div class="bar-track"><div class="bar-fill" style="width:32%;background:var(--pink)"></div></div><div class="bar-value">248</div></div>
+              <div class="bar-row"><div class="bar-label">Clips</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:var(--orange)"></div></div><div class="bar-value">194</div></div>
+            </div>
+          </div>
+
+          <div class="section-h"><div class="sh-dot"></div>Quick Actions</div>
+          <div class="quick-grid">
+            <div class="quick-act" onclick="switchPanel('users',document.querySelector('[onclick*=\"users\"]'))">
+              <div class="qa-icon">➕</div><div><div class="qa-label">Add User</div><div class="qa-desc">Invite new team member</div></div>
+            </div>
+            <div class="quick-act" onclick="showToast('Broadcast sent to all 247 users!')">
+              <div class="qa-icon">📢</div><div><div class="qa-label">Broadcast</div><div class="qa-desc">Message all users</div></div>
+            </div>
+            <div class="quick-act" onclick="switchPanel('billing',document.querySelector('[onclick*=\"billing\"]'))">
+              <div class="qa-icon">💳</div><div><div class="qa-label">Manage Billing</div><div class="qa-desc">Plans and invoices</div></div>
+            </div>
+            <div class="quick-act" onclick="switchPanel('security',document.querySelector('[onclick*=\"security\"]'))">
+              <div class="qa-icon">🔒</div><div><div class="qa-label">Security</div><div class="qa-desc">MFA, SSO, policies</div></div>
+            </div>
+            <div class="quick-act" onclick="showToast('Report downloading…')">
+              <div class="qa-icon">📊</div><div><div class="qa-label">Export Report</div><div class="qa-desc">Download usage CSV</div></div>
+            </div>
+            <div class="quick-act" onclick="switchPanel('ai',document.querySelector('[onclick*=\"ai\"]'))">
+              <div class="qa-icon">🤖</div><div><div class="qa-label">AI Controls</div><div class="qa-desc">Toggle AI features</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── USERS ── -->
+        <div id="panel-users" class="panel">
+          <div class="data-table-wrap">
+            <div class="table-toolbar">
+              <input class="table-search" placeholder="🔍  Search users…" oninput="filterTable(this)">
+              <select class="table-filter" onchange="showToast('Filter applied')">
+                <option>All Status</option><option>Active</option><option>Pending</option><option>Inactive</option>
+              </select>
+              <select class="table-filter" onchange="showToast('Filter applied')">
+                <option>All Plans</option><option>Basic</option><option>Pro</option><option>Business</option>
+              </select>
+              <span class="table-count">247 users</span>
+              <button class="tb-btn pri" onclick="openModal('modal-adduser')">＋ Add User</button>
+            </div>
+            <table class="dtable" id="users-table">
+              <thead><tr><th>User</th><th>Role</th><th>Plan</th><th>Status</th><th>Last Login</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><div class="user-cell"><div class="user-av" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">JD</div><div><div class="user-name">Jane Doe</div><div class="user-email">jane.doe@company.com</div></div></div></td>
+                  <td><span class="badge b-owner">Owner</span></td><td><span class="badge b-business">Business</span></td>
+                  <td><span class="badge b-active">Active</span></td><td style="color:var(--text2);font-size:12px">Today 9:42 AM</td>
+                  <td><button class="action-dots" onclick="showUserMenu(this)">⋯</button></td>
+                </tr>
+                <tr>
+                  <td><div class="user-cell"><div class="user-av" style="background:linear-gradient(135deg,#10b981,#2563eb)">MS</div><div><div class="user-name">Marcus Smith</div><div class="user-email">m.smith@company.com</div></div></div></td>
+                  <td><span class="badge b-admin">Admin</span></td><td><span class="badge b-pro">Pro</span></td>
+                  <td><span class="badge b-active">Active</span></td><td style="color:var(--text2);font-size:12px">Today 8:15 AM</td>
+                  <td><button class="action-dots" onclick="showUserMenu(this)">⋯</button></td>
+                </tr>
+                <tr>
+                  <td><div class="user-cell"><div class="user-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">AL</div><div><div class="user-name">Ana Lopez</div><div class="user-email">a.lopez@company.com</div></div></div></td>
+                  <td><span class="badge b-member">Member</span></td><td><span class="badge b-pro">Pro</span></td>
+                  <td><span class="badge b-active">Active</span></td><td style="color:var(--text2);font-size:12px">Yesterday</td>
+                  <td><button class="action-dots" onclick="showUserMenu(this)">⋯</button></td>
+                </tr>
+                <tr>
+                  <td><div class="user-cell"><div class="user-av" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">RK</div><div><div class="user-name">Raj Kumar</div><div class="user-email">r.kumar@company.com</div></div></div></td>
+                  <td><span class="badge b-member">Member</span></td><td><span class="badge b-basic">Basic</span></td>
+                  <td><span class="badge b-pending">Pending</span></td><td style="color:var(--text2);font-size:12px">Never</td>
+                  <td><button class="action-dots" onclick="showUserMenu(this)">⋯</button></td>
+                </tr>
+                <tr>
+                  <td><div class="user-cell"><div class="user-av" style="background:linear-gradient(135deg,#14b8a6,#8b5cf6)">TW</div><div><div class="user-name">Taylor White</div><div class="user-email">t.white@company.com</div></div></div></td>
+                  <td><span class="badge b-member">Member</span></td><td><span class="badge b-pro">Pro</span></td>
+                  <td><span class="badge b-inactive">Inactive</span></td><td style="color:var(--text2);font-size:12px">Apr 12</td>
+                  <td><button class="action-dots" onclick="showUserMenu(this)">⋯</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── MEETINGS ── -->
+        <div id="panel-meetings" class="panel">
+          <div class="data-table-wrap">
+            <div class="table-toolbar">
+              <input class="table-search" placeholder="🔍  Search meetings…">
+              <select class="table-filter"><option>All Status</option><option>Live Now</option><option>Scheduled</option><option>Ended</option></select>
+              <span class="table-count">38 today</span>
+            </div>
+            <table class="dtable">
+              <thead><tr><th>Topic</th><th>Host</th><th>Participants</th><th>Status</th><th>Start Time</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight:600">Weekly All Hands</td><td style="color:var(--text2)">Jane Doe</td><td>47</td><td><span class="badge b-active">🔴 Live</span></td><td style="color:var(--text2);font-size:12px">9:00 AM</td><td><button class="action-dots" onclick="showToast('Joining as observer…')">⋯</button></td></tr>
+                <tr><td style="font-weight:600">Product Design Review</td><td style="color:var(--text2)">Ana Lopez</td><td>12</td><td><span class="badge b-active">🔴 Live</span></td><td style="color:var(--text2);font-size:12px">9:30 AM</td><td><button class="action-dots" onclick="showToast('Joining as observer…')">⋯</button></td></tr>
+                <tr><td style="font-weight:600">Sales Team Standup</td><td style="color:var(--text2)">Marcus Smith</td><td>0</td><td><span class="badge b-pending">Scheduled</span></td><td style="color:var(--text2);font-size:12px">10:00 AM</td><td><button class="action-dots" onclick="showToast('Options…')">⋯</button></td></tr>
+                <tr><td style="font-weight:600">Client Presentation</td><td style="color:var(--text2)">Taylor White</td><td>0</td><td><span class="badge b-pending">Scheduled</span></td><td style="color:var(--text2);font-size:12px">2:00 PM</td><td><button class="action-dots" onclick="showToast('Options…')">⋯</button></td></tr>
+                <tr><td style="font-weight:600">1:1 Check-in</td><td style="color:var(--text2)">Raj Kumar</td><td>2</td><td><span class="badge b-inactive">Ended</span></td><td style="color:var(--text2);font-size:12px">8:00 AM</td><td><button class="action-dots" onclick="showToast('Options…')">⋯</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── AI SETTINGS ── -->
+        <div id="panel-ai" class="panel">
+          <div class="setting-card">
+            <div class="setting-section-head">🤖 AI Companion Controls</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">AI Companion — Master Toggle</div><div class="sd">Enable/disable ALL AI features account-wide instantly</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Meeting Summaries</div><div class="sd">Auto-generate AI summary after each meeting ends</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Live Transcription</div><div class="sd">Real-time speech-to-text captions during meetings</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">My Notes (AI Note-Taker)</div><div class="sd">AI captures key points from transcript in real time</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Action Item Extraction</div><div class="sd">AI identifies and pushes action items → Tasks module</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Deep Research Mode</div><div class="sd">AI generates full researched reports (Custom AI tier only)</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Agent Builder</div><div class="sd">Allow users to create custom AI agents and workflows</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Google Drive / OneDrive Retrieval</div><div class="sd">AI accesses files in connected 3rd party cloud storage</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Deepfake Detection</div><div class="sd">Real-time alert when synthetic video or audio is detected</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Participant AI Consent Prompt</div><div class="sd">Show consent before AI activates in any meeting</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Opt Out of AI Model Training</div><div class="sd">Account data never used to train third-party AI models</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+          </div>
+          <div class="setting-card">
+            <div class="setting-section-head">🌍 AI Data & Privacy</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Data Residency Region</div><div class="sd">Where AI processing data is stored</div></div><div class="setting-control"><select class="ctrl-select"><option>US East</option><option>EU West</option><option>AP Southeast</option></select></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">AI Summary Retention</div><div class="sd">How long AI summaries are kept before auto-deletion</div></div><div class="setting-control"><select class="ctrl-select"><option>90 days</option><option>180 days</option><option>1 year</option><option>Forever</option></select></div></div>
+          </div>
+        </div>
+
+        <!-- ── SECURITY ── -->
+        <div id="panel-security" class="panel">
+          <div class="setting-card">
+            <div class="setting-section-head">🔑 Authentication Policies</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Enforce MFA for all users</div><div class="sd">Users cannot sign in without MFA after enabling</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Allow Google / Apple SSO</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">SAML SSO (enterprise IdP)</div><div class="sd">Configure your identity provider (Okta, Azure AD, etc.)</div></div><div class="setting-control"><button class="tb-btn" onclick="showToast('Opening SSO configuration…')">Configure</button><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Managed Domain Restriction</div><div class="sd">Only @company.com emails can join</div></div><div class="setting-control"><input class="ctrl-input" placeholder="company.com"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Session Timeout (minutes)</div></div><div class="setting-control"><input class="ctrl-input" value="480" type="number" style="width:80px"></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Max Failed Login Attempts</div><div class="sd">Account locks after this many failed tries</div></div><div class="setting-control"><input class="ctrl-input" value="5" type="number" style="width:80px"></div></div>
+          </div>
+          <div class="setting-card">
+            <div class="setting-section-head">🛡 Data & Meeting Security</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">End-to-End Encryption</div><div class="sd">Disables server-side AI, cloud recording, phone dial-in</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Restrict Recording Download</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Watermark on Recordings</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Information Barriers</div><div class="sd">Prevent specific groups from communicating</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">DLP: Block Sensitive Patterns</div><div class="sd">Detect and block credit cards, SSNs in chat</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Audit Log Retention</div></div><div class="setting-control"><select class="ctrl-select"><option>90 days</option><option selected>365 days</option><option>7 years</option></select></div></div>
+          </div>
+        </div>
+
+        <!-- ── BILLING ── -->
+        <div id="panel-billing" class="panel">
+          <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="stat-card"><div class="stat-label">Current Plan</div><div class="stat-val" style="color:var(--accent2)">Pro</div><div class="stat-delta">Billed annually</div></div>
+            <div class="stat-card"><div class="stat-label">Active Licenses</div><div class="stat-val" style="color:var(--green)">20</div><div class="stat-delta">of 20 used</div></div>
+            <div class="stat-card"><div class="stat-label">Monthly Spend</div><div class="stat-val" style="color:var(--amber)">$266</div><div class="stat-delta">Next bill May 30</div></div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-header">
+              <div><div class="plan-name">Workplace Pro</div><div style="color:var(--text2);font-size:13px;margin-top:3px">$13.33/user/month · billed annually</div></div>
+              <div class="plan-status"><span class="badge b-active">✓ Active</span><button class="tb-btn" onclick="showToast('Opening upgrade flow…')">Upgrade Plan</button></div>
+            </div>
+            <div class="progress-wrap">
+              <div class="progress-label"><span>Licenses used</span><span>20 / 20</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:100%;background:var(--amber)"></div></div>
+            </div>
+            <div class="progress-wrap">
+              <div class="progress-label"><span>Cloud storage</span><span>68 GB / 200 GB</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:34%;background:var(--accent2)"></div></div>
+            </div>
+          </div>
+          <div class="section-h"><div class="sh-dot"></div>Active Add-ons</div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <table class="dtable">
+              <thead><tr><th>Add-On</th><th>Price</th><th>Quantity</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight:600">Large Meeting 500</td><td>$50/mo</td><td>1</td><td><span class="badge b-active">Active</span></td><td><button class="tb-btn danger" onclick="showToast('Cancellation flow opened')">Cancel</button></td></tr>
+                <tr><td style="font-weight:600">AI Companion Add-on</td><td>$8.33/user/mo</td><td>10 users</td><td><span class="badge b-active">Active</span></td><td><button class="tb-btn" onclick="showToast('Managing add-on…')">Manage</button></td></tr>
+                <tr><td style="font-weight:600">Translated Captions</td><td>$5/user/mo</td><td>5 users</td><td><span class="badge b-active">Active</span></td><td><button class="tb-btn danger" onclick="showToast('Cancellation flow opened')">Cancel</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── AUDIT LOG ── -->
+        <div id="panel-audit" class="panel">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px">
+            <div class="audit-item"><div class="audit-dot" style="background:var(--red)"></div><div class="audit-body"><div class="audit-action">User <strong>Raj Kumar</strong> failed login 3 times — account flagged</div><div class="audit-meta"><span>IP: 192.168.1.42</span><span>Device: Android · Chrome</span></div></div><div class="audit-time">Today 9:51 AM</div></div>
+            <div class="audit-item"><div class="audit-dot" style="background:var(--green)"></div><div class="audit-body"><div class="audit-action">Admin <strong>Jane Doe</strong> added new user ana.lopez@company.com</div><div class="audit-meta"><span>Plan: Pro</span><span>Role: Member</span></div></div><div class="audit-time">Today 9:14 AM</div></div>
+            <div class="audit-item"><div class="audit-dot" style="background:var(--accent2)"></div><div class="audit-body"><div class="audit-action"><strong>Marcus Smith</strong> signed in successfully</div><div class="audit-meta"><span>IP: 10.0.0.18</span><span>Device: MacOS · Safari</span></div></div><div class="audit-time">Today 8:15 AM</div></div>
+            <div class="audit-item"><div class="audit-dot" style="background:var(--amber)"></div><div class="audit-body"><div class="audit-action">AI Companion setting changed: <strong>Deep Research Mode → OFF</strong></div><div class="audit-meta"><span>Changed by: Jane Doe (Owner)</span></div></div><div class="audit-time">Yesterday 4:32 PM</div></div>
+            <div class="audit-item"><div class="audit-dot" style="background:var(--purple)"></div><div class="audit-body"><div class="audit-action">Billing: Add-on <strong>AI Companion × 10 users</strong> activated</div><div class="audit-meta"><span>Cost: +$83.30/mo</span></div></div><div class="audit-time">Apr 28, 11:00 AM</div></div>
+            <div class="audit-item"><div class="audit-dot" style="background:var(--green)"></div><div class="audit-body"><div class="audit-action">Security: MFA enforced for all users account-wide</div><div class="audit-meta"><span>Changed by: Jane Doe (Owner)</span></div></div><div class="audit-time">Apr 26, 3:10 PM</div></div>
+            <div class="audit-item"><div class="audit-dot" style="background:var(--red)"></div><div class="audit-body"><div class="audit-action">User <strong>Taylor White</strong> account deactivated by admin</div><div class="audit-meta"><span>Reason: Long-term leave</span></div></div><div class="audit-time">Apr 12, 9:00 AM</div></div>
+          </div>
+        </div>
+
+        <!-- ── GROUPS ── -->
+        <div id="panel-groups" class="panel">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <div class="table-toolbar"><span style="font-weight:700">User Groups & Roles</span><button class="tb-btn pri" onclick="showToast('Create group flow opened')">＋ New Group</button></div>
+            <table class="dtable">
+              <thead><tr><th>Group Name</th><th>Members</th><th>AI Access</th><th>Phone</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight:600">Engineering</td><td>42</td><td><span class="badge b-active">Full</span></td><td><span class="badge b-active">Yes</span></td><td><button class="action-dots">⋯</button></td></tr>
+                <tr><td style="font-weight:600">Sales</td><td>28</td><td><span class="badge b-active">Full</span></td><td><span class="badge b-active">Yes</span></td><td><button class="action-dots">⋯</button></td></tr>
+                <tr><td style="font-weight:600">Marketing</td><td>15</td><td><span class="badge b-pending">Limited</span></td><td><span class="badge b-inactive">No</span></td><td><button class="action-dots">⋯</button></td></tr>
+                <tr><td style="font-weight:600">Support</td><td>34</td><td><span class="badge b-active">Full</span></td><td><span class="badge b-active">Yes</span></td><td><button class="action-dots">⋯</button></td></tr>
+                <tr><td style="font-weight:600">Contractors</td><td>8</td><td><span class="badge b-inactive">None</span></td><td><span class="badge b-inactive">No</span></td><td><button class="action-dots">⋯</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── INVITES ── -->
+        <div id="panel-invites" class="panel">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <div class="table-toolbar"><span style="font-weight:700">Pending Invitations</span><button class="tb-btn pri" onclick="openModal('modal-adduser')">＋ Invite User</button></div>
+            <table class="dtable">
+              <thead><tr><th>Email</th><th>Invited By</th><th>Sent</th><th>Plan</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>newdev@company.com</td><td style="color:var(--text2)">Jane Doe</td><td style="color:var(--text2);font-size:12px">Apr 29</td><td><span class="badge b-pro">Pro</span></td><td><button class="tb-btn" onclick="showToast('Invitation resent!')">Resend</button></td></tr>
+                <tr><td>sales2@company.com</td><td style="color:var(--text2)">Marcus Smith</td><td style="color:var(--text2);font-size:12px">Apr 28</td><td><span class="badge b-pro">Pro</span></td><td><button class="tb-btn" onclick="showToast('Invitation resent!')">Resend</button></td></tr>
+                <tr><td>intern@company.com</td><td style="color:var(--text2)">Ana Lopez</td><td style="color:var(--text2);font-size:12px">Apr 27</td><td><span class="badge b-basic">Basic</span></td><td><button class="tb-btn" onclick="showToast('Invitation resent!')">Resend</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── RECORDINGS ── -->
+        <div id="panel-recordings" class="panel">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <div class="table-toolbar">
+              <input class="table-search" placeholder="🔍  Search recordings…">
+              <span class="table-count">68 GB / 200 GB used</span>
+            </div>
+            <table class="dtable">
+              <thead><tr><th>Meeting</th><th>Host</th><th>Duration</th><th>Size</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight:600">Weekly All Hands</td><td style="color:var(--text2)">Jane Doe</td><td>58 min</td><td>840 MB</td><td style="color:var(--text2);font-size:12px">Apr 30</td><td><button class="tb-btn" onclick="showToast('Opening recording…')">▶ View</button></td></tr>
+                <tr><td style="font-weight:600">Product Design Review</td><td style="color:var(--text2)">Ana Lopez</td><td>42 min</td><td>612 MB</td><td style="color:var(--text2);font-size:12px">Apr 28</td><td><button class="tb-btn" onclick="showToast('Opening recording…')">▶ View</button></td></tr>
+                <tr><td style="font-weight:600">Client Presentation</td><td style="color:var(--text2)">Marcus Smith</td><td>31 min</td><td>448 MB</td><td style="color:var(--text2);font-size:12px">Apr 26</td><td><button class="tb-btn" onclick="showToast('Opening recording…')">▶ View</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── INTEGRATIONS ── -->
+        <div id="panel-integrations" class="panel">
+          <div class="setting-card">
+            <div class="setting-section-head">🔌 Connected Integrations</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Google Workspace</div><div class="sd">Calendar, Drive, Gmail sync</div></div><div class="setting-control"><span class="badge b-active">Connected</span><button class="tb-btn" onclick="showToast('Managing Google Workspace…')">Manage</button></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Microsoft 365</div><div class="sd">Outlook, Teams, OneDrive</div></div><div class="setting-control"><span class="badge b-active">Connected</span><button class="tb-btn" onclick="showToast('Managing Microsoft 365…')">Manage</button></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Slack</div><div class="sd">Meeting summaries auto-posted</div></div><div class="setting-control"><span class="badge b-inactive">Not Connected</span><button class="tb-btn pri" onclick="showToast('Connecting Slack…')">Connect</button></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Salesforce</div><div class="sd">CRM screen pop on inbound calls</div></div><div class="setting-control"><span class="badge b-inactive">Not Connected</span><button class="tb-btn pri" onclick="showToast('Connecting Salesforce…')">Connect</button></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Zapier</div><div class="sd">No-code workflow automation</div></div><div class="setting-control"><span class="badge b-active">Connected</span><button class="tb-btn" onclick="showToast('Managing Zapier…')">Manage</button></div></div>
+          </div>
+          <div class="setting-card">
+            <div class="setting-section-head">🔑 Developer API</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">API Key</div><div class="sd">Use this key to authenticate API calls</div></div><div class="setting-control"><code style="font-family:var(--mono);font-size:12px;color:var(--accent3);background:var(--bg3);padding:4px 10px;border-radius:5px;border:1px solid var(--border)">fasa_sk_••••••••••••••••••••••</code><button class="tb-btn" onclick="showToast('API key revealed — keep it secret!')">Show</button></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Webhook Endpoint</div><div class="sd">Receive real-time event notifications</div></div><div class="setting-control"><input class="ctrl-input" placeholder="https://yourapp.com/webhook" style="width:240px"></div></div>
+          </div>
+        </div>
+
+        <!-- ── SETTINGS ── -->
+        <div id="panel-settings" class="panel">
+          <div class="setting-card">
+            <div class="setting-section-head">🏢 Account Information</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Organization Name</div></div><div class="setting-control"><input class="ctrl-input" value="FasaFas Corp" style="width:200px"></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Account Number</div></div><div class="setting-control" style="font-family:var(--mono);color:var(--text2)">5119986046</div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Default Timezone</div></div><div class="setting-control"><select class="ctrl-select"><option>Eastern Time (US)</option><option>Pacific Time (US)</option><option>GMT/UTC</option></select></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Language</div></div><div class="setting-control"><select class="ctrl-select"><option selected>English</option><option>Spanish</option><option>French</option><option>German</option></select></div></div>
+          </div>
+          <div class="setting-card">
+            <div class="setting-section-head">📧 Notifications</div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Admin Email Alerts</div><div class="sd">Security events, failed logins, billing alerts</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">Weekly Usage Report</div><div class="sd">Emailed every Monday morning</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox" checked><span class="tog-slider"></span></label></div></div>
+            <div class="setting-row"><div class="setting-info"><div class="sl">New User Alert</div><div class="sd">Notify admin when a new user joins</div></div><div class="setting-control"><label class="tog-switch"><input type="checkbox"><span class="tog-slider"></span></label></div></div>
+          </div>
+        </div>
+
+        <!-- ── ADMIN ACCOUNTS ── -->
+        <div id="panel-admins" class="panel">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <div class="table-toolbar"><span style="font-weight:700">Administrator Accounts</span><button class="tb-btn pri" onclick="openModal('modal-addadmin')">＋ Add Admin</button></div>
+            <table class="dtable">
+              <thead><tr><th>Admin</th><th>Role</th><th>Access Level</th><th>Last Active</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><div class="user-cell"><div class="user-av" style="background:linear-gradient(135deg,#ef4444,#7c3aed)">SA</div><div><div class="user-name">Super Admin</div><div class="user-email">admin@fasafas.com</div></div></div></td>
+                  <td><span class="badge b-owner">Owner</span></td><td style="color:var(--text2)">Full Access</td><td style="color:var(--text2);font-size:12px">Just now</td>
+                  <td><span style="color:var(--text3);font-size:12px">You</span></td>
+                </tr>
+                <tr>
+                  <td><div class="user-cell"><div class="user-av" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">JD</div><div><div class="user-name">Jane Doe</div><div class="user-email">jane.doe@company.com</div></div></div></td>
+                  <td><span class="badge b-admin">Admin</span></td><td style="color:var(--text2)">Users, Meetings, AI</td><td style="color:var(--text2);font-size:12px">Today 9:14 AM</td>
+                  <td><button class="action-dots">⋯</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /admin-content -->
+    </div><!-- /admin-main -->
+  </div><!-- /admin-layout -->
+</div><!-- /admin-screen -->
+
+<!-- ── MODALS ── -->
+<div class="modal-overlay" id="modal-adduser">
+  <div class="modal-box">
+    <div class="modal-title">Invite New User</div>
+    <div class="modal-sub">An email invitation will be sent to the new user.</div>
+    <div class="modal-field"><label class="modal-label">First Name</label><input class="modal-input" placeholder="First"></div>
+    <div class="modal-field"><label class="modal-label">Last Name</label><input class="modal-input" placeholder="Last"></div>
+    <div class="modal-field"><label class="modal-label">Email Address</label><input class="modal-input" type="email" placeholder="user@company.com"></div>
+    <div class="modal-field"><label class="modal-label">Role</label><select class="modal-select"><option>Member</option><option>Admin</option></select></div>
+    <div class="modal-field"><label class="modal-label">Plan / License</label><select class="modal-select"><option>Basic (Free)</option><option selected>Pro</option><option>Business</option></select></div>
+    <div class="modal-footer">
+      <button class="modal-btn cancel" onclick="closeModals()">Cancel</button>
+      <button class="modal-btn confirm" onclick="closeModals();showToast('Invitation sent!')">Send Invitation</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-addadmin">
+  <div class="modal-box">
+    <div class="modal-title">Add Admin Account</div>
+    <div class="modal-sub">This user will have admin access to the portal.</div>
+    <div class="modal-field"><label class="modal-label">Email Address</label><input class="modal-input" type="email" placeholder="admin@company.com"></div>
+    <div class="modal-field"><label class="modal-label">Admin Role</label><select class="modal-select"><option>Admin (limited)</option><option>Super Admin (full access)</option></select></div>
+    <div class="modal-field"><label class="modal-label">Temporary Password</label><input class="modal-input" type="password" placeholder="Set initial password"></div>
+    <div class="modal-footer">
+      <button class="modal-btn cancel" onclick="closeModals()">Cancel</button>
+      <button class="modal-btn confirm" onclick="closeModals();showToast('Admin account created!')">Create Admin</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── JS ── -->
+<script>
+// ── CREDENTIALS ──
+const ADMIN_CREDS = {
+  'admin@fasafas.com': 'FasaFas@2026',
+  'admin': 'FasaFas@2026',
+  'superadmin': 'Admin#2026'
+};
+
+// ── LOGIN ──
+function doLogin() {
+  const user = document.getElementById('l-user').value.trim();
+  const pass = document.getElementById('l-pass').value;
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('login-error');
+
+  if(!user || !pass) {
+    showError('Please enter both username and password.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Verifying credentials…';
+  err.classList.remove('show');
+
+  setTimeout(()=>{
+    if(ADMIN_CREDS[user] && ADMIN_CREDS[user] === pass) {
+      btn.textContent = '✓ Access Granted — Loading portal…';
+      btn.style.background = 'var(--green)';
+      setTimeout(()=>{
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-screen').style.display = 'block';
+        showToast('Welcome back, Super Admin! 👋');
+      }, 700);
+    } else {
+      showError('Invalid username or password. Please check your credentials and try again.');
+      btn.disabled = false;
+      btn.textContent = 'Sign In to Admin Portal →';
+      btn.style.background = '';
+      document.getElementById('l-pass').value = '';
+      document.getElementById('l-pass').focus();
+    }
+  }, 900);
+}
+
+function showError(msg) {
+  const el = document.getElementById('login-error');
+  document.getElementById('login-error-msg').textContent = msg;
+  el.classList.add('show');
+}
+
+function doLogout() {
+  if(confirm('Sign out of the admin portal?')) {
+    document.getElementById('admin-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('l-user').value = '';
+    document.getElementById('l-pass').value = '';
+    document.getElementById('login-btn').textContent = 'Sign In to Admin Portal →';
+    document.getElementById('login-btn').style.background = '';
+    document.getElementById('login-btn').disabled = false;
+    document.getElementById('login-error').classList.remove('show');
+  }
+}
+
+// ── FILL CREDENTIAL FIELDS ──
+function fillField(id, val) {
+  document.getElementById(id).value = val;
+  showToast('Credential filled — click Sign In');
+}
+
+function togglePw() {
+  const inp = document.getElementById('l-pass');
+  const btn = event.currentTarget;
+  inp.type = inp.type==='password' ? 'text' : 'password';
+  btn.textContent = inp.type==='password' ? '👁' : '🙈';
+}
+
+// ── PANEL NAVIGATION ──
+const panelTitles = {
+  dashboard:['📊','Dashboard'],
+  users:['👥','User Management'],
+  groups:['🏢','Groups & Roles'],
+  invites:['✉️','Pending Invitations'],
+  meetings:['🎥','All Meetings'],
+  recordings:['⏺','Recordings'],
+  ai:['🤖','AI Companion Settings'],
+  security:['🔒','Security & SSO'],
+  billing:['💳','Billing & Plans'],
+  integrations:['🔌','Integrations'],
+  settings:['⚙️','Account Settings'],
+  admins:['🛡️','Admin Accounts'],
+  audit:['📋','Audit Log'],
+};
+
+function switchPanel(id, el) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const panel = document.getElementById('panel-'+id);
+  if(panel) panel.classList.add('active');
+  if(el) el.classList.add('active');
+  const meta = panelTitles[id] || ['⚙️', id];
+  document.getElementById('tb-icon').textContent = meta[0];
+  document.getElementById('tb-title').textContent = meta[1];
+}
+
+// ── MODALS ──
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+function closeModals() {
+  document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));
+}
+document.addEventListener('click', e=>{
+  if(e.target.classList.contains('modal-overlay')) closeModals();
+});
+
+// ── TABLE FILTER ──
+function filterTable(input) {
+  const q = input.value.toLowerCase();
+  document.querySelectorAll('#users-table tbody tr').forEach(row=>{
+    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// ── USER ACTION MENU ──
+function showUserMenu(btn) {
+  const actions = ['Edit User','Reset Password','Revoke Sessions','Change Role','Deactivate','Delete User'];
+  const choice = actions[Math.floor(Math.random()*4)];
+  showToast(`Action menu: ${choice}, Reset Password, Deactivate…`);
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+// ── ENTER TO LOGIN ──
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && document.getElementById('login-screen').style.display !== 'none') doLogin();
+});
+</script>
+<script src="../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Compliance & Legal Hold</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Compliance & Legal Hold</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link active" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">🏛️</span>
+      <h1 class="hero-title"><em>Compliance & Legal Hold</em></h1>
+      <p class="hero-desc">FasaFas recordings meet the compliance requirements of regulated industries — with eDiscovery export, legal hold, full audit trails, HIPAA BAA support, and GDPR data subject controls.</p>
+      <div class="hero-tags"><span class="h-tag">eDiscovery API</span><span class="h-tag">Legal Hold</span><span class="h-tag">Audit Trail</span><span class="h-tag">HIPAA</span><span class="h-tag">GDPR</span><span class="h-tag">Chain of Custody</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-ediscovery')">eDiscovery & Legal Hold</div>
+<div class="tab " onclick="sw(this,'t-audit')">Audit Trail</div>
+<div class="tab " onclick="sw(this,'t-certs')">Certifications</div></div>
+    <div class="content">
+      <div id="t-ediscovery" class="tab-pane active"><div class="ph1">eDiscovery and Legal Hold</div>
+<div class="g2">
+<div class="card"><div class="ph3">eDiscovery API</div><ul class="fl">
+<li>Search recordings by date range, participant, keyword in transcript</li>
+<li>Bulk export matching recordings in a single authenticated API call</li>
+<li>Export includes: MP4, transcript, summary, participant list, and metadata</li>
+<li>Available on Business+ with eDiscovery add-on, and Enterprise</li>
+<li>Used for: litigation holds, regulatory audits, HR investigations</li>
+</ul></div>
+<div class="card"><div class="ph3">Legal Hold</div><ul class="fl">
+<li>Mark specific recordings as "Legal Hold" — they are exempt from all auto-delete policies</li>
+<li>Legal hold recordings cannot be deleted by any user (including admins) until hold is lifted</li>
+<li>Hold status logged in the audit trail with timestamp and admin who applied it</li>
+<li>Multiple holds can be applied to one recording (each hold is tracked separately)</li>
+<li>Notify legal team: when a hold is applied, auto-email sent to a configurable legal contact address</li>
+</ul></div>
+</div></div>
+<div id="t-audit" class="tab-pane "><div class="ph1">Recording Audit Trail</div>
+<div class="card"><ul class="fl">
+<li>Every recording event logged with: timestamp, user ID, IP address, action</li>
+<li>Logged events include: recording started, stopped, downloaded, shared, deleted, hold applied, hold lifted</li>
+<li>Viewer access logs: every time someone opens a shared recording link</li>
+<li>Chain of custody: full provenance log proving the recording has not been tampered with (SHA-256 hash stored at creation)</li>
+<li>Export audit log: Admin Panel → Audit Log → filter by recording ID → export CSV</li>
+<li>Retention: audit logs retained for minimum 7 years (configurable up to indefinitely on Enterprise)</li>
+<li>SIEM integration: Splunk / Datadog connector for real-time audit log streaming</li>
+</ul></div></div>
+<div id="t-certs" class="tab-pane "><div class="ph1">Compliance Certifications for Recordings</div>
+<div class="tbl-wrap"><table class="tbl">
+<tr><th>Standard</th><th>Coverage</th><th>Available On</th></tr>
+<tr><td>SOC 2 Type II</td><td>Security, availability, confidentiality</td><td>All plans</td></tr>
+<tr><td>HIPAA</td><td>PHI in recordings (requires signed BAA)</td><td>Business, Enterprise</td></tr>
+<tr><td>GDPR</td><td>Data subject rights, data residency</td><td>All plans</td></tr>
+<tr><td>CCPA</td><td>California consumer privacy</td><td>All plans</td></tr>
+<tr><td>FedRAMP</td><td>US government requirements</td><td>Enterprise (GovCloud)</td></tr>
+<tr><td>ISO 27001</td><td>Information security management</td><td>All plans</td></tr>
+<tr><td>eDiscovery (FRCP)</td><td>Federal Rules of Civil Procedure</td><td>Business+ add-on</td></tr>
+</table></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="storage.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Storage & Retention</div></div></a>
+      <span class="nav-counter">Feature 11 of 11</span>
+      <div class="nav-pg end">End →</div>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

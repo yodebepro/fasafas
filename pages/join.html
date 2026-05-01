@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Join a Meeting</title>
+<style>
+:root{
+  --bg:#07101f;--bg2:#0d1b2e;--bg3:#132039;--card:#0f1f35;
+  --border:#1e3050;--accent:#2563eb;--accent2:#3b82f6;--accent3:#60a5fa;
+  --green:#10b981;--red:#ef4444;--text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
+  --font:'Segoe UI',system-ui,sans-serif;--mono:'Consolas','SF Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;display:flex;flex-direction:column}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+.header{padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logo{font-size:20px;font-weight:900;color:var(--accent2);display:flex;align-items:center;gap:8px;cursor:pointer;letter-spacing:-.5px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.header-links{display:flex;gap:16px;align-items:center}
+.hl{font-size:13px;color:var(--text2);cursor:pointer;transition:color .15s}
+.hl:hover{color:var(--accent3)}
+.btn-pri{padding:8px 18px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:var(--font)}
+.btn-pri:hover{background:#1d4ed8}
+
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px;
+  background:radial-gradient(ellipse at 30% 40%,rgba(37,99,235,.1),transparent 60%),var(--bg)}
+
+.join-box{width:100%;max-width:520px}
+.join-icon{font-size:52px;text-align:center;margin-bottom:20px;display:block}
+.join-title{font-size:30px;font-weight:900;letter-spacing:-1px;text-align:center;margin-bottom:8px}
+.join-sub{color:var(--text2);text-align:center;font-size:14px;margin-bottom:32px}
+
+/* Tabs */
+.join-tabs{display:flex;background:var(--bg3);border-radius:10px;padding:4px;border:1px solid var(--border);margin-bottom:24px}
+.jtab{flex:1;padding:9px;text-align:center;border-radius:7px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text3);transition:all .15s}
+.jtab.active{background:var(--accent);color:#fff}
+
+/* Form */
+.f-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:6px;display:block}
+.f-group{margin-bottom:16px}
+
+/* Meeting ID input */
+.mid-wrap{position:relative}
+.mid-input{
+  width:100%;padding:16px 20px;border-radius:12px;
+  background:var(--bg3);border:2px solid var(--border);
+  color:var(--text);font-family:var(--mono);font-size:24px;font-weight:700;
+  letter-spacing:8px;text-align:center;outline:none;transition:all .15s;
+}
+.mid-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+.mid-input::placeholder{color:var(--text3);letter-spacing:2px;font-size:16px;font-weight:400}
+
+/* URL input */
+.url-input{
+  width:100%;padding:12px 16px;border-radius:10px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--text2);font-family:var(--font);font-size:13px;
+  outline:none;transition:all .15s;
+}
+.url-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.12);color:var(--text)}
+.url-input::placeholder{color:var(--text3)}
+
+/* Passcode */
+.pass-input{
+  width:100%;padding:12px 16px;border-radius:10px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--text);font-family:var(--mono);font-size:16px;letter-spacing:4px;
+  outline:none;transition:all .15s;text-align:center;
+}
+.pass-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(16,185,129,.12)}
+
+/* Options */
+.options-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:20px}
+.opt-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(30,48,80,.4)}
+.opt-row:last-child{border:none}
+.opt-label{font-size:13px;font-weight:500}
+.opt-desc{font-size:11px;color:var(--text3);margin-top:1px}
+.tog-switch{position:relative;width:36px;height:20px;flex-shrink:0}
+.tog-switch input{opacity:0;width:0;height:0;position:absolute}
+.tog-slider{position:absolute;inset:0;border-radius:10px;background:var(--border);cursor:pointer;transition:.2s}
+.tog-slider::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+.tog-switch input:checked + .tog-slider{background:var(--accent)}
+.tog-switch input:checked + .tog-slider::before{left:19px}
+
+/* Name */
+.name-input{width:100%;padding:12px 16px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:14px;outline:none;transition:all .15s}
+.name-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.name-input::placeholder{color:var(--text3)}
+
+/* Join button */
+.join-btn{width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:15px;font-weight:800;border:none;cursor:pointer;transition:all .2s;font-family:var(--font);letter-spacing:-.2px}
+.join-btn:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 8px 28px rgba(37,99,235,.4)}
+.join-btn:active{transform:translateY(0)}
+
+/* Status */
+.join-status{padding:12px 16px;border-radius:9px;font-size:13px;margin-bottom:14px;display:none;align-items:center;gap:8px}
+.join-status.show{display:flex}
+.js-connecting{background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);color:var(--accent3)}
+.js-error{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5}
+.js-success{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#6ee7b7}
+.spinner{width:16px;height:16px;border:2px solid rgba(96,165,250,.3);border-top-color:var(--accent3);border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Recent / Upcoming */
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.recent-list{display:grid;gap:8px}
+.recent-item{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .15s}
+.recent-item:hover{border-color:var(--accent2);background:var(--bg3)}
+.ri-info .ri-name{font-size:13px;font-weight:700}
+.ri-info .ri-meta{font-size:11px;color:var(--text3);margin-top:2px}
+.ri-join{padding:6px 14px;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:var(--font)}
+.ri-join:hover{background:#1d4ed8}
+
+/* Tip box */
+.tip{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--text2);margin-top:16px;line-height:1.7}
+.tip strong{color:var(--accent3)}
+
+footer{padding:16px 32px;text-align:center;font-size:12px;color:var(--text3);border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo" onclick="location.href='../index.html'">
+    <div class="logo-dot"></div>FasaFas
+  </div>
+  <div class="header-links">
+    <span class="hl" onclick="location.href='../index.html'">Home</span>
+    <span class="hl" onclick="location.href='../index.html#schedule'">Schedule</span>
+    <button class="btn-pri" onclick="location.href='signin.html'">Sign In</button>
+  </div>
+</header>
+
+<main>
+  <div class="join-box">
+    <span class="join-icon">🔗</span>
+    <h1 class="join-title">Join a Meeting</h1>
+    <p class="join-sub">Enter a Meeting ID, paste a link, or select a recent meeting below</p>
+
+    <!-- Tabs -->
+    <div class="join-tabs">
+      <div class="jtab active" id="jtab-id" onclick="switchJoinTab('id')">Meeting ID</div>
+      <div class="jtab" id="jtab-link" onclick="switchJoinTab('link')">Meeting Link</div>
+    </div>
+
+    <!-- Status message -->
+    <div class="join-status" id="join-status"></div>
+
+    <!-- MEETING ID panel -->
+    <div id="jpanel-id">
+      <div class="f-group">
+        <label class="f-label">Enter Meeting ID</label>
+        <div class="mid-wrap">
+          <input class="mid-input" id="join-mid" type="text" placeholder="XXX XXX XXXX"
+            maxlength="14" oninput="formatMID(this)" onkeydown="if(event.key==='Enter')doJoin()">
+        </div>
+      </div>
+    </div>
+
+    <!-- LINK panel -->
+    <div id="jpanel-link" style="display:none">
+      <div class="f-group">
+        <label class="f-label">Paste Meeting Link</label>
+        <input class="url-input" id="join-url" type="url" placeholder="https://fasafas.app/j/XXXXXXXXXXX"
+          onkeydown="if(event.key==='Enter')doJoin()">
+      </div>
+    </div>
+
+    <!-- Passcode -->
+    <div class="f-group">
+      <label class="f-label">Passcode <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text3)">(if required)</span></label>
+      <input class="pass-input" id="join-pass" type="text" placeholder="• • • • • •" maxlength="10">
+    </div>
+
+    <!-- Your Name -->
+    <div class="f-group">
+      <label class="f-label">Your Display Name</label>
+      <input class="name-input" id="join-name" type="text" placeholder="How you'll appear in the meeting">
+    </div>
+
+    <!-- Options -->
+    <div class="options-card">
+      <div class="opt-row">
+        <div><div class="opt-label">Join with video on</div></div>
+        <label class="tog-switch"><input type="checkbox" id="opt-video" checked><span class="tog-slider"></span></label>
+      </div>
+      <div class="opt-row">
+        <div><div class="opt-label">Join with microphone on</div></div>
+        <label class="tog-switch"><input type="checkbox" id="opt-audio"><span class="tog-slider"></span></label>
+      </div>
+      <div class="opt-row">
+        <div><div class="opt-label">Use computer audio</div></div>
+        <label class="tog-switch"><input type="checkbox" id="opt-comp" checked><span class="tog-slider"></span></label>
+      </div>
+      <div class="opt-row">
+        <div><div class="opt-label">Start with background blur</div></div>
+        <label class="tog-switch"><input type="checkbox" id="opt-blur"><span class="tog-slider"></span></label>
+      </div>
+    </div>
+
+    <button class="join-btn" onclick="doJoin()">Join Meeting →</button>
+
+    <div class="tip"><strong>Tip:</strong> You can also join by typing <strong>fasafas.app/j/</strong> followed by your Meeting ID directly in your browser address bar, or dial in by phone using the number in your invitation email.</div>
+
+    <!-- Recent meetings -->
+    <div class="section-label">Recent Meetings</div>
+    <div class="recent-list" id="recent-list">
+      <div class="recent-item">
+        <div class="ri-info">
+          <div class="ri-name">Weekly Team Standup</div>
+          <div class="ri-meta">ID: 892 456 1203 · Yesterday 9:00 AM</div>
+        </div>
+        <button class="ri-join" onclick="quickJoin('892 456 1203')">Rejoin</button>
+      </div>
+      <div class="recent-item">
+        <div class="ri-info">
+          <div class="ri-name">Product Design Review</div>
+          <div class="ri-meta">ID: 571 610 0699 · Apr 28, 2:00 PM</div>
+        </div>
+        <button class="ri-join" onclick="quickJoin('571 610 0699')">Rejoin</button>
+      </div>
+      <div class="recent-item">
+        <div class="ri-info">
+          <div class="ri-name">1:1 with Manager</div>
+          <div class="ri-meta">ID: 345 789 2201 · Apr 26, 11:00 AM</div>
+        </div>
+        <button class="ri-join" onclick="quickJoin('345 789 2201')">Rejoin</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 FasaFas · <a href="#" style="color:var(--text3)">Privacy</a> · <a href="#" style="color:var(--text3)">Terms</a> · <a href="#" style="color:var(--text3)">Support</a></footer>
+
+<script>
+function switchJoinTab(tab) {
+  document.getElementById('jtab-id').classList.toggle('active', tab==='id');
+  document.getElementById('jtab-link').classList.toggle('active', tab==='link');
+  document.getElementById('jpanel-id').style.display = tab==='id'?'block':'none';
+  document.getElementById('jpanel-link').style.display = tab==='link'?'block':'none';
+}
+
+function formatMID(el) {
+  let v = el.value.replace(/\D/g,'');
+  if(v.length>11) v = v.slice(0,11);
+  let out = '';
+  if(v.length>6) out = v.slice(0,3)+' '+v.slice(3,6)+' '+v.slice(6);
+  else if(v.length>3) out = v.slice(0,3)+' '+v.slice(3);
+  else out = v;
+  el.value = out;
+}
+
+function quickJoin(id) {
+  document.getElementById('join-mid').value = id;
+  switchJoinTab('id');
+  doJoin();
+}
+
+function doJoin() {
+  const isIdTab = document.getElementById('jtab-id').classList.contains('active');
+  let identifier = '';
+  if(isIdTab) {
+    identifier = document.getElementById('join-mid').value.replace(/\s/g,'');
+  } else {
+    identifier = document.getElementById('join-url').value.trim();
+  }
+  if(!identifier) {
+    showStatus('Please enter a Meeting ID or link.','error');
+    return;
+  }
+  if(isIdTab && identifier.length<10) {
+    showStatus('Meeting ID must be at least 10 digits.','error');
+    return;
+  }
+  showStatus('<div class="spinner"></div> Connecting to meeting…','connecting');
+  setTimeout(()=>{
+    showStatus('✓ Joining meeting — launching FasaFas window…','success');
+    setTimeout(()=>{ alert('Meeting room would open here.\n\nIn production this launches the WebRTC meeting interface.'); }, 1000);
+  }, 1800);
+}
+
+function showStatus(html, type) {
+  const el = document.getElementById('join-status');
+  el.innerHTML = html;
+  el.className = 'join-status show js-'+type;
+}
+</script>
+<script src="../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Meeting Room</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;height:100%;overflow:hidden}
+
+/* Top bar */
+.top-bar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:50px;
+  background:rgba(7,16,31,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(30,48,80,.6);
+}
+.tb-logo{font-size:16px;font-weight:900;color:#3b82f6;display:flex;align-items:center;gap:7px}
+.tb-dot{width:6px;height:6px;border-radius:50%;background:#10b981;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.tb-info{font-size:12px;color:#94a3b8;display:flex;align-items:center;gap:12px}
+.tb-id{font-family:monospace;background:rgba(30,48,80,.6);padding:2px 8px;border-radius:5px;font-size:12px;color:#60a5fa}
+.tb-rec{display:flex;align-items:center;gap:5px;color:#ef4444;font-size:11px;font-weight:700}
+.rec-dot{width:7px;height:7px;border-radius:50%;background:#ef4444;animation:pulse .8s infinite}
+.tb-time{font-size:13px;font-weight:700;color:#e2e8f0;font-family:monospace}
+
+/* Jitsi container */
+#jitsi-container{
+  position:fixed;
+  top:50px;left:0;right:0;bottom:0;
+  width:100%;
+}
+#jitsi-container iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* Loading screen */
+#loading-screen{
+  position:fixed;inset:0;z-index:500;
+  background:radial-gradient(ellipse at 20% 50%,rgba(37,99,235,.15),transparent 55%),#07101f;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+}
+.load-icon{font-size:64px;animation:bounce 1s ease-in-out infinite alternate}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.load-title{font-size:22px;font-weight:800;color:#e2e8f0;letter-spacing:-.5px}
+.load-sub{font-size:14px;color:#94a3b8;text-align:center;line-height:1.7}
+.load-bar-track{width:220px;height:4px;background:#1e3050;border-radius:2px;overflow:hidden}
+.load-bar-fill{height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:2px;animation:loading 2s ease-in-out infinite}
+@keyframes loading{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
+.load-steps{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#475569}
+.load-step.done{color:#10b981}
+.load-step.active{color:#3b82f6;animation:pulse 1s infinite}
+
+/* Meeting ended overlay */
+#ended-screen{
+  position:fixed;inset:0;z-index:600;
+  background:radial-gradient(ellipse at 50% 50%,rgba(37,99,235,.12),transparent 60%),#07101f;
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+}
+.end-icon{font-size:64px}
+.end-title{font-size:24px;font-weight:800;color:#e2e8f0}
+.end-sub{font-size:14px;color:#94a3b8}
+.end-btns{display:flex;gap:12px;margin-top:8px}
+.end-btn{padding:11px 22px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .15s}
+.end-btn.pri{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff}
+.end-btn.sec{background:#132039;border:1px solid #1e3050;color:#94a3b8}
+.end-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* Stats bar (bottom) */
+.stats-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:150;
+  display:flex;align-items:center;gap:16px;
+  padding:6px 20px;
+  background:rgba(7,16,31,.85);backdrop-filter:blur(8px);
+  border-top:1px solid rgba(30,48,80,.5);
+  font-size:11px;color:#475569;
+}
+.stat-item{display:flex;align-items:center;gap:5px}
+.stat-val{color:#94a3b8;font-weight:600;font-family:monospace}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar" id="top-bar">
+  <div class="tb-logo"><div class="tb-dot"></div>FasaFas</div>
+  <div class="tb-info">
+    <span>Meeting ID: <span class="tb-id" id="tb-meeting-id">—</span></span>
+    <span id="tb-participants">👥 0</span>
+    <div class="tb-rec" id="rec-indicator" style="display:none">
+      <div class="rec-dot"></div>REC
+    </div>
+  </div>
+  <div class="tb-time" id="tb-timer">00:00</div>
+</div>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="load-icon">🎥</div>
+  <div class="load-title" id="load-title">Starting Meeting…</div>
+  <div class="load-sub" id="load-sub">Connecting to servers</div>
+  <div class="load-bar-track"><div class="load-bar-fill"></div></div>
+  <div class="load-steps" id="load-steps">
+    <div class="load-step active" id="step-1">⏳ Connecting to FasaFas servers…</div>
+    <div class="load-step" id="step-2">⏳ Loading meeting room…</div>
+    <div class="load-step" id="step-3">⏳ Activating camera & microphone…</div>
+    <div class="load-step" id="step-4">⏳ Joining session…</div>
+  </div>
+</div>
+
+<!-- Meeting Room (Jitsi) -->
+<div id="jitsi-container"></div>
+
+<!-- Meeting Ended -->
+<div id="ended-screen">
+  <div class="end-icon">👋</div>
+  <div class="end-title">You've left the meeting</div>
+  <div class="end-sub" id="end-duration">Meeting ended</div>
+  <div class="end-btns">
+    <button class="end-btn pri" onclick="window.location.href='../index.html'">🏠 Back to Home</button>
+    <button class="end-btn sec" onclick="rejoinMeeting()">↺ Rejoin</button>
+  </div>
+</div>
+
+<!-- Stats bar -->
+<div class="stats-bar" id="stats-bar" style="display:none">
+  <div class="stat-item">🌐 Connected</div>
+  <div class="stat-item">Quality: <span class="stat-val" id="stat-quality">HD</span></div>
+  <div class="stat-item">Ping: <span class="stat-val" id="stat-ping">—</span></div>
+</div>
+
+<script>
+// ─── Parse URL params ──────────────────────────────────────────────────────
+const params  = new URLSearchParams(window.location.search);
+const meetingId = (params.get('id') || 'fasa-room-' + Math.random().toString(36).substr(2,6)).replace(/\s+/g,'-');
+const topic     = params.get('topic') || 'FasaFas Meeting';
+const userName  = params.get('name')  || localStorage.getItem('fasafas_name') || 'Guest';
+const startCam  = params.get('cam')   !== '0';
+const startMic  = params.get('mic')   !== '0';
+
+document.getElementById('tb-meeting-id').textContent = meetingId;
+
+// ─── Meeting timer ────────────────────────────────────────────────────────
+let meetingSeconds = 0;
+let timerInterval  = null;
+function startTimer(){
+  timerInterval = setInterval(()=>{
+    meetingSeconds++;
+    const m = String(Math.floor(meetingSeconds/60)).padStart(2,'0');
+    const s = String(meetingSeconds%60).padStart(2,'0');
+    document.getElementById('tb-timer').textContent = `${m}:${s}`;
+  },1000);
+}
+
+// ─── Loading steps ────────────────────────────────────────────────────────
+function markStep(n){
+  const el = document.getElementById('step-'+n);
+  if(el){ el.textContent = el.textContent.replace('⏳','✅'); el.classList.add('done'); el.classList.remove('active'); }
+  const next = document.getElementById('step-'+(n+1));
+  if(next) next.classList.add('active');
+}
+
+// ─── Launch Jitsi ────────────────────────────────────────────────────────
+let api = null;
+
+function launchJitsi(){
+  // Jitsi Meet domain — free public server, no account needed
+  const domain = 'meet.jit.si';
+
+  // Sanitize room name (Jitsi requires alphanumeric + hyphens only)
+  const roomName = meetingId.replace(/[^a-zA-Z0-9\-]/g,'') || 'FasaFasRoom' + Date.now();
+
+  const config = {
+    startWithAudioMuted:  !startMic,
+    startWithVideoMuted:  !startCam,
+    enableWelcomePage:    false,
+    prejoinPageEnabled:   false,
+    disableThirdPartyRequests: false,
+    enableNoisyMicDetection: true,
+    enableNoAudioDetection:  true,
+    resolution:           720,
+    constraints: {
+      video: { height: { ideal: 720, max: 1080, min: 240 } }
+    },
+    toolbarButtons: [
+      'microphone','camera','closedcaptions','desktop','fullscreen',
+      'fodeviceselection','hangup','profile','chat','recording',
+      'livestreaming','etherpad','sharedvideo','settings','raisehand',
+      'videoquality','filmstrip','participants-pane','feedback',
+      'stats','shortcuts','tileview','videobackgroundblur','download',
+      'help','security','toggle-camera','whiteboard',
+    ],
+    subject: topic,
+  };
+
+  const interfaceConfig = {
+    SHOW_JITSI_WATERMARK: false,
+    SHOW_WATERMARK_FOR_GUESTS: false,
+    SHOW_BRAND_WATERMARK: false,
+    BRAND_WATERMARK_LINK: '',
+    SHOW_POWERED_BY: false,
+    DISPLAY_WELCOME_FOOTER: false,
+    DISABLE_JOIN_LEAVE_NOTIFICATIONS: false,
+    APP_NAME: 'FasaFas',
+    NATIVE_APP_NAME: 'FasaFas',
+    DEFAULT_BACKGROUND: '#07101f',
+    DISABLE_VIDEO_BACKGROUND: false,
+    TOOLBAR_ALWAYS_VISIBLE: false,
+    HIDE_INVITE_MORE_HEADER: false,
+    REMOTE_THUMBNAIL_RATIO: 1,
+    VIDEO_QUALITY_LABEL_DISABLED: false,
+    filmStripOnly: false,
+    SHOW_CHROME_EXTENSION_BANNER: false,
+  };
+
+  api = new JitsiMeetExternalAPI(domain, {
+    roomName:            roomName,
+    width:               '100%',
+    height:              '100%',
+    parentNode:          document.getElementById('jitsi-container'),
+    userInfo:            { displayName: userName },
+    configOverwrite:     config,
+    interfaceConfigOverwrite: interfaceConfig,
+  });
+
+  // ── Events ───────────────────────────────────────────────────────────────
+  api.addEventListener('videoConferenceJoined', () => {
+    markStep(4);
+    setTimeout(()=>{
+      document.getElementById('loading-screen').style.display = 'none';
+      document.getElementById('stats-bar').style.display = 'flex';
+      startTimer();
+    }, 600);
+  });
+
+  api.addEventListener('participantJoined', updateParticipants);
+  api.addEventListener('participantLeft',   updateParticipants);
+
+  api.addEventListener('readyToClose', () => {
+    showEndedScreen();
+  });
+
+  api.addEventListener('videoConferenceLeft', () => {
+    showEndedScreen();
+  });
+
+  api.addEventListener('recordingStatusChanged', (e) => {
+    document.getElementById('rec-indicator').style.display = e.on ? 'flex' : 'none';
+  });
+
+  // Ping simulation (real ping needs backend)
+  setInterval(()=>{
+    const ping = 20 + Math.floor(Math.random()*40);
+    document.getElementById('stat-ping').textContent = ping+'ms';
+  }, 3000);
+}
+
+function updateParticipants(){
+  const count = api ? api.getParticipantsInfo().length : 0;
+  document.getElementById('tb-participants').textContent = '👥 ' + (count+1);
+}
+
+function showEndedScreen(){
+  if(timerInterval) clearInterval(timerInterval);
+  const m = Math.floor(meetingSeconds/60);
+  const s = meetingSeconds%60;
+  document.getElementById('end-duration').textContent = `Duration: ${m}m ${s}s`;
+  document.getElementById('ended-screen').style.display = 'flex';
+  document.getElementById('stats-bar').style.display = 'none';
+}
+
+function rejoinMeeting(){
+  window.location.reload();
+}
+
+// ─── Load Jitsi script ────────────────────────────────────────────────────
+markStep(1);
+document.getElementById('load-sub').textContent = 'Loading Jitsi Meet engine…';
+
+const script = document.createElement('script');
+script.src = 'https://meet.jit.si/external_api.js';
+script.onload = () => {
+  markStep(1);
+  markStep(2);
+  document.getElementById('load-sub').textContent = 'Initializing room…';
+  setTimeout(()=>{
+    markStep(3);
+    document.getElementById('load-sub').textContent = 'Activating camera & microphone…';
+    setTimeout(()=>{
+      launchJitsi();
+    }, 600);
+  }, 800);
+};
+script.onerror = () => {
+  document.getElementById('load-title').textContent = 'Connection Error';
+  document.getElementById('load-sub').innerHTML = 'Could not reach video servers.<br>Please check your internet connection.';
+  document.getElementById('step-1').textContent = '❌ Could not connect to video servers.';
+  document.getElementById('step-1').style.color = '#ef4444';
+};
+document.head.appendChild(script);
+</script>
+<script src="../assets/js/translate.js"></script>
+</body>
+</html>

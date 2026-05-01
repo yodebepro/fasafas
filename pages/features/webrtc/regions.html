@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Regional Server Clusters</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Regional Server Clusters</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link active" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">🌍</span>
+      <h1 class="hero-title"><em>Regional Server Clusters</em></h1>
+      <p class="hero-desc">FasaFas runs SFU clusters in multiple global regions. Participants automatically connect to the nearest cluster, minimizing latency and ensuring regional data compliance.</p>
+      <div class="hero-tags"><span class="h-tag">US East</span><span class="h-tag">EU West</span><span class="h-tag">APAC</span><span class="h-tag">Anycast DNS</span><span class="h-tag">Auto-Route</span><span class="h-tag">&lt;100ms to SFU</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-regions')">Regional Infrastructure</div>
+<div class="tab " onclick="sw(this,'t-routing')">Traffic Routing</div>
+<div class="tab " onclick="sw(this,'t-compliance')">Data Compliance</div></div>
+    <div class="content">
+      <div id="t-regions" class="tab-pane active"><div class="ph1">Global Server Regions</div>
+<div class="tbl-wrap"><table class="tbl">
+<tr><th>Region</th><th>Location</th><th>Data Center</th><th>Covers</th></tr>
+<tr><td>US East</td><td>Virginia, USA</td><td>AWS us-east-1</td><td>US East, South America</td></tr>
+<tr><td>US West</td><td>Oregon, USA</td><td>AWS us-west-2</td><td>US West, Pacific Islands</td></tr>
+<tr><td>US Central</td><td>Ohio, USA</td><td>AWS us-east-2</td><td>US Central, Canada</td></tr>
+<tr><td>EU West</td><td>Ireland</td><td>AWS eu-west-1</td><td>Western Europe, UK</td></tr>
+<tr><td>EU Central</td><td>Frankfurt</td><td>AWS eu-central-1</td><td>Central & Eastern Europe</td></tr>
+<tr><td>APAC East</td><td>Tokyo</td><td>AWS ap-northeast-1</td><td>Japan, Korea</td></tr>
+<tr><td>APAC SE</td><td>Singapore</td><td>AWS ap-southeast-1</td><td>SE Asia, Oceania</td></tr>
+<tr><td>APAC South</td><td>Mumbai</td><td>AWS ap-south-1</td><td>India, Middle East</td></tr>
+</table></div></div>
+<div id="t-routing" class="tab-pane "><div class="ph1">Traffic Routing Logic</div>
+<div class="card"><ul class="fl">
+<li>When you join a meeting, the signal-service checks your IP geolocation and resolves the nearest SFU cluster</li>
+<li>All participants in the same meeting don't need to be in the same region — the SFU clusters communicate via Pipe Transports</li>
+<li>A meeting with participants in NYC and Tokyo: NYC users → US East SFU, Tokyo users → APAC East SFU, Pipe Transport connects the two</li>
+<li>This minimizes last-mile latency for each participant while keeping the meeting unified</li>
+<li>STUN and TURN servers deployed in each region too — no cross-region relay for connectivity checks</li>
+<li>Automatic failover: if the nearest SFU region is unavailable (&gt;3 health check failures), the next-nearest region takes over</li>
+</ul></div></div>
+<div id="t-compliance" class="tab-pane "><div class="ph1">Regional Data Compliance</div>
+<div class="card"><ul class="fl">
+<li>EU accounts: media routed exclusively through EU regions (GDPR compliance)</li>
+<li>US government accounts: US regions only (FedRAMP compliance)</li>
+<li>APAC accounts: APAC regions by default (data sovereignty)</li>
+<li>Admin selects data residency region in Account Settings → Advanced</li>
+<li>Media is not stored in transit — SFU only routes packets, does not persist them</li>
+<li>Recordings stored in the account's selected S3 region (separate from SFU region)</li>
+<li>Transcription AI processing region follows the account's data residency setting</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="recovery.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Error Recovery</div></div></a>
+      <span class="nav-counter">Feature 11 of 11</span>
+      <div class="nav-pg end">End →</div>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

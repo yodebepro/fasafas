@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Privacy & Consent</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Privacy & Consent</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link active" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">🔐</span>
+      <h1 class="hero-title"><em>Privacy & Consent</em></h1>
+      <p class="hero-desc">FasaFas gives participants, hosts, and administrators full control over AI transcription data — including consent flows, individual opt-out, data deletion, and regional storage.</p>
+      <div class="hero-tags"><span class="h-tag">Consent Banner</span><span class="h-tag">Opt-Out</span><span class="h-tag">Data Deletion</span><span class="h-tag">Admin Controls</span><span class="h-tag">GDPR</span><span class="h-tag">Audit Log</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-consent')">Consent Flow</div>
+<div class="tab " onclick="sw(this,'t-controls')">User Controls</div>
+<div class="tab " onclick="sw(this,'t-admin')">Admin Controls</div></div>
+    <div class="content">
+      <div id="t-consent" class="tab-pane active"><div class="ph1">Consent and Notification</div>
+<div class="card"><ul class="fl">
+<li>When AI transcription starts, ALL participants see a banner: "This meeting is being transcribed by AI"</li>
+<li>The banner is mandatory — admins cannot suppress it (regulatory requirement)</li>
+<li>Participants who join after transcription starts receive the notice immediately on join</li>
+<li>Audio announcement (configurable): "This meeting is being recorded and transcribed" plays when transcription begins</li>
+<li>Consent prompt (optional, admin setting): participants must click "I Agree to AI Transcription" before audio is processed</li>
+<li>If a participant doesn't consent (when prompt is enabled): their audio is excluded from the transcript</li>
+<li>Transcription indicator always visible in the meeting UI while active</li>
+</ul></div></div>
+<div id="t-controls" class="tab-pane "><div class="ph1">Individual User Controls</div>
+<div class="card"><ul class="fl">
+<li>Request exclusion: a participant can click "Opt out of transcription" — their audio is no longer processed by AI for the remainder of the meeting</li>
+<li>Delete voice registration: Profile → Smart Recognition → Delete Voice Data (clears your enrolled voice embedding)</li>
+<li>Request transcript deletion: contact account admin or submit via GDPR portal → specific meeting transcript deleted within 30 days</li>
+<li>Download your data: Profile → Privacy → Download My Data includes all transcripts where you were a participant</li>
+<li>View where your voice data is stored: Profile → Smart Recognition → Storage Region</li>
+</ul></div></div>
+<div id="t-admin" class="tab-pane "><div class="ph1">Admin Privacy Controls</div>
+<div class="card">
+<div style="margin-bottom:14px"><div class="ph3">Account-Wide Settings (Admin Panel → AI Settings)</div></div>
+<ul class="fl">
+<li>Enable / disable AI transcription account-wide (master toggle)</li>
+<li>Require participant consent prompt before transcription starts</li>
+<li>Set transcript retention period: 30 days / 90 days / 1 year / 7 years / custom</li>
+<li>Opt account out of AI model training — data never used to improve any AI model</li>
+<li>Data residency: select which AWS region stores transcripts (US / EU / APAC)</li>
+<li>Disable Smart Recognition voice storage for all users</li>
+<li>Restrict transcript download: host-only download toggle</li>
+<li>Audit log: every transcript access, download, share, and deletion logged with timestamp and IP</li>
+<li>GDPR: "Purge All Transcripts for User" tool — removes all transcript data attributed to a specific user</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="transcript-view.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Transcript Viewer</div></div></a>
+      <span class="nav-counter">Feature 11 of 11</span>
+      <div class="nav-pg end">End →</div>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

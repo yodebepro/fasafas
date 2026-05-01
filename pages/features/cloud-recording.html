@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Cloud Recording</title>
+<link rel="stylesheet" href="../../assets/css/features.css">
+<style>
+:root{--hero-glow:rgba(20,184,166,.14);--hero-color:#14b8a6;--hero-eyebrow-bg:rgba(20,184,166,.14);--hero-eyebrow-b:rgba(20,184,166,.3);--hero-eyebrow-c:#14b8a6;--tab-color:#14b8a6}
+.var(--bg){background:var(--bg)}
+</style>
+
+<style>
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.feat-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.feat-cards{grid-template-columns:1fr}}
+.feat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px 18px;cursor:pointer;transition:all .2s;
+  text-decoration:none;display:flex;flex-direction:column;gap:9px;
+  position:relative;overflow:hidden;
+}
+.feat-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;
+  background:radial-gradient(circle at 20% 20%,var(--card-glow,rgba(37,99,235,.07)),transparent 70%)}
+.feat-card:hover{border-color:var(--card-c,var(--accent));transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.feat-card:hover::before{opacity:1}
+.fc-top{display:flex;align-items:center;gap:11px}
+.fc-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--card-ibg,rgba(37,99,235,.12));border:1px solid var(--card-ib,rgba(37,99,235,.2))}
+.fc-num{position:absolute;top:11px;right:13px;font-size:10px;font-weight:700;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 7px}
+.fc-title{font-size:13.5px;font-weight:800;letter-spacing:-.2px;color:var(--text)}
+.fc-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.fc-tags-str{font-size:10.5px;color:var(--card-c,var(--accent3));font-weight:600;opacity:.8}
+.fc-arrow{font-size:16px;color:var(--text3);position:absolute;bottom:12px;right:14px;transition:all .2s}
+.feat-card:hover .fc-arrow{color:var(--card-c,var(--accent));transform:translate(2px,-2px)}
+</style>
+
+</head>
+<body>
+<header class="f-header">
+  <a class="f-logo" href="../../index.html"><div class="f-logo-dot"></div>FasaFas</a>
+  <nav class="f-nav">
+    <a class="f-back" href="../../index.html">← Back to Platform</a>
+    <a class="f-schedule" href="../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="breadcrumb">
+  <a href="../../index.html">Home</a><span class="sep">/</span>
+  <a href="../../index.html">Meetings</a><span class="sep">/</span>
+  <span class="cur">Cloud Recording</span>
+</div>
+
+<div class="f-hero">
+  <div class="hero-eyebrow">📹 Meetings Feature</div>
+  <span class="f-hero-icon">☁️</span>
+  <h1 class="f-hero-title"><em>Cloud Recording</em></h1>
+  <p class="f-hero-desc">Every meeting recorded server-side — no CPU impact, AI-processed automatically, shareable in seconds. Click any feature below to explore storage, compliance, editing, and more.</p>
+</div>
+
+<!-- STAT STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--border);background:var(--bg2)">
+
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Storage Pro</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#14b8a6">10 GB</div>
+    <div style="font-size:11px;color:var(--text3)">Per license</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Formats</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#14b8a6">7</div>
+    <div style="font-size:11px;color:var(--text3)">MP4/M4A/VTT/JSON</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">AI Ready</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#14b8a6">~15 min</div>
+    <div style="font-size:11px;color:var(--text3)">Post-meeting</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Layouts</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#14b8a6">5</div>
+    <div style="font-size:11px;color:var(--text3)">Active/Gallery/Screen+</div>
+  </div>
+</div>
+
+<!-- FEATURE CARDS -->
+<div style="padding:32px 44px 48px;background:var(--bg)">
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:6px">Feature Details</div>
+  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px">Click any feature to explore it fully</h2>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:22px;line-height:1.7">Every capability has its own dedicated page with step-by-step explanations, technical details, and configuration guides.</p>
+  <div class="feat-cards">
+
+    <a class="feat-card" href="cloud-recording/auto-record.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">01</div>
+      <div class="fc-top"><div class="fc-icon">⏺</div><div class="fc-title">Auto-Record Setup</div></div>
+      <div class="fc-desc">Configure recording to start automatically</div>
+      <div class="fc-tags-str">Auto-Start · Admin Policy · Consent</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/layouts.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">02</div>
+      <div class="fc-top"><div class="fc-icon">🎬</div><div class="fc-title">Recording Layouts</div></div>
+      <div class="fc-desc">Active Speaker, Gallery, Screen Only</div>
+      <div class="fc-tags-str">5 Layouts · Simultaneous · Per Meeting</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/cloud-vs-local.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">03</div>
+      <div class="fc-top"><div class="fc-icon">💾</div><div class="fc-title">Cloud vs Local Recording</div></div>
+      <div class="fc-desc">Differences, tradeoffs, and when to use each</div>
+      <div class="fc-tags-str">No Upload · AI: Cloud Only · E2EE</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/pipeline.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">04</div>
+      <div class="fc-top"><div class="fc-icon">⚙️</div><div class="fc-title">Processing Pipeline</div></div>
+      <div class="fc-desc">FFmpeg, Whisper, Claude — step by step</div>
+      <div class="fc-tags-str">ECS Fargate · Kafka · 3–8 Min Total</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/hls-playback.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">05</div>
+      <div class="fc-top"><div class="fc-icon">▶️</div><div class="fc-title">HLS Streaming & Playback</div></div>
+      <div class="fc-desc">Instant streaming, player controls, ABR</div>
+      <div class="fc-tags-str">Instant Stream · Chapter Jump · 2×Speed</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/ai-output.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">06</div>
+      <div class="fc-top"><div class="fc-icon">🤖</div><div class="fc-title">AI Post-Processing</div></div>
+      <div class="fc-desc">Summary, chapters, action items</div>
+      <div class="fc-tags-str">Claude · Auto-Generate · Edit · Share</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/trim-edit.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">07</div>
+      <div class="fc-top"><div class="fc-icon">✂️</div><div class="fc-title">Trim & Edit Tools</div></div>
+      <div class="fc-desc">Non-destructive editing in the player</div>
+      <div class="fc-tags-str">Non-Destructive · Clips · Cut Sections</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/share-link.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">08</div>
+      <div class="fc-top"><div class="fc-icon">🔗</div><div class="fc-title">Share Link & Passcode</div></div>
+      <div class="fc-desc">Share recordings securely</div>
+      <div class="fc-tags-str">Passcode · Expiry · Domain Restrict</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/download.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">09</div>
+      <div class="fc-top"><div class="fc-icon">⬇️</div><div class="fc-title">Download Formats</div></div>
+      <div class="fc-desc">MP4, M4A, VTT, JSON, transcript, chat</div>
+      <div class="fc-tags-str">7 Formats · Batch Export · API</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/storage.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">10</div>
+      <div class="fc-top"><div class="fc-icon">📦</div><div class="fc-title">Storage & Retention</div></div>
+      <div class="fc-desc">Quotas, lifecycle, retention policies</div>
+      <div class="fc-tags-str">10 GB Pro · Unlimited Enterprise · Alerts</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="cloud-recording/compliance.html"
+       style="--card-c:#14b8a6;--card-glow:rgba(20,184,166,.14);--card-ibg:rgba(20,184,166,.14);--card-ib:rgba(20,184,166,.3)">
+      <div class="fc-num">11</div>
+      <div class="fc-top"><div class="fc-icon">🏛️</div><div class="fc-title">Compliance & Legal Hold</div></div>
+      <div class="fc-desc">eDiscovery, HIPAA, GDPR, audit trail</div>
+      <div class="fc-tags-str">Legal Hold · SOC 2 · FedRAMP · GDPR</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- FEATURE NAV STRIP -->
+<div class="feat-nav">
+  <a class="feat-nav-item " href="hd-video.html"><div class="fni-icon">📹</div><div class="fni-label">HD Video</div></a>
+  <a class="feat-nav-item " href="webrtc-sfu.html"><div class="fni-icon">📡</div><div class="fni-label">WebRTC SFU</div></a>
+  <a class="feat-nav-item " href="breakout-rooms.html"><div class="fni-icon">🚪</div><div class="fni-label">Breakout Rooms</div></a>
+  <a class="feat-nav-item " href="ai-transcription.html"><div class="fni-icon">🤖</div><div class="fni-label">AI Transcription</div></a>
+  <a class="feat-nav-item current" href="cloud-recording.html"><div class="fni-icon">☁️</div><div class="fni-label">Cloud Recording</div></a>
+</div>
+<script src="../../assets/js/translate.js"></script>
+</body>
+</html>
