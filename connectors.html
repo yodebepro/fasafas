@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Pen, Highlighter & Eraser</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Pen, Highlighter & Eraser</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link active" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">✏️</span>
+      <h1 class="hero-title"><em>Pen, Highlighter & Eraser</em></h1>
+      <p class="hero-desc">Freehand drawing tools for annotation, emphasis, and real-time explanations — with a pen for precise drawing, highlighter for emphasis, and a laser pointer that fades automatically.</p>
+      <div class="hero-tags"><span class="h-tag">Freehand Pen</span><span class="h-tag">Highlighter</span><span class="h-tag">Laser Pointer</span><span class="h-tag">Eraser</span><span class="h-tag">Pressure Sensitivity</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Drawing Tools</div>
+<div class="tab " onclick="sw(this,'t2')">Laser Pointer</div>
+<div class="tab " onclick="sw(this,'t3')">Tablet Support</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Pen, Highlighter &amp; Eraser</div><div class='spec'><div class='spec-head'>✏️ Drawing Tools</div><div class='spec-row'><span class='sk'>Pen</span><span class='sv'>Freehand vector path — stays on canvas after drawing. Width 1–20px, any color.</span></div><div class='spec-row'><span class='sk'>Highlighter</span><span class='sv'>Semi-transparent strokes for marking up text or shapes. Width 10–40px.</span></div><div class='spec-row'><span class='sk'>Eraser</span><span class='sv'>Erase pen/highlighter strokes. Pixel eraser or object eraser (deletes entire stroke).</span></div><div class='spec-row'><span class='sk'>Stroke smoothing</span><span class='sv'>Enabled by default — smooths wobbly freehand strokes into clean curves.</span></div><div class='spec-row'><span class='sk'>Color picker</span><span class='sv'>Full RGB picker + 20 preset colors + 'pick from canvas' eyedropper.</span></div><div class='spec-row'><span class='sk'>Pen history</span><span class='sv'>All pen strokes are vector objects — undo/redo like any other object.</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Laser Pointer</div><div class='card' ><ul class='fl'><li>Activate: press L or click the laser pointer tool in the toolbar</li><li>Click and drag on canvas — a red dot with a fading trail follows your cursor</li><li>Trail fades after 2 seconds — nothing is left on the canvas</li><li>All participants see the laser pointer in real time — great for presentations</li><li>The laser dot shows your name label (so attendees know who's pointing)</li><li>Use in Follow Mode: presenter's laser is visible to all followers simultaneously</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Tablet &amp; Stylus Support</div><div class='card' ><ul class='fl'><li>FasaFas Whiteboard supports pressure-sensitive stylus input on touch devices</li><li>iPad with Apple Pencil: stroke width varies with pen pressure — natural drawing experience</li><li>Android tablets with active stylus: pressure sensitivity supported on Chrome/Edge</li><li>Palm rejection: enabled automatically — resting your palm on the screen doesn't create strokes</li><li>Tilt sensitivity: supported on Apple Pencil 2 and Wacom styli — affects stroke angle/width</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="infinite-canvas.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Infinite Canvas (Pan & Zoom)</div></div></a><span class="nav-counter">Feature 2 of 14</span><a class="nav-pg" href="shapes.html"><div><div class="nav-label">Next</div><div class="nav-title">Shapes: Rect, Circle, Diamond, Arrow</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

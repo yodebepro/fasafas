@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Embed Recordings & Whiteboards</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#f9a8d4;--fc-bg:rgba(236,72,153,.14);--fc-b:rgba(236,72,153,.3);--fc-dim:rgba(236,72,153,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../docs.html">← Docs</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../docs.html">Docs</a><span class="bc-sep">/</span><span class="bc-cur">Embed Recordings & Whiteboards</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Docs Features</div>
+    <a class="sb-link" href="rich-text.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Rich Text Editor</a>
+<a class="sb-link" href="co-editing.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Real-Time Co-Editing</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">3</span><span class="sb-icon">💬</span>Inline Comments & Suggestions</a>
+<a class="sb-link active" href="embed.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Embed Recordings & Whiteboards</a>
+<a class="sb-link" href="sub-pages.html"><span class="sb-num">5</span><span class="sb-icon">📁</span>Nested Sub-Pages</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">6</span><span class="sb-icon">📜</span>Version History</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">7</span><span class="sb-icon">✍️</span>Writing Mode: AI Co-Author</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research: Multi-Source Reports</a>
+<a class="sb-link" href="from-transcript.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Create Doc from Meeting Transcript</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Mind Map Generation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">11</span><span class="sb-icon">✅</span>Action Items → Tasks</a>
+<a class="sb-link" href="grammar.html"><span class="sb-num">12</span><span class="sb-icon">🔤</span>Grammar & Style Suggestions</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../docs.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔗</span>
+      <h1 class="hero-title"><em>Embed Recordings & Whiteboards</em></h1>
+      <p class="hero-desc">Embed FasaFas meeting recordings, whiteboards, Figma frames, YouTube videos, and more directly into any doc — content plays or renders inline without leaving the document.</p>
+      <div class="hero-tags"><span class="h-tag">Meeting Recordings</span><span class="h-tag">Whiteboards</span><span class="h-tag">Figma</span><span class="h-tag">YouTube</span><span class="h-tag">Notion-Style</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Embedding Content</div>
+<div class="tab " onclick="sw(this,'t2')">Supported Embeds</div>
+<div class="tab " onclick="sw(this,'t3')">Meeting Recordings</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How to Embed</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Type /embed in the doc or paste a URL on a blank line</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>FasaFas detects the URL type and offers a rich embed option</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Click 'Embed' → content renders inline as an interactive card</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Resize: drag the bottom edge of the embed to adjust height</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Caption: click below the embed → add a description or attribution</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Click embed to open full-screen: viewer can expand to full-screen within the doc</div><div class='step-desc'></div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Supported Embed Types</div><div class='spec'><div class='spec-head'>🔗 Embed Sources</div><div class='spec-row'><span class='sk'>FasaFas Meetings</span><span class='sv'>Recording player inline — video + transcript side by side</span></div><div class='spec-row'><span class='sk'>FasaFas Whiteboard</span><span class='sv'>Interactive whiteboard viewer — pan and zoom inside the doc</span></div><div class='spec-row'><span class='sk'>YouTube / Vimeo / Loom</span><span class='sv'>Video player inline — plays without leaving the doc</span></div><div class='spec-row'><span class='sk'>Figma</span><span class='sv'>Live Figma frame — shows current design, not a screenshot</span></div><div class='spec-row'><span class='sk'>Google Docs / Sheets / Slides</span><span class='sv'>Preview card with open-in-Google link</span></div><div class='spec-row'><span class='sk'>GitHub PR / Issue</span><span class='sv'>Status, title, assignees, labels — live from GitHub API</span></div><div class='spec-row'><span class='sk'>Typeform / Google Form</span><span class='sv'>Form renders inline — users can fill it without opening a new tab</span></div><div class='spec-row'><span class='sk'>Any URL</span><span class='sv'>Fallback: title + description + favicon card (Open Graph)</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Embedding Meeting Recordings</div><div class='card' ><ul class='fl'><li>After a meeting, the recording is available in Hub → Recordings within 5 minutes</li><li>In any Doc: /embed → paste the recording URL → inline player appears</li><li>Player shows: video on left, AI transcript on right (synchronized)</li><li>Click any transcript line → video jumps to that timestamp</li><li>Comments on the recording embed: click a timestamp → leave a timestamped comment</li><li>Share: anyone with Doc access can view the embedded recording if they also have recording access</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="comments.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Inline Comments & Suggestions</div></div></a><span class="nav-counter">Feature 4 of 12</span><a class="nav-pg" href="sub-pages.html"><div><div class="nav-label">Next</div><div class="nav-title">Nested Sub-Pages</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

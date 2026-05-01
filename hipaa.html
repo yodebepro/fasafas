@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — FIDO2 Passkeys & Biometric</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fca5a5;--fc-bg:rgba(239,68,68,.14);--fc-b:rgba(239,68,68,.3);--fc-dim:rgba(239,68,68,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../security.html">← Security</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../security.html">Security</a><span class="bc-sep">/</span><span class="bc-cur">FIDO2 Passkeys & Biometric</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Security Features</div>
+    <a class="sb-link" href="tls.html"><span class="sb-num">1</span><span class="sb-icon">🔐</span>TLS 1.3 + DTLS-SRTP</a>
+<a class="sb-link" href="jwt.html"><span class="sb-num">2</span><span class="sb-icon">🎟</span>JWT + Rotating Refresh Tokens</a>
+<a class="sb-link" href="oauth.html"><span class="sb-num">3</span><span class="sb-icon">🔑</span>OAuth 2.0 PKCE</a>
+<a class="sb-link" href="saml.html"><span class="sb-num">4</span><span class="sb-icon">🏢</span>SAML 2.0 SSO</a>
+<a class="sb-link active" href="passkeys.html"><span class="sb-num">5</span><span class="sb-icon">🔏</span>FIDO2 Passkeys & Biometric</a>
+<a class="sb-link" href="mfa.html"><span class="sb-num">6</span><span class="sb-icon">📲</span>TOTP + SMS MFA</a>
+<a class="sb-link" href="session.html"><span class="sb-num">7</span><span class="sb-icon">🔄</span>Session Revocation (All Devices)</a>
+<a class="sb-link" href="e2ee.html"><span class="sb-num">8</span><span class="sb-icon">🔒</span>End-to-End Encryption (AES-256-GCM)</a>
+<a class="sb-link" href="soc2.html"><span class="sb-num">9</span><span class="sb-icon">✅</span>SOC 2 Type II Certified</a>
+<a class="sb-link" href="hipaa.html"><span class="sb-num">10</span><span class="sb-icon">🏥</span>HIPAA BAA</a>
+<a class="sb-link" href="gdpr.html"><span class="sb-num">11</span><span class="sb-icon">🇪🇺</span>GDPR / CCPA Data Controls</a>
+<a class="sb-link" href="fedramp.html"><span class="sb-num">12</span><span class="sb-icon">🦅</span>FedRAMP Authorized</a>
+<a class="sb-link" href="deepfake-sec.html"><span class="sb-num">13</span><span class="sb-icon">🛡️</span>Deepfake Detection (Real-Time)</a>
+<a class="sb-link" href="dlp.html"><span class="sb-num">14</span><span class="sb-icon">🚧</span>DLP + Information Barriers</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../security.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔏</span>
+      <h1 class="hero-title"><em>FIDO2 Passkeys & Biometric</em></h1>
+      <p class="hero-desc">Sign in with a passkey — Face ID, Touch ID, or Windows Hello — instead of a password. Passkeys are phishing-resistant, never travel over the network, and can't be stolen from a database breach.</p>
+      <div class="hero-tags"><span class="h-tag">FIDO2</span><span class="h-tag">WebAuthn</span><span class="h-tag">Face ID</span><span class="h-tag">Touch ID</span><span class="h-tag">Windows Hello</span><span class="h-tag">Phishing-Resistant</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Passkeys Work</div>
+<div class="tab " onclick="sw(this,'t2')">Supported Authenticators</div>
+<div class="tab " onclick="sw(this,'t3')">Passkey Management</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How Passkeys Work (WebAuthn / FIDO2)</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>User registers a passkey</div><div class='step-desc'>Device generates a public/private key pair. Public key sent to FasaFas. Private key stays on device — never leaves.</div></div></li><li><div><div class='step-title'>Login: FasaFas sends a challenge (random bytes)</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Device authenticates the user (Face ID, Touch ID, or PIN)</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Device signs the challenge with the private key → signature sent to FasaFas</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>FasaFas verifies the signature using the stored public key — no password, no secret transmitted</div><div class='step-desc'></div></div></li></ol></div><div class='hl'><div class='hl-title'>Phishing-Resistant</div><div class='hl-body'>Because the private key never leaves the device and the challenge is signed for a specific domain (fasafas.app), passkeys cannot be phished. A fake site can't trick the device into signing for a different domain.</div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Supported Authenticators</div><div class='spec'><div class='spec-head'>🔏 Platform Authenticators</div><div class='spec-row'><span class='sk'>Apple Face ID / Touch ID</span><span class='sv'>iOS 16+, macOS 13+ — syncs via iCloud Keychain across Apple devices</span></div><div class='spec-row'><span class='sk'>Windows Hello</span><span class='sv'>Windows 10/11 — fingerprint, face, or PIN</span></div><div class='spec-row'><span class='sk'>Android Biometric</span><span class='sv'>Android 9+ — fingerprint or face unlock</span></div><div class='spec-row'><span class='sk'>Google Password Manager</span><span class='sv'>Stores passkeys synced across Chrome on Android/Desktop</span></div><div class='spec-row'><span class='sk'>Hardware security keys</span><span class='sv'>YubiKey 5, Google Titan — cross-device, phishing-resistant</span></div><div class='spec-row'><span class='sk'>1Password / Bitwarden</span><span class='sv'>3rd-party password managers with passkey support</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Managing Passkeys</div><div class='card' ><ul class='fl'><li>View your passkeys: Profile → Security → Passkeys</li><li>Register a new passkey: '+ Add passkey' → device prompts for biometric</li><li>Passkey nickname: give each passkey a name (e.g., 'MacBook Pro', 'iPhone 15')</li><li>Delete a passkey: click × next to any passkey — useful when selling a device</li><li>Multiple passkeys: register passkeys on all your devices — any can be used to log in</li><li>Recovery: if all passkeys lost, use recovery code (shown at registration) to regain access</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="saml.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">SAML 2.0 SSO</div></div></a><span class="nav-counter">Feature 5 of 14</span><a class="nav-pg" href="mfa.html"><div><div class="nav-label">Next</div><div class="nav-title">TOTP + SMS MFA</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

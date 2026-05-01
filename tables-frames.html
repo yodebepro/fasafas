@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Export: PNG, PDF, SVG</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Export: PNG, PDF, SVG</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link active" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">💾</span>
+      <h1 class="hero-title"><em>Export: PNG, PDF, SVG</em></h1>
+      <p class="hero-desc">Export your whiteboard as a high-resolution PNG for sharing, a scalable SVG for design tools, a PDF for printing, or just send a share link for interactive browser viewing.</p>
+      <div class="hero-tags"><span class="h-tag">PNG</span><span class="h-tag">PDF</span><span class="h-tag">SVG</span><span class="h-tag">Selection Export</span><span class="h-tag">High Resolution</span><span class="h-tag">Share Link</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Export Formats</div>
+<div class="tab " onclick="sw(this,'t2')">Export Options</div>
+<div class="tab " onclick="sw(this,'t3')">Share Link</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Export Formats</div><div class='spec'><div class='spec-head'>💾 Available Export Types</div><div class='spec-row'><span class='sk'>PNG</span><span class='sv'>Raster image — 1× 2× or 4× resolution. Best for: sharing in email, Slack, docs.</span></div><div class='spec-row'><span class='sk'>SVG</span><span class='sv'>Vector — infinitely scalable, no quality loss. Best for: importing into Figma, Illustrator, design tools.</span></div><div class='spec-row'><span class='sk'>PDF</span><span class='sv'>Multi-page PDF — one frame per page (if frames are used), or full canvas as one page.</span></div><div class='spec-row'><span class='sk'>.whiteboard</span><span class='sv'>FasaFas native format — can be imported back or shared with collaborators.</span></div><div class='spec-row'><span class='sk'>OPML</span><span class='sv'>For mindmaps — importable into XMind, Miro, Mindmeister.</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Export Options</div><div class='card' ><ul class='fl'><li>Export scope: Entire canvas · Current viewport only · Selected objects only</li><li>Resolution (PNG): 1× (screen), 2× (retina/print), 4× (large format print)</li><li>Background: include background color, transparent, or white</li><li>Grid lines: include or exclude canvas grid in export</li><li>Watermark: remove FasaFas watermark on Pro+ plans</li><li>Batch export: if frames are used → export as a ZIP of individual frame PNGs</li><li>Auto-export: configure automatic export to Google Drive or OneDrive on a schedule</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Share Link (Interactive View)</div><div class='card' ><ul class='fl'><li>Generate a shareable link: toolbar → Share → Copy Link</li><li>Recipients open the link in a browser — no FasaFas account required for view-only</li><li>Interactive: they can pan and zoom the canvas freely</li><li>Named version link: share a link to a specific historical snapshot</li><li>Password protection: optional — set a password for the share link</li><li>Expiry: set link to expire after 7 days, 30 days, or never</li><li>Embed: paste the embed code to show an interactive whiteboard in a website or Notion page</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="templates.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">100+ Templates</div></div></a><span class="nav-counter">Feature 14 of 14</span><div class="nav-pg end">End →</div></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

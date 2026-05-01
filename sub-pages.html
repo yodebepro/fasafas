@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Rich Text Editor</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#f9a8d4;--fc-bg:rgba(236,72,153,.14);--fc-b:rgba(236,72,153,.3);--fc-dim:rgba(236,72,153,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../docs.html">← Docs</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../docs.html">Docs</a><span class="bc-sep">/</span><span class="bc-cur">Rich Text Editor</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Docs Features</div>
+    <a class="sb-link active" href="rich-text.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Rich Text Editor</a>
+<a class="sb-link" href="co-editing.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Real-Time Co-Editing</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">3</span><span class="sb-icon">💬</span>Inline Comments & Suggestions</a>
+<a class="sb-link" href="embed.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Embed Recordings & Whiteboards</a>
+<a class="sb-link" href="sub-pages.html"><span class="sb-num">5</span><span class="sb-icon">📁</span>Nested Sub-Pages</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">6</span><span class="sb-icon">📜</span>Version History</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">7</span><span class="sb-icon">✍️</span>Writing Mode: AI Co-Author</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research: Multi-Source Reports</a>
+<a class="sb-link" href="from-transcript.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Create Doc from Meeting Transcript</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Mind Map Generation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">11</span><span class="sb-icon">✅</span>Action Items → Tasks</a>
+<a class="sb-link" href="grammar.html"><span class="sb-num">12</span><span class="sb-icon">🔤</span>Grammar & Style Suggestions</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../docs.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">📝</span>
+      <h1 class="hero-title"><em>Rich Text Editor</em></h1>
+      <p class="hero-desc">A block-based rich text editor with full markdown support, slash commands for instant formatting, and a toolbar for quick access to headings, lists, tables, code blocks, and more.</p>
+      <div class="hero-tags"><span class="h-tag">Markdown</span><span class="h-tag">Headings</span><span class="h-tag">Tables</span><span class="h-tag">Code Blocks</span><span class="h-tag">Slash Commands</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Editor Features</div>
+<div class="tab " onclick="sw(this,'t2')">Slash Commands</div>
+<div class="tab " onclick="sw(this,'t3')">Keyboard Shortcuts</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Rich Text Editor</div><div class='g2'><div class='card' ><div class='ph3'>Text Formatting</div><ul class='fl'><li>Headings: H1 / H2 / H3 / H4</li><li>Bold, Italic, Underline, Strikethrough, Code inline</li><li>Text color and highlight color</li><li>Hyperlinks: Cmd+K → paste URL</li><li>Bullet list / Numbered list / Checklist</li><li>Blockquote / Horizontal rule</li><li>Font size: Small / Normal / Large</li></ul></div><div class='card' ><div class='ph3'>Block Types</div><ul class='fl'><li>Code block: with syntax highlighting (50+ languages)</li><li>Table: rows × columns with resize and merge</li><li>Image: paste or insert from Drive</li><li>Callout: colored info/warning/error box</li><li>Toggle / Accordion: collapsible section</li><li>Math: LaTeX equation support</li><li>Embed: any URL as an inline card</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Slash Commands</div><div class='spec'><div class='spec-head'>/ Command Reference</div><div class='spec-row'><span class='sk'>/h1 /h2 /h3</span><span class='sv'>Heading levels 1–3</span></div><div class='spec-row'><span class='sk'>/bullet /numbered /checklist</span><span class='sv'>List types</span></div><div class='spec-row'><span class='sk'>/table [rows] [cols]</span><span class='sv'>Insert a table</span></div><div class='spec-row'><span class='sk'>/code [language]</span><span class='sv'>Code block with syntax highlight</span></div><div class='spec-row'><span class='sk'>/quote</span><span class='sv'>Blockquote block</span></div><div class='spec-row'><span class='sk'>/callout [info/warn/error]</span><span class='sv'>Colored callout box</span></div><div class='spec-row'><span class='sk'>/image</span><span class='sv'>Open file picker or paste URL</span></div><div class='spec-row'><span class='sk'>/embed</span><span class='sv'>Paste URL for rich card embed</span></div><div class='spec-row'><span class='sk'>/ai [prompt]</span><span class='sv'>AI writes content at cursor (Writing Mode)</span></div><div class='spec-row'><span class='sk'>/toc</span><span class='sv'>Insert auto-generated table of contents</span></div><div class='spec-row'><span class='sk'>/divider</span><span class='sv'>Horizontal rule separator</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Keyboard Shortcuts</div><div class='spec'><div class='spec-head'>⌨️ Core Shortcuts</div><div class='spec-row'><span class='sk'>Cmd+B / Ctrl+B</span><span class='sv'>Bold</span></div><div class='spec-row'><span class='sk'>Cmd+I / Ctrl+I</span><span class='sv'>Italic</span></div><div class='spec-row'><span class='sk'>Cmd+K / Ctrl+K</span><span class='sv'>Insert link</span></div><div class='spec-row'><span class='sk'>Cmd+Z / Ctrl+Z</span><span class='sv'>Undo (full history)</span></div><div class='spec-row'><span class='sk'>Cmd+/ / Ctrl+/</span><span class='sv'>Open slash command palette</span></div><div class='spec-row'><span class='sk'>Cmd+Enter / Ctrl+Enter</span><span class='sv'>Submit / confirm action</span></div><div class='spec-row'><span class='sk'>Tab / Shift+Tab</span><span class='sv'>Indent / outdent list item</span></div><div class='spec-row'><span class='sk'>Cmd+Shift+L / Ctrl+Shift+L</span><span class='sv'>Toggle bullet list</span></div><div class='spec-row'><span class='sk'>Cmd+Shift+7 / Ctrl+Shift+7</span><span class='sv'>Toggle numbered list</span></div><div class='spec-row'><span class='sk'>Cmd+Opt+C / Ctrl+Alt+C</span><span class='sv'>Toggle code block</span></div></div></div></div>
+    <div class="nav-strip"><div class="nav-pg end">← Start</div><span class="nav-counter">Feature 1 of 12</span><a class="nav-pg" href="co-editing.html"><div><div class="nav-label">Next</div><div class="nav-title">Real-Time Co-Editing</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>
