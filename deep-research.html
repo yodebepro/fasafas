@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Late Joiner Catch-Up</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-companion.html">← Ai Companion</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Late Joiner Catch-Up</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Ai Companion Features</div>
+    <a class="sb-link" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
+<a class="sb-link active" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
+<a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
+<a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
+<a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
+<a class="sb-link" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
+<a class="sb-link" href="drive-retrieval.html"><span class="sb-num">11</span><span class="sb-icon">🗂️</span>Drive Retrieval</a>
+<a class="sb-link" href="daily-digest.html"><span class="sb-num">12</span><span class="sb-icon">📊</span>Daily Digest</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-companion.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🏃</span>
+      <h1 class="hero-title"><em>Late Joiner Catch-Up</em></h1>
+      <p class="hero-desc">Join a meeting 20 minutes late and get a private AI brief of everything you missed in under 10 seconds — decisions made, action items assigned, and current topic — shown only to you.</p>
+      <div class="hero-tags"><span class="h-tag">Instant Brief</span><span class="h-tag">Private to You</span><span class="h-tag">Claude Powered</span><span class="h-tag">One-Click</span><span class="h-tag">No Interruption</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How It Works</div>
+<div class="tab " onclick="sw(this,'t2')">Brief Contents</div>
+<div class="tab " onclick="sw(this,'t3')">Privacy</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Late Joiner Catch-Up Flow</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>You join the meeting late</div><div class='step-desc'>FasaFas detects your join time vs meeting start. If you're 3+ minutes late, the catch-up prompt appears.</div></div></li><li><div><div class='step-title'>Banner appears: 'You joined 18 min late'</div><div class='step-desc'>Shows only to you: 'Get AI catch-up of what you missed →' — one button, no one else sees it</div></div></li><li><div><div class='step-title'>Claude generates your private brief in under 10 seconds</div><div class='step-desc'>Receives transcript from start to your join time. Produces a concise private summary in a popup panel.</div></div></li><li><div><div class='step-title'>Read and join the conversation</div><div class='step-desc'>Brief shows: decisions made, action items, current topic, open questions. Dismiss when done — no trace left.</div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Brief Contents</div><div class='spec'><div class='spec-head'>📋 Catch-Up Brief Sections</div><div class='spec-row'><span class='sk'>Current Topic</span><span class='sv'>What the group is discussing right now as you join</span></div><div class='spec-row'><span class='sk'>Key Decisions</span><span class='sv'>What was agreed or confirmed before you arrived</span></div><div class='spec-row'><span class='sk'>Action Items</span><span class='sv'>Tasks assigned — including any assigned to you</span></div><div class='spec-row'><span class='sk'>Open Questions</span><span class='sv'>Unresolved questions still being discussed</span></div><div class='spec-row'><span class='sk'>Key Participants</span><span class='sv'>Who has spoken most and their main points</span></div><div class='spec-row'><span class='sk'>Suggested Contribution</span><span class='sv'>AI suggestion for how to join the conversation naturally</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Privacy Guarantee</div><div class='card' ><ul class='fl'><li>Brief shown only to you — no other participant can see it</li><li>Client-side popup panel — never appears in shared meeting chat</li><li>Not stored after you dismiss — ephemeral by design</li><li>Uses the same transcript shared with all participants — no extra data collected</li><li>Admin can disable feature: Admin Panel → AI Settings → Late Joiner Catch-Up</li><li>Available on: AI Companion add-on and above</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="smart-chapters.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Smart Chapters & Actions</div></div></a><span class="nav-counter">Feature 4 of 12</span><a class="nav-pg" href="voice-translation.html"><div><div class="nav-label">Next</div><div class="nav-title">Real-Time Voice Translation</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

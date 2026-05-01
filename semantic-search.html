@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — File Sharing</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../team-chat.html">← Team Chat</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">File Sharing</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Team Chat Features</div>
+    <a class="sb-link" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
+<a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
+<a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
+<a class="sb-link active" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
+<a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
+<a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
+<a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
+<a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
+<a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
+<a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
+<a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
+<a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
+<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../team-chat.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">📁</span>
+      <h1 class="hero-title"><em>File Sharing</em></h1>
+      <p class="hero-desc">Share files in any channel or DM with a simple drag-and-drop — with inline previews, version tracking, and direct links to Google Drive or OneDrive files without downloading.</p>
+      <div class="hero-tags"><span class="h-tag">Drag & Drop</span><span class="h-tag">Preview</span><span class="h-tag">Version History</span><span class="h-tag">500MB</span><span class="h-tag">Google Drive Link</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">File Sharing</div>
+<div class="tab " onclick="sw(this,'t2')">Supported Formats</div>
+<div class="tab " onclick="sw(this,'t3')">File Management</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>File Sharing Features</div><div class='card' ><ul class='fl'><li>Drag files directly into any chat window to upload</li><li>Or click the paperclip icon → browse files</li><li>Images and videos show inline previews — no download needed</li><li>PDFs render inline with page navigation</li><li>Maximum file size: 500 MB per file (1 GB for video on Business+)</li><li>Files searchable by name across all channels</li><li>Annotate images: click the pen icon on an image → draw, highlight, add text</li><li>Comment on specific sections of a document</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Supported File Types</div><div class='g2'><div class='card' ><div class='ph3'>With Inline Preview</div><ul class='fl'><li>Images: JPG, PNG, GIF, WebP, SVG</li><li>Videos: MP4, MOV, WebM (plays inline)</li><li>PDFs: page-by-page navigation</li><li>Office docs: DOCX, XLSX, PPTX (read-only preview)</li><li>Code files: syntax-highlighted preview</li><li>Audio: MP3, M4A, WAV (plays inline)</li></ul></div><div class='card' ><div class='ph3'>Cloud File Links</div><ul class='fl'><li>Google Docs / Sheets / Slides — previews without downloading</li><li>Microsoft Word / Excel / PowerPoint via OneDrive — rich unfurl</li><li>Notion pages — title + description unfurl</li><li>GitHub files and PRs — status + diff unfurl</li><li>Figma frames — live thumbnail preview</li></ul></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>File Management</div><div class='card' ><ul class='fl'><li>File library: sidebar → Files → search, filter by type, uploader, date</li><li>Version history: re-upload the same filename → old versions preserved and linked</li><li>Download: hover any file → Download button</li><li>Delete: only the uploader or admin can delete a file</li><li>File retention: admin sets how long files are stored (30 days → forever)</li><li>Storage quota: counted against cloud storage plan (same pool as recordings)</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="threads.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Threaded Replies</div></div></a><span class="nav-counter">Feature 4 of 14</span><a class="nav-pg" href="voice-messages.html"><div><div class="nav-label">Next</div><div class="nav-title">Voice Messages</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

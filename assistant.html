@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — My Notes</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-companion.html">← Ai Companion</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">My Notes</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Ai Companion Features</div>
+    <a class="sb-link" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
+<a class="sb-link active" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
+<a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
+<a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
+<a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
+<a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
+<a class="sb-link" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
+<a class="sb-link" href="drive-retrieval.html"><span class="sb-num">11</span><span class="sb-icon">🗂️</span>Drive Retrieval</a>
+<a class="sb-link" href="daily-digest.html"><span class="sb-num">12</span><span class="sb-icon">📊</span>Daily Digest</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-companion.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">📒</span>
+      <h1 class="hero-title"><em>My Notes</em></h1>
+      <p class="hero-desc">A two-column AI note-taker that captures decisions, action items, and key moments automatically while you stay engaged in the conversation — available in FasaFas and any third-party meeting via browser extension.</p>
+      <div class="hero-tags"><span class="h-tag">AI Highlights</span><span class="h-tag">Personal Notes</span><span class="h-tag">#decision #action</span><span class="h-tag">Hub Sync</span><span class="h-tag">3rd Party Meetings</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Interface</div>
+<div class="tab " onclick="sw(this,'t2')">AI Capture Logic</div>
+<div class="tab " onclick="sw(this,'t3')">After Meeting</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>My Notes Interface</div><div class='g2'><div class='card' ><div class='ph3'>Two-Column Layout</div><ul class='fl'><li>Top: your personal typed notes — free-form markdown editor</li><li>Bottom: AI Highlights — auto-populated as meeting progresses</li><li>Click any AI highlight → Add to My Notes to pin it</li><li>Dismiss unwanted AI suggestions</li><li>Every entry auto-timestamped — click later to jump to recording moment</li><li>Autosaves every 10 seconds — no data loss on crash</li></ul></div><div class='card' ><div class='ph3'>Tag System</div><ul class='fl'><li>#decision #action #question #risk #idea #follow-up</li><li>AI auto-tags based on content type detected</li><li>Tagged notes organized in collapsible sections</li><li>Star important notes → surface at top of Hub notes list</li><li>Push action items to Tasks with one click — assignee + due date pre-filled</li><li>Sync to Hub → Summaries → My Notes immediately after meeting</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>What AI Captures Automatically</div><div class='card' ><ul class='fl'><li><b>Decisions:</b> 'we decided', 'let's go with', 'agreed to', 'confirmed' → #decision tag</li><li><b>Action items:</b> 'I'll take care of', 'can you please', '[name] will', 'by [date]' → #action tag</li><li><b>Open questions:</b> raised but not conclusively answered → #question tag</li><li><b>Numbers &amp; dates:</b> budget figures, deadlines, milestones → highlighted for review</li><li><b>Name mentions:</b> '[Name] will lead the project' → captured with context</li><li>Confidence score per capture: High / Medium / Review-needed</li><li>AI learns from your accept/dismiss behavior — personalizes over time</li></ul></div><div class='hl'><div class='hl-title'>Available in 3rd-Party Meetings</div><div class='hl-body'>Install the FasaFas browser extension and My Notes runs inside Google Meet, Microsoft Teams, or any in-browser conference. Transcribes via your device mic (90 min/month on Basic, unlimited on Pro+).</div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Accessing Notes After the Meeting</div><div class='card' ><ul class='fl'><li>Notes synced to Hub → Summaries → My Notes within seconds of meeting end</li><li>Full-text search across all past notes from all meetings</li><li>Filter by: tag, date range, meeting title, person mentioned</li><li>Export: markdown copy, push to Docs, email to self, download PDF</li><li>Notes linked to recording: click timestamp → player jumps to that moment</li><li>Share individual notes or full note set via link (view or edit access)</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="live-transcription.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Live Transcription</div></div></a><span class="nav-counter">Feature 2 of 12</span><a class="nav-pg" href="smart-chapters.html"><div><div class="nav-label">Next</div><div class="nav-title">Smart Chapters & Actions</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

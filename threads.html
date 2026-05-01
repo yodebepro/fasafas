@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Action Item Extraction from Threads</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../team-chat.html">← Team Chat</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Action Item Extraction from Threads</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Team Chat Features</div>
+    <a class="sb-link" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
+<a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
+<a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
+<a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
+<a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
+<a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
+<a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
+<a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
+<a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
+<a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
+<a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
+<a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
+<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
+<a class="sb-link active" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../team-chat.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">✅</span>
+      <h1 class="hero-title"><em>Action Item Extraction from Threads</em></h1>
+      <p class="hero-desc">AI scans any channel thread or conversation for action items — commitments, assignments, and deadlines — and surfaces them as structured tasks with one click to push to the Tasks module.</p>
+      <div class="hero-tags"><span class="h-tag">Thread Extraction</span><span class="h-tag">→ Tasks</span><span class="h-tag">Assignee Detection</span><span class="h-tag">AI Powered</span><span class="h-tag">No Manual Tagging</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Extraction in Threads</div>
+<div class="tab " onclick="sw(this,'t2')">What Gets Detected</div>
+<div class="tab " onclick="sw(this,'t3')">Push to Tasks</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Action Item Extraction from Chat</div><div class='card' ><ul class='fl'><li>Right-click any thread → 'Extract action items with AI'</li><li>Or hover a message → ⋯ → 'Find action items'</li><li>AI scans the thread from beginning to end — not just the hovered message</li><li>Results shown in a sidebar panel: each action item with task, assignee, due date</li><li>Confirm which ones to keep → push to Tasks or dismiss</li><li>Channel-level: weekly digest of all action items extracted from all channel threads (optional, admin toggle)</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>What Gets Detected</div><div class='card' ><ul class='fl'><li><b>Commitments:</b> 'I'll update the doc by EOD', 'will send you the contract today'</li><li><b>Assignments:</b> 'Can you review the PR?', '@Ana please handle the client call'</li><li><b>Deadlines:</b> 'needs to be done by Friday', 'before the board meeting on the 15th'</li><li><b>Implicit tasks:</b> 'we need someone to write the announcement' — AI flags as unassigned</li><li>Context preserved: each item includes the original message quote and a link to that message in the thread</li></ul></div><div class='hl'><div class='hl-title'>Confidence Scores</div><div class='hl-body'>Each detected item has a confidence rating (High / Medium / Review-needed). Low-confidence items are shown separately for your review before being saved.</div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Push to Tasks</div><div class='card' ><ul class='fl'><li>One-click 'Push to Tasks' sends the item to the FasaFas Tasks module</li><li>Assignee pre-filled (if detected), due date pre-filled (if mentioned), source thread linked</li><li>Assignee receives a notification: 'Ana assigned you a task from #product channel: Review the PR'</li><li>Integrations: push to Asana, Jira, Monday.com, Notion, or Zapier webhook instead</li><li>Weekly channel digest: admin can enable a Monday 9 AM post to each channel listing all open items from that channel</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="ai-translate.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">AI Message Translation</div></div></a><span class="nav-counter">Feature 14 of 14</span><div class="nav-pg end">End →</div></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

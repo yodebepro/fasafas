@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Voice Messages</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../team-chat.html">← Team Chat</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Voice Messages</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Team Chat Features</div>
+    <a class="sb-link" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
+<a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
+<a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
+<a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
+<a class="sb-link active" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
+<a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
+<a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
+<a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
+<a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
+<a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
+<a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
+<a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
+<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../team-chat.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🎤</span>
+      <h1 class="hero-title"><em>Voice Messages</em></h1>
+      <p class="hero-desc">Record and send voice messages instead of typing — with a waveform player, AI-generated transcript, and playback speed control. Great for async communication when text isn't enough.</p>
+      <div class="hero-tags"><span class="h-tag">Record & Send</span><span class="h-tag">Waveform Player</span><span class="h-tag">AI Transcript</span><span class="h-tag">Up to 5 min</span><span class="h-tag">Mobile First</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Recording</div>
+<div class="tab " onclick="sw(this,'t2')">Playback</div>
+<div class="tab " onclick="sw(this,'t3')">AI Transcript</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Recording a Voice Message</div><div class='card' ><ul class='fl'><li>Click the microphone icon in the message composer (or hold M on keyboard)</li><li>Recording starts immediately — no countdown</li><li>Maximum length: 5 minutes per voice message</li><li>Pause and resume during recording</li><li>Preview before sending — re-record if needed</li><li>Cancel: click X to discard without sending</li><li>Available in channels, DMs, group DMs, and thread replies</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Playback Features</div><div class='card' ><ul class='fl'><li>Waveform visualizer shows amplitude over time</li><li>Click any point on the waveform to seek to that moment</li><li>Playback speed: 0.8× / 1× / 1.2× / 1.5× / 2×</li><li>Background playback: continue listening while scrolling other messages</li><li>Auto-pause when another voice message or video starts playing</li><li>Listen counter: shows how many people have listened</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>AI Transcript</div><div class='card' ><ul class='fl'><li>AI transcription (Whisper) runs automatically after sending</li><li>Transcript appears below the waveform player after ~15–30 seconds</li><li>Click any transcript word to jump to that moment in the audio</li><li>Search: voice message transcripts are included in channel/DM search</li><li>Copy transcript to clipboard</li><li>Transcript also available via API: GET /api/v1/messages/:id/transcript</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="file-sharing.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">File Sharing</div></div></a><span class="nav-counter">Feature 5 of 14</span><a class="nav-pg" href="custom-emoji.html"><div><div class="nav-label">Next</div><div class="nav-title">Custom Emoji</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>
