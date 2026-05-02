@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Day / Week / Month / Agenda Views</title>
+<title>FasaFas — Round-Robin Team Scheduling</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
 </head><body>
@@ -13,11 +13,11 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Day / Week / Month / Agenda Views</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Round-Robin Team Scheduling</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Calendar Features</div>
-    <a class="sb-link active" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
+    <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
 <a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
 <a class="sb-link" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
 <a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
@@ -27,7 +27,7 @@
 <a class="sb-link" href="availability.html"><span class="sb-num">8</span><span class="sb-icon">⏰</span>Custom Availability & Buffer Times</a>
 <a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
 <a class="sb-link" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
-<a class="sb-link" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
+<a class="sb-link active" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
 <a class="sb-link" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
     <div class="sb-div"></div>
     <a class="sb-back" href="../calendar.html">← Overview</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">📅</span>
-      <h1 class="hero-title"><em>Day / Week / Month / Agenda Views</em></h1>
-      <p class="hero-desc">View your schedule in four layout modes — Day for detailed hourly planning, Week for the full picture, Month for an overview, and Agenda for a clean chronological list — with color-coded calendars overlaid.</p>
-      <div class="hero-tags"><span class="h-tag">Day</span><span class="h-tag">Week</span><span class="h-tag">Month</span><span class="h-tag">Agenda</span><span class="h-tag">Color Coded</span><span class="h-tag">Multiple Calendars</span></div>
+      <span class="hero-icon">🔄</span>
+      <h1 class="hero-title"><em>Round-Robin Team Scheduling</em></h1>
+      <p class="hero-desc">Let prospects or customers book with any available team member — FasaFas distributes bookings equally across the team using round-robin logic, skipping anyone who's currently unavailable.</p>
+      <div class="hero-tags"><span class="h-tag">Team Scheduling</span><span class="h-tag">Equal Distribution</span><span class="h-tag">Skip Unavailable</span><span class="h-tag">Priority Order</span><span class="h-tag">Reporting</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">View Types</div>
-<div class="tab " onclick="sw(this,'t2')">Calendar Layers</div>
-<div class="tab " onclick="sw(this,'t3')">Navigation</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Calendar View Modes</div><div class='spec'><div class='spec-head'>📅 Layout Options</div><div class='spec-row'><span class='sk'>Day View</span><span class='sv'>Hourly timeline for a single day. All events with time, attendees, and quick join button.</span></div><div class='spec-row'><span class='sk'>Week View</span><span class='sv'>7-day grid (Mon–Sun). Drag events to reschedule. Multi-day events span across days.</span></div><div class='spec-row'><span class='sk'>Month View</span><span class='sv'>Full month overview. Event titles shown; click for detail. Busy days visually darker.</span></div><div class='spec-row'><span class='sk'>Agenda View</span><span class='sv'>Chronological list of upcoming events — no grid. Best on mobile. Infinite scroll forward.</span></div><div class='spec-row'><span class='sk'>Multi-person View</span><span class='sv'>Add colleague calendars as overlays — see their free/busy alongside yours (with their permission).</span></div></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Calendar Layers</div><div class='card' ><ul class='fl'><li>Your FasaFas calendar: events created in FasaFas or synced from Google/Outlook</li><li>Google Calendar layer: shows synced events in their original colors</li><li>Microsoft Outlook/Exchange layer: shows work events synced from Outlook</li><li>Other people's calendars: overlay a colleague's free/busy (availability only, not event titles, unless shared)</li><li>Color coding: each calendar layer gets a distinct color — visible in all views</li><li>Toggle layers: show/hide any calendar layer with one click in the left sidebar</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Navigation</div><div class='card' ><ul class='fl'><li>Arrow buttons: navigate forward/backward by day, week, or month</li><li>Today button: jump to the current date instantly</li><li>Mini calendar (top left): click any date to jump — month view for quick navigation</li><li>Keyboard shortcuts: J/K for next/previous period, T for today, D/W/M/A for view modes</li><li>Search: Cmd+F / Ctrl+F to search event titles and descriptions</li><li>URL: /calendar/2026-05-01 — shareable link to a specific date</li></ul></div></div></div>
-    <div class="nav-strip"><div class="nav-pg end">← Start</div><span class="nav-counter">Feature 1 of 12</span><a class="nav-pg" href="create-events.html"><div><div class="nav-label">Next</div><div class="nav-title">Create Events + Auto Meeting Link</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Round-Robin Works</div>
+<div class="tab " onclick="sw(this,'t2')">Distribution Logic</div>
+<div class="tab " onclick="sw(this,'t3')">Team Reporting</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Round-Robin Team Scheduling</div><div class='card' ><ul class='fl'><li>Create a Team Booking Page: Calendar → Booking Pages → New → Round-Robin</li><li>Add team members (up to 50 members on Business+)</li><li>Single booking URL shared publicly: guests book with 'your team' — no individual selected</li><li>FasaFas selects the next available team member automatically</li><li>Guest sees the selected team member's name only after choosing a time slot</li><li>Meeting is booked directly on that team member's calendar</li></ul><div class='hl'><div class='hl-title'>No Double-Booking Guarantee</div><div class='hl-body'>FasaFas cross-checks every team member's live calendar before assigning them. If they have a conflict or are in a meeting, they're skipped — ensuring bookings always land on a genuinely available person.</div></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Distribution Logic Options</div><div class='spec'><div class='spec-head'>⚖️ Assignment Algorithms</div><div class='spec-row'><span class='sk'>Equal distribution (default)</span><span class='sv'>Tracks bookings per member — always assigns to the person with the fewest recent bookings</span></div><div class='spec-row'><span class='sk'>Availability priority</span><span class='sv'>Among available members, picks the one free longest — least interruption to busy members</span></div><div class='spec-row'><span class='sk'>Priority order</span><span class='sv'>You set a ranking — highest priority member gets assigned first if available</span></div><div class='spec-row'><span class='sk'>Weight-based</span><span class='sv'>Assign weights: senior rep gets 2× bookings vs junior rep — for experienced team members</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Team Booking Reporting</div><div class='card' ><ul class='fl'><li>Dashboard: bookings per team member, this week/month</li><li>Acceptance rate: how many bookings each member confirmed vs cancelled</li><li>No-show rate per member</li><li>Average time to respond to leads</li><li>Export CSV for sales ops reporting</li><li>Admin can see all bookings and redistribute if needed</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="reminders.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Confirmation & Reminder Emails</div></div></a><span class="nav-counter">Feature 11 of 12</span><a class="nav-pg" href="multiple-pages.html"><div><div class="nav-label">Next</div><div class="nav-title">Multiple Booking Pages (Business+)</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Smart Chapters & Actions</title>
+<title>FasaFas — AI Assistant</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
 </head><body>
@@ -13,17 +13,17 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Smart Chapters & Actions</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">AI Assistant</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Ai Companion Features</div>
     <a class="sb-link" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
 <a class="sb-link" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
-<a class="sb-link active" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
 <a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
 <a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
 <a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
-<a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
+<a class="sb-link active" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
 <a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
 <a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
 <a class="sb-link" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">📖</span>
-      <h1 class="hero-title"><em>Smart Chapters & Actions</em></h1>
-      <p class="hero-desc">Claude segments every meeting transcript into named topic chapters and extracts every action item with suggested assignee and due date — ready in under 20 minutes after the meeting ends.</p>
-      <div class="hero-tags"><span class="h-tag">Claude API</span><span class="h-tag">Topic Detection</span><span class="h-tag">Timestamped</span><span class="h-tag">Assignee Detection</span><span class="h-tag">→ Tasks</span></div>
+      <span class="hero-icon">💬</span>
+      <h1 class="hero-title"><em>AI Assistant</em></h1>
+      <p class="hero-desc">A persistent conversational AI throughout FasaFas — in your Hub, inside Docs, and alongside recordings. Ask questions, draft content, search past meetings, and get answers grounded in your actual meeting data.</p>
+      <div class="hero-tags"><span class="h-tag">Claude 3.5 Sonnet</span><span class="h-tag">GPT-4o</span><span class="h-tag">Streaming</span><span class="h-tag">Meeting Context</span><span class="h-tag">Multi-Turn</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Smart Chapters</div>
-<div class="tab " onclick="sw(this,'t2')">Action Items</div>
-<div class="tab " onclick="sw(this,'t3')">API</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Smart Chapter Generation</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Full transcript assembled</div><div class='step-desc'>Whisper + diarization complete → labeled transcript is the input</div></div></li><li><div><div class='step-title'>Claude performs topic segmentation</div><div class='step-desc'>Identifies significant semantic shifts. Minimum chapter: 3 minutes. Typical: 5–10 chapters per hour.</div></div></li><li><div><div class='step-title'>Titles and summaries generated</div><div class='step-desc'>2–6 word title per chapter + 1–2 sentence summary. Example: '0:00 Intros · 8:32 Q3 Budget · 24:10 Roadmap · 41:05 Action Items'</div></div></li><li><div><div class='step-title'>Placed on recording timeline</div><div class='step-desc'>Clickable markers on the playback bar. Chapter sidebar in the viewer. Deep link to any chapter.</div></div></li></ol></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Action Item Extraction</div><div class='card' ><div class='ph3'>Detection Patterns</div><ul class='fl'><li><b>Commitment:</b> 'I'll…', 'I will send…', 'I'm going to…'</li><li><b>Assignment:</b> 'Can you [name]…', '[Name] will handle…', 'Action for [name]:'</li><li><b>Deadline:</b> 'by Friday', 'end of day', 'next sprint', 'before the 15th'</li><li><b>Decision-action pair:</b> 'We decided [X] — [Name] will lead it'</li></ul></div><br><div class='card' ><div class='ph3'>Action Item Structure</div><div style='background:#050d18;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:monospace;font-size:12px;color:#a5b4fc;margin-bottom:10px'>{"task":"Send budget to board","assignee":"Ana Lopez","due":"2026-05-07","source":"by next Wednesday","timestamp":1842,"confidence":"high"}</div><ul class='fl'><li>One-click 'Push All to Tasks' sends every item at once</li><li>Integrates with Asana, Jira, Monday.com, Notion</li><li>Assignee notified with task + meeting link</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>API Access</div><div class='ep'><span class='meth GET'>GET</span><span class='ep-path'>/api/v1/meetings/:id/summary</span><span class='ep-note'>includes smart_chapters + action_items arrays</span></div><div class='ep'><span class='meth GET'>GET</span><span class='ep-path'>/api/v1/meetings/:id/action-items</span><span class='ep-note'>structured list with assignee + due date</span></div><div class='hl'><div class='hl-title'>Webhook: meeting.summary.completed</div><div class='hl-body'>Fires when all post-processing (transcript + chapters + actions + summary) is ready. Typical delay: 10–20 minutes after a 1-hour meeting.</div></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="my-notes.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">My Notes</div></div></a><span class="nav-counter">Feature 3 of 12</span><a class="nav-pg" href="late-joiner.html"><div><div class="nav-label">Next</div><div class="nav-title">Late Joiner Catch-Up</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Capabilities</div>
+<div class="tab " onclick="sw(this,'t2')">Model Routing</div>
+<div class="tab " onclick="sw(this,'t3')">Access Points</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>AI Assistant Capabilities</div><div class='g2'><div class='card' ><div class='ph3'>General Tasks</div><ul class='fl'><li>Draft emails, meeting agendas, reports, proposals</li><li>Rewrite content in different tones (formal, casual, persuasive)</li><li>Explain complex topics in plain language</li><li>Translate text between languages</li><li>Summarize long documents or web pages (paste URL)</li><li>Generate code, SQL queries, formulas</li></ul></div><div class='card' ><div class='ph3'>Meeting-Aware Tasks</div><ul class='fl'><li>'Summarize what was decided in last Tuesday's all-hands'</li><li>'Find all action items assigned to Ana this month'</li><li>'What did we discuss about the Q3 budget?'</li><li>'Draft a follow-up email based on yesterday's meeting'</li><li>'Who mentioned the redesign project in the last 2 weeks?'</li><li>Searches across all meeting transcripts you have access to</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Federated Model Routing</div><div class='spec'><div class='spec-head'>🤖 Which Model Handles What</div><div class='spec-row'><span class='sk'>Meeting summaries</span><span class='sv'>Claude 3.5 Sonnet — best at long-context synthesis and structured output</span></div><div class='spec-row'><span class='sk'>In-session Q&A (streaming)</span><span class='sv'>GPT-4o — fastest streaming, supports multimodal input</span></div><div class='spec-row'><span class='sk'>Speech-to-text</span><span class='sv'>Whisper large-v3 — best multilingual STT accuracy</span></div><div class='spec-row'><span class='sk'>Deep research</span><span class='sv'>GPT-4o + web search — multi-step reasoning</span></div><div class='spec-row'><span class='sk'>On-device (E2EE)</span><span class='sv'>Nemotron-Nano — runs locally, no data leaves device</span></div><div class='spec-row'><span class='sk'>Semantic search</span><span class='sv'>text-embedding-3-large + pgvector</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Access Points</div><div class='card' ><ul class='fl'><li><b>Hub sidebar:</b> Click the sparkle icon (✨) in left nav</li><li><b>Inside Docs:</b> Press /ai or highlight text → AI Actions menu</li><li><b>In meetings:</b> More → AI → opens AI panel alongside video</li><li><b>Mobile:</b> AI button in the bottom nav of the FasaFas mobile app</li><li>Conversation history persists across sessions</li><li>Export any conversation: markdown, share link, push to Docs</li><li>Admin can restrict AI access by user group</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="deepfake.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Deepfake Detection</div></div></a><span class="nav-counter">Feature 7 of 12</span><a class="nav-pg" href="deep-research.html"><div><div class="nav-label">Next</div><div class="nav-title">Deep Research</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

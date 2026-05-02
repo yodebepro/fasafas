@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Google Calendar Bidirectional Sync</title>
+<title>FasaFas — Personal Booking URL</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
 </head><body>
@@ -13,17 +13,17 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Google Calendar Bidirectional Sync</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Personal Booking URL</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Calendar Features</div>
     <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
 <a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
 <a class="sb-link" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
-<a class="sb-link active" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
+<a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
 <a class="sb-link" href="outlook-sync.html"><span class="sb-num">5</span><span class="sb-icon">🔄</span>Outlook / Exchange Sync</a>
 <a class="sb-link" href="free-busy.html"><span class="sb-num">6</span><span class="sb-icon">👁</span>Free / Busy Overlay for Invitees</a>
-<a class="sb-link" href="booking-url.html"><span class="sb-num">7</span><span class="sb-icon">🔗</span>Personal Booking URL</a>
+<a class="sb-link active" href="booking-url.html"><span class="sb-num">7</span><span class="sb-icon">🔗</span>Personal Booking URL</a>
 <a class="sb-link" href="availability.html"><span class="sb-num">8</span><span class="sb-icon">⏰</span>Custom Availability & Buffer Times</a>
 <a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
 <a class="sb-link" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">🔄</span>
-      <h1 class="hero-title"><em>Google Calendar Bidirectional Sync</em></h1>
-      <p class="hero-desc">Connect your Google Calendar and every event syncs bidirectionally — FasaFas events appear in Google, Google events appear in FasaFas, and changes update in both directions in real time.</p>
-      <div class="hero-tags"><span class="h-tag">Bidirectional</span><span class="h-tag">OAuth</span><span class="h-tag">Real-Time</span><span class="h-tag">No Double-Booking</span><span class="h-tag">1-Click Setup</span></div>
+      <span class="hero-icon">🔗</span>
+      <h1 class="hero-title"><em>Personal Booking URL</em></h1>
+      <p class="hero-desc">Share a personal booking URL and let invitees choose their own meeting slot from your live availability — no back-and-forth email chains, just a link they click and a slot they pick.</p>
+      <div class="hero-tags"><span class="h-tag">Personal URL</span><span class="h-tag">No Back-and-Forth</span><span class="h-tag">Guest Selects Slot</span><span class="h-tag">Auto-Confirm</span><span class="h-tag">Embed</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Sync Works</div>
-<div class="tab " onclick="sw(this,'t2')">Setup</div>
-<div class="tab " onclick="sw(this,'t3')">Conflict Resolution</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Bidirectional Google Calendar Sync</div><div class='card' ><ul class='fl'><li>FasaFas-to-Google: events you create in FasaFas appear in your Google Calendar immediately</li><li>Google-to-FasaFas: events in your Google Calendar appear in FasaFas calendar view</li><li>Updates sync in both directions — change the title in Google → FasaFas updates in &lt;30 seconds</li><li>RSVPs sync: accept an event in Google → your RSVP status updates in FasaFas</li><li>Event deletion: delete in either app → removed from both (with confirmation)</li><li>Free/busy: Google events show as busy in FasaFas scheduling (no title shared unless you choose to share)</li></ul></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Setup Steps</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Profile → Integrations → Google Calendar → Connect</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Complete Google OAuth in popup → grant FasaFas calendar read/write access</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Select which Google calendars to sync (primary calendar always synced)</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Choose sync direction: bidirectional (default) or FasaFas → Google only</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Initial sync: up to 90 days of history pulled in — completes in under 2 minutes</div><div class='step-desc'></div></div></li></ol></div><div class='hl'><div class='hl-title'>Meeting Link Behavior</div><div class='hl-body'>FasaFas can optionally replace Google Meet links in synced events with FasaFas links. Configure: Settings → Calendar → Meeting Link Override.</div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Conflict & Edge Case Handling</div><div class='card' ><ul class='fl'><li>Simultaneous edit: if you edit the same event in both apps at the same moment — the most recent save wins</li><li>Deleted in Google while FasaFas is offline: deleted in FasaFas on next sync</li><li>All-day events: synced correctly, appear as all-day in both apps</li><li>Private events: synced but only title shown to other FasaFas users viewing your calendar overlay</li><li>External invites from non-FasaFas users: appear in FasaFas as Google events — RSVP from FasaFas propagates back to Google</li><li>Google Calendar API rate limits: sync may be delayed up to 2 minutes during Google outages</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="rsvp.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">RSVP Tracking</div></div></a><span class="nav-counter">Feature 4 of 12</span><a class="nav-pg" href="outlook-sync.html"><div><div class="nav-label">Next</div><div class="nav-title">Outlook / Exchange Sync</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Your Booking Page</div>
+<div class="tab " onclick="sw(this,'t2')">Guest Experience</div>
+<div class="tab " onclick="sw(this,'t3')">Embed & Share</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Your Personal Booking Page</div><div class='card' ><ul class='fl'><li>URL format: fasafas.app/book/[yourname] — shareable in email, LinkedIn, email signature</li><li>Displays your real availability based on your calendar free/busy</li><li>Available time slots shown in the guest's timezone (auto-detected)</li><li>Guest picks a slot → event created automatically in both calendars</li><li>Customizable: page title, meeting description, duration options (15/30/60 min), meeting type (video/phone/in-person)</li><li>Branding: add your photo and a brief bio to the booking page</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Guest Booking Experience</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Guest opens your booking link</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Selects a meeting type (if you offer multiple) and duration</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Picks a date → available slots shown (30-min increments by default)</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Selects a time slot → form appears for their name, email, and any custom intake questions</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Submits → instant confirmation email with meeting link, calendar invite (.ics), and reminder setup</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Day before reminder + 1 hour before reminder sent automatically</div><div class='step-desc'></div></div></li></ol></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Embed & Share Your Booking Page</div><div class='card' ><ul class='fl'><li>Embed in your website: copy the embed code → paste into any HTML page — shows inline booking widget</li><li>Email signature: add 'Book a meeting: [your link]' — works in Gmail, Outlook, Apple Mail</li><li>LinkedIn: add to Contact Info or a post</li><li>QR code: download a QR code that links to your booking page — for conferences or printed materials</li><li>Multiple URLs: create different booking pages for different purposes (demos vs support vs introductions) — Business+ plan</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="free-busy.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Free / Busy Overlay for Invitees</div></div></a><span class="nav-counter">Feature 7 of 12</span><a class="nav-pg" href="availability.html"><div><div class="nav-label">Next</div><div class="nav-title">Custom Availability & Buffer Times</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

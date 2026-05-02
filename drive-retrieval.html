@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Deepfake Detection</title>
+<title>FasaFas — Writing Mode</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Deepfake Detection</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Writing Mode</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Ai Companion Features</div>
@@ -22,10 +22,10 @@
 <a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
 <a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
 <a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
-<a class="sb-link active" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
+<a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
 <a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
 <a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
-<a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
+<a class="sb-link active" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
 <a class="sb-link" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
 <a class="sb-link" href="drive-retrieval.html"><span class="sb-num">11</span><span class="sb-icon">🗂️</span>Drive Retrieval</a>
 <a class="sb-link" href="daily-digest.html"><span class="sb-num">12</span><span class="sb-icon">📊</span>Daily Digest</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">🛡️</span>
-      <h1 class="hero-title"><em>Deepfake Detection</em></h1>
-      <p class="hero-desc">FasaFas analyzes every participant's video frame-by-frame for artifacts of AI-generated media, alerting the host with a banner if synthetic video is detected — without storing any biometric data.</p>
-      <div class="hero-tags"><span class="h-tag">Real-Time</span><span class="h-tag">Frame Analysis</span><span class="h-tag">EfficientNet</span><span class="h-tag">Host Alert</span><span class="h-tag">Privacy Safe</span></div>
+      <span class="hero-icon">✍️</span>
+      <h1 class="hero-title"><em>Writing Mode</em></h1>
+      <p class="hero-desc">Open any FasaFas Doc and activate Writing Mode — Claude appears as an intelligent co-author that suggests next sentences, rewrites selections, adjusts tone, and improves clarity, all inline without leaving the document.</p>
+      <div class="hero-tags"><span class="h-tag">Claude Inline</span><span class="h-tag">Rewrite</span><span class="h-tag">Tone Adjustment</span><span class="h-tag">Slash Commands</span><span class="h-tag">Streaming</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Detection Method</div>
-<div class="tab " onclick="sw(this,'t2')">Alert Flow</div>
-<div class="tab " onclick="sw(this,'t3')">Limitations</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How Deepfake Detection Works</div><div class='card' ><ul class='fl'><li><b>Temporal artifacts:</b> Real faces have consistent micro-movements between frames. Deepfakes introduce subtle eyebrow, blink, and skin texture inconsistencies.</li><li><b>Frequency domain:</b> GAN-generated faces leave patterns in the DCT frequency domain — invisible to humans, detectable algorithmically.</li><li><b>Lighting consistency:</b> Real faces reflect light uniformly. Composited faces show lighting direction mismatches at edges.</li><li><b>Landmark tracking:</b> 68 facial landmarks tracked across frames. Deepfakes show unnatural landmark drift.</li><li>Analysis runs at 2fps (every 500ms) — lightweight enough to run server-side without impacting meeting performance.</li><li>Model: fine-tuned EfficientNet-B4 on FaceForensics++ and DFDC datasets.</li></ul></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Alert Flow</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Detection confidence exceeds 85% for 3+ consecutive frames</div><div class='step-desc'>Score must be sustained — prevents false positives from single-frame compression artifacts</div></div></li><li><div><div class='step-title'>Host receives a red banner (host only)</div><div class='step-desc'>'⚠️ Potential synthetic video detected for [Participant Name]. Review and take action.' — flagged participant is not notified</div></div></li><li><div><div class='step-title'>Host can take action</div><div class='step-desc'>Options: Dismiss (false positive), Remove participant, Lock meeting, or Request liveness check (wave challenge)</div></div></li><li><div><div class='step-title'>Audit log entry created</div><div class='step-desc'>All detections and host actions logged for compliance and legal review</div></div></li></ol></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Known Limitations</div><div class='card' ><ul class='fl'><li>Not 100% accurate — commercial deepfakes designed to evade detection may score below threshold</li><li>Poor lighting, low-resolution cameras, or heavy compression can increase false positives</li><li>FasaFas AI Avatar (Realistic) is whitelisted — won't trigger the detector</li><li>Third-party virtual cameras (OBS, Snap Camera) may be flagged — hosts should use context to judge</li><li>Supplementary tool only — does not replace organizational security policies</li><li>Privacy: no video frames stored. Analysis is in-memory only. No biometric data retained.</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="voice-translation.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Real-Time Voice Translation</div></div></a><span class="nav-counter">Feature 6 of 12</span><a class="nav-pg" href="assistant.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Assistant</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Features</div>
+<div class="tab " onclick="sw(this,'t2')">Slash Commands</div>
+<div class="tab " onclick="sw(this,'t3')">Technical Details</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Writing Mode Features</div><div class='g2'><div class='card' ><div class='ph3'>Inline Suggestions</div><ul class='fl'><li>AI suggests the next sentence as you type (ghost text)</li><li>Press Tab to accept, Esc to dismiss, keep typing to ignore</li><li>Suggestions adapt to your writing style as the session continues</li><li>Context-aware: reads surrounding paragraphs for consistency</li><li>Works in headings, body, bullet lists, and table cells</li></ul></div><div class='card' ><div class='ph3'>Selection-Based Actions</div><ul class='fl'><li>Highlight any text → floating AI toolbar appears</li><li>Actions: Rewrite, Shorten, Expand, Fix Grammar, Change Tone, Translate</li><li>Each action shows a preview before applying</li><li>Accept → replaces selection. Retry → generates different version</li><li>Full undo/redo — AI changes part of document history</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Slash Commands</div><div class='spec'><div class='spec-head'>💡 Available in Writing Mode</div><div class='spec-row'><span class='sk'>/ai [prompt]</span><span class='sv'>Generate text at cursor — anything you describe</span></div><div class='spec-row'><span class='sk'>/rewrite</span><span class='sv'>Rewrite current paragraph for clarity and flow</span></div><div class='spec-row'><span class='sk'>/shorten</span><span class='sv'>Condense selected text ~50% without losing meaning</span></div><div class='spec-row'><span class='sk'>/expand</span><span class='sv'>Add detail and depth to a brief paragraph</span></div><div class='spec-row'><span class='sk'>/tone formal</span><span class='sv'>Rewrite to professional/formal register</span></div><div class='spec-row'><span class='sk'>/tone casual</span><span class='sv'>Rewrite to conversational, friendly tone</span></div><div class='spec-row'><span class='sk'>/translate [lang]</span><span class='sv'>Translate selection into specified language</span></div><div class='spec-row'><span class='sk'>/continue</span><span class='sv'>Generate next paragraph continuing current thought</span></div><div class='spec-row'><span class='sk'>/research [topic]</span><span class='sv'>Trigger Deep Research and insert into doc</span></div><div class='spec-row'><span class='sk'>/summary</span><span class='sv'>Generate TL;DR of the entire document</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Technical Details</div><div class='card' ><ul class='fl'><li>Model: Claude 3.5 Sonnet — best at following stylistic instructions</li><li>Streaming SSE: text appears word-by-word for a natural co-writing feel</li><li>Context window: up to 8,000 tokens of surrounding doc content per request</li><li>Offline-safe: unsaved AI suggestions persist as ghost text until confirmed</li><li>Admin can restrict Writing Mode per group: Admin → AI Settings → Writing Mode</li><li>Not available in read-only or comment-only permission modes</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="deep-research.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Deep Research</div></div></a><span class="nav-counter">Feature 9 of 12</span><a class="nav-pg" href="agents.html"><div><div class="nav-label">Next</div><div class="nav-title">Agent Builder</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

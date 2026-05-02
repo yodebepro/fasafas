@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Call Queues</title>
+<title>FasaFas — AI Voicemail Transcription & Actions</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#6ee7b7;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">Call Queues</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">AI Voicemail Transcription & Actions</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Phone Features</div>
@@ -24,9 +24,9 @@
 <a class="sb-link" href="elevate.html"><span class="sb-num">5</span><span class="sb-icon">🎥</span>Elevate Call to Video Meeting</a>
 <a class="sb-link" href="e911.html"><span class="sb-num">6</span><span class="sb-icon">🚨</span>E911 Location Settings</a>
 <a class="sb-link" href="visual-voicemail.html"><span class="sb-num">7</span><span class="sb-icon">📬</span>Visual Voicemail</a>
-<a class="sb-link" href="ai-voicemail.html"><span class="sb-num">8</span><span class="sb-icon">🤖</span>AI Voicemail Transcription & Actions</a>
+<a class="sb-link active" href="ai-voicemail.html"><span class="sb-num">8</span><span class="sb-icon">🤖</span>AI Voicemail Transcription & Actions</a>
 <a class="sb-link" href="ivr-builder.html"><span class="sb-num">9</span><span class="sb-icon">🌳</span>IVR Visual Builder (No-Code)</a>
-<a class="sb-link active" href="call-queues.html"><span class="sb-num">10</span><span class="sb-icon">📋</span>Call Queues</a>
+<a class="sb-link" href="call-queues.html"><span class="sb-num">10</span><span class="sb-icon">📋</span>Call Queues</a>
 <a class="sb-link" href="sms.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>SMS from Business Number</a>
 <a class="sb-link" href="ai-receptionist.html"><span class="sb-num">12</span><span class="sb-icon">🤖</span>AI Virtual Receptionist</a>
     <div class="sb-div"></div>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">📋</span>
-      <h1 class="hero-title"><em>Call Queues</em></h1>
-      <p class="hero-desc">Set up call queues so inbound callers wait in line while agents handle calls — with custom hold music, estimated wait time announcements, overflow routing, and real-time queue monitoring.</p>
-      <div class="hero-tags"><span class="h-tag">Sequential</span><span class="h-tag">Round-Robin</span><span class="h-tag">Least-Idle</span><span class="h-tag">Hold Music</span><span class="h-tag">EWT Announcement</span></div>
+      <span class="hero-icon">🤖</span>
+      <h1 class="hero-title"><em>AI Voicemail Transcription & Actions</em></h1>
+      <p class="hero-desc">Every voicemail is automatically transcribed by Whisper and analyzed by AI — extracting action items, flagging urgency, and suggesting a response — so you never miss a critical message.</p>
+      <div class="hero-tags"><span class="h-tag">Whisper Transcript</span><span class="h-tag">Action Items</span><span class="h-tag">→ Tasks</span><span class="h-tag">Priority Flag</span><span class="h-tag">Smart Routing</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Queue Setup</div>
-<div class="tab " onclick="sw(this,'t2')">Routing Strategies</div>
-<div class="tab " onclick="sw(this,'t3')">Queue Monitoring</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Setting Up a Call Queue</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Admin Panel → Phone → Call Queues → Create Queue</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Name the queue and assign members</div><div class='step-desc'>e.g., 'Sales Queue' → add 5 sales reps as members</div></div></li><li><div><div class='step-title'>Configure hold music</div><div class='step-desc'>Upload custom audio or use default FasaFas music</div></div></li><li><div><div class='step-title'>Set maximum queue length</div><div class='step-desc'>Callers beyond this limit → routed to overflow destination</div></div></li><li><div><div class='step-title'>Set maximum wait time</div><div class='step-desc'>Callers waiting longer → routed to overflow (voicemail or alternate number)</div></div></li><li><div><div class='step-title'>Enable EWT announcement</div><div class='step-desc'>'Your estimated wait time is 4 minutes' — announced every 60 seconds</div></div></li></ol></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Routing Strategies</div><div class='spec'><div class='spec-head'>📋 Queue Routing Types</div><div class='spec-row'><span class='sk'>Sequential (Fixed Order)</span><span class='sv'>Rings Agent 1 first, then Agent 2, then Agent 3 — until someone picks up. Consistent priority.</span></div><div class='spec-row'><span class='sk'>Round-Robin</span><span class='sv'>Distributes calls evenly across all agents in rotation — fair distribution.</span></div><div class='spec-row'><span class='sk'>Least-Idle</span><span class='sv'>Routes to the agent who has been idle longest since their last call — most balanced.</span></div><div class='spec-row'><span class='sk'>Skills-Based</span><span class='sv'>Route to agents with specific skills/tags (e.g., 'Spanish speaker', 'Enterprise' — Enterprise plan).</span></div><div class='spec-row'><span class='sk'>Priority Queue</span><span class='sv'>VIP callers (identified by CLI/number) jump to the front of the queue.</span></div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Real-Time Queue Monitoring</div><div class='card' ><ul class='fl'><li>Supervisor dashboard: live view of all queues, waiting callers, agent status</li><li>Metrics shown: current queue length, average wait time, longest wait, abandonment rate</li><li>Agent status per queue: Available, In-Call, Wrap-Up, Away</li><li>Barge in: supervisor can join an active call silently (whisper coaching to agent)</li><li>Historical reports: daily/weekly/monthly queue stats — export CSV</li><li>Alerts: notification when queue exceeds 5 callers or average wait exceeds 3 minutes</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="ivr-builder.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">IVR Visual Builder (No-Code)</div></div></a><span class="nav-counter">Feature 10 of 12</span><a class="nav-pg" href="sms.html"><div><div class="nav-label">Next</div><div class="nav-title">SMS from Business Number</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">AI Processing</div>
+<div class="tab " onclick="sw(this,'t2')">Action Items</div>
+<div class="tab " onclick="sw(this,'t3')">Smart Routing</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>AI Voicemail Processing</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Voicemail recording complete</div><div class='step-desc'>Caller hangs up → recording saved to cloud</div></div></li><li><div><div class='step-title'>Whisper large-v3 transcription (30 seconds)</div><div class='step-desc'>Full transcript with punctuation — accurate for phone audio quality</div></div></li><li><div><div class='step-title'>AI analysis by Claude</div><div class='step-desc'>Reads transcript → determines: urgency level, topic/intent, action required</div></div></li><li><div><div class='step-title'>Results shown in voicemail list</div><div class='step-desc'>Urgency badge (🔴 Urgent / 🟡 Normal / ⚪ FYI), topic tag, action item if present</div></div></li><li><div><div class='step-title'>Notification with AI summary</div><div class='step-desc'>Push notification shows: caller, urgency, and what they need</div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Action Item Extraction</div><div class='card' ><ul class='fl'><li>AI identifies if the voicemail contains a task, request, or follow-up required</li><li>Example: 'Hi, I need you to send the contract by Friday' → action item: 'Send contract' · due: Friday</li><li>Action item shown in the voicemail detail view</li><li>Push to Tasks: one click → task created with caller name, due date, and voicemail link attached</li><li>Push to CRM: if Salesforce is connected → activity logged against the contact automatically</li><li>Admin can set: all action items auto-created as Tasks without manual confirmation</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Smart Routing Based on AI</div><div class='card' ><ul class='fl'><li>Urgent voicemails: AI sends push notification immediately regardless of DND settings (configurable)</li><li>Topic routing: if AI detects 'billing' → route notification to billing team Slack channel</li><li>Callback suggestion: for sales inquiries, AI suggests the best time to call back (based on your calendar)</li><li>Spam detection: AI identifies likely robocalls or spam — sends to a separate Spam folder without notification</li><li>Language detection: voicemail in Spanish → transcript in Spanish, summary optionally in English</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="visual-voicemail.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Visual Voicemail</div></div></a><span class="nav-counter">Feature 8 of 12</span><a class="nav-pg" href="ivr-builder.html"><div><div class="nav-label">Next</div><div class="nav-title">IVR Visual Builder (No-Code)</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

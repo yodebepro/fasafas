@@ -1,115 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Rename Rooms</title>
-<link rel="stylesheet" href="../../../assets/css/breakout.css">
-</head>
-<body>
+<title>FasaFas — My Notes</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head><body>
 <header class="hdr">
   <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
   <nav class="hdr-nav">
-    <a class="hdr-btn" href="../breakout-rooms.html">← Breakout Rooms</a>
+    <a class="hdr-btn" href="../ai-companion.html">← Ai Companion</a>
     <a class="hdr-btn" href="../../../index.html">Home</a>
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc">
-  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
-  <a href="../../../index.html">Meetings</a><span class="bc-sep">/</span>
-  <a href="../breakout-rooms.html">Breakout Rooms</a><span class="bc-sep">/</span>
-  <span class="bc-cur">Rename Rooms</span>
-</div>
-
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">My Notes</span></div>
 <div class="layout">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="sb-head">Breakout Room Features</div>
-    <a class="sb-link" href="create-rooms.html"><span class="sb-num">1</span><span class="sb-icon">🏗️</span>Create Rooms</a>
-<a class="sb-link" href="assign-participants.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Assign Participants</a>
-<a class="sb-link active" href="rename-rooms.html"><span class="sb-num">3</span><span class="sb-icon">✏️</span>Rename Rooms</a>
-<a class="sb-link" href="timer-settings.html"><span class="sb-num">4</span><span class="sb-icon">⏱️</span>Timer & Auto-Close</a>
-<a class="sb-link" href="broadcast.html"><span class="sb-num">5</span><span class="sb-icon">📢</span>Broadcast</a>
-<a class="sb-link" href="host-roaming.html"><span class="sb-num">6</span><span class="sb-icon">🚶</span>Host Roaming</a>
-<a class="sb-link" href="raise-hand.html"><span class="sb-num">7</span><span class="sb-icon">🙋</span>Raise Hand</a>
-<a class="sb-link" href="move-participants.html"><span class="sb-num">8</span><span class="sb-icon">↔️</span>Move Participants</a>
-<a class="sb-link" href="share-files.html"><span class="sb-num">9</span><span class="sb-icon">📁</span>Share Files</a>
-<a class="sb-link" href="whiteboard.html"><span class="sb-num">10</span><span class="sb-icon">🖼️</span>Whiteboard</a>
-<a class="sb-link" href="return-main.html"><span class="sb-num">11</span><span class="sb-icon">🏠</span>Return to Main</a>
-
-    <div class="sb-divider"></div>
-    <a class="sb-back" href="../breakout-rooms.html">← Back to Overview</a>
+    <div class="sb-head">Ai Companion Features</div>
+    <a class="sb-link" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
+<a class="sb-link active" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
+<a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
+<a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
+<a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
+<a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
+<a class="sb-link" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
+<a class="sb-link" href="drive-retrieval.html"><span class="sb-num">11</span><span class="sb-icon">🗂️</span>Drive Retrieval</a>
+<a class="sb-link" href="daily-digest.html"><span class="sb-num">12</span><span class="sb-icon">📊</span>Daily Digest</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-companion.html">← Overview</a>
   </aside>
-
-  <!-- MAIN -->
   <div class="main">
     <div class="hero">
-      <div class="hero-eyebrow">🚪 Breakout Rooms Feature</div>
-      <span class="hero-icon">✏️</span>
-      <h1 class="hero-title"><em>Rename Rooms</em></h1>
-      <p class="hero-desc">Default room names like 'Breakout Room 1' can be renamed to anything meaningful — team names, topics, project codes, or creative names to make sessions more engaging.</p>
-      <div class="hero-tags"><span class="h-tag">Click to Rename</span><span class="h-tag">Custom Names</span><span class="h-tag">Emoji Support</span><span class="h-tag">Template Save</span><span class="h-tag">Instant Update</span></div>
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">📒</span>
+      <h1 class="hero-title"><em>My Notes</em></h1>
+      <p class="hero-desc">A two-column AI note-taker that captures decisions, action items, and key moments automatically while you stay engaged in the conversation — available in FasaFas and any third-party meeting via browser extension.</p>
+      <div class="hero-tags"><span class="h-tag">AI Highlights</span><span class="h-tag">Personal Notes</span><span class="h-tag">#decision #action</span><span class="h-tag">Hub Sync</span><span class="h-tag">3rd Party Meetings</span></div>
     </div>
-
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How to Rename</div>
-<div class="tab " onclick="sw(this,'t-tips')">Naming Tips</div>
-<div class="tab " onclick="sw(this,'t-persist')">Saving Names</div></div>
-
-    <div class="content">
-      <div id="t-how" class="tab-pane active"><div class='ph1'>How to Rename a Breakout Room</div>
-<div class='card'><ol class='steps'>
-<li><div><div class='step-title'>Open Breakout Rooms panel</div><div class='step-desc'>Click the Breakout Rooms button in the meeting toolbar (host or co-host only).</div></div></li>
-<li><div><div class='step-title'>Click the room name</div><div class='step-desc'>The default name ("Breakout Room 1") is clickable. A text field appears in place of the label.</div></div></li>
-<li><div><div class='step-title'>Type the new name</div><div class='step-desc'>Type your custom name. Max 64 characters. Emojis supported — click the emoji button at the right of the field.</div></div></li>
-<li><div><div class='step-title'>Press Enter or click ✓</div><div class='step-desc'>The name updates instantly. All participants in that room see the new name in their room header and the panel. No disruption to the session.</div></div></li>
-</ol></div>
-<div class='hl'><div class='hl-title'>Rename rooms before or after they open</div><div class='hl-body'>You can rename rooms at any point — before clicking "Open All Rooms" or while rooms are actively running. Participants already in a room see the name update live without any audio or video interruption.</div></div></div>
-<div id="t-tips" class="tab-pane "><div class='ph1'>Room Naming Ideas by Use Case</div>
-<div class='g3'>
-<div class='card' style='border-top:2px solid var(--accent)'><div class='ph3'>Team & Department</div><ul class='fl'>
-<li>Engineering · Design · Marketing · Sales</li>
-<li>Team Alpha · Team Beta · Team Gamma</li>
-<li>NYC Office · London Office · Singapore</li>
-<li>Q4 Planning · Sprint 32 · OKR Review</li>
-</ul></div>
-<div class='card' style='border-top:2px solid var(--green)'><div class='ph3'>Workshop / Education</div><ul class='fl'>
-<li>Topic A: Strategy · Topic B: Execution</li>
-<li>Group 1 · Group 2 · Group 3</li>
-<li>Advanced Track · Beginner Track</li>
-<li>Case Study: Apple · Case Study: Tesla</li>
-</ul></div>
-<div class='card' style='border-top:2px solid var(--amber)'><div class='ph3'>Creative & Fun</div><ul class='fl'>
-<li>🚀 Innovators · 🌊 Explorers · 🔥 Builders</li>
-<li>Red Team · Blue Team · Green Team</li>
-<li>Brainstorm Cave · Idea Lab · War Room</li>
-<li>Monday Crew · Wednesday Squad</li>
-</ul></div>
-</div></div>
-<div id="t-persist" class="tab-pane "><div class='ph1'>Saving Room Names for Recurring Meetings</div>
-<div class='card'><ul class='fl'>
-<li>When you save the meeting as a recurring event, all room names are preserved in the template</li>
-<li>Next occurrence loads the same room names and participant assignments automatically</li>
-<li>Edit names before opening rooms if you need to adjust for that session</li>
-<li>Save a custom breakout setup as a reusable <strong>Meeting Template</strong> in your account settings</li>
-<li>Templates are shareable with co-hosts for consistent naming across your team</li>
-</ul></div></div>
-    </div>
-
-    <div class="next-prev">
-      <a class="nav-pg" href="assign-participants.html"><div>←</div><div><div class="nav-pg-label">Previous</div><div class="nav-pg-title">Assign Participants</div></div></a>
-      <span style="font-size:12px;color:var(--text3)">Feature 3 of 11</span>
-      <a class="nav-pg" href="timer-settings.html"><div><div class="nav-pg-label">Next</div><div class="nav-pg-title">Timer & Auto-Close</div></div><div>→</div></a>
-    </div>
-  </div><!-- /main -->
-</div><!-- /layout -->
-
-<script>
-function sw(el,id){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-</script>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Interface</div>
+<div class="tab " onclick="sw(this,'t2')">AI Capture Logic</div>
+<div class="tab " onclick="sw(this,'t3')">After Meeting</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>My Notes Interface</div><div class='g2'><div class='card' ><div class='ph3'>Two-Column Layout</div><ul class='fl'><li>Top: your personal typed notes — free-form markdown editor</li><li>Bottom: AI Highlights — auto-populated as meeting progresses</li><li>Click any AI highlight → Add to My Notes to pin it</li><li>Dismiss unwanted AI suggestions</li><li>Every entry auto-timestamped — click later to jump to recording moment</li><li>Autosaves every 10 seconds — no data loss on crash</li></ul></div><div class='card' ><div class='ph3'>Tag System</div><ul class='fl'><li>#decision #action #question #risk #idea #follow-up</li><li>AI auto-tags based on content type detected</li><li>Tagged notes organized in collapsible sections</li><li>Star important notes → surface at top of Hub notes list</li><li>Push action items to Tasks with one click — assignee + due date pre-filled</li><li>Sync to Hub → Summaries → My Notes immediately after meeting</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>What AI Captures Automatically</div><div class='card' ><ul class='fl'><li><b>Decisions:</b> 'we decided', 'let's go with', 'agreed to', 'confirmed' → #decision tag</li><li><b>Action items:</b> 'I'll take care of', 'can you please', '[name] will', 'by [date]' → #action tag</li><li><b>Open questions:</b> raised but not conclusively answered → #question tag</li><li><b>Numbers &amp; dates:</b> budget figures, deadlines, milestones → highlighted for review</li><li><b>Name mentions:</b> '[Name] will lead the project' → captured with context</li><li>Confidence score per capture: High / Medium / Review-needed</li><li>AI learns from your accept/dismiss behavior — personalizes over time</li></ul></div><div class='hl'><div class='hl-title'>Available in 3rd-Party Meetings</div><div class='hl-body'>Install the FasaFas browser extension and My Notes runs inside Google Meet, Microsoft Teams, or any in-browser conference. Transcribes via your device mic (90 min/month on Basic, unlimited on Pro+).</div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Accessing Notes After the Meeting</div><div class='card' ><ul class='fl'><li>Notes synced to Hub → Summaries → My Notes within seconds of meeting end</li><li>Full-text search across all past notes from all meetings</li><li>Filter by: tag, date range, meeting title, person mentioned</li><li>Export: markdown copy, push to Docs, email to self, download PDF</li><li>Notes linked to recording: click timestamp → player jumps to that moment</li><li>Share individual notes or full note set via link (view or edit access)</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="live-transcription.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Live Transcription</div></div></a><span class="nav-counter">Feature 2 of 12</span><a class="nav-pg" href="smart-chapters.html"><div><div class="nav-label">Next</div><div class="nav-title">Smart Chapters & Actions</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
 <script src="../../../assets/js/translate.js"></script>
 </body></html>

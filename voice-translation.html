@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Live Transcription</title>
+<title>FasaFas — Smart Chapters & Actions</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
 </head><body>
@@ -13,13 +13,13 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Live Transcription</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Smart Chapters & Actions</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Ai Companion Features</div>
-    <a class="sb-link active" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
+    <a class="sb-link" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
 <a class="sb-link" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
-<a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
+<a class="sb-link active" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
 <a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
 <a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
 <a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">🎙️</span>
-      <h1 class="hero-title"><em>Live Transcription</em></h1>
-      <p class="hero-desc">Real-time speech-to-text powered by OpenAI Whisper large-v3 with automatic speaker diarization, punctuation, and 100+ language auto-detection — streamed live into the meeting sidebar.</p>
-      <div class="hero-tags"><span class="h-tag">Whisper large-v3</span><span class="h-tag">Speaker Labels</span><span class="h-tag">100+ Languages</span><span class="h-tag">VTT Export</span><span class="h-tag">Real-Time</span></div>
+      <span class="hero-icon">📖</span>
+      <h1 class="hero-title"><em>Smart Chapters & Actions</em></h1>
+      <p class="hero-desc">Claude segments every meeting transcript into named topic chapters and extracts every action item with suggested assignee and due date — ready in under 20 minutes after the meeting ends.</p>
+      <div class="hero-tags"><span class="h-tag">Claude API</span><span class="h-tag">Topic Detection</span><span class="h-tag">Timestamped</span><span class="h-tag">Assignee Detection</span><span class="h-tag">→ Tasks</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How It Works</div>
-<div class="tab " onclick="sw(this,'t2')">Speaker Labels</div>
-<div class="tab " onclick="sw(this,'t3')">Languages & Accuracy</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Live Transcription Pipeline</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>SFU taps per-participant audio</div><div class='step-desc'>Mediasoup provides individual tracks to ai-companion-service — no mixed stream separation needed</div></div></li><li><div><div class='step-title'>VAD segments audio into 3-second chunks</div><div class='step-desc'>Voice Activity Detection splits at silence boundaries, preventing mid-word cuts</div></div></li><li><div><div class='step-title'>Whisper large-v3 inference</div><div class='step-desc'>Each chunk transcribed with word-level timestamps, detected language, and confidence scores</div></div></li><li><div><div class='step-title'>NLP post-processing</div><div class='step-desc'>Punctuation model adds periods and commas. Custom vocabulary corrects product names and acronyms</div></div></li><li><div><div class='step-title'>Stream to all via Socket.io</div><div class='step-desc'>Kafka publishes transcript segments → signal-service pushes ai:transcript-update to all participants in under 2 seconds</div></div></li></ol></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Speaker Diarization</div><div class='g2'><div class='card' ><div class='ph3'>Automatic Labels (Pyannote.audio 3.0)</div><ul class='fl'><li>Assigns 'Speaker 1', 'Speaker 2'… labels to each segment</li><li>Consistent across the full meeting — same ID from minute 1 to minute 60</li><li>Supports up to 20 unique speakers per room</li><li>~95% segment accuracy on clean audio, single mic per participant</li><li>Retroactively corrects earlier segments when more voice data confirms identity</li></ul></div><div class='card' ><div class='ph3'>Smart Recognition (Name Mapping)</div><ul class='fl'><li>Optional 30-second voice enrollment in Profile settings</li><li>Voice embedding stored encrypted — 192-dim vector, not a recording</li><li>Matches live speech → replaces 'Speaker 2' with 'Marcus Smith'</li><li>Works in meetings you attend, not just ones you host</li><li>Delete anytime: Profile → Smart Recognition → Delete Voice Data</li></ul></div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Accuracy & Languages</div><div class='spec'><div class='spec-head'>📊 Whisper large-v3 WER Benchmarks</div><div class='spec-row'><span class='sk'>English — clean, single speaker</span><span class='sv'>~2–4% WER — near-human accuracy</span></div><div class='spec-row'><span class='sk'>English — multiple speakers, accents</span><span class='sv'>~5–10% WER depending on conditions</span></div><div class='spec-row'><span class='sk'>French / German / Spanish</span><span class='sv'>~5–8% WER</span></div><div class='spec-row'><span class='sk'>Japanese / Mandarin</span><span class='sv'>~8–12% WER</span></div><div class='spec-row'><span class='sk'>Technical vocabulary (no custom dict)</span><span class='sv'>~15–20% WER — use custom vocabulary to fix</span></div><div class='spec-row'><span class='sk'>Technical vocabulary (with custom dict)</span><span class='sv'>~5–8% WER</span></div><div class='spec-row'><span class='sk'>Auto language detection</span><span class='sv'>Within first 30 seconds of speech</span></div></div><div class='hl'><div class='hl-title'>Custom Vocabulary</div><div class='hl-body'>Upload a custom word list (product names, acronyms, people) in Admin Panel → AI Settings → Custom Vocabulary. Words injected into Whisper prompt to dramatically reduce domain-specific errors.</div></div></div></div>
-    <div class="nav-strip"><div class="nav-pg end">← Start</div><span class="nav-counter">Feature 1 of 12</span><a class="nav-pg" href="my-notes.html"><div><div class="nav-label">Next</div><div class="nav-title">My Notes</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Smart Chapters</div>
+<div class="tab " onclick="sw(this,'t2')">Action Items</div>
+<div class="tab " onclick="sw(this,'t3')">API</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Smart Chapter Generation</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Full transcript assembled</div><div class='step-desc'>Whisper + diarization complete → labeled transcript is the input</div></div></li><li><div><div class='step-title'>Claude performs topic segmentation</div><div class='step-desc'>Identifies significant semantic shifts. Minimum chapter: 3 minutes. Typical: 5–10 chapters per hour.</div></div></li><li><div><div class='step-title'>Titles and summaries generated</div><div class='step-desc'>2–6 word title per chapter + 1–2 sentence summary. Example: '0:00 Intros · 8:32 Q3 Budget · 24:10 Roadmap · 41:05 Action Items'</div></div></li><li><div><div class='step-title'>Placed on recording timeline</div><div class='step-desc'>Clickable markers on the playback bar. Chapter sidebar in the viewer. Deep link to any chapter.</div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Action Item Extraction</div><div class='card' ><div class='ph3'>Detection Patterns</div><ul class='fl'><li><b>Commitment:</b> 'I'll…', 'I will send…', 'I'm going to…'</li><li><b>Assignment:</b> 'Can you [name]…', '[Name] will handle…', 'Action for [name]:'</li><li><b>Deadline:</b> 'by Friday', 'end of day', 'next sprint', 'before the 15th'</li><li><b>Decision-action pair:</b> 'We decided [X] — [Name] will lead it'</li></ul></div><br><div class='card' ><div class='ph3'>Action Item Structure</div><div style='background:#050d18;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:monospace;font-size:12px;color:#a5b4fc;margin-bottom:10px'>{"task":"Send budget to board","assignee":"Ana Lopez","due":"2026-05-07","source":"by next Wednesday","timestamp":1842,"confidence":"high"}</div><ul class='fl'><li>One-click 'Push All to Tasks' sends every item at once</li><li>Integrates with Asana, Jira, Monday.com, Notion</li><li>Assignee notified with task + meeting link</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>API Access</div><div class='ep'><span class='meth GET'>GET</span><span class='ep-path'>/api/v1/meetings/:id/summary</span><span class='ep-note'>includes smart_chapters + action_items arrays</span></div><div class='ep'><span class='meth GET'>GET</span><span class='ep-path'>/api/v1/meetings/:id/action-items</span><span class='ep-note'>structured list with assignee + due date</span></div><div class='hl'><div class='hl-title'>Webhook: meeting.summary.completed</div><div class='hl-body'>Fires when all post-processing (transcript + chapters + actions + summary) is ready. Typical delay: 10–20 minutes after a 1-hour meeting.</div></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="my-notes.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">My Notes</div></div></a><span class="nav-counter">Feature 3 of 12</span><a class="nav-pg" href="late-joiner.html"><div><div class="nav-label">Next</div><div class="nav-title">Late Joiner Catch-Up</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

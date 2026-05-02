@@ -1,109 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Transcript Viewer</title>
+<title>FasaFas — AI Suggested Replies</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
-<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
-</head>
-<body>
+<style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head><body>
 <header class="hdr">
   <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
   <nav class="hdr-nav">
-    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../team-chat.html">← Team Chat</a>
     <a class="hdr-btn" href="../../../index.html">Home</a>
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc">
-  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
-  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
-  <span class="bc-cur">Transcript Viewer</span>
-</div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">AI Suggested Replies</span></div>
 <div class="layout">
   <aside class="sidebar">
-    <div class="sb-head">AI Transcription Features</div>
-    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
-<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
-<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
-<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
-<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
-<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
-<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
-<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
-<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
-<a class="sb-link active" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
-<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-head">Team Chat Features</div>
+    <a class="sb-link" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
+<a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
+<a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
+<a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
+<a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
+<a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
+<a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
+<a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
+<a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
+<a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
+<a class="sb-link active" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
+<a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
+<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
     <div class="sb-div"></div>
-    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+    <a class="sb-back" href="../team-chat.html">← Overview</a>
   </aside>
   <div class="main">
     <div class="hero">
-      <div class="hero-eye">🤖 AI Transcription Feature</div>
-      <span class="hero-icon">🔍</span>
-      <h1 class="hero-title"><em>Transcript Viewer</em></h1>
-      <p class="hero-desc">The Transcript Viewer shows the complete labeled transcript — searchable by keyword, clickable to jump to any moment in the recording, and downloadable in multiple formats.</p>
-      <div class="hero-tags"><span class="h-tag">Full-Text Search</span><span class="h-tag">Speaker Jump</span><span class="h-tag">Download VTT</span><span class="h-tag">Clickable Timestamps</span><span class="h-tag">In-Meeting & Post</span></div>
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">💡</span>
+      <h1 class="hero-title"><em>AI Suggested Replies</em></h1>
+      <p class="hero-desc">AI analyzes the last few messages in a conversation and suggests 3 relevant replies below the message composer — one-click to use, or ignore and type your own.</p>
+      <div class="hero-tags"><span class="h-tag">Suggested Replies</span><span class="h-tag">One-Click Send</span><span class="h-tag">Context-Aware</span><span class="h-tag">Tone Match</span><span class="h-tag">Opt-In</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t-features')">Viewer Features</div>
-<div class="tab " onclick="sw(this,'t-search')">Search Capabilities</div>
-<div class="tab " onclick="sw(this,'t-download')">Download Formats</div></div>
-    <div class="content">
-      <div id="t-features" class="tab-pane active"><div class="ph1">Transcript Viewer Features</div>
-<div class="g2">
-<div class="card"><div class="ph3">During the Meeting</div><ul class="fl">
-<li>Opens as a scrollable panel alongside the video</li>
-<li>Auto-scrolls to follow the live transcription as it appears</li>
-<li>Click any line → audio jumps to that moment (if host enabled it)</li>
-<li>Your own speech highlighted in a distinct color</li>
-<li>Search bar at top — results highlighted inline</li>
-<li>Time-lock toggle: pause auto-scroll to read a specific section</li>
-</ul></div>
-<div class="card"><div class="ph3">Post-Meeting Viewer</div><ul class="fl">
-<li>Full transcript shown alongside the recording player</li>
-<li>Transcript line highlighted in real time as recording plays</li>
-<li>Click any transcript line → player jumps to that timestamp</li>
-<li>Speaker filter: show only one speaker's lines</li>
-<li>Chapter filter: show only lines from a specific smart chapter</li>
-<li>Add comments to any transcript line (timestamped)</li>
-<li>Flag lines for review ("this seems incorrect — edit")</li>
-</ul></div>
-</div></div>
-<div id="t-search" class="tab-pane "><div class="ph1">Search Capabilities</div>
-<div class="card"><ul class="fl">
-<li>Keyword search: highlights all occurrences across the full transcript</li>
-<li>Jump between results: ← → arrows navigate through matches</li>
-<li>Phrase search: wrap in quotes for exact phrase — "budget approved"</li>
-<li>Speaker filter: search within one speaker's lines only</li>
-<li>Time range filter: only show lines within a specific time window</li>
-<li>Search from Hub: search across ALL your past meeting transcripts at once</li>
-<li>AI semantic search: "find where we discussed the Q3 forecast" — finds relevant sections even without keyword match</li>
-<li>Results ranked by relevance (semantic search) or chronological (keyword)</li>
-</ul></div></div>
-<div id="t-download" class="tab-pane "><div class="ph1">Download Transcript Formats</div>
-<div class="spec"><div class="spec-head">📥 Available Formats</div>
-<div class="spec-row"><span class="sk">VTT (WebVTT)</span><span class="sv">Standard caption format — works in video players, accessibility tools, Final Cut Pro</span></div>
-<div class="spec-row"><span class="sk">SRT (SubRip)</span><span class="sv">Subtitle format — compatible with YouTube, Premiere Pro, DaVinci Resolve</span></div>
-<div class="spec-row"><span class="sk">JSON (structured)</span><span class="sv">Full transcript with word-level timestamps, speaker labels, confidence scores</span></div>
-<div class="spec-row"><span class="sk">Plain TXT</span><span class="sv">Readable text with speaker labels and timestamps — no markup</span></div>
-<div class="spec-row"><span class="sk">DOCX</span><span class="sv">Formatted Word document — table of speakers, timestamp, content per row</span></div>
-</div></div>
-    </div>
-    <div class="nav-strip">
-      <a class="nav-pg" href="translated.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Translated Captions</div></div></a>
-      <span class="nav-counter">Feature 10 of 11</span>
-      <a class="nav-pg" href="privacy.html"><div><div class="nav-label">Next</div><div class="nav-title">Privacy & Consent</div></div><div>→</div></a>
-    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Suggestions Work</div>
+<div class="tab " onclick="sw(this,'t2')">Suggestion Quality</div>
+<div class="tab " onclick="sw(this,'t3')">Privacy</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>AI Suggested Replies</div><div class='card' ><ul class='fl'><li>Suggestions appear below the message composer in DMs and threads (not in main channel)</li><li>3 suggestions generated when: you open a DM or thread with new messages</li><li>Each suggestion is a short, relevant reply based on the last 5–10 messages</li><li>Click a suggestion → populates the composer → you can edit before sending or send immediately</li><li>'Generate more' → fetches 3 additional suggestions if you don't like the first batch</li><li>Ignore: simply type your own reply and the suggestions fade away</li><li>Settings → AI Companion → Suggested Replies → toggle off if you prefer not to see them</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>What Makes Good Suggestions</div><div class='card' ><ul class='fl'><li>Suggestions match the tone of the conversation (casual chat → casual reply, formal request → formal response)</li><li>Context-aware: reads conversation history to understand what's being asked</li><li>Meeting-aware: if the DM references a meeting, AI can incorporate relevant details from the meeting summary</li><li>Won't suggest a reply if the last message is a file share, link, or reaction (no text to respond to)</li><li>Won't suggest replies if the conversation is flagged as sensitive (HR policy, legal topics)</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Privacy &amp; Opt-Out</div><div class='card' ><ul class='fl'><li>Suggestions generated on FasaFas servers — conversation text sent to AI model for analysis</li><li>Admin can disable Suggested Replies account-wide: Admin Panel → AI Settings → Suggested Replies</li><li>Individual opt-out: Settings → AI Companion → Suggested Replies → off</li><li>Not available in channels with E2EE enabled</li><li>Text used to generate suggestions is not stored after the suggestion is shown</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="ai-agent.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">@FasaFas AI Agent in Channels</div></div></a><span class="nav-counter">Feature 11 of 14</span><a class="nav-pg" href="semantic-search.html"><div><div class="nav-label">Next</div><div class="nav-title">Semantic Search</div></div><div>→</div></a></div>
   </div>
 </div>
-<script>
-function sw(el,id){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-</script>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
 <script src="../../../assets/js/translate.js"></script>
-</body>
-</html>
+</body></html>

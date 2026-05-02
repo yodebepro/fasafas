@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Call Recording with Consent</title>
+<title>FasaFas — E911 Location Settings</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#6ee7b7;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
 </head><body>
@@ -13,16 +13,16 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">Call Recording with Consent</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">E911 Location Settings</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Phone Features</div>
     <a class="sb-link" href="pstn.html"><span class="sb-num">1</span><span class="sb-icon">📞</span>PSTN Inbound & Outbound Calls</a>
 <a class="sb-link" href="dialpad.html"><span class="sb-num">2</span><span class="sb-icon">🔢</span>Dial Pad with Contact Lookup</a>
 <a class="sb-link" href="hold-transfer.html"><span class="sb-num">3</span><span class="sb-icon">↔️</span>Hold, Transfer & Conference</a>
-<a class="sb-link active" href="call-recording.html"><span class="sb-num">4</span><span class="sb-icon">⏺</span>Call Recording with Consent</a>
+<a class="sb-link" href="call-recording.html"><span class="sb-num">4</span><span class="sb-icon">⏺</span>Call Recording with Consent</a>
 <a class="sb-link" href="elevate.html"><span class="sb-num">5</span><span class="sb-icon">🎥</span>Elevate Call to Video Meeting</a>
-<a class="sb-link" href="e911.html"><span class="sb-num">6</span><span class="sb-icon">🚨</span>E911 Location Settings</a>
+<a class="sb-link active" href="e911.html"><span class="sb-num">6</span><span class="sb-icon">🚨</span>E911 Location Settings</a>
 <a class="sb-link" href="visual-voicemail.html"><span class="sb-num">7</span><span class="sb-icon">📬</span>Visual Voicemail</a>
 <a class="sb-link" href="ai-voicemail.html"><span class="sb-num">8</span><span class="sb-icon">🤖</span>AI Voicemail Transcription & Actions</a>
 <a class="sb-link" href="ivr-builder.html"><span class="sb-num">9</span><span class="sb-icon">🌳</span>IVR Visual Builder (No-Code)</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">⏺</span>
-      <h1 class="hero-title"><em>Call Recording with Consent</em></h1>
-      <p class="hero-desc">Record any call with automatic consent announcements, cloud storage with AI transcription, and legal hold capability — compliant with two-party consent laws when configured properly.</p>
-      <div class="hero-tags"><span class="h-tag">Consent Announcement</span><span class="h-tag">Cloud Storage</span><span class="h-tag">AI Transcript</span><span class="h-tag">Pause/Resume</span><span class="h-tag">Legal Hold</span></div>
+      <span class="hero-icon">🚨</span>
+      <h1 class="hero-title"><em>E911 Location Settings</em></h1>
+      <p class="hero-desc">Register your physical location for E911 emergency calling — ensuring dispatchers receive your correct address when you dial 911 from FasaFas, whether in the office, at home, or traveling.</p>
+      <div class="hero-tags"><span class="h-tag">Emergency Calling</span><span class="h-tag">Location Registration</span><span class="h-tag">Nomadic E911</span><span class="h-tag">Admin Config</span><span class="h-tag">Compliance</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Recording Setup</div>
-<div class="tab " onclick="sw(this,'t2')">AI Post-Processing</div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How E911 Works</div>
+<div class="tab " onclick="sw(this,'t2')">Setting Your Location</div>
 <div class="tab " onclick="sw(this,'t3')">Compliance</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Call Recording Setup</div><div class='card' ><ul class='fl'><li>Manual recording: click Record during any active call</li><li>Auto-record: Admin Panel → Phone → Auto-Recording → enable per user or team</li><li>Consent announcement: plays automatically before recording starts — 'This call may be recorded...'</li><li>Consent announcement is mandatory in two-party consent jurisdictions (configurable per state/country)</li><li>Pause recording: click Pause — useful during sensitive parts of a call (reading card numbers, etc.)</li><li>Resume: click Resume to continue recording</li><li>Both parties can hear when recording starts/stops via a brief audio chime</li></ul></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>AI Post-Processing</div><div class='card' ><ul class='fl'><li>Whisper large-v3 transcribes the full call within 2–3 minutes of hang-up</li><li>Speaker diarization separates your voice from the caller's voice</li><li>AI summary: 2–3 paragraph summary of the call purpose and outcome</li><li>Action items: tasks extracted from the conversation (e.g., 'I'll send you the contract')</li><li>AI action items pushed to Tasks module automatically</li><li>Recording + transcript stored in Hub → Phone → Recordings</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Compliance</div><div class='card' ><ul class='fl'><li>Two-party consent: auto-announcement required in CA, IL, WA, and other states — configure per area code</li><li>Legal hold: apply hold to any recording — prevents deletion</li><li>Audit trail: every recording event logged (start, pause, resume, download, delete)</li><li>HIPAA: call recordings can be HIPAA-compliant with signed BAA (Enterprise)</li><li>Retention policy: auto-delete after 30/90/180 days (admin configures)</li><li>eDiscovery: search and bulk-export recordings via API for legal requests</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="hold-transfer.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Hold, Transfer & Conference</div></div></a><span class="nav-counter">Feature 4 of 12</span><a class="nav-pg" href="elevate.html"><div><div class="nav-label">Next</div><div class="nav-title">Elevate Call to Video Meeting</div></div><div>→</div></a></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How E911 Works in FasaFas</div><div class='card' ><ul class='fl'><li>E911 (Enhanced 911) provides your registered address to the emergency dispatcher when you call 911</li><li>Standard internet calls don't automatically transmit location — E911 adds this capability</li><li>FasaFas transmits your registered E911 address to the PSAP (Public Safety Answering Point) via an ALI/ANI database lookup</li><li>Your phone number is also transmitted (ANI) so dispatchers can call you back</li><li>Nomadic E911: you can update your address from anywhere — FasaFas sends the current registered address at call time</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Registering Your E911 Location</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Profile → Emergency Address</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Enter your full physical address — street, city, state, zip, country</div><div class='step-desc'>Must be a real, dispatchable address — PO boxes not accepted</div></div></li><li><div><div class='step-title'>Verify the address</div><div class='step-desc'>FasaFas validates it against MSAG (Master Street Address Guide) for dispatchability</div></div></li><li><div><div class='step-title'>Save. Address registered with your DID number.</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Update whenever you change work location — remote work, travel, co-working space</div><div class='step-desc'></div></div></li></ol></div><div class='hl'><div class='hl-title'>Always Update When You Move</div><div class='hl-body'>E911 uses your REGISTERED address, not your actual GPS location. If you're working from a hotel and haven't updated your address, emergency services will be sent to your registered office address. Always update before calling 911 from a new location.</div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>E911 Compliance</div><div class='card' ><ul class='fl'><li>Ray Baum's Act (US): requires nomadic E911 capability for all enterprise VoIP users — FasaFas is compliant</li><li>Kari's Law: requires direct 911 dialing without dialing a prefix (no 9-911) — FasaFas compliant</li><li>Admin can require E911 registration before a user can make any phone calls</li><li>Admin Panel → Phone → E911 → view all user addresses and compliance status</li><li>Regular reminder emails sent to users who haven't updated their address in 90 days</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="elevate.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Elevate Call to Video Meeting</div></div></a><span class="nav-counter">Feature 6 of 12</span><a class="nav-pg" href="visual-voicemail.html"><div><div class="nav-label">Next</div><div class="nav-title">Visual Voicemail</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

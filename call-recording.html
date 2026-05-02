@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Public & Private Channels</title>
+<title>FasaFas — AI Message Translation</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
 </head><body>
@@ -13,11 +13,11 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Public & Private Channels</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">AI Message Translation</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Team Chat Features</div>
-    <a class="sb-link active" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
+    <a class="sb-link" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
 <a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
 <a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
 <a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
@@ -29,7 +29,7 @@
 <a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
 <a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
 <a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
-<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
+<a class="sb-link active" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
 <a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
     <div class="sb-div"></div>
     <a class="sb-back" href="../team-chat.html">← Overview</a>
@@ -37,18 +37,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">📢</span>
-      <h1 class="hero-title"><em>Public & Private Channels</em></h1>
-      <p class="hero-desc">Organize team conversations into persistent, searchable channels — public ones anyone can join, private ones by invitation only — with full message history, file sharing, and AI summaries.</p>
-      <div class="hero-tags"><span class="h-tag">Public Channels</span><span class="h-tag">Private Channels</span><span class="h-tag">#topic</span><span class="h-tag">Unlimited Members</span><span class="h-tag">Channel Settings</span></div>
+      <span class="hero-icon">🌐</span>
+      <h1 class="hero-title"><em>AI Message Translation</em></h1>
+      <p class="hero-desc">Hover any message in a channel or DM to see it instantly translated into your preferred language — no copy-pasting to Google Translate, no leaving the conversation.</p>
+      <div class="hero-tags"><span class="h-tag">Real-Time</span><span class="h-tag">Hover to Translate</span><span class="h-tag">50+ Languages</span><span class="h-tag">DeepL</span><span class="h-tag">Original Toggle</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Channel Types</div>
-<div class="tab " onclick="sw(this,'t2')">Channel Management</div>
-<div class="tab " onclick="sw(this,'t3')">Notifications</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Public vs Private Channels</div><div class='g2'><div class='card' ><div class='ph3'>Public Channels</div><ul class='fl'><li>Visible to all members in the workspace</li><li>Anyone can join without an invitation</li><li>Searchable in the channel directory</li><li>Good for: #announcements #general #engineering #marketing</li><li>Message history accessible to all current and new members</li><li>Admin can set read-only channels (e.g., #announcements)</li><li>Unlimited members per channel</li></ul></div><div class='card' ><div class='ph3'>Private Channels</div><ul class='fl'><li>Visible only to invited members</li><li>New members must be added by an existing member or admin</li><li>Not searchable in the public channel directory</li><li>Good for: leadership discussions, confidential projects, HR matters</li><li>History only accessible to current members — not visible to new members added later</li><li>Admin can view all private channel messages (Enterprise with audit rights)</li></ul></div></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Channel Management</div><div class='card' ><ul class='fl'><li>Create a channel: + icon in sidebar or /channel in any message box</li><li>Set channel name, description, and purpose (visible in directory)</li><li>Pin important messages to top of channel</li><li>Add channel-specific integrations (e.g., GitHub notifications to #engineering)</li><li>Archive a channel: history preserved but no new messages accepted</li><li>Convert a public channel to private (irreversible — admin only)</li><li>Transfer ownership to another member</li><li>Mute a channel: stop notifications while keeping membership</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Notification Settings per Channel</div><div class='spec'><div class='spec-head'>🔔 Per-Channel Notification Modes</div><div class='spec-row'><span class='sk'>All messages</span><span class='sv'>Every message triggers a notification — for high-priority channels</span></div><div class='spec-row'><span class='sk'>@mentions only</span><span class='sv'>Notified only when someone @mentions you in that channel (default)</span></div><div class='spec-row'><span class='sk'>Nothing</span><span class='sv'>Completely silenced — no notifications for this channel</span></div><div class='spec-row'><span class='sk'>Highlight words</span><span class='sv'>Custom keywords that trigger notifications even without an @mention</span></div><div class='spec-row'><span class='sk'>Mute channel</span><span class='sv'>Override all notifications — useful for channels you monitor periodically</span></div></div></div></div>
-    <div class="nav-strip"><div class="nav-pg end">← Start</div><span class="nav-counter">Feature 1 of 14</span><a class="nav-pg" href="dms.html"><div><div class="nav-label">Next</div><div class="nav-title">Direct Messages (1:1 & Group)</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Translation Works</div>
+<div class="tab " onclick="sw(this,'t2')">Language Settings</div>
+<div class="tab " onclick="sw(this,'t3')">Auto-Translate</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Message Translation</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Hover any message</div><div class='step-desc'>A language icon (🌐) appears in the message action bar alongside emoji, reply, and ⋯ more</div></div></li><li><div><div class='step-title'>Click 🌐 Translate</div><div class='step-desc'>Message text is instantly replaced with the translated version</div></div></li><li><div><div class='step-title'>'Show original' link below the translation</div><div class='step-desc'>Click to toggle back to the original language</div></div></li><li><div><div class='step-title'>Your preference remembered</div><div class='step-desc'>Messages from that sender automatically shown in translated form (optional setting)</div></div></li></ol></div><div class='hl'><div class='hl-title'>Powered by DeepL + Google Translate</div><div class='hl-body'>FasaFas uses DeepL for highest quality on European language pairs and Google Translate as fallback for broader language coverage. Translation happens server-side — original messages stored as-is.</div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Language Settings</div><div class='spec'><div class='spec-head'>🌐 Configuration</div><div class='spec-row'><span class='sk'>Default language</span><span class='sv'>Set in Profile → Preferences → Language. All translations target this language.</span></div><div class='spec-row'><span class='sk'>Override per message</span><span class='sv'>Click Translate and select a different target language from the dropdown</span></div><div class='spec-row'><span class='sk'>Supported languages</span><span class='sv'>50+ via DeepL, 120+ via Google Translate fallback</span></div><div class='spec-row'><span class='sk'>Source language detection</span><span class='sv'>Automatic — no need to specify the original language</span></div><div class='spec-row'><span class='sk'>Translation quality</span><span class='sv'>DeepL for European pairs, Google Translate for Asian/African languages</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Auto-Translate Setting</div><div class='card' ><ul class='fl'><li>Enable: Settings → Language → Auto-translate messages not in [your language]</li><li>When on: messages detected as non-English (or non-your-language) are automatically translated</li><li>Original text always preserved and accessible via 'Show original'</li><li>Auto-translate only activates in channels where you've enabled it — not account-wide by default</li><li>Admin can set auto-translate as default for all new users</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="semantic-search.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Semantic Search</div></div></a><span class="nav-counter">Feature 13 of 14</span><a class="nav-pg" href="action-items.html"><div><div class="nav-label">Next</div><div class="nav-title">Action Item Extraction from Threads</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Visual Voicemail</title>
+<title>FasaFas — SMS from Business Number</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#6ee7b7;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">Visual Voicemail</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">SMS from Business Number</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Phone Features</div>
@@ -23,11 +23,11 @@
 <a class="sb-link" href="call-recording.html"><span class="sb-num">4</span><span class="sb-icon">⏺</span>Call Recording with Consent</a>
 <a class="sb-link" href="elevate.html"><span class="sb-num">5</span><span class="sb-icon">🎥</span>Elevate Call to Video Meeting</a>
 <a class="sb-link" href="e911.html"><span class="sb-num">6</span><span class="sb-icon">🚨</span>E911 Location Settings</a>
-<a class="sb-link active" href="visual-voicemail.html"><span class="sb-num">7</span><span class="sb-icon">📬</span>Visual Voicemail</a>
+<a class="sb-link" href="visual-voicemail.html"><span class="sb-num">7</span><span class="sb-icon">📬</span>Visual Voicemail</a>
 <a class="sb-link" href="ai-voicemail.html"><span class="sb-num">8</span><span class="sb-icon">🤖</span>AI Voicemail Transcription & Actions</a>
 <a class="sb-link" href="ivr-builder.html"><span class="sb-num">9</span><span class="sb-icon">🌳</span>IVR Visual Builder (No-Code)</a>
 <a class="sb-link" href="call-queues.html"><span class="sb-num">10</span><span class="sb-icon">📋</span>Call Queues</a>
-<a class="sb-link" href="sms.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>SMS from Business Number</a>
+<a class="sb-link active" href="sms.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>SMS from Business Number</a>
 <a class="sb-link" href="ai-receptionist.html"><span class="sb-num">12</span><span class="sb-icon">🤖</span>AI Virtual Receptionist</a>
     <div class="sb-div"></div>
     <a class="sb-back" href="../phone.html">← Overview</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">📬</span>
-      <h1 class="hero-title"><em>Visual Voicemail</em></h1>
-      <p class="hero-desc">See all your voicemails as a list — with caller name, time, duration, and AI transcript preview — without calling into a voicemail system or listening to messages in order.</p>
-      <div class="hero-tags"><span class="h-tag">Visual List</span><span class="h-tag">Play Inline</span><span class="h-tag">Mark Read</span><span class="h-tag">Delete</span><span class="h-tag">Sort by Date/Duration</span></div>
+      <span class="hero-icon">💬</span>
+      <h1 class="hero-title"><em>SMS from Business Number</em></h1>
+      <p class="hero-desc">Send and receive SMS messages from your business phone number — threaded conversations in the FasaFas app, MMS for images, and AI-suggested replies for faster responses.</p>
+      <div class="hero-tags"><span class="h-tag">Business Number</span><span class="h-tag">2-Way SMS</span><span class="h-tag">MMS</span><span class="h-tag">Threaded Conversations</span><span class="h-tag">AI Suggestions</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Visual Voicemail Interface</div>
-<div class="tab " onclick="sw(this,'t2')">Playback & Management</div>
-<div class="tab " onclick="sw(this,'t3')">Notifications</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Visual Voicemail Interface</div><div class='card' ><ul class='fl'><li>Access: FasaFas app → Phone → Voicemail tab</li><li>Messages listed chronologically with: caller name/number, date/time, duration, and first sentence of AI transcript</li><li>Unread messages shown in bold with a blue dot indicator</li><li>Sort: by date (default), duration, or caller name</li><li>Filter: unread only, or by caller</li><li>Inbox badge count shown on the Phone icon in the left nav</li></ul></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Playback & Management</div><div class='card' ><ul class='fl'><li>Click any voicemail → plays inline with waveform player</li><li>Playback speed: 0.5× 1× 1.5× 2× — listen faster to clear your inbox</li><li>Pause, seek, replay within the player</li><li>Reply: call back button directly from the voicemail detail</li><li>Forward voicemail: share to a colleague's voicemail or as a message in a channel</li><li>Delete: single message or bulk select → delete</li><li>Archive: keep message but remove from main inbox</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Notifications</div><div class='spec'><div class='spec-head'>🔔 Voicemail Notification Options</div><div class='spec-row'><span class='sk'>In-app</span><span class='sv'>Badge count on Phone icon, notification banner on desktop/mobile</span></div><div class='spec-row'><span class='sk'>Email</span><span class='sv'>Full voicemail transcript emailed to you — no need to open the app</span></div><div class='spec-row'><span class='sk'>SMS</span><span class='sv'>SMS alert with caller name and transcript snippet</span></div><div class='spec-row'><span class='sk'>Webhook</span><span class='sv'>POST to your endpoint on new voicemail — for CRM or workflow integration</span></div><div class='spec-row'><span class='sk'>Transcription speed</span><span class='sv'>AI transcript available within 30 seconds of message ending</span></div></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="e911.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">E911 Location Settings</div></div></a><span class="nav-counter">Feature 7 of 12</span><a class="nav-pg" href="ai-voicemail.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Voicemail Transcription & Actions</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">SMS Features</div>
+<div class="tab " onclick="sw(this,'t2')">MMS & Media</div>
+<div class="tab " onclick="sw(this,'t3')">AI in SMS</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>SMS from Your Business Number</div><div class='card' ><ul class='fl'><li>All SMS from and to your assigned business number appear in the Phone → Messages tab</li><li>Threaded view: each contact's conversation is a persistent thread</li><li>Read status: see when the recipient has read your message (if supported by their carrier)</li><li>Assign conversations: route an SMS thread to a teammate if they should handle it</li><li>Templates: save common responses as templates for quick reuse</li><li>Scheduled SMS: write now, send at the optimal time</li><li>Business hours SMS auto-reply: 'We're closed — we'll reply during business hours'</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>MMS (Media Messaging)</div><div class='card' ><ul class='fl'><li>Send images, PDFs, and short videos (under 3MB) as MMS</li><li>Received MMS media previewed inline in the conversation thread</li><li>Forward received media to a channel as a file share</li><li>Emoji in SMS: sent as Unicode — renders correctly on all modern smartphones</li><li>Group SMS: send to up to 10 recipients — creates an MMS group thread</li><li>Note: MMS rates apply and are separate from voice call minutes</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>AI in SMS</div><div class='card' ><ul class='fl'><li>AI Receptionist: auto-reply to inbound SMS during off-hours with intelligent responses (see AI Receptionist feature)</li><li>Suggested replies: AI suggests 3 reply options based on the inbound SMS context</li><li>Draft assist: type a rough reply → AI improves grammar and tone</li><li>AI translates inbound SMS: hover → 🌐 → translate to your language</li><li>AI flags: urgent messages (callback requested, complaint, compliance issue) → highlighted at top of inbox</li><li>Sentiment analysis: positive / neutral / negative tag on each conversation for support team reporting</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="call-queues.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Call Queues</div></div></a><span class="nav-counter">Feature 11 of 12</span><a class="nav-pg" href="ai-receptionist.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Virtual Receptionist</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

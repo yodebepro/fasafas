@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — AI Assistant</title>
+<title>FasaFas — Real-Time Voice Translation</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">AI Assistant</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Real-Time Voice Translation</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Ai Companion Features</div>
@@ -21,9 +21,9 @@
 <a class="sb-link" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
 <a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
 <a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
-<a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
+<a class="sb-link active" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
 <a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
-<a class="sb-link active" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
+<a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
 <a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
 <a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
 <a class="sb-link" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">💬</span>
-      <h1 class="hero-title"><em>AI Assistant</em></h1>
-      <p class="hero-desc">A persistent conversational AI throughout FasaFas — in your Hub, inside Docs, and alongside recordings. Ask questions, draft content, search past meetings, and get answers grounded in your actual meeting data.</p>
-      <div class="hero-tags"><span class="h-tag">Claude 3.5 Sonnet</span><span class="h-tag">GPT-4o</span><span class="h-tag">Streaming</span><span class="h-tag">Meeting Context</span><span class="h-tag">Multi-Turn</span></div>
+      <span class="hero-icon">🌐</span>
+      <h1 class="hero-title"><em>Real-Time Voice Translation</em></h1>
+      <p class="hero-desc">Each participant sees live captions in their own preferred language simultaneously — a Spanish speaker and Japanese speaker can attend the same English meeting and each read captions in their native language in real time.</p>
+      <div class="hero-tags"><span class="h-tag">30+ Languages</span><span class="h-tag">DeepL + Google</span><span class="h-tag">Real-Time</span><span class="h-tag">$5/user Add-On</span><span class="h-tag">500ms Extra Delay</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Capabilities</div>
-<div class="tab " onclick="sw(this,'t2')">Model Routing</div>
-<div class="tab " onclick="sw(this,'t3')">Access Points</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>AI Assistant Capabilities</div><div class='g2'><div class='card' ><div class='ph3'>General Tasks</div><ul class='fl'><li>Draft emails, meeting agendas, reports, proposals</li><li>Rewrite content in different tones (formal, casual, persuasive)</li><li>Explain complex topics in plain language</li><li>Translate text between languages</li><li>Summarize long documents or web pages (paste URL)</li><li>Generate code, SQL queries, formulas</li></ul></div><div class='card' ><div class='ph3'>Meeting-Aware Tasks</div><ul class='fl'><li>'Summarize what was decided in last Tuesday's all-hands'</li><li>'Find all action items assigned to Ana this month'</li><li>'What did we discuss about the Q3 budget?'</li><li>'Draft a follow-up email based on yesterday's meeting'</li><li>'Who mentioned the redesign project in the last 2 weeks?'</li><li>Searches across all meeting transcripts you have access to</li></ul></div></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Federated Model Routing</div><div class='spec'><div class='spec-head'>🤖 Which Model Handles What</div><div class='spec-row'><span class='sk'>Meeting summaries</span><span class='sv'>Claude 3.5 Sonnet — best at long-context synthesis and structured output</span></div><div class='spec-row'><span class='sk'>In-session Q&A (streaming)</span><span class='sv'>GPT-4o — fastest streaming, supports multimodal input</span></div><div class='spec-row'><span class='sk'>Speech-to-text</span><span class='sv'>Whisper large-v3 — best multilingual STT accuracy</span></div><div class='spec-row'><span class='sk'>Deep research</span><span class='sv'>GPT-4o + web search — multi-step reasoning</span></div><div class='spec-row'><span class='sk'>On-device (E2EE)</span><span class='sv'>Nemotron-Nano — runs locally, no data leaves device</span></div><div class='spec-row'><span class='sk'>Semantic search</span><span class='sv'>text-embedding-3-large + pgvector</span></div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Access Points</div><div class='card' ><ul class='fl'><li><b>Hub sidebar:</b> Click the sparkle icon (✨) in left nav</li><li><b>Inside Docs:</b> Press /ai or highlight text → AI Actions menu</li><li><b>In meetings:</b> More → AI → opens AI panel alongside video</li><li><b>Mobile:</b> AI button in the bottom nav of the FasaFas mobile app</li><li>Conversation history persists across sessions</li><li>Export any conversation: markdown, share link, push to Docs</li><li>Admin can restrict AI access by user group</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="deepfake.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Deepfake Detection</div></div></a><span class="nav-counter">Feature 7 of 12</span><a class="nav-pg" href="deep-research.html"><div><div class="nav-label">Next</div><div class="nav-title">Deep Research</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Pipeline</div>
+<div class="tab " onclick="sw(this,'t2')">Languages</div>
+<div class="tab " onclick="sw(this,'t3')">Setup & Pricing</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Real-Time Translation Pipeline</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Whisper transcribes the original language</div><div class='step-desc'>1–2 second delay from speech to original-language text — same as standard captions</div></div></li><li><div><div class='step-title'>Translation API called per caption segment</div><div class='step-desc'>Each segment sent to DeepL (European languages) or Google Translate (Asian/African languages). Smart routing selects best provider per pair.</div></div></li><li><div><div class='step-title'>Translated text returned in ~200–400ms</div><div class='step-desc'>Total display latency: 1.5–2.5 seconds. Translation adds ~500ms on top of standard caption delay.</div></div></li><li><div><div class='step-title'>Per-subscriber delivery</div><div class='step-desc'>Each participant sees their chosen language. Participant A sees French, B sees Spanish — from the same English presenter. Independent per viewer.</div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Language Coverage</div><div class='g2'><div class='card' ><div class='ph3'>DeepL (Highest Quality)</div><ul class='fl'><li>English, French, German, Spanish, Portuguese</li><li>Italian, Dutch, Polish, Russian, Swedish</li><li>Norwegian, Danish, Finnish, Romanian, Greek</li><li>Czech, Slovak, Bulgarian, Turkish</li><li>Chinese Simplified + Traditional, Japanese, Korean</li></ul></div><div class='card' ><div class='ph3'>Google Translate (Broader Coverage)</div><ul class='fl'><li>Arabic, Hebrew, Hindi, Bengali, Urdu</li><li>Indonesian, Malay, Vietnamese, Thai</li><li>Swahili, Amharic, Yoruba, Hausa</li><li>Ukrainian, Croatian, Serbian, Slovenian</li><li>120+ additional language pairs</li></ul></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Setup and Pricing</div><div class='spec'><div class='spec-head'>💰 Translated Captions Add-On</div><div class='spec-row'><span class='sk'>Price</span><span class='sv'>$5 per user per month — billed monthly</span></div><div class='spec-row'><span class='sk'>Requires</span><span class='sv'>Any paid base plan: Pro, Business, or Enterprise</span></div><div class='spec-row'><span class='sk'>Admin enable</span><span class='sv'>Account Settings → Add-Ons → Translated Captions</span></div><div class='spec-row'><span class='sk'>In-meeting</span><span class='sv'>More (···) → Show Translated Captions → select your language</span></div><div class='spec-row'><span class='sk'>Post-meeting</span><span class='sv'>Transcript available in both original AND translated language</span></div></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="late-joiner.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Late Joiner Catch-Up</div></div></a><span class="nav-counter">Feature 5 of 12</span><a class="nav-pg" href="deepfake.html"><div><div class="nav-label">Next</div><div class="nav-title">Deepfake Detection</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

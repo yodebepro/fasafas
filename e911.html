@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — AI Message Translation</title>
+<title>FasaFas — Custom Emoji</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">AI Message Translation</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Custom Emoji</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Team Chat Features</div>
@@ -22,14 +22,14 @@
 <a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
 <a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
 <a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
-<a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
+<a class="sb-link active" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
 <a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
 <a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
 <a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
 <a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
 <a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
 <a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
-<a class="sb-link active" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
+<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
 <a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
     <div class="sb-div"></div>
     <a class="sb-back" href="../team-chat.html">← Overview</a>
@@ -37,18 +37,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">🌐</span>
-      <h1 class="hero-title"><em>AI Message Translation</em></h1>
-      <p class="hero-desc">Hover any message in a channel or DM to see it instantly translated into your preferred language — no copy-pasting to Google Translate, no leaving the conversation.</p>
-      <div class="hero-tags"><span class="h-tag">Real-Time</span><span class="h-tag">Hover to Translate</span><span class="h-tag">50+ Languages</span><span class="h-tag">DeepL</span><span class="h-tag">Original Toggle</span></div>
+      <span class="hero-icon">😄</span>
+      <h1 class="hero-title"><em>Custom Emoji</em></h1>
+      <p class="hero-desc">Upload custom emoji — static images or animated GIFs — that work across all channels in your account. Name them with aliases, reuse them as reactions, and control uploads via admin approval.</p>
+      <div class="hero-tags"><span class="h-tag">Upload PNG/GIF</span><span class="h-tag">Animated</span><span class="h-tag">Alias</span><span class="h-tag">Admin Approval</span><span class="h-tag">Account-Wide</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Translation Works</div>
-<div class="tab " onclick="sw(this,'t2')">Language Settings</div>
-<div class="tab " onclick="sw(this,'t3')">Auto-Translate</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Message Translation</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Hover any message</div><div class='step-desc'>A language icon (🌐) appears in the message action bar alongside emoji, reply, and ⋯ more</div></div></li><li><div><div class='step-title'>Click 🌐 Translate</div><div class='step-desc'>Message text is instantly replaced with the translated version</div></div></li><li><div><div class='step-title'>'Show original' link below the translation</div><div class='step-desc'>Click to toggle back to the original language</div></div></li><li><div><div class='step-title'>Your preference remembered</div><div class='step-desc'>Messages from that sender automatically shown in translated form (optional setting)</div></div></li></ol></div><div class='hl'><div class='hl-title'>Powered by DeepL + Google Translate</div><div class='hl-body'>FasaFas uses DeepL for highest quality on European language pairs and Google Translate as fallback for broader language coverage. Translation happens server-side — original messages stored as-is.</div></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Language Settings</div><div class='spec'><div class='spec-head'>🌐 Configuration</div><div class='spec-row'><span class='sk'>Default language</span><span class='sv'>Set in Profile → Preferences → Language. All translations target this language.</span></div><div class='spec-row'><span class='sk'>Override per message</span><span class='sv'>Click Translate and select a different target language from the dropdown</span></div><div class='spec-row'><span class='sk'>Supported languages</span><span class='sv'>50+ via DeepL, 120+ via Google Translate fallback</span></div><div class='spec-row'><span class='sk'>Source language detection</span><span class='sv'>Automatic — no need to specify the original language</span></div><div class='spec-row'><span class='sk'>Translation quality</span><span class='sv'>DeepL for European pairs, Google Translate for Asian/African languages</span></div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Auto-Translate Setting</div><div class='card' ><ul class='fl'><li>Enable: Settings → Language → Auto-translate messages not in [your language]</li><li>When on: messages detected as non-English (or non-your-language) are automatically translated</li><li>Original text always preserved and accessible via 'Show original'</li><li>Auto-translate only activates in channels where you've enabled it — not account-wide by default</li><li>Admin can set auto-translate as default for all new users</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="semantic-search.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Semantic Search</div></div></a><span class="nav-counter">Feature 13 of 14</span><a class="nav-pg" href="action-items.html"><div><div class="nav-label">Next</div><div class="nav-title">Action Item Extraction from Threads</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Adding Custom Emoji</div>
+<div class="tab " onclick="sw(this,'t2')">Using Emoji</div>
+<div class="tab " onclick="sw(this,'t3')">Admin Controls</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Adding Custom Emoji</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Go to Settings → Emoji → Add Custom Emoji</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Upload a PNG, JPG, or GIF file (max 128×128px, 64 KB recommended)</div><div class='step-desc'>Larger images auto-resized. GIFs animate in chat.</div></div></li><li><div><div class='step-title'>Give it an alias, e.g. ':fasa-logo:' or ':party-parrot:'</div><div class='step-desc'>Alias must be unique within your account. No spaces — use hyphens.</div></div></li><li><div><div class='step-title'>Submit. If admin approval required, pending until approved.</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Once approved, visible to all workspace members immediately.</div><div class='step-desc'></div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Using Custom Emoji</div><div class='card' ><ul class='fl'><li>Type the alias: :party-parrot: renders the emoji inline</li><li>Emoji picker: click the smiley face → Custom tab shows all account emoji</li><li>Use as reactions: hover any message → + → search your custom emoji</li><li>Emoji auto-complete: type : and start typing the alias</li><li>Custom emoji work in: channel messages, DMs, threads, status field, Doc text</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Admin Controls</div><div class='card' ><ul class='fl'><li>Admin Panel → Emoji → review pending submissions</li><li>Approve or reject custom emoji before they go live</li><li>Set policy: open (anyone can add) or approval required</li><li>Delete existing custom emoji</li><li>Export all custom emoji as a ZIP</li><li>Set a maximum emoji count per user (prevents abuse)</li><li>Custom emoji stored in your account's S3 — not shared with other workspaces</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="voice-messages.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Voice Messages</div></div></a><span class="nav-counter">Feature 6 of 14</span><a class="nav-pg" href="message-scheduling.html"><div><div class="nav-label">Next</div><div class="nav-title">Message Scheduling</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

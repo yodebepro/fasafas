@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Call Recording with Consent</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#6ee7b7;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../phone.html">← Phone</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">Call Recording with Consent</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Phone Features</div>
+    <a class="sb-link" href="pstn.html"><span class="sb-num">1</span><span class="sb-icon">📞</span>PSTN Inbound & Outbound Calls</a>
+<a class="sb-link" href="dialpad.html"><span class="sb-num">2</span><span class="sb-icon">🔢</span>Dial Pad with Contact Lookup</a>
+<a class="sb-link" href="hold-transfer.html"><span class="sb-num">3</span><span class="sb-icon">↔️</span>Hold, Transfer & Conference</a>
+<a class="sb-link active" href="call-recording.html"><span class="sb-num">4</span><span class="sb-icon">⏺</span>Call Recording with Consent</a>
+<a class="sb-link" href="elevate.html"><span class="sb-num">5</span><span class="sb-icon">🎥</span>Elevate Call to Video Meeting</a>
+<a class="sb-link" href="e911.html"><span class="sb-num">6</span><span class="sb-icon">🚨</span>E911 Location Settings</a>
+<a class="sb-link" href="visual-voicemail.html"><span class="sb-num">7</span><span class="sb-icon">📬</span>Visual Voicemail</a>
+<a class="sb-link" href="ai-voicemail.html"><span class="sb-num">8</span><span class="sb-icon">🤖</span>AI Voicemail Transcription & Actions</a>
+<a class="sb-link" href="ivr-builder.html"><span class="sb-num">9</span><span class="sb-icon">🌳</span>IVR Visual Builder (No-Code)</a>
+<a class="sb-link" href="call-queues.html"><span class="sb-num">10</span><span class="sb-icon">📋</span>Call Queues</a>
+<a class="sb-link" href="sms.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>SMS from Business Number</a>
+<a class="sb-link" href="ai-receptionist.html"><span class="sb-num">12</span><span class="sb-icon">🤖</span>AI Virtual Receptionist</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../phone.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">⏺</span>
+      <h1 class="hero-title"><em>Call Recording with Consent</em></h1>
+      <p class="hero-desc">Record any call with automatic consent announcements, cloud storage with AI transcription, and legal hold capability — compliant with two-party consent laws when configured properly.</p>
+      <div class="hero-tags"><span class="h-tag">Consent Announcement</span><span class="h-tag">Cloud Storage</span><span class="h-tag">AI Transcript</span><span class="h-tag">Pause/Resume</span><span class="h-tag">Legal Hold</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Recording Setup</div>
+<div class="tab " onclick="sw(this,'t2')">AI Post-Processing</div>
+<div class="tab " onclick="sw(this,'t3')">Compliance</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Call Recording Setup</div><div class='card' ><ul class='fl'><li>Manual recording: click Record during any active call</li><li>Auto-record: Admin Panel → Phone → Auto-Recording → enable per user or team</li><li>Consent announcement: plays automatically before recording starts — 'This call may be recorded...'</li><li>Consent announcement is mandatory in two-party consent jurisdictions (configurable per state/country)</li><li>Pause recording: click Pause — useful during sensitive parts of a call (reading card numbers, etc.)</li><li>Resume: click Resume to continue recording</li><li>Both parties can hear when recording starts/stops via a brief audio chime</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>AI Post-Processing</div><div class='card' ><ul class='fl'><li>Whisper large-v3 transcribes the full call within 2–3 minutes of hang-up</li><li>Speaker diarization separates your voice from the caller's voice</li><li>AI summary: 2–3 paragraph summary of the call purpose and outcome</li><li>Action items: tasks extracted from the conversation (e.g., 'I'll send you the contract')</li><li>AI action items pushed to Tasks module automatically</li><li>Recording + transcript stored in Hub → Phone → Recordings</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Compliance</div><div class='card' ><ul class='fl'><li>Two-party consent: auto-announcement required in CA, IL, WA, and other states — configure per area code</li><li>Legal hold: apply hold to any recording — prevents deletion</li><li>Audit trail: every recording event logged (start, pause, resume, download, delete)</li><li>HIPAA: call recordings can be HIPAA-compliant with signed BAA (Enterprise)</li><li>Retention policy: auto-delete after 30/90/180 days (admin configures)</li><li>eDiscovery: search and bulk-export recordings via API for legal requests</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="hold-transfer.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Hold, Transfer & Conference</div></div></a><span class="nav-counter">Feature 4 of 12</span><a class="nav-pg" href="elevate.html"><div><div class="nav-label">Next</div><div class="nav-title">Elevate Call to Video Meeting</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

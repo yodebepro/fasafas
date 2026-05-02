@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — AI Suggested Replies</title>
+<title>FasaFas — @mention @channel @here</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">AI Suggested Replies</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">@mention @channel @here</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Team Chat Features</div>
@@ -24,10 +24,10 @@
 <a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
 <a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
 <a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
-<a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
+<a class="sb-link active" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
 <a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
 <a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
-<a class="sb-link active" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
+<a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
 <a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
 <a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
 <a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
@@ -37,18 +37,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">💡</span>
-      <h1 class="hero-title"><em>AI Suggested Replies</em></h1>
-      <p class="hero-desc">AI analyzes the last few messages in a conversation and suggests 3 relevant replies below the message composer — one-click to use, or ignore and type your own.</p>
-      <div class="hero-tags"><span class="h-tag">Suggested Replies</span><span class="h-tag">One-Click Send</span><span class="h-tag">Context-Aware</span><span class="h-tag">Tone Match</span><span class="h-tag">Opt-In</span></div>
+      <span class="hero-icon">@</span>
+      <h1 class="hero-title"><em>@mention @channel @here</em></h1>
+      <p class="hero-desc">@mention individuals, your entire channel, or only active members — each triggering the right level of notification urgency without over-notifying the people who don't need it.</p>
+      <div class="hero-tags"><span class="h-tag">@username</span><span class="h-tag">@channel</span><span class="h-tag">@here</span><span class="h-tag">Notification Trigger</span><span class="h-tag">Mention Analytics</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Suggestions Work</div>
-<div class="tab " onclick="sw(this,'t2')">Suggestion Quality</div>
-<div class="tab " onclick="sw(this,'t3')">Privacy</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>AI Suggested Replies</div><div class='card' ><ul class='fl'><li>Suggestions appear below the message composer in DMs and threads (not in main channel)</li><li>3 suggestions generated when: you open a DM or thread with new messages</li><li>Each suggestion is a short, relevant reply based on the last 5–10 messages</li><li>Click a suggestion → populates the composer → you can edit before sending or send immediately</li><li>'Generate more' → fetches 3 additional suggestions if you don't like the first batch</li><li>Ignore: simply type your own reply and the suggestions fade away</li><li>Settings → AI Companion → Suggested Replies → toggle off if you prefer not to see them</li></ul></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>What Makes Good Suggestions</div><div class='card' ><ul class='fl'><li>Suggestions match the tone of the conversation (casual chat → casual reply, formal request → formal response)</li><li>Context-aware: reads conversation history to understand what's being asked</li><li>Meeting-aware: if the DM references a meeting, AI can incorporate relevant details from the meeting summary</li><li>Won't suggest a reply if the last message is a file share, link, or reaction (no text to respond to)</li><li>Won't suggest replies if the conversation is flagged as sensitive (HR policy, legal topics)</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Privacy &amp; Opt-Out</div><div class='card' ><ul class='fl'><li>Suggestions generated on FasaFas servers — conversation text sent to AI model for analysis</li><li>Admin can disable Suggested Replies account-wide: Admin Panel → AI Settings → Suggested Replies</li><li>Individual opt-out: Settings → AI Companion → Suggested Replies → off</li><li>Not available in channels with E2EE enabled</li><li>Text used to generate suggestions is not stored after the suggestion is shown</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="ai-agent.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">@FasaFas AI Agent in Channels</div></div></a><span class="nav-counter">Feature 11 of 14</span><a class="nav-pg" href="semantic-search.html"><div><div class="nav-label">Next</div><div class="nav-title">Semantic Search</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Mention Types</div>
+<div class="tab " onclick="sw(this,'t2')">Notification Behavior</div>
+<div class="tab " onclick="sw(this,'t3')">Mention Analytics</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Mention Types</div><div class='spec'><div class='spec-head'>@ Mention Reference Guide</div><div class='spec-row'><span class='sk'>@username</span><span class='sv'>Notifies a specific person. They receive a notification badge and a ping — even if they've muted the channel.</span></div><div class='spec-row'><span class='sk'>@channel</span><span class='sv'>Notifies ALL channel members — including those who have muted the channel. Use sparingly for critical announcements.</span></div><div class='spec-row'><span class='sk'>@here</span><span class='sv'>Notifies only currently ACTIVE (online) members. Less disruptive than @channel — good for quick questions.</span></div><div class='spec-row'><span class='sk'>@role</span><span class='sv'>Notify everyone with a specific role: @engineers @design @leadership (admin configures roles)</span></div><div class='spec-row'><span class='sk'>@[groupname]</span><span class='sv'>Notify a user group — e.g., @on-call-team. Admin creates user groups in Admin Panel.</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Notification Behavior</div><div class='card' ><ul class='fl'><li>Direct @username: notification even if channel is muted or user is in DND mode (unless DND set to block all)</li><li>@channel: notification for all members regardless of mute status — a warning prompt appears before you can send</li><li>@here: notification only to members whose status is Active/Available — respects DND</li><li>Mobile push: @username and @channel trigger mobile push by default</li><li>Desktop: banner notification + badge count in sidebar</li><li>Admin can restrict who can use @channel and @here (e.g., admins only in #announcements)</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Mention Analytics</div><div class='card' ><ul class='fl'><li>View your recent mentions: sidebar → @mentions — shows all messages where you were mentioned</li><li>Mention count: analytics dashboard shows how many times you were mentioned this week/month</li><li>Unread mentions badge: shown on the @ icon in the sidebar</li><li>Mentions in threads: included in the full mention list even if thread is collapsed</li><li>Admin can see channel-level mention stats: most mentioned users, most used @channel etc.</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="message-scheduling.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Message Scheduling</div></div></a><span class="nav-counter">Feature 8 of 14</span><a class="nav-pg" href="ai-summaries.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Summarizes Unread Threads</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

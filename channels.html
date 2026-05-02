@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Message Scheduling</title>
+<title>FasaFas — @FasaFas AI Agent in Channels</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Message Scheduling</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">@FasaFas AI Agent in Channels</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Team Chat Features</div>
@@ -23,10 +23,10 @@
 <a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
 <a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
 <a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
-<a class="sb-link active" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
+<a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
 <a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
 <a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
-<a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
+<a class="sb-link active" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
 <a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
 <a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
 <a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
@@ -37,18 +37,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">⏰</span>
-      <h1 class="hero-title"><em>Message Scheduling</em></h1>
-      <p class="hero-desc">Write a message now and schedule it to send at the perfect time — across timezones, outside business hours, or as a recurring weekly announcement.</p>
-      <div class="hero-tags"><span class="h-tag">Schedule Send</span><span class="h-tag">Timezone Aware</span><span class="h-tag">Edit Before Send</span><span class="h-tag">Cancel</span><span class="h-tag">Recurring</span></div>
+      <span class="hero-icon">⚡</span>
+      <h1 class="hero-title"><em>@FasaFas AI Agent in Channels</em></h1>
+      <p class="hero-desc">Mention @FasaFas in any channel to invoke the AI agent — ask it to summarize threads, fetch meeting notes, answer questions, draft messages, or run any custom agent you've built.</p>
+      <div class="hero-tags"><span class="h-tag">@FasaFas</span><span class="h-tag">Channel Bot</span><span class="h-tag">Slash Commands</span><span class="h-tag">Meeting Context</span><span class="h-tag">No Setup</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How to Schedule</div>
-<div class="tab " onclick="sw(this,'t2')">Managing Scheduled Messages</div>
-<div class="tab " onclick="sw(this,'t3')">Use Cases</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How to Schedule a Message</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Write your message in the composer</div><div class='step-desc'>Full markdown, file attachments, and emoji supported</div></div></li><li><div><div class='step-title'>Click the caret (∨) next to the Send button</div><div class='step-desc'>Reveals 'Schedule message' option</div></div></li><li><div><div class='step-title'>Choose a date and time</div><div class='step-desc'>Timezone shown and adjustable. Quick options: Tomorrow 9 AM, Next Monday 9 AM, Custom.</div></div></li><li><div><div class='step-title'>Click 'Schedule'</div><div class='step-desc'>Message queued. A 'Scheduled' badge appears below the channel name in the sidebar.</div></div></li></ol></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Managing Scheduled Messages</div><div class='card' ><ul class='fl'><li>View all scheduled messages: channel header → ⏰ Scheduled</li><li>Edit: click the message → Edit → change text or attachments (not the time)</li><li>Reschedule: click the clock → pick a new time</li><li>Cancel: delete the scheduled message before it fires</li><li>Scheduled messages visible only to you — recipients don't see them until delivery</li><li>Admin can view all scheduled messages account-wide in Admin Panel → Messaging</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Common Use Cases</div><div class='g2'><div class='card' ><div class='ph3'>Async & Timezone Work</div><ul class='fl'><li>Write a message at 11 PM, schedule delivery at 9 AM recipient's timezone</li><li>Schedule Friday updates to land on Monday morning</li><li>Avoid notifications during team members' off-hours</li></ul></div><div class='card' ><div class='ph3'>Recurring Announcements</div><ul class='fl'><li>Weekly team standup reminder every Monday 8:55 AM</li><li>Monthly company update on the first weekday of each month</li><li>Daily digest posting from an AI agent</li></ul></div></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="custom-emoji.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Custom Emoji</div></div></a><span class="nav-counter">Feature 7 of 14</span><a class="nav-pg" href="mentions.html"><div><div class="nav-label">Next</div><div class="nav-title">@mention @channel @here</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">What @FasaFas Can Do</div>
+<div class="tab " onclick="sw(this,'t2')">Slash Commands</div>
+<div class="tab " onclick="sw(this,'t3')">Custom Agents</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>@FasaFas AI Agent</div><div class='g2'><div class='card' ><div class='ph3'>Meeting Intelligence</div><ul class='fl'><li>@FasaFas summarize yesterday's all-hands</li><li>@FasaFas what were the action items from the budget meeting?</li><li>@FasaFas who is responsible for the Q4 plan?</li><li>@FasaFas draft a recap of last week's sprint review</li><li>@FasaFas find all decisions made about the rebrand</li></ul></div><div class='card' ><div class='ph3'>Channel Tasks</div><ul class='fl'><li>@FasaFas summarize this thread</li><li>@FasaFas draft a reply to this message</li><li>@FasaFas translate this message to French</li><li>@FasaFas what was decided in this channel last week?</li><li>@FasaFas schedule a meeting with @Ana and @Marcus for Tuesday</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Slash Commands</div><div class='spec'><div class='spec-head'>⚡ Available Commands</div><div class='spec-row'><span class='sk'>/ai [question]</span><span class='sv'>Ask the AI anything — answers with meeting context</span></div><div class='spec-row'><span class='sk'>/summarize</span><span class='sv'>Summarize unread messages in current channel</span></div><div class='spec-row'><span class='sk'>/translate [lang] [text]</span><span class='sv'>Translate text to specified language</span></div><div class='spec-row'><span class='sk'>/meeting schedule</span><span class='sv'>Open meeting scheduler inline</span></div><div class='spec-row'><span class='sk'>/meeting summary</span><span class='sv'>Fetch latest meeting summary for the channel's team</span></div><div class='spec-row'><span class='sk'>/agent run [name]</span><span class='sv'>Trigger a custom agent by name</span></div><div class='spec-row'><span class='sk'>/poll [question]</span><span class='sv'>Create an instant poll in the channel</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Custom Agents in Channels</div><div class='card' ><ul class='fl'><li>Any agent you build in Agent Builder can be invoked via @mention in channels</li><li>Trigger an agent: @FasaFas run [agent-name]</li><li>Or configure the agent to auto-post results to a specific channel when triggered</li><li>Example: meeting-ended agent → posts summary to #product channel automatically</li><li>Agents can be given a custom name and avatar so they appear as a separate bot (Enterprise)</li><li>Admin manages which agents are available in which channels</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="ai-summaries.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">AI Summarizes Unread Threads</div></div></a><span class="nav-counter">Feature 10 of 14</span><a class="nav-pg" href="ai-replies.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Suggested Replies</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

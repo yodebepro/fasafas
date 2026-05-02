@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Create Events + Auto Meeting Link</title>
+<title>FasaFas — Multiple Booking Pages (Business+)</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
 </head><body>
@@ -13,12 +13,12 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Create Events + Auto Meeting Link</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Multiple Booking Pages (Business+)</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Calendar Features</div>
     <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
-<a class="sb-link active" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
+<a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
 <a class="sb-link" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
 <a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
 <a class="sb-link" href="outlook-sync.html"><span class="sb-num">5</span><span class="sb-icon">🔄</span>Outlook / Exchange Sync</a>
@@ -28,25 +28,25 @@
 <a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
 <a class="sb-link" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
 <a class="sb-link" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
-<a class="sb-link" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
+<a class="sb-link active" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
     <div class="sb-div"></div>
     <a class="sb-back" href="../calendar.html">← Overview</a>
   </aside>
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">➕</span>
-      <h1 class="hero-title"><em>Create Events + Auto Meeting Link</em></h1>
-      <p class="hero-desc">Create a calendar event and FasaFas automatically generates and attaches a meeting link — guests receive the invite via email with a one-click join link, no separate scheduling step needed.</p>
-      <div class="hero-tags"><span class="h-tag">Auto Meeting Link</span><span class="h-tag">Invitees</span><span class="h-tag">RSVP</span><span class="h-tag">Recurring</span><span class="h-tag">Google Meet Alternative</span></div>
+      <span class="hero-icon">📄</span>
+      <h1 class="hero-title"><em>Multiple Booking Pages (Business+)</em></h1>
+      <p class="hero-desc">Create separate booking pages for different services, meeting types, or durations — each with its own URL, questions, availability, and confirmation emails. Available on Business+ plans.</p>
+      <div class="hero-tags"><span class="h-tag">Different Services</span><span class="h-tag">Per-Duration</span><span class="h-tag">Per-Meeting-Type</span><span class="h-tag">Business+</span><span class="h-tag">Unique URLs</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Creating Events</div>
-<div class="tab " onclick="sw(this,'t2')">Auto Meeting Link</div>
-<div class="tab " onclick="sw(this,'t3')">Recurring Events</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Creating a Calendar Event</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Click any time slot in the calendar or press N for New Event</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Fill in: Title, Date & Time, Duration, Location/Video</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Add invitees: type name or email — suggests from your contacts and company directory</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Set RSVP expectation: Required / Optional / Informational</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Add description, agenda items, and pre-read links</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Click Save → event created + invitations sent automatically</div><div class='step-desc'></div></div></li></ol></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Auto Meeting Link</div><div class='card' ><ul class='fl'><li>FasaFas auto-generates a meeting room link for every event with 2+ invitees</li><li>Link format: fasafas.app/j/[unique-room-id]</li><li>Link and meeting ID are included in the calendar invite email automatically</li><li>One-click join: from calendar → click 'Join Meeting' button on event detail</li><li>Meeting room persists for the duration of the event + 30 minutes after</li><li>Admin can configure: always add meeting link, only when invited, or never (manual)</li></ul><div class='hl'><div class='hl-title'>Replacing Google Meet or Zoom Links</div><div class='hl-body'>If you use Google Calendar sync, FasaFas can replace the Google Meet link in synced events with a FasaFas link — configure in Settings → Calendar → Meeting Link Override.</div></div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Recurring Events</div><div class='spec'><div class='spec-head'>🔁 Recurring Event Options</div><div class='spec-row'><span class='sk'>Daily</span><span class='sv'>Every day, or every N days</span></div><div class='spec-row'><span class='sk'>Weekly</span><span class='sv'>Every week on selected days, or every N weeks</span></div><div class='spec-row'><span class='sk'>Monthly</span><span class='sv'>Same date each month, or same weekday (e.g., first Monday)</span></div><div class='spec-row'><span class='sk'>Yearly</span><span class='sv'>Annual events — birthdays, anniversaries, quarterly reviews</span></div><div class='spec-row'><span class='sk'>Custom</span><span class='sv'>Complex patterns: last Friday of every month, every 2 weeks on Tue/Thu</span></div><div class='spec-row'><span class='sk'>Edit scope</span><span class='sv'>Edit this event / this and following / all events — same as Google Calendar behavior</span></div></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="day-week-view.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Day / Week / Month / Agenda Views</div></div></a><span class="nav-counter">Feature 2 of 12</span><a class="nav-pg" href="rsvp.html"><div><div class="nav-label">Next</div><div class="nav-title">RSVP Tracking</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Multiple Booking Pages</div>
+<div class="tab " onclick="sw(this,'t2')">Use Cases</div>
+<div class="tab " onclick="sw(this,'t3')">Page Management</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Multiple Booking Page Types</div><div class='card' ><ul class='fl'><li>Booking Pages: Calendar → Booking Pages → New Page</li><li>Each page has a unique URL: fasafas.app/book/yourname/product-demo</li><li>Independent settings per page: duration, availability, questions, confirmation email</li><li>Share a different URL for each meeting type — no confusion for the guest</li><li>Admin can create team-level booking pages (shared across team members)</li><li>Toggle any page live/offline at any time</li></ul></div><div class='spec'><div class='spec-head'>📄 Booking Page Variants</div><div class='spec-row'><span class='sk'>One-on-One</span><span class='sv'>Standard 1:1 meeting — most common type</span></div><div class='spec-row'><span class='sk'>Round-Robin</span><span class='sv'>Team booking — distributes to available member (Business+)</span></div><div class='spec-row'><span class='sk'>Group Booking</span><span class='sv'>Fixed number of seats — e.g., a webinar spot or group training session</span></div><div class='spec-row'><span class='sk'>Collective</span><span class='sv'>Meeting that requires multiple hosts to all be available simultaneously (e.g., panel interview)</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Use Cases for Multiple Pages</div><div class='g2'><div class='card' ><div class='ph3'>Different Services</div><ul class='fl'><li>Product Demo (30 min) — fasafas.app/book/sales/demo</li><li>Technical Deep Dive (60 min) — fasafas.app/book/sales/technical</li><li>Partnership Discussion (45 min) — fasafas.app/book/bd/partner</li><li>Support Call (15 min) — fasafas.app/book/support/help</li></ul></div><div class='card' ><div class='ph3'>Different Audiences</div><ul class='fl'><li>Enterprise page: requires company name + employee count</li><li>SMB page: lighter intake form, shorter slot</li><li>Existing customers: pre-filled form, longer availability window</li><li>Prospects: adds UTM tracking to measure lead source</li></ul></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Page Management</div><div class='card' ><ul class='fl'><li>All pages listed in Calendar → Booking Pages with: URL, type, bookings this month, status (live/offline)</li><li>Clone a page: duplicate an existing page and modify — saves setup time</li><li>Archive: take a page offline without deleting booking history</li><li>Analytics per page: views, bookings, conversion rate, no-shows</li><li>Embed any page on your website: copy embed code → paste into any HTML</li><li>A/B testing: compare conversion rates between two page versions (Enterprise)</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="round-robin.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Round-Robin Team Scheduling</div></div></a><span class="nav-counter">Feature 12 of 12</span><div class="nav-pg end">End →</div></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

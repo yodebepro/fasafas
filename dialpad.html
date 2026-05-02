@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — E911 Location Settings</title>
+<title>FasaFas — Call Queues</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#6ee7b7;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
 </head><body>
@@ -13,7 +13,7 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">E911 Location Settings</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../phone.html">Phone</a><span class="bc-sep">/</span><span class="bc-cur">Call Queues</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Phone Features</div>
@@ -22,11 +22,11 @@
 <a class="sb-link" href="hold-transfer.html"><span class="sb-num">3</span><span class="sb-icon">↔️</span>Hold, Transfer & Conference</a>
 <a class="sb-link" href="call-recording.html"><span class="sb-num">4</span><span class="sb-icon">⏺</span>Call Recording with Consent</a>
 <a class="sb-link" href="elevate.html"><span class="sb-num">5</span><span class="sb-icon">🎥</span>Elevate Call to Video Meeting</a>
-<a class="sb-link active" href="e911.html"><span class="sb-num">6</span><span class="sb-icon">🚨</span>E911 Location Settings</a>
+<a class="sb-link" href="e911.html"><span class="sb-num">6</span><span class="sb-icon">🚨</span>E911 Location Settings</a>
 <a class="sb-link" href="visual-voicemail.html"><span class="sb-num">7</span><span class="sb-icon">📬</span>Visual Voicemail</a>
 <a class="sb-link" href="ai-voicemail.html"><span class="sb-num">8</span><span class="sb-icon">🤖</span>AI Voicemail Transcription & Actions</a>
 <a class="sb-link" href="ivr-builder.html"><span class="sb-num">9</span><span class="sb-icon">🌳</span>IVR Visual Builder (No-Code)</a>
-<a class="sb-link" href="call-queues.html"><span class="sb-num">10</span><span class="sb-icon">📋</span>Call Queues</a>
+<a class="sb-link active" href="call-queues.html"><span class="sb-num">10</span><span class="sb-icon">📋</span>Call Queues</a>
 <a class="sb-link" href="sms.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>SMS from Business Number</a>
 <a class="sb-link" href="ai-receptionist.html"><span class="sb-num">12</span><span class="sb-icon">🤖</span>AI Virtual Receptionist</a>
     <div class="sb-div"></div>
@@ -35,18 +35,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">🚨</span>
-      <h1 class="hero-title"><em>E911 Location Settings</em></h1>
-      <p class="hero-desc">Register your physical location for E911 emergency calling — ensuring dispatchers receive your correct address when you dial 911 from FasaFas, whether in the office, at home, or traveling.</p>
-      <div class="hero-tags"><span class="h-tag">Emergency Calling</span><span class="h-tag">Location Registration</span><span class="h-tag">Nomadic E911</span><span class="h-tag">Admin Config</span><span class="h-tag">Compliance</span></div>
+      <span class="hero-icon">📋</span>
+      <h1 class="hero-title"><em>Call Queues</em></h1>
+      <p class="hero-desc">Set up call queues so inbound callers wait in line while agents handle calls — with custom hold music, estimated wait time announcements, overflow routing, and real-time queue monitoring.</p>
+      <div class="hero-tags"><span class="h-tag">Sequential</span><span class="h-tag">Round-Robin</span><span class="h-tag">Least-Idle</span><span class="h-tag">Hold Music</span><span class="h-tag">EWT Announcement</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How E911 Works</div>
-<div class="tab " onclick="sw(this,'t2')">Setting Your Location</div>
-<div class="tab " onclick="sw(this,'t3')">Compliance</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How E911 Works in FasaFas</div><div class='card' ><ul class='fl'><li>E911 (Enhanced 911) provides your registered address to the emergency dispatcher when you call 911</li><li>Standard internet calls don't automatically transmit location — E911 adds this capability</li><li>FasaFas transmits your registered E911 address to the PSAP (Public Safety Answering Point) via an ALI/ANI database lookup</li><li>Your phone number is also transmitted (ANI) so dispatchers can call you back</li><li>Nomadic E911: you can update your address from anywhere — FasaFas sends the current registered address at call time</li></ul></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Registering Your E911 Location</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Profile → Emergency Address</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Enter your full physical address — street, city, state, zip, country</div><div class='step-desc'>Must be a real, dispatchable address — PO boxes not accepted</div></div></li><li><div><div class='step-title'>Verify the address</div><div class='step-desc'>FasaFas validates it against MSAG (Master Street Address Guide) for dispatchability</div></div></li><li><div><div class='step-title'>Save. Address registered with your DID number.</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Update whenever you change work location — remote work, travel, co-working space</div><div class='step-desc'></div></div></li></ol></div><div class='hl'><div class='hl-title'>Always Update When You Move</div><div class='hl-body'>E911 uses your REGISTERED address, not your actual GPS location. If you're working from a hotel and haven't updated your address, emergency services will be sent to your registered office address. Always update before calling 911 from a new location.</div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>E911 Compliance</div><div class='card' ><ul class='fl'><li>Ray Baum's Act (US): requires nomadic E911 capability for all enterprise VoIP users — FasaFas is compliant</li><li>Kari's Law: requires direct 911 dialing without dialing a prefix (no 9-911) — FasaFas compliant</li><li>Admin can require E911 registration before a user can make any phone calls</li><li>Admin Panel → Phone → E911 → view all user addresses and compliance status</li><li>Regular reminder emails sent to users who haven't updated their address in 90 days</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="elevate.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Elevate Call to Video Meeting</div></div></a><span class="nav-counter">Feature 6 of 12</span><a class="nav-pg" href="visual-voicemail.html"><div><div class="nav-label">Next</div><div class="nav-title">Visual Voicemail</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Queue Setup</div>
+<div class="tab " onclick="sw(this,'t2')">Routing Strategies</div>
+<div class="tab " onclick="sw(this,'t3')">Queue Monitoring</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Setting Up a Call Queue</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Admin Panel → Phone → Call Queues → Create Queue</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Name the queue and assign members</div><div class='step-desc'>e.g., 'Sales Queue' → add 5 sales reps as members</div></div></li><li><div><div class='step-title'>Configure hold music</div><div class='step-desc'>Upload custom audio or use default FasaFas music</div></div></li><li><div><div class='step-title'>Set maximum queue length</div><div class='step-desc'>Callers beyond this limit → routed to overflow destination</div></div></li><li><div><div class='step-title'>Set maximum wait time</div><div class='step-desc'>Callers waiting longer → routed to overflow (voicemail or alternate number)</div></div></li><li><div><div class='step-title'>Enable EWT announcement</div><div class='step-desc'>'Your estimated wait time is 4 minutes' — announced every 60 seconds</div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Routing Strategies</div><div class='spec'><div class='spec-head'>📋 Queue Routing Types</div><div class='spec-row'><span class='sk'>Sequential (Fixed Order)</span><span class='sv'>Rings Agent 1 first, then Agent 2, then Agent 3 — until someone picks up. Consistent priority.</span></div><div class='spec-row'><span class='sk'>Round-Robin</span><span class='sv'>Distributes calls evenly across all agents in rotation — fair distribution.</span></div><div class='spec-row'><span class='sk'>Least-Idle</span><span class='sv'>Routes to the agent who has been idle longest since their last call — most balanced.</span></div><div class='spec-row'><span class='sk'>Skills-Based</span><span class='sv'>Route to agents with specific skills/tags (e.g., 'Spanish speaker', 'Enterprise' — Enterprise plan).</span></div><div class='spec-row'><span class='sk'>Priority Queue</span><span class='sv'>VIP callers (identified by CLI/number) jump to the front of the queue.</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Real-Time Queue Monitoring</div><div class='card' ><ul class='fl'><li>Supervisor dashboard: live view of all queues, waiting callers, agent status</li><li>Metrics shown: current queue length, average wait time, longest wait, abandonment rate</li><li>Agent status per queue: Available, In-Call, Wrap-Up, Away</li><li>Barge in: supervisor can join an active call silently (whisper coaching to agent)</li><li>Historical reports: daily/weekly/monthly queue stats — export CSV</li><li>Alerts: notification when queue exceeds 5 callers or average wait exceeds 3 minutes</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="ivr-builder.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">IVR Visual Builder (No-Code)</div></div></a><span class="nav-counter">Feature 10 of 12</span><a class="nav-pg" href="sms.html"><div><div class="nav-label">Next</div><div class="nav-title">SMS from Business Number</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>

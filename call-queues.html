@@ -1,56 +1,47 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Custom Emoji</title>
-<link rel="stylesheet" href="../../../assets/css/subpage.css">
-<style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+<title>FasaFas — Phone / VoIP</title>
+<link rel="stylesheet" href="../../assets/css/features.css">
+<style>
+:root{--hero-glow:rgba(16,185,129,.14);--hero-color:#6ee7b7;--hero-eyebrow-bg:rgba(16,185,129,.14);--hero-eyebrow-b:rgba(16,185,129,.3);--hero-eyebrow-c:#6ee7b7;--tab-color:#6ee7b7}
+
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.feat-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.feat-cards{grid-template-columns:1fr}}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 18px;cursor:pointer;transition:all .2s;text-decoration:none;display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden}
+.feat-card:hover{border-color:var(--cc);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.fc-top{display:flex;align-items:flex-start;gap:11px}
+.fc-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--cbg);border:1px solid var(--cb)}
+.fc-num{position:absolute;top:11px;right:13px;font-size:10px;font-weight:700;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 7px}
+.fc-title{font-size:13px;font-weight:800;letter-spacing:-.2px;color:var(--text);line-height:1.3}
+.fc-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.fc-tags-str{font-size:10.5px;font-weight:600;color:var(--cc);opacity:.8}
+.fc-arrow{position:absolute;bottom:12px;right:14px;font-size:16px;color:var(--text3);transition:all .2s}
+.feat-card:hover .fc-arrow{color:var(--cc);transform:translate(2px,-2px)}
+
+</style>
 </head><body>
-<header class="hdr">
-  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
-  <nav class="hdr-nav">
-    <a class="hdr-btn" href="../team-chat.html">← Team Chat</a>
-    <a class="hdr-btn" href="../../../index.html">Home</a>
-    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+<header class="f-header">
+  <a class="f-logo" href="../../index.html"><div class="f-logo-dot"></div>FasaFas</a>
+  <nav class="f-nav">
+    <a class="f-back" href="../../index.html">← Platform</a>
+    <a class="f-schedule" href="../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Custom Emoji</span></div>
-<div class="layout">
-  <aside class="sidebar">
-    <div class="sb-head">Team Chat Features</div>
-    <a class="sb-link" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
-<a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
-<a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
-<a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
-<a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
-<a class="sb-link active" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
-<a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
-<a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
-<a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
-<a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
-<a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
-<a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
-<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
-<a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
-    <div class="sb-div"></div>
-    <a class="sb-back" href="../team-chat.html">← Overview</a>
-  </aside>
-  <div class="main">
-    <div class="hero">
-      <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">😄</span>
-      <h1 class="hero-title"><em>Custom Emoji</em></h1>
-      <p class="hero-desc">Upload custom emoji — static images or animated GIFs — that work across all channels in your account. Name them with aliases, reuse them as reactions, and control uploads via admin approval.</p>
-      <div class="hero-tags"><span class="h-tag">Upload PNG/GIF</span><span class="h-tag">Animated</span><span class="h-tag">Alias</span><span class="h-tag">Admin Approval</span><span class="h-tag">Account-Wide</span></div>
-    </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Adding Custom Emoji</div>
-<div class="tab " onclick="sw(this,'t2')">Using Emoji</div>
-<div class="tab " onclick="sw(this,'t3')">Admin Controls</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Adding Custom Emoji</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Go to Settings → Emoji → Add Custom Emoji</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Upload a PNG, JPG, or GIF file (max 128×128px, 64 KB recommended)</div><div class='step-desc'>Larger images auto-resized. GIFs animate in chat.</div></div></li><li><div><div class='step-title'>Give it an alias, e.g. ':fasa-logo:' or ':party-parrot:'</div><div class='step-desc'>Alias must be unique within your account. No spaces — use hyphens.</div></div></li><li><div><div class='step-title'>Submit. If admin approval required, pending until approved.</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Once approved, visible to all workspace members immediately.</div><div class='step-desc'></div></div></li></ol></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Using Custom Emoji</div><div class='card' ><ul class='fl'><li>Type the alias: :party-parrot: renders the emoji inline</li><li>Emoji picker: click the smiley face → Custom tab shows all account emoji</li><li>Use as reactions: hover any message → + → search your custom emoji</li><li>Emoji auto-complete: type : and start typing the alias</li><li>Custom emoji work in: channel messages, DMs, threads, status field, Doc text</li></ul></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Admin Controls</div><div class='card' ><ul class='fl'><li>Admin Panel → Emoji → review pending submissions</li><li>Approve or reject custom emoji before they go live</li><li>Set policy: open (anyone can add) or approval required</li><li>Delete existing custom emoji</li><li>Export all custom emoji as a ZIP</li><li>Set a maximum emoji count per user (prevents abuse)</li><li>Custom emoji stored in your account's S3 — not shared with other workspaces</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="voice-messages.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Voice Messages</div></div></a><span class="nav-counter">Feature 6 of 14</span><a class="nav-pg" href="message-scheduling.html"><div><div class="nav-label">Next</div><div class="nav-title">Message Scheduling</div></div><div>→</div></a></div>
-  </div>
+<div class="breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><span class="cur">Phone / VoIP</span></div>
+<div class="f-hero">
+  <div class="hero-eyebrow">📞 Platform Module</div>
+  <span class="f-hero-icon">📞</span>
+  <h1 class="f-hero-title"><em>Phone / VoIP</em></h1>
+  <p class="f-hero-desc">Enterprise VoIP with PSTN calling, IVR visual builder, AI voicemail transcription, call queues, and business SMS — on any device.</p>
+  <div class="hero-badges"><span class="h-badge">PSTN Inbound & Outbound</span><span class="h-badge">IVR No-Code Builder</span><span class="h-badge">AI Voicemail</span><span class="h-badge">Call Queues</span><span class="h-badge">Business SMS</span><span class="h-badge">E911 Compliance</span></div>
 </div>
-<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
-<script src="../../../assets/js/translate.js"></script>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);background:var(--bg2)"><div style="padding:16px 24px;border-right:1px solid var(--border)"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Call Types</div><div style="font-size:22px;font-weight:900;letter-spacing:-.5px;color:#6ee7b7">PSTN + SIP</div><div style="font-size:11px;color:var(--text3)">All devices</div></div><div style="padding:16px 24px;border-right:1px solid var(--border)"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">IVR Builder</div><div style="font-size:22px;font-weight:900;letter-spacing:-.5px;color:#6ee7b7">No-Code</div><div style="font-size:11px;color:var(--text3)">Visual flow editor</div></div><div style="padding:16px 24px;border-right:1px solid var(--border)"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Feature Pages</div><div style="font-size:22px;font-weight:900;letter-spacing:-.5px;color:#6ee7b7">12</div><div style="font-size:11px;color:var(--text3)">Click any below</div></div><div style="padding:16px 24px;border-right:1px solid var(--border)"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">AI Voicemail</div><div style="font-size:22px;font-weight:900;letter-spacing:-.5px;color:#6ee7b7">30 sec</div><div style="font-size:11px;color:var(--text3)">Transcript ready</div></div></div>
+<div style="padding:32px 44px 52px;background:var(--bg)">
+  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px">Click any feature to explore it fully</h2>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:26px;line-height:1.7">Every capability has its own dedicated page with step-by-step guides and technical detail.</p>
+  <div style="display:flex;align-items:center;gap:10px;padding:0 0 14px"><div style="font-size:17px;font-weight:800;letter-spacing:-.3px">Calling Features</div><span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:rgba(16,185,129,.14);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)">PSTN · SIP · Devices</span></div><div class="feat-cards" style="margin-bottom:36px"><a class="feat-card" href="phone/pstn.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">01</div><div class="fc-top"><div class="fc-icon">📞</div><div class="fc-title">PSTN Inbound & Outbound</div></div><div class="fc-desc">Place and receive real phone calls on any device using your business number over PSTN trunking.</div><div class="fc-tags-str">PSTN · SIP Trunk · 100+ Countries · DID · Desk Phones</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/dialpad.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">02</div><div class="fc-top"><div class="fc-icon">🔢</div><div class="fc-title">Dial Pad with Contact Lookup</div></div><div class="fc-desc">Full dial pad with instant contact search, recents, favorites, and international dialing support.</div><div class="fc-tags-str">Contact Search · Recents · Favorites · International · CRM Lookup</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/hold-transfer.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">03</div><div class="fc-top"><div class="fc-icon">↔️</div><div class="fc-title">Hold, Transfer & Conference</div></div><div class="fc-desc">Put calls on hold, warm or cold transfer to colleagues, and add parties for a conference call.</div><div class="fc-tags-str">Hold Music · Warm Transfer · Cold Transfer · 3-Way Conference</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/call-recording.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">04</div><div class="fc-top"><div class="fc-icon">⏺</div><div class="fc-title">Call Recording with Consent</div></div><div class="fc-desc">Record calls with automatic consent announcements, cloud storage, AI transcription, and legal hold.</div><div class="fc-tags-str">Consent · Cloud · AI Transcript · Pause/Resume · Legal Hold</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/elevate.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">05</div><div class="fc-top"><div class="fc-icon">🎥</div><div class="fc-title">Elevate Call to Video Meeting</div></div><div class="fc-desc">Turn any voice call into a full FasaFas video meeting with screen share in one click.</div><div class="fc-tags-str">One-Click · Full Video · Screen Share · No New Link</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/e911.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">06</div><div class="fc-top"><div class="fc-icon">🚨</div><div class="fc-title">E911 Location Settings</div></div><div class="fc-desc">Register your physical address for emergency calling — compliant with Ray Baum's Act and Kari's Law.</div><div class="fc-tags-str">Emergency · Address Registration · Nomadic E911 · Compliance</div><div class="fc-arrow">↗</div></a></div><div style="display:flex;align-items:center;gap:10px;padding:0 0 14px"><div style="font-size:17px;font-weight:800;letter-spacing:-.3px">Voicemail & IVR</div><span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:rgba(16,185,129,.14);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)">Automated · AI Powered</span></div><div class="feat-cards" style="margin-bottom:36px"><a class="feat-card" href="phone/visual-voicemail.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">01</div><div class="fc-top"><div class="fc-icon">📬</div><div class="fc-title">Visual Voicemail</div></div><div class="fc-desc">See all voicemails as a list with caller info and AI transcript — no calling into a voicemail system.</div><div class="fc-tags-str">Visual List · AI Transcript · Playback · Call Back · Email Alert</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/ai-voicemail.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">02</div><div class="fc-top"><div class="fc-icon">🤖</div><div class="fc-title">AI Voicemail Transcription & Actions</div></div><div class="fc-desc">Whisper transcribes every voicemail and AI extracts action items, urgency, and smart routing suggestions.</div><div class="fc-tags-str">Whisper · Action Items · → Tasks · Priority Flag · CRM Sync</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/ivr-builder.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">03</div><div class="fc-top"><div class="fc-icon">🌳</div><div class="fc-title">IVR Visual Builder (No-Code)</div></div><div class="fc-desc">Design multi-level phone menus with drag-and-drop — no coding. Greetings, DTMF routing, business hours.</div><div class="fc-tags-str">Visual Builder · DTMF · TTS · Business Hours · Overflow</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/call-queues.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">04</div><div class="fc-top"><div class="fc-icon">📋</div><div class="fc-title">Call Queues (Sequential / Round-Robin)</div></div><div class="fc-desc">Inbound callers wait in line while agents handle calls — with hold music, EWT, and overflow routing.</div><div class="fc-tags-str">Sequential · Round-Robin · Least-Idle · EWT · Supervisor Dashboard</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/sms.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">05</div><div class="fc-top"><div class="fc-icon">💬</div><div class="fc-title">SMS from Business Number</div></div><div class="fc-desc">Send and receive 2-way SMS from your business number — threaded conversations with AI suggested replies.</div><div class="fc-tags-str">2-Way SMS · MMS · Templates · Scheduled · AI Suggestions</div><div class="fc-arrow">↗</div></a><a class="feat-card" href="phone/ai-receptionist.html" style="--cc:#6ee7b7;--cbg:rgba(16,185,129,.14);--cb:rgba(16,185,129,.3)"><div class="fc-num">06</div><div class="fc-top"><div class="fc-icon">🤖</div><div class="fc-title">AI Virtual Receptionist (SMS)</div></div><div class="fc-desc">AI handles inbound SMS automatically — answers FAQs, books appointments, and routes complex requests to humans.</div><div class="fc-tags-str">NLP Intent · Auto-Reply · Booking Links · Handoff · CRM Push</div><div class="fc-arrow">↗</div></a></div>
+</div>
+<script src="../../assets/js/translate.js"></script>
 </body></html>

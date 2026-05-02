@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FasaFas — Threaded Replies</title>
+<title>FasaFas — Semantic Search</title>
 <link rel="stylesheet" href="../../../assets/css/subpage.css">
 <style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
 </head><body>
@@ -13,13 +13,13 @@
     <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
   </nav>
 </header>
-<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Threaded Replies</span></div>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Semantic Search</span></div>
 <div class="layout">
   <aside class="sidebar">
     <div class="sb-head">Team Chat Features</div>
     <a class="sb-link" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
 <a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
-<a class="sb-link active" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
+<a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
 <a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
 <a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
 <a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
@@ -28,7 +28,7 @@
 <a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
 <a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
 <a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
-<a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
+<a class="sb-link active" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
 <a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
 <a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
     <div class="sb-div"></div>
@@ -37,18 +37,18 @@
   <div class="main">
     <div class="hero">
       <div class="hero-eye">Feature Detail</div>
-      <span class="hero-icon">🧵</span>
-      <h1 class="hero-title"><em>Threaded Replies</em></h1>
-      <p class="hero-desc">Reply to any message in a thread to keep channel conversations organized — threads collapse in the main view and can be followed for notifications without cluttering the channel.</p>
-      <div class="hero-tags"><span class="h-tag">Reply in Thread</span><span class="h-tag">Keep Channels Clean</span><span class="h-tag">Follow Thread</span><span class="h-tag">Collapse View</span><span class="h-tag">Notifications</span></div>
+      <span class="hero-icon">🔍</span>
+      <h1 class="hero-title"><em>Semantic Search</em></h1>
+      <p class="hero-desc">Search finds what you mean, not just what you typed — semantic search understands intent, finds conceptually related messages even without matching keywords, and searches across channels, DMs, files, and meeting transcripts.</p>
+      <div class="hero-tags"><span class="h-tag">Intent-Aware</span><span class="h-tag">pgvector</span><span class="h-tag">Semantic Embeddings</span><span class="h-tag">Cross-Channel</span><span class="h-tag">Instant</span></div>
     </div>
-    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Using Threads</div>
-<div class="tab " onclick="sw(this,'t2')">Thread Notifications</div>
-<div class="tab " onclick="sw(this,'t3')">Best Practices</div></div>
-    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How Threaded Replies Work</div><div class='card' ><ul class='fl'><li>Hover any message → click 'Reply in thread' (or press T)</li><li>Thread opens in a panel on the right side of the screen</li><li>Main channel shows: original message + reply count + last reply time</li><li>Thread replies never clutter the main channel flow</li><li>'Also send to channel' checkbox: optionally show a reply in both thread and channel</li><li>Thread participants automatically follow the thread and receive notifications</li><li>Jump to thread: click the reply count below any parent message</li></ul></div></div>
-<div id="t2" class="tab-pane "><div class='ph1'>Thread Notifications</div><div class='spec'><div class='spec-head'>🔔 Thread Notification Modes</div><div class='spec-row'><span class='sk'>Following</span><span class='sv'>You receive notifications for all new replies (auto if you sent a message or reacted)</span></div><div class='spec-row'><span class='sk'>Not following</span><span class='sv'>No notifications — you can still read the thread anytime</span></div><div class='spec-row'><span class='sk'>@mentioned</span><span class='sv'>Always notified if someone @mentions you in a thread, regardless of following status</span></div><div class='spec-row'><span class='sk'>Unfollow</span><span class='sv'>Click 'Following' toggle in thread header to unfollow</span></div></div></div>
-<div id="t3" class="tab-pane "><div class='ph1'>Thread Best Practices</div><div class='card' ><ul class='fl'><li>Use threads for: feedback on a specific proposal, back-and-forth Q&A, progress updates on a task</li><li>Keep the channel for: announcements that everyone needs to see immediately</li><li>Use 'Also send to channel' sparingly — for final decisions that the whole channel should know</li><li>Threads older than 7 days with no new activity collapse by default in the sidebar</li><li>AI can summarize an entire thread: hover thread header → 'Summarize with AI'</li></ul></div></div></div>
-    <div class="nav-strip"><a class="nav-pg" href="dms.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Direct Messages (1:1 & Group)</div></div></a><span class="nav-counter">Feature 3 of 14</span><a class="nav-pg" href="file-sharing.html"><div><div class="nav-label">Next</div><div class="nav-title">File Sharing</div></div><div>→</div></a></div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How Semantic Search Works</div>
+<div class="tab " onclick="sw(this,'t2')">Search Scope</div>
+<div class="tab " onclick="sw(this,'t3')">Tips</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Semantic vs Keyword Search</div><div class='card' ><ul class='fl'><li><b>Keyword:</b> 'budget approval' only finds messages containing those exact words</li><li><b>Semantic:</b> 'budget approval' also finds 'finance sign-off', 'Q3 spend confirmed', 'cost approved by leadership'</li><li>Technology: text-embedding-3-large encodes every message into a 3,072-dimensional vector. Stored in pgvector.</li><li>At search time: your query is embedded and compared to all message vectors via cosine similarity</li><li>Results ranked by semantic relevance + recency + your engagement with the source channel</li></ul></div><div class='spec'><div class='spec-head'>⚡ Search Performance</div><div class='spec-row'><span class='sk'>Index update latency</span><span class='sv'>New messages indexed in under 5 seconds</span></div><div class='spec-row'><span class='sk'>Search result latency</span><span class='sv'>p50: 120ms · p95: 350ms</span></div><div class='spec-row'><span class='sk'>Search scope</span><span class='sv'>Messages, threads, files, meeting transcripts, Docs</span></div><div class='spec-row'><span class='sk'>Result count</span><span class='sv'>Top 10 most relevant results (expand for more)</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>What Gets Searched</div><div class='card' ><ul class='fl'><li>Channel messages and thread replies</li><li>Direct messages and group DMs (only your conversations)</li><li>File names and AI-extracted file content (PDFs, Docs)</li><li>Meeting transcript text from all meetings you attended</li><li>FasaFas Docs content</li><li>Voice message AI transcripts</li><li>Custom emoji names</li><li>@mentions of your name</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Search Tips</div><div class='card' ><ul class='fl'><li>Use natural language: 'find the message about delaying the launch' works better than 'launch delay'</li><li>Filter by: date range, channel, sender, file type — use the filters panel on the left</li><li>Operator: in:#channel limits search to a specific channel</li><li>Operator: from:@name limits to messages from a specific person</li><li>Operator: before:2026-01-01 or after:2026-01-01 for date filtering</li><li>Operator: has:file limits to messages with file attachments</li><li>Shortcut: Cmd+K (Mac) or Ctrl+K (Windows) opens universal search from anywhere</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="ai-replies.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">AI Suggested Replies</div></div></a><span class="nav-counter">Feature 12 of 14</span><a class="nav-pg" href="ai-translate.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Message Translation</div></div><div>→</div></a></div>
   </div>
 </div>
 <script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
