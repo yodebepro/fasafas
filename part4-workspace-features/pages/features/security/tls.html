@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — TLS 1.3 + DTLS-SRTP</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fca5a5;--fc-bg:rgba(239,68,68,.14);--fc-b:rgba(239,68,68,.3);--fc-dim:rgba(239,68,68,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../security.html">← Security</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../security.html">Security</a><span class="bc-sep">/</span><span class="bc-cur">TLS 1.3 + DTLS-SRTP</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Security Features</div>
+    <a class="sb-link active" href="tls.html"><span class="sb-num">1</span><span class="sb-icon">🔐</span>TLS 1.3 + DTLS-SRTP</a>
+<a class="sb-link" href="jwt.html"><span class="sb-num">2</span><span class="sb-icon">🎟</span>JWT + Rotating Refresh Tokens</a>
+<a class="sb-link" href="oauth.html"><span class="sb-num">3</span><span class="sb-icon">🔑</span>OAuth 2.0 PKCE</a>
+<a class="sb-link" href="saml.html"><span class="sb-num">4</span><span class="sb-icon">🏢</span>SAML 2.0 SSO</a>
+<a class="sb-link" href="passkeys.html"><span class="sb-num">5</span><span class="sb-icon">🔏</span>FIDO2 Passkeys & Biometric</a>
+<a class="sb-link" href="mfa.html"><span class="sb-num">6</span><span class="sb-icon">📲</span>TOTP + SMS MFA</a>
+<a class="sb-link" href="session.html"><span class="sb-num">7</span><span class="sb-icon">🔄</span>Session Revocation (All Devices)</a>
+<a class="sb-link" href="e2ee.html"><span class="sb-num">8</span><span class="sb-icon">🔒</span>End-to-End Encryption (AES-256-GCM)</a>
+<a class="sb-link" href="soc2.html"><span class="sb-num">9</span><span class="sb-icon">✅</span>SOC 2 Type II Certified</a>
+<a class="sb-link" href="hipaa.html"><span class="sb-num">10</span><span class="sb-icon">🏥</span>HIPAA BAA</a>
+<a class="sb-link" href="gdpr.html"><span class="sb-num">11</span><span class="sb-icon">🇪🇺</span>GDPR / CCPA Data Controls</a>
+<a class="sb-link" href="fedramp.html"><span class="sb-num">12</span><span class="sb-icon">🦅</span>FedRAMP Authorized</a>
+<a class="sb-link" href="deepfake-sec.html"><span class="sb-num">13</span><span class="sb-icon">🛡️</span>Deepfake Detection (Real-Time)</a>
+<a class="sb-link" href="dlp.html"><span class="sb-num">14</span><span class="sb-icon">🚧</span>DLP + Information Barriers</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../security.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔐</span>
+      <h1 class="hero-title"><em>TLS 1.3 + DTLS-SRTP</em></h1>
+      <p class="hero-desc">All FasaFas traffic is encrypted in transit using TLS 1.3 for HTTPS APIs and DTLS-SRTP for WebRTC media streams — with perfect forward secrecy, HSTS, and certificate pinning on mobile.</p>
+      <div class="hero-tags"><span class="h-tag">TLS 1.3</span><span class="h-tag">DTLS-SRTP</span><span class="h-tag">WebRTC</span><span class="h-tag">Perfect Forward Secrecy</span><span class="h-tag">HSTS</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">TLS 1.3 for APIs</div>
+<div class="tab " onclick="sw(this,'t2')">DTLS-SRTP for Media</div>
+<div class="tab " onclick="sw(this,'t3')">Certificate & HSTS</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>TLS 1.3 for APIs &amp; WebSocket</div><div class='spec'><div class='spec-head'>🔐 TLS Configuration</div><div class='spec-row'><span class='sk'>Protocol version</span><span class='sv'>TLS 1.3 (minimum). TLS 1.2 supported as fallback for legacy clients.</span></div><div class='spec-row'><span class='sk'>Cipher suites</span><span class='sv'>TLS_AES_256_GCM_SHA384, TLS_CHACHA20_POLY1305_SHA256 — no RC4, DES, or 3DES</span></div><div class='spec-row'><span class='sk'>Key exchange</span><span class='sv'>X25519 elliptic curve — fast and secure</span></div><div class='spec-row'><span class='sk'>Perfect Forward Secrecy</span><span class='sv'>Yes — each session uses a unique ephemeral key. Past sessions can't be decrypted if a private key is compromised.</span></div><div class='spec-row'><span class='sk'>HTTPS endpoints</span><span class='sv'>All API, web app, WebSocket, and webhook endpoints</span></div><div class='spec-row'><span class='sk'>Downgrade protection</span><span class='sv'>HSTS header + TLS_FALLBACK_SCSV prevents protocol downgrade attacks</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>DTLS-SRTP for WebRTC Media</div><div class='card' ><ul class='fl'><li>WebRTC audio and video streams use DTLS-SRTP — a combined handshake and encryption protocol</li><li>DTLS (Datagram TLS): establishes encryption keys over UDP (used because video/audio is UDP-based)</li><li>SRTP (Secure Real-time Transport Protocol): encrypts audio/video packets using AES-128-CM-HMAC-SHA1-80</li><li>Key negotiation happens before the first media packet is exchanged</li><li>Each participant's media stream is encrypted independently — the SFU cannot decrypt media (SRTP only — not E2EE unless E2EE mode is enabled)</li><li>DTLS fingerprint verification: prevents MITM attacks on WebRTC connections</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Certificates &amp; HSTS</div><div class='card' ><ul class='fl'><li>Certificate: 2048-bit RSA or ECDSA P-256 issued by Let's Encrypt / DigiCert</li><li>Automated renewal: certificates auto-renewed 30 days before expiry — no manual intervention</li><li>Certificate Transparency: all certificates submitted to CT logs for public auditability</li><li>HSTS (HTTP Strict Transport Security): max-age=31536000; includeSubDomains; preload</li><li>HSTS preload: FasaFas domains submitted to browser HSTS preload lists — HTTPS enforced before first request</li><li>Mobile (iOS/Android): certificate pinning — app rejects certificates not matching the pinned fingerprint</li></ul></div></div></div>
+    <div class="nav-strip"><div class="nav-pg end">← Start</div><span class="nav-counter">Feature 1 of 14</span><a class="nav-pg" href="jwt.html"><div><div class="nav-label">Next</div><div class="nav-title">JWT + Rotating Refresh Tokens</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Named Cursors per Participant</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Named Cursors per Participant</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link active" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">👆</span>
+      <h1 class="hero-title"><em>Named Cursors per Participant</em></h1>
+      <p class="hero-desc">Every collaborator's cursor is visible on the canvas in a unique color with their name attached — real-time presence awareness so you always know who's looking at what.</p>
+      <div class="hero-tags"><span class="h-tag">Named Cursors</span><span class="h-tag">Color Per Person</span><span class="h-tag">Real-Time</span><span class="h-tag">Presence</span><span class="h-tag">Follow Cursor</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Named Cursors</div>
+<div class="tab " onclick="sw(this,'t2')">Presence Panel</div>
+<div class="tab " onclick="sw(this,'t3')">Follow Cursor</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Named Cursors</div><div class='card' ><ul class='fl'><li>Every logged-in user editing the whiteboard has a named cursor</li><li>Color: automatically assigned from a 12-color palette — unique per person per session</li><li>Label: your display name appears next to the cursor tip</li><li>Cursor movement synced at ~30fps — smooth real-time tracking</li><li>Cursor visible to all other participants in real time</li><li>Your own cursor: you see it normally — no duplicate label for yourself</li><li>Anonymous viewers: cursor shown with 'Guest' label if they haven't signed in</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Presence Panel</div><div class='card' ><ul class='fl'><li>Top-right of the whiteboard: avatar stack showing who's online</li><li>Click any avatar → camera jumps to their current viewport</li><li>Names shown on hover</li><li>Viewers vs editors: different badge style for read-only viewers</li><li>Guest count: shows '+ 3 guests' if anonymous viewers are present</li><li>Notification: brief toast when someone joins or leaves 'Ana joined the whiteboard'</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Follow a Collaborator's Cursor</div><div class='card' ><ul class='fl'><li>Click an avatar in the presence panel → 'Follow [Name]' option</li><li>Your viewport syncs to their viewport — you see exactly what they see</li><li>Canvas pans and zooms to match their view automatically</li><li>Exit follow mode: click 'Stop Following' or press Escape</li><li>Follow mode in presentations: host enables Follow Mode for everyone → all participants' views lock to presenter</li></ul></div><div class='hl'><div class='hl-title'>Presenter Mode vs Follow Mode</div><div class='hl-body'>Follow Mode: you choose to follow someone. Presenter Mode: the host forces all participants to follow their view — used for structured walkthroughs and demos.</div></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="crdt-sync.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">CRDT Real-Time Sync</div></div></a><span class="nav-counter">Feature 9 of 14</span><a class="nav-pg" href="follow-mode.html"><div><div class="nav-label">Next</div><div class="nav-title">Follow Mode & Presenter Mode</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

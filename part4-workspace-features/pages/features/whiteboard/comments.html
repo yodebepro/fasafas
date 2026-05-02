@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Comments on Canvas Objects</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Comments on Canvas Objects</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link active" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">💬</span>
+      <h1 class="hero-title"><em>Comments on Canvas Objects</em></h1>
+      <p class="hero-desc">Leave threaded comments directly on any canvas object — shapes, sticky notes, or frames — with @mentions, resolution tracking, and links back to the specific object.</p>
+      <div class="hero-tags"><span class="h-tag">Threaded</span><span class="h-tag">Resolve</span><span class="h-tag">@mention</span><span class="h-tag">Timestamp</span><span class="h-tag">Linked to Object</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Adding Comments</div>
+<div class="tab " onclick="sw(this,'t2')">Managing Comments</div>
+<div class="tab " onclick="sw(this,'t3')">Notifications</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Adding Comments to Canvas Objects</div><div class='card' ><ul class='fl'><li>Right-click any object → Add Comment</li><li>Or: select an object → C keyboard shortcut</li><li>Comment panel opens on the right side</li><li>Type your comment — markdown supported, @mention supported</li><li>Submit → comment appears as a badge on the object (orange dot)</li><li>Reply: click the object's comment badge → reply in the thread</li><li>All comments associated with the object, not a canvas position — moves with the object if dragged</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Managing Comments</div><div class='card' ><ul class='fl'><li>Comment panel (right sidebar) lists all open comments across the canvas</li><li>Filter: by open / resolved / @mentioned me</li><li>Click any comment → canvas pans to the associated object</li><li>Resolve: click ✓ on a comment thread → it's marked resolved and hidden from default view</li><li>Reopen: filter to show resolved → click Reopen on any comment</li><li>Delete: comment author or admin can delete a comment</li><li>Comments filter: show/hide all comment badges with one toggle</li></ul><div class='hl'><div class='hl-title'>Comments Survive Version Restore</div><div class='hl-body'>If you restore an older canvas version, comments on objects that exist in that version are preserved. Comments on deleted objects are archived.</div></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Comment Notifications</div><div class='card' ><ul class='fl'><li>You're notified when: someone @mentions you in a comment, someone replies to your comment, a comment is added to an object you created</li><li>Notification: in-app notification + email digest</li><li>Email digest: all new whiteboard comments grouped into one daily email (configurable)</li><li>In-meeting: if whiteboard is open in a meeting and someone comments, a small toast shows in the meeting UI</li><li>Comment activity also visible in Hub → Notifications timeline</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="follow-mode.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Follow Mode & Presenter Mode</div></div></a><span class="nav-counter">Feature 11 of 14</span><a class="nav-pg" href="version-history.html"><div><div class="nav-label">Next</div><div class="nav-title">Version History & Restore</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

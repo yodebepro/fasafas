@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — End-to-End Encryption (AES-256-GCM)</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fca5a5;--fc-bg:rgba(239,68,68,.14);--fc-b:rgba(239,68,68,.3);--fc-dim:rgba(239,68,68,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../security.html">← Security</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../security.html">Security</a><span class="bc-sep">/</span><span class="bc-cur">End-to-End Encryption (AES-256-GCM)</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Security Features</div>
+    <a class="sb-link" href="tls.html"><span class="sb-num">1</span><span class="sb-icon">🔐</span>TLS 1.3 + DTLS-SRTP</a>
+<a class="sb-link" href="jwt.html"><span class="sb-num">2</span><span class="sb-icon">🎟</span>JWT + Rotating Refresh Tokens</a>
+<a class="sb-link" href="oauth.html"><span class="sb-num">3</span><span class="sb-icon">🔑</span>OAuth 2.0 PKCE</a>
+<a class="sb-link" href="saml.html"><span class="sb-num">4</span><span class="sb-icon">🏢</span>SAML 2.0 SSO</a>
+<a class="sb-link" href="passkeys.html"><span class="sb-num">5</span><span class="sb-icon">🔏</span>FIDO2 Passkeys & Biometric</a>
+<a class="sb-link" href="mfa.html"><span class="sb-num">6</span><span class="sb-icon">📲</span>TOTP + SMS MFA</a>
+<a class="sb-link" href="session.html"><span class="sb-num">7</span><span class="sb-icon">🔄</span>Session Revocation (All Devices)</a>
+<a class="sb-link active" href="e2ee.html"><span class="sb-num">8</span><span class="sb-icon">🔒</span>End-to-End Encryption (AES-256-GCM)</a>
+<a class="sb-link" href="soc2.html"><span class="sb-num">9</span><span class="sb-icon">✅</span>SOC 2 Type II Certified</a>
+<a class="sb-link" href="hipaa.html"><span class="sb-num">10</span><span class="sb-icon">🏥</span>HIPAA BAA</a>
+<a class="sb-link" href="gdpr.html"><span class="sb-num">11</span><span class="sb-icon">🇪🇺</span>GDPR / CCPA Data Controls</a>
+<a class="sb-link" href="fedramp.html"><span class="sb-num">12</span><span class="sb-icon">🦅</span>FedRAMP Authorized</a>
+<a class="sb-link" href="deepfake-sec.html"><span class="sb-num">13</span><span class="sb-icon">🛡️</span>Deepfake Detection (Real-Time)</a>
+<a class="sb-link" href="dlp.html"><span class="sb-num">14</span><span class="sb-icon">🚧</span>DLP + Information Barriers</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../security.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔒</span>
+      <h1 class="hero-title"><em>End-to-End Encryption (AES-256-GCM)</em></h1>
+      <p class="hero-desc">Enable End-to-End Encryption mode for meetings where even FasaFas servers cannot decrypt your audio and video — keys are negotiated peer-to-peer, never accessible server-side.</p>
+      <div class="hero-tags"><span class="h-tag">AES-256-GCM</span><span class="h-tag">E2EE</span><span class="h-tag">Client-Side Keys</span><span class="h-tag">Zero Server Access</span><span class="h-tag">Opt-In</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How E2EE Works</div>
+<div class="tab " onclick="sw(this,'t2')">What E2EE Protects</div>
+<div class="tab " onclick="sw(this,'t3')">Trade-offs & Limitations</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How E2EE Works in FasaFas</div><div class='card' ><ul class='fl'><li>Standard mode: media encrypted with DTLS-SRTP, but the SFU decrypts to route packets (required for mixing and server-side recording)</li><li>E2EE mode: each participant's media is encrypted with a key the server never sees — the SFU forwards encrypted packets without decrypting</li><li>Key exchange: WebRTC's Insertable Streams API (W3C standard) — client-side encryption layer added before packets reach the network</li><li>Encryption algorithm: AES-256-GCM with a 256-bit key</li><li>Key negotiation: participants exchange public keys over a secure channel, then derive a shared symmetric key using ECDH (X25519)</li><li>Key rotation: encryption keys rotated every 60 seconds for forward secrecy</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>What E2EE Protects</div><div class='g2'><div class='card' ><div class='ph3'>Protected by E2EE</div><ul class='fl'><li>Audio streams — FasaFas servers cannot hear your conversation</li><li>Video streams — FasaFas servers cannot see your video</li><li>Screen share content — encrypted from sender to receiver</li><li>Chat messages in the meeting (when E2EE mode is active)</li></ul></div><div class='card' ><div class='ph3'>NOT Protected by E2EE</div><ul class='fl'><li>Meeting metadata: who attended, when, duration — server can see</li><li>Participant names and display names — visible to server</li><li>Recording: cloud recording is disabled in E2EE mode (no server access)</li><li>AI features: AI transcription, summaries, and captions disabled in E2EE mode</li></ul></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Trade-offs &amp; Limitations</div><div class='card' ><ul class='fl'><li>Cloud recording: disabled — recordings only possible with local recording (saved to host's device only)</li><li>AI features: all server-side AI (transcription, captions, summaries) disabled — Nemotron on-device model is the exception</li><li>Max participants: 500 in standard mode vs 50 in E2EE mode (peer-to-peer key exchange doesn't scale beyond this without additional complexity)</li><li>Phone dial-in: disabled — PSTN callers cannot join E2EE meetings</li><li>Breakout rooms: limited — breakout rooms require additional key negotiation (supported in E2EE v2, Enterprise plan)</li><li>Browser support: Chrome 90+, Edge 90+, Safari 15.1+, Firefox 113+</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="session.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Session Revocation (All Devices)</div></div></a><span class="nav-counter">Feature 8 of 14</span><a class="nav-pg" href="soc2.html"><div><div class="nav-label">Next</div><div class="nav-title">SOC 2 Type II Certified</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

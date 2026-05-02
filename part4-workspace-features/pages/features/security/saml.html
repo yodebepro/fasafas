@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — SAML 2.0 SSO</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fca5a5;--fc-bg:rgba(239,68,68,.14);--fc-b:rgba(239,68,68,.3);--fc-dim:rgba(239,68,68,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../security.html">← Security</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../security.html">Security</a><span class="bc-sep">/</span><span class="bc-cur">SAML 2.0 SSO</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Security Features</div>
+    <a class="sb-link" href="tls.html"><span class="sb-num">1</span><span class="sb-icon">🔐</span>TLS 1.3 + DTLS-SRTP</a>
+<a class="sb-link" href="jwt.html"><span class="sb-num">2</span><span class="sb-icon">🎟</span>JWT + Rotating Refresh Tokens</a>
+<a class="sb-link" href="oauth.html"><span class="sb-num">3</span><span class="sb-icon">🔑</span>OAuth 2.0 PKCE</a>
+<a class="sb-link active" href="saml.html"><span class="sb-num">4</span><span class="sb-icon">🏢</span>SAML 2.0 SSO</a>
+<a class="sb-link" href="passkeys.html"><span class="sb-num">5</span><span class="sb-icon">🔏</span>FIDO2 Passkeys & Biometric</a>
+<a class="sb-link" href="mfa.html"><span class="sb-num">6</span><span class="sb-icon">📲</span>TOTP + SMS MFA</a>
+<a class="sb-link" href="session.html"><span class="sb-num">7</span><span class="sb-icon">🔄</span>Session Revocation (All Devices)</a>
+<a class="sb-link" href="e2ee.html"><span class="sb-num">8</span><span class="sb-icon">🔒</span>End-to-End Encryption (AES-256-GCM)</a>
+<a class="sb-link" href="soc2.html"><span class="sb-num">9</span><span class="sb-icon">✅</span>SOC 2 Type II Certified</a>
+<a class="sb-link" href="hipaa.html"><span class="sb-num">10</span><span class="sb-icon">🏥</span>HIPAA BAA</a>
+<a class="sb-link" href="gdpr.html"><span class="sb-num">11</span><span class="sb-icon">🇪🇺</span>GDPR / CCPA Data Controls</a>
+<a class="sb-link" href="fedramp.html"><span class="sb-num">12</span><span class="sb-icon">🦅</span>FedRAMP Authorized</a>
+<a class="sb-link" href="deepfake-sec.html"><span class="sb-num">13</span><span class="sb-icon">🛡️</span>Deepfake Detection (Real-Time)</a>
+<a class="sb-link" href="dlp.html"><span class="sb-num">14</span><span class="sb-icon">🚧</span>DLP + Information Barriers</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../security.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🏢</span>
+      <h1 class="hero-title"><em>SAML 2.0 SSO</em></h1>
+      <p class="hero-desc">Enterprise SAML 2.0 SSO connects FasaFas to your identity provider — Okta, Azure AD, OneLogin, or any standards-compliant IdP — with JIT provisioning and attribute mapping.</p>
+      <div class="hero-tags"><span class="h-tag">SAML 2.0</span><span class="h-tag">IdP-Initiated</span><span class="h-tag">SP-Initiated</span><span class="h-tag">Attribute Mapping</span><span class="h-tag">Just-In-Time Provisioning</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">SAML Integration</div>
+<div class="tab " onclick="sw(this,'t2')">IdP Configuration</div>
+<div class="tab " onclick="sw(this,'t3')">Provisioning</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>SAML 2.0 SSO</div><div class='card' ><ul class='fl'><li>FasaFas is the Service Provider (SP) — your corporate IdP is the Identity Provider</li><li>Both SP-initiated SSO (user starts at FasaFas, redirected to IdP) and IdP-initiated SSO (user starts at IdP portal) are supported</li><li>SAML assertions encrypted using AES-256 in addition to HTTPS transport encryption</li><li>Assertion signature: IdP signs assertions with RSA-SHA256 — FasaFas validates signature against the IdP's public certificate</li><li>Single Logout (SLO): when user logs out of IdP, FasaFas session terminated automatically</li><li>Audience restriction: assertions validated to ensure they're intended for FasaFas specifically</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Setting Up SAML in Your IdP</div><div class='spec'><div class='spec-head'>🔧 Required IdP Configuration</div><div class='spec-row'><span class='sk'>SP Entity ID</span><span class='sv'>https://api.fasafas.app/saml/metadata</span></div><div class='spec-row'><span class='sk'>ACS URL</span><span class='sv'>https://api.fasafas.app/saml/callback</span></div><div class='spec-row'><span class='sk'>Sign responses</span><span class='sv'>Yes — RSA-SHA256</span></div><div class='spec-row'><span class='sk'>Name ID format</span><span class='sv'>emailAddress (urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress)</span></div><div class='spec-row'><span class='sk'>Required attributes</span><span class='sv'>email (required), firstName, lastName</span></div><div class='spec-row'><span class='sk'>Optional attributes</span><span class='sv'>department, title, phone, groups, manager</span></div></div><div class='hl'><div class='hl-title'>Tested IdPs</div><div class='hl-body'>Okta, Azure Active Directory, Google Workspace SAML, OneLogin, Ping Identity, ADFS 3.0+, Auth0, Shibboleth.</div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Just-In-Time (JIT) Provisioning</div><div class='card' ><ul class='fl'><li>When a new user authenticates via SAML for the first time — a FasaFas account is auto-created</li><li>No admin action required: user signs in → account provisioned instantly from SAML attributes</li><li>Attribute mapping: configure which SAML attributes populate FasaFas profile fields</li><li>Role assignment: map IdP groups to FasaFas roles (e.g., 'LDAP-Admins' → FasaFas Admin)</li><li>SCIM 2.0: for push provisioning (not waiting for first login) and deprovisioning — available Enterprise</li><li>De-provisioning: when user's IdP account disabled, FasaFas session revoked on next SSO attempt</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="oauth.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">OAuth 2.0 PKCE</div></div></a><span class="nav-counter">Feature 4 of 14</span><a class="nav-pg" href="passkeys.html"><div><div class="nav-label">Next</div><div class="nav-title">FIDO2 Passkeys & Biometric</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

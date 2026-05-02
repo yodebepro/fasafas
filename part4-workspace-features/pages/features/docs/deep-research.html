@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Deep Research: Multi-Source Reports</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#f9a8d4;--fc-bg:rgba(236,72,153,.14);--fc-b:rgba(236,72,153,.3);--fc-dim:rgba(236,72,153,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../docs.html">← Docs</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../docs.html">Docs</a><span class="bc-sep">/</span><span class="bc-cur">Deep Research: Multi-Source Reports</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Docs Features</div>
+    <a class="sb-link" href="rich-text.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Rich Text Editor</a>
+<a class="sb-link" href="co-editing.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Real-Time Co-Editing</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">3</span><span class="sb-icon">💬</span>Inline Comments & Suggestions</a>
+<a class="sb-link" href="embed.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Embed Recordings & Whiteboards</a>
+<a class="sb-link" href="sub-pages.html"><span class="sb-num">5</span><span class="sb-icon">📁</span>Nested Sub-Pages</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">6</span><span class="sb-icon">📜</span>Version History</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">7</span><span class="sb-icon">✍️</span>Writing Mode: AI Co-Author</a>
+<a class="sb-link active" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research: Multi-Source Reports</a>
+<a class="sb-link" href="from-transcript.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Create Doc from Meeting Transcript</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Mind Map Generation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">11</span><span class="sb-icon">✅</span>Action Items → Tasks</a>
+<a class="sb-link" href="grammar.html"><span class="sb-num">12</span><span class="sb-icon">🔤</span>Grammar & Style Suggestions</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../docs.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔬</span>
+      <h1 class="hero-title"><em>Deep Research: Multi-Source Reports</em></h1>
+      <p class="hero-desc">Trigger a Deep Research report from inside any doc — AI decomposes your question, browses the web, reads sources, and inserts a structured, cited report directly into the document.</p>
+      <div class="hero-tags"><span class="h-tag">Multi-Step</span><span class="h-tag">Web Search</span><span class="h-tag">Citations</span><span class="h-tag">Structured Report</span><span class="h-tag">Insert to Doc</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Deep Research in Docs</div>
+<div class="tab " onclick="sw(this,'t2')">Research Pipeline</div>
+<div class="tab " onclick="sw(this,'t3')">Citation Format</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Deep Research in Docs</div><div class='card' ><ul class='fl'><li>Trigger: type /research [your question] in any doc</li><li>Or: AI Assistant panel → Deep Research tab → enter question → 'Insert into Doc'</li><li>A progress panel shows research steps as they complete (30 seconds – 5 minutes depending on depth)</li><li>Result inserted at cursor position as a structured doc section: H2 title, summary paragraph, detailed sections, sources list</li><li>Result is editable: treat it as a starting point — edit, remove, or expand any section</li><li>Re-run: hover the inserted section → 'Update Research' → refresh with latest web data</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Research Pipeline</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Query decomposition into sub-questions (GPT-4o)</div><div class='step-desc'>5–12 sub-questions identifying different research angles</div></div></li><li><div><div class='step-title'>Parallel web search per sub-question</div><div class='step-desc'>Top 3–5 sources read in full per angle</div></div></li><li><div><div class='step-title'>Source extraction and cross-referencing (Claude)</div><div class='step-desc'>Key claims extracted, conflicts flagged, gaps identified</div></div></li><li><div><div class='step-title'>Structured report synthesis</div><div class='step-desc'>Executive summary + sections + citations + confidence scores</div></div></li><li><div><div class='step-title'>Inserted into doc at cursor</div><div class='step-desc'>Formatted as proper H2/H3 hierarchy — not a wall of text</div></div></li></ol></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Citation Format</div><div class='card' ><ul class='fl'><li>Inline citations: superscript numbers [1] [2] linked to the sources list at bottom</li><li>Sources section: automatically appended — title, URL, author, date, relevance score</li><li>Hover any citation → tooltip shows source title and URL</li><li>Click citation → opens source in new tab</li><li>Export: when doc is exported to PDF, citations formatted as footnotes or endnotes</li><li>Copy citations: 'Copy as APA' / 'Copy as MLA' / 'Copy as BibTeX' from the sources section</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="writing-mode.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Writing Mode: AI Co-Author</div></div></a><span class="nav-counter">Feature 8 of 12</span><a class="nav-pg" href="from-transcript.html"><div><div class="nav-label">Next</div><div class="nav-title">Create Doc from Meeting Transcript</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

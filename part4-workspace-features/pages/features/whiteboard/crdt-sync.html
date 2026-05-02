@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — CRDT Real-Time Sync</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">CRDT Real-Time Sync</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link active" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔄</span>
+      <h1 class="hero-title"><em>CRDT Real-Time Sync</em></h1>
+      <p class="hero-desc">Every canvas edit syncs to all collaborators in real time using CRDT (Conflict-free Replicated Data Types) — no locking, no conflicts, no version mismatches, even after going offline and reconnecting.</p>
+      <div class="hero-tags"><span class="h-tag">Real-Time</span><span class="h-tag">Conflict-Free</span><span class="h-tag">Offline Support</span><span class="h-tag">Yjs</span><span class="h-tag">No Lock Contention</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How CRDT Works</div>
+<div class="tab " onclick="sw(this,'t2')">Offline Mode</div>
+<div class="tab " onclick="sw(this,'t3')">Scalability</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>How CRDT Real-Time Sync Works</div><div class='card' ><ul class='fl'><li>CRDT = Conflict-free Replicated Data Type — a mathematical data structure that merges concurrent edits without conflicts</li><li>Implementation: Yjs library with FasaFas's y-websocket sync provider</li><li>Every object (shape, note, connector) is a Yjs shared type — edits modeled as operations, not full state snapshots</li><li>Two people moving the same object simultaneously: both moves are applied, then resolved by last-write-wins on position</li><li>Two people editing the same text simultaneously: character-level merging — no data lost</li><li>All operations broadcast via WebSocket to all connected peers and also persisted to the server</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Offline Mode</div><div class='card' ><ul class='fl'><li>If you lose your internet connection, the whiteboard continues to function locally</li><li>Changes made offline are queued as CRDT operations</li><li>When connection restores: queued operations sync automatically — merged with any changes made by others while you were offline</li><li>No data loss: offline work is never discarded</li><li>Status indicator: a yellow banner appears when offline; green when reconnected and synced</li><li>IndexedDB used for local persistence — canvas state survives browser refresh even while offline</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Scale &amp; Performance</div><div class='spec'><div class='spec-head'>📊 CRDT Sync Specs</div><div class='spec-row'><span class='sk'>Concurrent editors</span><span class='sv'>Up to 50 simultaneous editors on one canvas — tested and supported</span></div><div class='spec-row'><span class='sk'>Sync latency</span><span class='sv'>p50: 80ms end-to-end. p95: 200ms</span></div><div class='spec-row'><span class='sk'>Operation size</span><span class='sv'>Most operations: 50–200 bytes — very low bandwidth</span></div><div class='spec-row'><span class='sk'>Viewers</span><span class='sv'>Unlimited read-only viewers — no sync load added</span></div><div class='spec-row'><span class='sk'>Canvas size limit</span><span class='sv'>Up to 10,000 objects per canvas (soft limit — performance degrades beyond this)</span></div></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="mindmap.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Mindmap Auto-Layout</div></div></a><span class="nav-counter">Feature 8 of 14</span><a class="nav-pg" href="cursors.html"><div><div class="nav-label">Next</div><div class="nav-title">Named Cursors per Participant</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

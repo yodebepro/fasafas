@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Tables, Frames & Image Insert</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Tables, Frames & Image Insert</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link active" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">📊</span>
+      <h1 class="hero-title"><em>Tables, Frames & Image Insert</em></h1>
+      <p class="hero-desc">Structure your canvas with tables for data, frames to organize sections, and embedded images or code blocks — making whiteboards work for technical documentation and structured planning.</p>
+      <div class="hero-tags"><span class="h-tag">Tables</span><span class="h-tag">Frames</span><span class="h-tag">Image Insert</span><span class="h-tag">Embed</span><span class="h-tag">Code Block</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Tables</div>
+<div class="tab " onclick="sw(this,'t2')">Frames</div>
+<div class="tab " onclick="sw(this,'t3')">Images & Embeds</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Tables on the Canvas</div><div class='card' ><ul class='fl'><li>Insert: toolbar → Table → choose rows × columns (up to 20×20)</li><li>Click any cell → type text, numbers, or paste content</li><li>Resize rows/columns: drag the border between cells</li><li>Add row: click + at the bottom of the table. Add column: click + at the right.</li><li>Delete row/column: right-click header → Delete Row / Column</li><li>Sort column: right-click column header → Sort A→Z or Z→A</li><li>Table text supports: **bold**, *italic*, `code` markdown</li><li>Style: header row can be styled differently (bold, colored background)</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Frames (Sections)</div><div class='card' ><ul class='fl'><li>Frames are named sections that organize areas of the canvas into labeled slides</li><li>Create: press F → drag to draw frame area</li><li>Name: double-click frame header → rename</li><li>Frame navigator: left sidebar lists all frames — click to jump to any frame</li><li>Use for: separate sections of a Kanban, individual retro topics, slide-by-slide presentation</li><li>Present mode: frames become slides — navigate frame-by-frame for a presentation</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Images &amp; Embeds</div><div class='card' ><ul class='fl'><li>Insert image: paste from clipboard, drag-and-drop from your computer, or insert from URL</li><li>Supported formats: JPG, PNG, GIF (animated), WebP, SVG</li><li>Resize: drag corner handle — maintains aspect ratio unless Shift held</li><li>Embed FasaFas Recording: paste meeting recording URL → shows thumbnail player inline</li><li>Embed YouTube/Loom: paste URL → inline playable video card</li><li>Code block: insert a code block with syntax highlighting — good for technical whiteboards</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="sticky-notes.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Sticky Notes (Color Themes)</div></div></a><span class="nav-counter">Feature 6 of 14</span><a class="nav-pg" href="mindmap.html"><div><div class="nav-label">Next</div><div class="nav-title">Mindmap Auto-Layout</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Smart Connectors (Auto-Route)</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Smart Connectors (Auto-Route)</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link active" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔗</span>
+      <h1 class="hero-title"><em>Smart Connectors (Auto-Route)</em></h1>
+      <p class="hero-desc">Smart connectors that auto-route around obstacles, snap to shape connection points, and update their paths automatically when you move shapes — no manual rerouting ever needed.</p>
+      <div class="hero-tags"><span class="h-tag">Auto-Route</span><span class="h-tag">Orthogonal</span><span class="h-tag">Curved</span><span class="h-tag">Elbow</span><span class="h-tag">Label on Connector</span><span class="h-tag">Bidirectional</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Creating Connectors</div>
+<div class="tab " onclick="sw(this,'t2')">Routing Styles</div>
+<div class="tab " onclick="sw(this,'t3')">Labels & Arrowheads</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Creating Smart Connectors</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Hover over a shape</div><div class='step-desc'>Blue connection dots appear on the edges</div></div></li><li><div><div class='step-title'>Click and drag from a dot</div><div class='step-desc'>A connector line starts from that connection point</div></div></li><li><div><div class='step-title'>Drag to another shape</div><div class='step-desc'>Connection snaps to the nearest connection point on the target shape</div></div></li><li><div><div class='step-title'>Release to connect</div><div class='step-desc'>Connector is live — it will follow both shapes if either moves</div></div></li><li><div><div class='step-title'>Or: use the Connector tool (press C)</div><div class='step-desc'>Click shape A then click shape B — connector created automatically between them</div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Connector Routing Styles</div><div class='spec'><div class='spec-head'>🔗 Routing Options</div><div class='spec-row'><span class='sk'>Orthogonal (default)</span><span class='sv'>90-degree turns only — standard flowchart style. Auto-routes around shapes.</span></div><div class='spec-row'><span class='sk'>Curved</span><span class='sv'>Smooth bezier curves — organic look for concept maps and mind maps.</span></div><div class='spec-row'><span class='sk'>Elbow</span><span class='sv'>L-shaped connector — one bend point, manually draggable.</span></div><div class='spec-row'><span class='sk'>Straight</span><span class='sv'>Direct line between two points — no routing around obstacles.</span></div><div class='spec-row'><span class='sk'>Dynamic</span><span class='sv'>Auto-switches between orthogonal and curved based on canvas density.</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Labels &amp; Arrowheads</div><div class='card' ><ul class='fl'><li>Add label: double-click any connector → type text → label appears centered on the connector</li><li>Label moves with the connector — stays centered when shapes move</li><li>Arrowhead options: none, open arrow, filled arrow, diamond, circle, square</li><li>Bidirectional: arrowheads on both ends — for two-way relationships</li><li>Line style: solid, dashed, dotted — matches your diagram's convention</li><li>Color: connector color and label color set independently</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="shapes.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Shapes: Rect, Circle, Diamond, Arrow</div></div></a><span class="nav-counter">Feature 4 of 14</span><a class="nav-pg" href="sticky-notes.html"><div><div class="nav-label">Next</div><div class="nav-title">Sticky Notes (Color Themes)</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Mind Map Generation</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#f9a8d4;--fc-bg:rgba(236,72,153,.14);--fc-b:rgba(236,72,153,.3);--fc-dim:rgba(236,72,153,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../docs.html">← Docs</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../docs.html">Docs</a><span class="bc-sep">/</span><span class="bc-cur">Mind Map Generation</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Docs Features</div>
+    <a class="sb-link" href="rich-text.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Rich Text Editor</a>
+<a class="sb-link" href="co-editing.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Real-Time Co-Editing</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">3</span><span class="sb-icon">💬</span>Inline Comments & Suggestions</a>
+<a class="sb-link" href="embed.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Embed Recordings & Whiteboards</a>
+<a class="sb-link" href="sub-pages.html"><span class="sb-num">5</span><span class="sb-icon">📁</span>Nested Sub-Pages</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">6</span><span class="sb-icon">📜</span>Version History</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">7</span><span class="sb-icon">✍️</span>Writing Mode: AI Co-Author</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research: Multi-Source Reports</a>
+<a class="sb-link" href="from-transcript.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Create Doc from Meeting Transcript</a>
+<a class="sb-link active" href="mindmap.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Mind Map Generation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">11</span><span class="sb-icon">✅</span>Action Items → Tasks</a>
+<a class="sb-link" href="grammar.html"><span class="sb-num">12</span><span class="sb-icon">🔤</span>Grammar & Style Suggestions</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../docs.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🧠</span>
+      <h1 class="hero-title"><em>Mind Map Generation</em></h1>
+      <p class="hero-desc">Generate an interactive mind map from any document's content with one click — AI identifies the main topics and sub-points and renders them as an explorable visual in a side panel.</p>
+      <div class="hero-tags"><span class="h-tag">AI Generated</span><span class="h-tag">From Doc Content</span><span class="h-tag">Interactive</span><span class="h-tag">Export</span><span class="h-tag">Sync</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Generating a Mind Map</div>
+<div class="tab " onclick="sw(this,'t2')">Interacting with the Map</div>
+<div class="tab " onclick="sw(this,'t3')">Export & Sync</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Generate Mind Map from Doc</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Open any doc → Doc menu (⋯) → Generate Mind Map</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Or: type /mindmap in the doc body</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>AI reads the full document → identifies main headings as branches → sub-headings and key concepts as children</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Mind map renders in a side panel alongside the doc — doesn't replace the doc view</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Generation time: 5–15 seconds depending on doc length</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Re-generate: click 'Refresh' if doc content has changed since last generation</div><div class='step-desc'></div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Interacting with the Map</div><div class='card' ><ul class='fl'><li>Pan and zoom the mind map like a whiteboard</li><li>Click any node → doc scrolls to that section (bidirectional link)</li><li>Expand/collapse branches: click the circle on any node</li><li>Edit labels: double-click any node → type to rename</li><li>Add new nodes: Tab (child) / Enter (sibling) — same as Whiteboard mindmap</li><li>Delete nodes: Delete key — removes from mind map but not from doc</li><li>Changes to the mind map don't update the doc — it's a visualization, not the source of truth</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Export &amp; Sync to Whiteboard</div><div class='card' ><ul class='fl'><li>'Open in Whiteboard' button → mind map transferred to a new FasaFas Whiteboard</li><li>In whiteboard form: full collaboration, cursors, CRDT sync, and all whiteboard tools available</li><li>Export from panel: PNG / SVG / OPML</li><li>Share mind map link: independent shareable URL for the visualization (view-only)</li><li>Embed in another doc: /embed → paste mind map URL → renders interactive mind map inline</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="from-transcript.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Create Doc from Meeting Transcript</div></div></a><span class="nav-counter">Feature 10 of 12</span><a class="nav-pg" href="action-items.html"><div><div class="nav-label">Next</div><div class="nav-title">Action Items → Tasks</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

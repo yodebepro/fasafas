@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Writing Mode: AI Co-Author</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#f9a8d4;--fc-bg:rgba(236,72,153,.14);--fc-b:rgba(236,72,153,.3);--fc-dim:rgba(236,72,153,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../docs.html">← Docs</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../docs.html">Docs</a><span class="bc-sep">/</span><span class="bc-cur">Writing Mode: AI Co-Author</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Docs Features</div>
+    <a class="sb-link" href="rich-text.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Rich Text Editor</a>
+<a class="sb-link" href="co-editing.html"><span class="sb-num">2</span><span class="sb-icon">👥</span>Real-Time Co-Editing</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">3</span><span class="sb-icon">💬</span>Inline Comments & Suggestions</a>
+<a class="sb-link" href="embed.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Embed Recordings & Whiteboards</a>
+<a class="sb-link" href="sub-pages.html"><span class="sb-num">5</span><span class="sb-icon">📁</span>Nested Sub-Pages</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">6</span><span class="sb-icon">📜</span>Version History</a>
+<a class="sb-link active" href="writing-mode.html"><span class="sb-num">7</span><span class="sb-icon">✍️</span>Writing Mode: AI Co-Author</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research: Multi-Source Reports</a>
+<a class="sb-link" href="from-transcript.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Create Doc from Meeting Transcript</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Mind Map Generation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">11</span><span class="sb-icon">✅</span>Action Items → Tasks</a>
+<a class="sb-link" href="grammar.html"><span class="sb-num">12</span><span class="sb-icon">🔤</span>Grammar & Style Suggestions</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../docs.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">✍️</span>
+      <h1 class="hero-title"><em>Writing Mode: AI Co-Author</em></h1>
+      <p class="hero-desc">Activate Writing Mode in any doc and Claude becomes your co-author — suggesting next sentences as ghost text, rewriting selected paragraphs, adjusting tone, and improving clarity all inline.</p>
+      <div class="hero-tags"><span class="h-tag">Claude Inline</span><span class="h-tag">Ghost Text</span><span class="h-tag">Slash Commands</span><span class="h-tag">Rewrite</span><span class="h-tag">Tone Adjust</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Writing Mode Features</div>
+<div class="tab " onclick="sw(this,'t2')">Slash Commands</div>
+<div class="tab " onclick="sw(this,'t3')">Under the Hood</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>AI Writing Mode</div><div class='g2'><div class='card' ><div class='ph3'>Ghost Text Suggestions</div><ul class='fl'><li>AI suggests the next sentence as you type — appears as faded ghost text after your cursor</li><li>Press Tab to accept the full suggestion</li><li>Press → to accept word by word</li><li>Press Esc to dismiss</li><li>Adapts to your writing style during the session</li><li>Works in all block types: paragraphs, bullets, headings, table cells</li></ul></div><div class='card' ><div class='ph3'>Selection-Based Actions</div><ul class='fl'><li>Highlight text → floating toolbar appears above selection</li><li>Rewrite — improve clarity and flow</li><li>Shorten — reduce length by ~50%</li><li>Expand — add depth and detail</li><li>Tone: Formal / Casual / Persuasive / Empathetic</li><li>Translate — to any supported language</li><li>Fix Grammar — correct errors without changing meaning</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Writing Mode Slash Commands</div><div class='spec'><div class='spec-head'>💡 Slash Commands (Writing Mode)</div><div class='spec-row'><span class='sk'>/ai [prompt]</span><span class='sv'>Generate content at cursor from any description</span></div><div class='spec-row'><span class='sk'>/rewrite</span><span class='sv'>Rewrite current paragraph</span></div><div class='spec-row'><span class='sk'>/shorten</span><span class='sv'>Condense current paragraph ~50%</span></div><div class='spec-row'><span class='sk'>/expand</span><span class='sv'>Add depth to current paragraph</span></div><div class='spec-row'><span class='sk'>/tone formal</span><span class='sv'>Formal/professional register</span></div><div class='spec-row'><span class='sk'>/tone casual</span><span class='sv'>Conversational, friendly tone</span></div><div class='spec-row'><span class='sk'>/translate [lang]</span><span class='sv'>Translate selected text</span></div><div class='spec-row'><span class='sk'>/continue</span><span class='sv'>Generate next paragraph</span></div><div class='spec-row'><span class='sk'>/research [topic]</span><span class='sv'>Trigger Deep Research and insert results</span></div><div class='spec-row'><span class='sk'>/summary</span><span class='sv'>Insert TL;DR of entire document at top</span></div><div class='spec-row'><span class='sk'>/outline</span><span class='sv'>Generate a document outline from current content</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Technical Details</div><div class='card' ><ul class='fl'><li>Model: Claude 3.5 Sonnet — best at stylistic instruction-following</li><li>Streaming: text appears word-by-word via SSE — natural co-writing feel</li><li>Context: up to 8,000 tokens of surrounding content sent per request</li><li>Undo: AI changes are part of document history — Cmd+Z reverts any AI suggestion</li><li>Admin control: enable/disable Writing Mode per user group</li><li>Privacy: doc content sent to Claude API — subject to FasaFas's data processing agreement</li><li>Not available in read-only or comment-only permission modes</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="version-history.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Version History</div></div></a><span class="nav-counter">Feature 7 of 12</span><a class="nav-pg" href="deep-research.html"><div><div class="nav-label">Next</div><div class="nav-title">Deep Research: Multi-Source Reports</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

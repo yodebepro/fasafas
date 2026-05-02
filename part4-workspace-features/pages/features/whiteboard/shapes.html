@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Shapes: Rect, Circle, Diamond, Arrow</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Shapes: Rect, Circle, Diamond, Arrow</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link active" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔷</span>
+      <h1 class="hero-title"><em>Shapes: Rect, Circle, Diamond, Arrow</em></h1>
+      <p class="hero-desc">A complete set of shapes for diagrams and flowcharts — rectangles, circles, diamonds, triangles, and arrows — each with fill, stroke, text, and customizable style.</p>
+      <div class="hero-tags"><span class="h-tag">Rectangle</span><span class="h-tag">Circle</span><span class="h-tag">Diamond</span><span class="h-tag">Arrow</span><span class="h-tag">Text Inside</span><span class="h-tag">Snap to Grid</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Shape Library</div>
+<div class="tab " onclick="sw(this,'t2')">Styling</div>
+<div class="tab " onclick="sw(this,'t3')">Text in Shapes</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Shape Library</div><div class='g2'><div class='card' ><div class='ph3'>Basic Shapes</div><ul class='fl'><li>Rectangle (rounded or sharp corners)</li><li>Circle / Ellipse</li><li>Diamond (for flowchart decisions)</li><li>Triangle (right / equilateral / isosceles)</li><li>Hexagon, Pentagon, Star (2–12 points)</li><li>Cross / Plus sign</li><li>Cloud / Callout / Speech bubble</li></ul></div><div class='card' ><div class='ph3'>Flowchart Shapes</div><ul class='fl'><li>Process (rectangle) — standard step</li><li>Decision (diamond)</li><li>Terminator (rounded ends) — start/end</li><li>Parallelogram — data input/output</li><li>Document shape</li><li>Database (cylinder)</li><li>Swimlane container (auto-resizes to content)</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Shape Styling</div><div class='spec'><div class='spec-head'>🎨 Style Properties</div><div class='spec-row'><span class='sk'>Fill</span><span class='sv'>Solid color, gradient (linear/radial), or none (transparent)</span></div><div class='spec-row'><span class='sk'>Stroke</span><span class='sv'>Color, width (0–20px), dash pattern (solid/dashed/dotted)</span></div><div class='spec-row'><span class='sk'>Opacity</span><span class='sv'>0–100% for the entire shape</span></div><div class='spec-row'><span class='sk'>Shadow</span><span class='sv'>Drop shadow with configurable offset, blur, and color</span></div><div class='spec-row'><span class='sk'>Corner radius</span><span class='sv'>For rectangles: 0–50px corner rounding</span></div><div class='spec-row'><span class='sk'>Color presets</span><span class='sv'>8 quick-access color swatches per brand theme, set by admin</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Text Inside Shapes</div><div class='card' ><ul class='fl'><li>Double-click any shape to enter text-editing mode</li><li>Text inherits shape fill for contrast (auto-detects dark/light background)</li><li>Font: size, weight, italic, underline — per shape</li><li>Text alignment: horizontal (left/center/right) and vertical (top/middle/bottom)</li><li>Auto-size: shape auto-expands to fit text, or set a fixed size</li><li>Overflow: text that exceeds fixed-size shape truncates with '...' indicator</li><li>Markdown in text: **bold**, *italic*, `code` rendered inline</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="drawing-tools.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Pen, Highlighter & Eraser</div></div></a><span class="nav-counter">Feature 3 of 14</span><a class="nav-pg" href="connectors.html"><div><div class="nav-label">Next</div><div class="nav-title">Smart Connectors (Auto-Route)</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

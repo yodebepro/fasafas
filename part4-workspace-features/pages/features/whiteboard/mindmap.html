@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Mindmap Auto-Layout</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Mindmap Auto-Layout</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link active" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🧠</span>
+      <h1 class="hero-title"><em>Mindmap Auto-Layout</em></h1>
+      <p class="hero-desc">Build mindmaps with keyboard-first creation — press Tab to add a child branch, Enter to add a sibling — and let auto-layout arrange the tree structure as you think.</p>
+      <div class="hero-tags"><span class="h-tag">Auto-Layout</span><span class="h-tag">Branch Children</span><span class="h-tag">Collapse</span><span class="h-tag">Keyboard-First</span><span class="h-tag">Export to Outline</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Creating Mindmaps</div>
+<div class="tab " onclick="sw(this,'t2')">Layout Options</div>
+<div class="tab " onclick="sw(this,'t3')">Export</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Building a Mindmap</div><div class='spec'><div class='spec-head'>⌨️ Mindmap Keyboard Shortcuts</div><div class='spec-row'><span class='sk'>Tab</span><span class='sv'>Add a child branch to the selected node</span></div><div class='spec-row'><span class='sk'>Enter</span><span class='sv'>Add a sibling branch (same level) below the selected node</span></div><div class='spec-row'><span class='sk'>Delete</span><span class='sv'>Remove the selected node and all its children</span></div><div class='spec-row'><span class='sk'>Backspace</span><span class='sv'>Remove just the selected node — promotes children to parent level</span></div><div class='spec-row'><span class='sk'>Space</span><span class='sv'>Edit the text of the selected node</span></div><div class='spec-row'><span class='sk'>Collapse/Expand</span><span class='sv'>Click the small circle on a node to collapse/expand its children</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Layout Options</div><div class='spec'><div class='spec-head'>🧠 Mindmap Layouts</div><div class='spec-row'><span class='sk'>Horizontal (default)</span><span class='sv'>Root in center, branches spread left and right — classic mind map</span></div><div class='spec-row'><span class='sk'>Vertical</span><span class='sv'>Root at top, branches grow downward — like an org chart</span></div><div class='spec-row'><span class='sk'>Right-only</span><span class='sv'>Root on the left, branches only on the right — outline style</span></div><div class='spec-row'><span class='sk'>Radial</span><span class='sv'>Root in center, branches in all directions — organic look</span></div><div class='spec-row'><span class='sk'>Auto-balance</span><span class='sv'>FasaFas balances branch distribution automatically to minimize whitespace</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Mindmap Export</div><div class='card' ><ul class='fl'><li>Export as image: PNG, SVG — preserves visual layout</li><li>Export as outline: converts to a numbered/bulleted markdown outline</li><li>Push to Doc: creates a FasaFas Doc with headings matching the mindmap structure</li><li>Export to OPML: import into mind-map tools like XMind, Miro, Mural</li><li>Share link: anyone with the link can view the mindmap in their browser (no account required for view-only)</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="tables-frames.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Tables, Frames & Image Insert</div></div></a><span class="nav-counter">Feature 7 of 14</span><a class="nav-pg" href="crdt-sync.html"><div><div class="nav-label">Next</div><div class="nav-title">CRDT Real-Time Sync</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

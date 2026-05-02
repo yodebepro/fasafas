@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Infinite Canvas (Pan & Zoom)</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#fcd34d;--fc-bg:rgba(245,158,11,.14);--fc-b:rgba(245,158,11,.3);--fc-dim:rgba(245,158,11,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../whiteboard.html">← Whiteboard</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../whiteboard.html">Whiteboard</a><span class="bc-sep">/</span><span class="bc-cur">Infinite Canvas (Pan & Zoom)</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Whiteboard Features</div>
+    <a class="sb-link active" href="infinite-canvas.html"><span class="sb-num">1</span><span class="sb-icon">🔲</span>Infinite Canvas (Pan & Zoom)</a>
+<a class="sb-link" href="drawing-tools.html"><span class="sb-num">2</span><span class="sb-icon">✏️</span>Pen, Highlighter & Eraser</a>
+<a class="sb-link" href="shapes.html"><span class="sb-num">3</span><span class="sb-icon">🔷</span>Shapes: Rect, Circle, Diamond, Arrow</a>
+<a class="sb-link" href="connectors.html"><span class="sb-num">4</span><span class="sb-icon">🔗</span>Smart Connectors (Auto-Route)</a>
+<a class="sb-link" href="sticky-notes.html"><span class="sb-num">5</span><span class="sb-icon">📌</span>Sticky Notes (Color Themes)</a>
+<a class="sb-link" href="tables-frames.html"><span class="sb-num">6</span><span class="sb-icon">📊</span>Tables, Frames & Image Insert</a>
+<a class="sb-link" href="mindmap.html"><span class="sb-num">7</span><span class="sb-icon">🧠</span>Mindmap Auto-Layout</a>
+<a class="sb-link" href="crdt-sync.html"><span class="sb-num">8</span><span class="sb-icon">🔄</span>CRDT Real-Time Sync</a>
+<a class="sb-link" href="cursors.html"><span class="sb-num">9</span><span class="sb-icon">👆</span>Named Cursors per Participant</a>
+<a class="sb-link" href="follow-mode.html"><span class="sb-num">10</span><span class="sb-icon">📍</span>Follow Mode & Presenter Mode</a>
+<a class="sb-link" href="comments.html"><span class="sb-num">11</span><span class="sb-icon">💬</span>Comments on Canvas Objects</a>
+<a class="sb-link" href="version-history.html"><span class="sb-num">12</span><span class="sb-icon">📜</span>Version History & Restore</a>
+<a class="sb-link" href="templates.html"><span class="sb-num">13</span><span class="sb-icon">📋</span>100+ Templates</a>
+<a class="sb-link" href="export.html"><span class="sb-num">14</span><span class="sb-icon">💾</span>Export: PNG, PDF, SVG</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../whiteboard.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔲</span>
+      <h1 class="hero-title"><em>Infinite Canvas (Pan & Zoom)</em></h1>
+      <p class="hero-desc">An infinite, zoomable canvas that scales from sticky-note brainstorms to multi-team architecture diagrams — pan with your mouse or trackpad, zoom from 10% to 400%, and navigate with a minimap.</p>
+      <div class="hero-tags"><span class="h-tag">Infinite</span><span class="h-tag">Pan</span><span class="h-tag">Zoom</span><span class="h-tag">Viewport</span><span class="h-tag">Minimap</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Canvas Basics</div>
+<div class="tab " onclick="sw(this,'t2')">Navigation</div>
+<div class="tab " onclick="sw(this,'t3')">Performance</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Infinite Canvas</div><div class='card' ><ul class='fl'><li>The canvas extends infinitely in all directions — no page size or boundary</li><li>Objects created anywhere on the canvas — drag to position</li><li>Selection: click an object, or drag a selection box around multiple objects</li><li>Move: drag selected objects to any position</li><li>Resize: drag corner or edge handles — hold Shift to constrain aspect ratio</li><li>Copy/paste: Ctrl+C / Ctrl+V — pastes near the original position</li><li>Undo/Redo: Ctrl+Z / Ctrl+Y — full history throughout the session</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Navigation Controls</div><div class='spec'><div class='spec-head'>🧭 Navigation Methods</div><div class='spec-row'><span class='sk'>Pan</span><span class='sv'>Click and drag on empty canvas area · or two-finger drag on trackpad · or hold Space + drag</span></div><div class='spec-row'><span class='sk'>Zoom</span><span class='sv'>Mouse scroll wheel · trackpad pinch · or use the zoom control (bottom right)</span></div><div class='spec-row'><span class='sk'>Zoom to fit</span><span class='sv'>Press Cmd+Shift+H (Mac) or Ctrl+Shift+H (Win) — fits all objects in view</span></div><div class='spec-row'><span class='sk'>Zoom to selection</span><span class='sv'>Select objects → Cmd+Shift+F — zoom to show only selected objects</span></div><div class='spec-row'><span class='sk'>Minimap</span><span class='sv'>Bottom-right corner shows full canvas overview — click to navigate · drag the viewport rectangle</span></div><div class='spec-row'><span class='sk'>Go to origin</span><span class='sv'>Press Cmd+0 (Mac) / Ctrl+0 (Win) — snaps back to the center of the canvas</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Performance at Scale</div><div class='card' ><ul class='fl'><li>Virtual rendering: only objects in the current viewport are rendered — off-screen objects don't impact performance</li><li>Tested with up to 10,000 sticky notes, shapes, and connectors on a single canvas</li><li>Object level-of-detail: at low zoom, complex objects simplify to bounding box representations</li><li>Collaboration scale: up to 50 simultaneous editors with CRDT sync</li><li>Read-only viewers: unlimited — no performance impact for viewers-only</li><li>Auto-archiving: canvases inactive for 90 days moved to cold storage (still accessible, slower to load)</li></ul></div></div></div>
+    <div class="nav-strip"><div class="nav-pg end">← Start</div><span class="nav-counter">Feature 1 of 14</span><a class="nav-pg" href="drawing-tools.html"><div><div class="nav-label">Next</div><div class="nav-title">Pen, Highlighter & Eraser</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>
