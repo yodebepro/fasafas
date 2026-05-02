@@ -1,315 +1,942 @@
-/* FasaFas — Global Translation Widget
-   - Floating globe button on every page
-   - All world languages (195 languages)
-   - Page translates via Google Translate free API
-   - Resets to English on page refresh automatically
-*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Backend Developer Portal</title>
+<style>
+:root{
+  --bg:#060e1a;--bg2:#0a1525;--bg3:#0f1e35;--card:#0c1828;
+  --border:#172540;--accent:#2563eb;--accent2:#3b82f6;--accent3:#60a5fa;
+  --green:#10b981;--amber:#f59e0b;--red:#ef4444;--purple:#8b5cf6;
+  --teal:#14b8a6;--pink:#ec4899;--orange:#f97316;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
+  --font:'Segoe UI',system-ui,sans-serif;--mono:'Consolas','SF Mono',monospace;
+  --sidebar:248px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 
-(function () {
-  'use strict';
+/* ════════ LOGIN ════════ */
+#login-screen{
+  position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(ellipse at 15% 50%,rgba(37,99,235,.14),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(16,185,129,.08),transparent 50%),
+    radial-gradient(ellipse at 50% 90%,rgba(139,92,246,.08),transparent 50%),
+    var(--bg);
+}
+.login-box{
+  width:100%;max-width:430px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:18px;
+  padding:40px 36px;box-shadow:0 28px 90px rgba(0,0,0,.7);
+}
+.login-logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}
+.login-logo-dot{width:9px;height:9px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.login-logo-text{font-size:21px;font-weight:900;color:var(--accent2);letter-spacing:-.4px}
+.login-logo-badge{
+  margin-left:auto;padding:3px 10px;border-radius:6px;
+  background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);
+  color:#6ee7b7;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+}
+.login-title{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+.login-sub{color:var(--text2);font-size:13px;margin-bottom:26px;line-height:1.6}
 
-  const LANGUAGES = [
-    {code:'af',name:'Afrikaans'},
-    {code:'sq',name:'Albanian'},
-    {code:'am',name:'Amharic'},
-    {code:'ar',name:'Arabic'},
-    {code:'hy',name:'Armenian'},
-    {code:'az',name:'Azerbaijani'},
-    {code:'eu',name:'Basque'},
-    {code:'be',name:'Belarusian'},
-    {code:'bn',name:'Bengali'},
-    {code:'bs',name:'Bosnian'},
-    {code:'bg',name:'Bulgarian'},
-    {code:'ca',name:'Catalan'},
-    {code:'ceb',name:'Cebuano'},
-    {code:'zh-CN',name:'Chinese (Simplified)'},
-    {code:'zh-TW',name:'Chinese (Traditional)'},
-    {code:'co',name:'Corsican'},
-    {code:'hr',name:'Croatian'},
-    {code:'cs',name:'Czech'},
-    {code:'da',name:'Danish'},
-    {code:'nl',name:'Dutch'},
-    {code:'en',name:'English'},
-    {code:'eo',name:'Esperanto'},
-    {code:'et',name:'Estonian'},
-    {code:'fi',name:'Finnish'},
-    {code:'fr',name:'French'},
-    {code:'fy',name:'Frisian'},
-    {code:'gl',name:'Galician'},
-    {code:'ka',name:'Georgian'},
-    {code:'de',name:'German'},
-    {code:'el',name:'Greek'},
-    {code:'gu',name:'Gujarati'},
-    {code:'ht',name:'Haitian Creole'},
-    {code:'ha',name:'Hausa'},
-    {code:'haw',name:'Hawaiian'},
-    {code:'iw',name:'Hebrew'},
-    {code:'hi',name:'Hindi'},
-    {code:'hmn',name:'Hmong'},
-    {code:'hu',name:'Hungarian'},
-    {code:'is',name:'Icelandic'},
-    {code:'ig',name:'Igbo'},
-    {code:'id',name:'Indonesian'},
-    {code:'ga',name:'Irish'},
-    {code:'it',name:'Italian'},
-    {code:'ja',name:'Japanese'},
-    {code:'jw',name:'Javanese'},
-    {code:'kn',name:'Kannada'},
-    {code:'kk',name:'Kazakh'},
-    {code:'km',name:'Khmer'},
-    {code:'rw',name:'Kinyarwanda'},
-    {code:'ko',name:'Korean'},
-    {code:'ku',name:'Kurdish'},
-    {code:'ky',name:'Kyrgyz'},
-    {code:'lo',name:'Lao'},
-    {code:'la',name:'Latin'},
-    {code:'lv',name:'Latvian'},
-    {code:'lt',name:'Lithuanian'},
-    {code:'lb',name:'Luxembourgish'},
-    {code:'mk',name:'Macedonian'},
-    {code:'mg',name:'Malagasy'},
-    {code:'ms',name:'Malay'},
-    {code:'ml',name:'Malayalam'},
-    {code:'mt',name:'Maltese'},
-    {code:'mi',name:'Maori'},
-    {code:'mr',name:'Marathi'},
-    {code:'mn',name:'Mongolian'},
-    {code:'my',name:'Myanmar (Burmese)'},
-    {code:'ne',name:'Nepali'},
-    {code:'no',name:'Norwegian'},
-    {code:'ny',name:'Nyanja (Chichewa)'},
-    {code:'or',name:'Odia (Oriya)'},
-    {code:'ps',name:'Pashto'},
-    {code:'fa',name:'Persian'},
-    {code:'pl',name:'Polish'},
-    {code:'pt',name:'Portuguese'},
-    {code:'pa',name:'Punjabi'},
-    {code:'ro',name:'Romanian'},
-    {code:'ru',name:'Russian'},
-    {code:'sm',name:'Samoan'},
-    {code:'gd',name:'Scots Gaelic'},
-    {code:'sr',name:'Serbian'},
-    {code:'st',name:'Sesotho'},
-    {code:'sn',name:'Shona'},
-    {code:'sd',name:'Sindhi'},
-    {code:'si',name:'Sinhala'},
-    {code:'sk',name:'Slovak'},
-    {code:'sl',name:'Slovenian'},
-    {code:'so',name:'Somali'},
-    {code:'es',name:'Spanish'},
-    {code:'su',name:'Sundanese'},
-    {code:'sw',name:'Swahili'},
-    {code:'sv',name:'Swedish'},
-    {code:'tl',name:'Tagalog (Filipino)'},
-    {code:'tg',name:'Tajik'},
-    {code:'ta',name:'Tamil'},
-    {code:'tt',name:'Tatar'},
-    {code:'te',name:'Telugu'},
-    {code:'th',name:'Thai'},
-    {code:'tr',name:'Turkish'},
-    {code:'tk',name:'Turkmen'},
-    {code:'uk',name:'Ukrainian'},
-    {code:'ur',name:'Urdu'},
-    {code:'ug',name:'Uyghur'},
-    {code:'uz',name:'Uzbek'},
-    {code:'vi',name:'Vietnamese'},
-    {code:'cy',name:'Welsh'},
-    {code:'xh',name:'Xhosa'},
-    {code:'yi',name:'Yiddish'},
-    {code:'yo',name:'Yoruba'},
-    {code:'zu',name:'Zulu'},
-  ];
+.lf-group{margin-bottom:16px}
+.lf-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:6px;display:block}
+.lf-input{width:100%;padding:12px 14px;border-radius:9px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:14px;outline:none;transition:border-color .15s,box-shadow .15s}
+.lf-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(16,185,129,.10)}
+.lf-input::placeholder{color:var(--text3)}
+.lf-pw-wrap{position:relative}
+.lf-pw-wrap .lf-input{padding-right:44px}
+.lf-eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px}
+.lf-eye:hover{color:var(--text2)}
 
-  // On page load - always reset to English (no localStorage persistence)
-  // The Google Translate cookie is cleared so refresh = English
-  function clearTranslateCookie(){
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname;
-  }
+.login-error{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-bottom:14px;display:none;align-items:center;gap:8px}
+.login-error.show{display:flex}
 
-  function injectStyles(){
-    const s = document.createElement('style');
-    s.textContent = `
-      #fasa-translate-btn {
-        position:fixed;bottom:24px;left:24px;z-index:9990;
-        width:46px;height:46px;border-radius:50%;
-        background:linear-gradient(135deg,#2563eb,#7c3aed);
-        border:2px solid rgba(255,255,255,.15);
-        color:#fff;font-size:20px;cursor:pointer;
-        display:flex;align-items:center;justify-content:center;
-        box-shadow:0 4px 20px rgba(37,99,235,.5);
-        transition:all .2s;
-        font-family:sans-serif;
-      }
-      #fasa-translate-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,99,235,.7)}
-      #fasa-translate-panel {
-        position:fixed;bottom:80px;left:24px;z-index:9991;
-        background:#0d1b2e;border:1px solid #1e3050;border-radius:14px;
-        width:240px;max-height:400px;
-        display:none;flex-direction:column;
-        box-shadow:0 16px 48px rgba(0,0,0,.6);
-        overflow:hidden;
-        font-family:'Segoe UI',system-ui,sans-serif;
-      }
-      #fasa-translate-panel.open{display:flex}
-      .ftp-head{
-        padding:12px 14px 8px;
-        font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;
-        color:#94a3b8;border-bottom:1px solid #1e3050;display:flex;align-items:center;gap:8px;
-        flex-shrink:0;
-      }
-      .ftp-search{
-        margin:8px 10px;padding:7px 12px;border-radius:8px;
-        background:#132039;border:1px solid #1e3050;
-        color:#e2e8f0;font-size:13px;outline:none;width:calc(100% - 20px);
-        font-family:inherit;
-      }
-      .ftp-search::placeholder{color:#475569}
-      .ftp-search:focus{border-color:#3b82f6}
-      .ftp-list{overflow-y:auto;flex:1;padding:4px 0}
-      .ftp-list::-webkit-scrollbar{width:3px}
-      .ftp-list::-webkit-scrollbar-thumb{background:#1e3050;border-radius:3px}
-      .ftp-item{
-        padding:8px 14px;font-size:13px;color:#94a3b8;cursor:pointer;
-        transition:all .1s;display:flex;align-items:center;gap:8px;
-      }
-      .ftp-item:hover{background:#132039;color:#e2e8f0}
-      .ftp-item.active{color:#60a5fa;background:rgba(37,99,235,.1)}
-      .ftp-reset{
-        padding:10px 14px;font-size:12px;font-weight:600;
-        color:#ef4444;cursor:pointer;border-top:1px solid #1e3050;
-        text-align:center;flex-shrink:0;
-        transition:background .15s;
-      }
-      .ftp-reset:hover{background:rgba(239,68,68,.08)}
-      #google_translate_element{display:none}
-      .goog-te-banner-frame{display:none!important}
-      body{top:0!important}
-      .skiptranslate iframe{display:none!important}
-    `;
-    document.head.appendChild(s);
-  }
+.login-btn{width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,#059669,#2563eb);color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:var(--font);margin-top:4px;letter-spacing:-.1px}
+.login-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(16,185,129,.25)}
+.login-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
-  function injectGoogleTranslate(){
-    // Google Translate Element (free, no API key)
-    const el = document.createElement('div');
-    el.id = 'google_translate_element';
-    document.body.appendChild(el);
+.creds-card{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.18);border-radius:10px;padding:14px 16px;margin-top:18px}
+.creds-title{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.cred-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(16,185,129,.1)}
+.cred-row:last-child{border:none}
+.cred-key{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;min-width:80px}
+.cred-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);flex:1;padding:0 8px}
+.cred-use{background:none;border:1px solid rgba(16,185,129,.3);border-radius:5px;padding:2px 10px;font-size:10px;color:var(--green);cursor:pointer;font-family:var(--font);transition:all .15s}
+.cred-use:hover{background:rgba(16,185,129,.12)}
 
-    window.googleTranslateElementInit = function(){
-      new window.google.translate.TranslateElement({
-        pageLanguage:'en',
-        autoDisplay:false
-      },'google_translate_element');
-    };
+.login-footer{margin-top:18px;text-align:center;font-size:11px;color:var(--text3)}
+.login-footer a{color:var(--accent3);cursor:pointer}
+.login-footer a:hover{text-decoration:underline}
 
-    const scr = document.createElement('script');
-    scr.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    scr.async = true;
-    document.head.appendChild(scr);
-  }
+/* ════════ APP LAYOUT ════════ */
+#app-screen{display:none;height:100vh;overflow:hidden}
+.app-layout{display:flex;height:100%}
 
-  function doTranslate(langCode){
-    if(langCode === 'en'){
-      clearTranslateCookie();
-      location.reload();
-      return;
+/* Sidebar */
+.sidebar{width:var(--sidebar);min-width:var(--sidebar);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.sb-top{padding:16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.sb-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:900;color:var(--accent2);letter-spacing:-.3px}
+.sb-logo-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite}
+.sb-logo-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(16,185,129,.12);color:#6ee7b7;border:1px solid rgba(16,185,129,.2);letter-spacing:.5px;text-transform:uppercase}
+.sb-user{display:flex;align-items:center;gap:9px;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.sb-av{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,#059669,#2563eb);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.sb-uname{font-size:13px;font-weight:700}
+.sb-urole{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:.5px}
+
+.sb-nav{flex:1;overflow-y:auto;padding:6px 0}
+.sb-section{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:10px 16px 3px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 16px;color:var(--text3);cursor:pointer;transition:all .15s;border-left:3px solid transparent;font-size:13px;font-weight:500}
+.sb-item:hover{background:var(--bg3);color:var(--text2);border-left-color:var(--border)}
+.sb-item.active{background:rgba(16,185,129,.08);color:var(--green);border-left-color:var(--green)}
+.sb-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0}
+.sb-tag{margin-left:auto;background:var(--bg3);border:1px solid var(--border);color:var(--text3);font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px}
+.sb-tag.new{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.25);color:var(--green)}
+
+.sb-bottom{padding:12px 16px;border-top:1px solid var(--border);flex-shrink:0}
+.logout-btn{width:100%;padding:8px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+.logout-btn:hover{border-color:var(--red);color:#fca5a5;background:rgba(239,68,68,.07)}
+
+/* Main */
+.app-main{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:54px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0}
+.topbar-title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.tb-icon{font-size:17px}
+.topbar-right{display:flex;gap:8px}
+.tb-btn{padding:6px 13px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;display:flex;align-items:center;gap:5px}
+.tb-btn:hover{background:var(--bg3);color:var(--text);border-color:var(--accent2)}
+
+.content{flex:1;overflow-y:auto;padding:28px 32px}
+.panel{display:none}.panel.active{display:block}
+
+/* ── Typography ── */
+.ph1{font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+.ph2{font-size:15px;font-weight:700;letter-spacing:-.2px;margin:26px 0 12px;display:flex;align-items:center;gap:8px}
+.ph2:first-child{margin-top:0}
+.ph2-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+.ph3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--accent3);margin:0 0 10px}
+.pdesc{color:var(--text2);font-size:13px;margin-bottom:20px;line-height:1.7}
+
+/* ── Grid ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.g3{grid-template-columns:1fr 1fr}.g4{grid-template-columns:1fr 1fr}}
+
+/* ── Cards ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px}
+.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:5px}
+.stat-val{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:3px}
+.stat-sub{font-size:11px;color:var(--text3)}
+
+/* ── Feature list ── */
+.fl{list-style:none}
+.fl li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid rgba(23,37,64,.7);font-size:12.5px;color:var(--text2)}
+.fl li:last-child{border:none}
+.fl li::before{content:'→';color:var(--green);font-size:11px;margin-top:2px;flex-shrink:0}
+
+/* ── Code / endpoint ── */
+.code-block{background:#050d18;border:1px solid var(--border);border-radius:9px;padding:16px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.9;overflow-x:auto;margin:10px 0;position:relative}
+.code-copy{position:absolute;top:10px;right:10px;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 9px;font-size:10px;color:var(--text3);cursor:pointer;font-family:var(--font);transition:all .15s}
+.code-copy:hover{border-color:var(--green);color:var(--green)}
+.kw{color:#f472b6}.str{color:#6ee7b7}.com{color:#334d66}.fn{color:#60a5fa}.num{color:#fcd34d}.ty{color:#c4b5fd}.op{color:#94a3b8}
+
+.ep{display:flex;align-items:center;gap:9px;background:#050d18;border:1px solid var(--border);border-radius:7px;padding:9px 14px;margin:4px 0;font-family:var(--mono);font-size:12.5px}
+.meth{padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;flex-shrink:0;letter-spacing:.3px}
+.GET{background:rgba(16,185,129,.18);color:#6ee7b7}
+.POST{background:rgba(37,99,235,.18);color:#93c5fd}
+.PUT{background:rgba(245,158,11,.18);color:#fcd34d}
+.DEL{background:rgba(239,68,68,.18);color:#fca5a5}
+.WS{background:rgba(139,92,246,.18);color:#c4b5fd}
+.ep-path{color:var(--text2);flex:1}
+.ep-note{color:var(--text3);font-size:11px}
+
+/* ── DB schema ── */
+.schema{background:#050d18;border:1px solid var(--border);border-radius:9px;overflow:hidden;margin:10px 0}
+.schema-head{background:rgba(16,185,129,.07);padding:8px 14px;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--green);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.schema-row{display:grid;grid-template-columns:170px 140px 1fr;gap:8px;padding:6px 14px;border-bottom:1px solid rgba(23,37,64,.6);font-size:12px;font-family:var(--mono)}
+.schema-row:last-child{border:none}
+.sr-field{color:var(--text)}
+.sr-field.pk{color:var(--amber)}
+.sr-field.fk{color:var(--teal)}
+.sr-type{color:var(--purple)}
+.sr-note{color:var(--text3);font-size:11px}
+
+/* ── Badge ── */
+.badge{display:inline-flex;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.bg{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.25)}
+.ba{background:rgba(37,99,235,.15);color:#93c5fd;border:1px solid rgba(37,99,235,.25)}
+.bp{background:rgba(139,92,246,.15);color:#c4b5fd;border:1px solid rgba(139,92,246,.25)}
+.bam{background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.25)}
+.br{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.25)}
+.bt{background:rgba(20,184,166,.15);color:#5eead4;border:1px solid rgba(20,184,166,.25)}
+
+/* ── Service card ── */
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:16px}
+.svc-name{font-size:13px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.svc-desc{font-size:11.5px;color:var(--text2);margin-bottom:10px}
+.svc-tags{display:flex;gap:5px;flex-wrap:wrap}
+.svc-tag{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg3);color:var(--text3);border:1px solid var(--border)}
+
+/* ── Infra card ── */
+.infra-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(23,37,64,.6)}
+.infra-item:last-child{border:none}
+.infra-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.infra-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.infra-desc{font-size:11.5px;color:var(--text2)}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--bg2);border:1px solid var(--green);border-radius:10px;padding:11px 18px;display:flex;align-items:center;gap:10px;color:var(--text);font-size:13px;font-weight:600;transform:translateY(80px);opacity:0;transition:all .3s;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.toast.show{transform:translateY(0);opacity:1}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-dot"></div>
+      <div class="login-logo-text">FasaFas</div>
+      <div class="login-logo-badge">⚙️ Dev Portal</div>
+    </div>
+
+    <h2 class="login-title">Backend Developer Access</h2>
+    <p class="login-sub">Restricted to authorised engineers only. Enter your developer credentials to view the backend architecture, APIs, and database schema.</p>
+
+    <div class="login-error" id="login-error">
+      <span>⚠</span><span id="err-msg">Invalid credentials. Access denied.</span>
+    </div>
+
+    <div class="lf-group">
+      <label class="lf-label">Developer Username</label>
+      <input class="lf-input" id="l-user" type="text" placeholder="dev@fasafas.com" autocomplete="username"
+        onkeydown="if(event.key==='Enter')document.getElementById('l-pass').focus()">
+    </div>
+    <div class="lf-group">
+      <label class="lf-label">Password</label>
+      <div class="lf-pw-wrap">
+        <input class="lf-input" id="l-pass" type="password" placeholder="Developer password"
+          onkeydown="if(event.key==='Enter')doLogin()">
+        <button class="lf-eye" onclick="togglePw()">👁</button>
+      </div>
+    </div>
+
+    <button class="login-btn" id="login-btn" onclick="doLogin()">Access Developer Portal →</button>
+
+    <!-- Credentials hint -->
+    <div class="creds-card">
+      <div class="creds-title">🔑 Developer Credentials</div>
+      <div class="cred-row">
+        <span class="cred-key">Username</span>
+        <span class="cred-val">dev@fasafas.com</span>
+        <button class="cred-use" onclick="fill('l-user','dev@fasafas.com')">Use</button>
+      </div>
+      <div class="cred-row">
+        <span class="cred-key">Password</span>
+        <span class="cred-val">Backend@2026</span>
+        <button class="cred-use" onclick="fill('l-pass','Backend@2026')">Use</button>
+      </div>
+    </div>
+
+    <div class="login-footer">
+      <a onclick="location.href='../index.html'">← Back to FasaFas</a> ·
+      <a onclick="location.href='../admin/'">Admin Portal</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     DEVELOPER PORTAL
+════════════════════════════════ -->
+<div id="app-screen">
+  <div class="app-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <div class="sb-top">
+        <div class="sb-logo">
+          <div class="sb-logo-dot"></div>
+          FasaFas
+          <span class="sb-logo-tag">Dev</span>
+        </div>
+      </div>
+      <div class="sb-user">
+        <div class="sb-av">DE</div>
+        <div>
+          <div class="sb-uname">Dev Engineer</div>
+          <div class="sb-urole">Backend Access</div>
+        </div>
+      </div>
+      <nav class="sb-nav">
+        <div class="sb-section">Architecture</div>
+        <div class="sb-item active" onclick="sw('overview',this)"><span class="sb-icon">🗂</span> Overview</div>
+        <div class="sb-item" onclick="sw('stack',this)"><span class="sb-icon">🧱</span> Tech Stack</div>
+        <div class="sb-item" onclick="sw('services',this)"><span class="sb-icon">⚙️</span> Microservices</div>
+        <div class="sb-item" onclick="sw('infra',this)"><span class="sb-icon">☁️</span> Infrastructure</div>
+
+        <div class="sb-section">API Reference</div>
+        <div class="sb-item" onclick="sw('rest',this)"><span class="sb-icon">🔌</span> REST Endpoints</div>
+        <div class="sb-item" onclick="sw('websocket',this)"><span class="sb-icon">⚡</span> WebSocket / RTC</div>
+        <div class="sb-item" onclick="sw('webhooks',this)"><span class="sb-icon">🔗</span> Webhooks</div>
+
+        <div class="sb-section">Data Layer</div>
+        <div class="sb-item" onclick="sw('schema',this)"><span class="sb-icon">🗄️</span> Database Schema</div>
+        <div class="sb-item" onclick="sw('redis',this)"><span class="sb-icon">⚡</span> Redis & Kafka</div>
+        <div class="sb-item" onclick="sw('storage',this)"><span class="sb-icon">📦</span> Storage & CDN</div>
+
+        <div class="sb-section">AI Pipeline</div>
+        <div class="sb-item" onclick="sw('ai',this)"><span class="sb-icon">🤖</span> AI Architecture</div>
+        <div class="sb-item" onclick="sw('media',this)"><span class="sb-icon">🎬</span> Media Pipeline</div>
+
+        <div class="sb-section">Ops</div>
+        <div class="sb-item" onclick="sw('security',this)"><span class="sb-icon">🔒</span> Security Model</div>
+        <div class="sb-item" onclick="sw('deploy',this)"><span class="sb-icon">🚀</span> Deployment</div>
+      </nav>
+      <div class="sb-bottom">
+        <button class="logout-btn" onclick="doLogout()">🚪 Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <div class="app-main">
+      <div class="topbar">
+        <div class="topbar-title"><span class="tb-icon" id="tb-icon">🗂</span><span id="tb-title">Architecture Overview</span></div>
+        <div class="topbar-right">
+          <button class="tb-btn" onclick="showToast('Docs exported to PDF')">⬇ Export Docs</button>
+          <button class="tb-btn" onclick="location.href='../index.html'">← Public Site</button>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <!-- ── OVERVIEW ── -->
+        <div id="panel-overview" class="panel active">
+          <div class="ph1">System Architecture Overview</div>
+          <div class="pdesc">FasaFas is a microservices-based, cloud-native platform. All services communicate via gRPC internally and expose REST + WebSocket externally. Media flows through a dedicated SFU cluster.</div>
+          <div class="g4" style="margin-bottom:22px">
+            <div class="stat-card"><div class="stat-label">Microservices</div><div class="stat-val" style="color:var(--green)">21</div><div class="stat-sub">All independently deployable</div></div>
+            <div class="stat-card"><div class="stat-label">REST Endpoints</div><div class="stat-val" style="color:var(--accent2)">84</div><div class="stat-sub">Versioned under /api/v1</div></div>
+            <div class="stat-card"><div class="stat-label">DB Tables</div><div class="stat-val" style="color:var(--purple)">34</div><div class="stat-sub">PostgreSQL 16 + pgvector</div></div>
+            <div class="stat-card"><div class="stat-label">WS Events</div><div class="stat-val" style="color:var(--amber)">28</div><div class="stat-sub">Bidirectional Socket.io</div></div>
+          </div>
+          <div class="ph2"><div class="ph2-dot"></div>Request Flow</div>
+          <div class="card">
+            <ul class="fl">
+              <li>Client (Browser / Desktop / Mobile) sends HTTPS request to API Gateway (Nginx + Node.js)</li>
+              <li>API Gateway authenticates JWT token via auth-service (Redis token cache, 15 min TTL)</li>
+              <li>Gateway routes to appropriate microservice via internal gRPC call</li>
+              <li>Service reads/writes PostgreSQL (primary) with read replica fallback</li>
+              <li>Real-time events published to Kafka topic → consumed by notification-service → Socket.io push</li>
+              <li>Media (audio/video) flows directly to WebRTC SFU cluster — bypasses API gateway entirely</li>
+              <li>AI jobs (transcription, summary) enqueued to Kafka → consumed by ai-companion-service</li>
+              <li>Files stored to S3-compatible object storage, served via CloudFront CDN with signed URLs</li>
+            </ul>
+          </div>
+          <div class="ph2"><div class="ph2-dot"></div>Service Communication</div>
+          <div class="g2">
+            <div class="card"><div class="ph3">Internal (gRPC)</div><ul class="fl">
+              <li>All service-to-service calls use gRPC over TLS</li>
+              <li>Proto files define strict contracts per service</li>
+              <li>Istio service mesh handles retries and circuit breaking</li>
+              <li>Deadlines enforced: 5s for sync calls, async via Kafka</li>
+            </ul></div>
+            <div class="card"><div class="ph3">External (REST + WS)</div><ul class="fl">
+              <li>REST API: /api/v1/* — JSON, rate-limited per user</li>
+              <li>WebSocket: Socket.io namespaces per feature (/meeting, /chat)</li>
+              <li>CORS whitelist: app domain + SDK origins only</li>
+              <li>All responses gzip-compressed, ETag caching on GETs</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- ── TECH STACK ── -->
+        <div id="panel-stack" class="panel">
+          <div class="ph1">Technology Stack</div>
+          <div class="pdesc">Every technology choice with version, purpose, and rationale.</div>
+          <div class="g3">
+            <div class="card"><div class="ph3">Frontend</div><ul class="fl">
+              <li>React 18.3 + TypeScript 5.4</li>
+              <li>Electron 31 (Desktop: Win/Mac/Linux)</li>
+              <li>React Native 0.74 (iOS 15+ / Android 11+)</li>
+              <li>WebRTC (native browser + adapter.js)</li>
+              <li>Redux Toolkit 2.2 + React Query v5</li>
+              <li>Socket.io-client 4.7</li>
+              <li>Konva.js 9 (Whiteboard canvas)</li>
+              <li>Slate.js 0.103 (rich text editor)</li>
+              <li>Vite 5.2 (build tool, HMR)</li>
+              <li>Tailwind CSS 3.4</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Backend Services</div><ul class="fl">
+              <li>Node.js 22 LTS + Express 5 (API Gateway)</li>
+              <li>Go 1.22 (high-throughput signal service)</li>
+              <li>Python 3.12 (AI/ML services)</li>
+              <li>Rust 1.78 (media server, ultra-low latency)</li>
+              <li>Mediasoup 3.14 (WebRTC SFU)</li>
+              <li>FreeSWITCH 1.10 (SIP/PSTN/VoIP)</li>
+              <li>coturn 4.6 (STUN/TURN servers)</li>
+              <li>Socket.io 4.7 (WebSocket server)</li>
+              <li>gRPC (protobuf 3 contracts)</li>
+              <li>Nginx 1.26 (reverse proxy / TLS termination)</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Data & AI</div><ul class="fl">
+              <li>PostgreSQL 16 + pgvector 0.7 (primary DB)</li>
+              <li>Redis 7.2 (sessions, pub/sub, rate limiting)</li>
+              <li>Apache Kafka 3.7 (event streaming)</li>
+              <li>Elasticsearch 8.13 (full-text search)</li>
+              <li>ClickHouse 24.4 (analytics warehouse)</li>
+              <li>S3-compatible (MinIO / AWS S3)</li>
+              <li>CloudFront + Fastly (CDN)</li>
+              <li>OpenAI Whisper large-v3 (STT)</li>
+              <li>Anthropic Claude 3.5 Sonnet (summaries)</li>
+              <li>pgvector + text-embedding-3-large (semantic search)</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- ── MICROSERVICES ── -->
+        <div id="panel-services" class="panel">
+          <div class="ph1">Microservices Map</div>
+          <div class="pdesc">All 21 services, their responsibilities, tech, and dependencies.</div>
+          <div class="ph2"><div class="ph2-dot"></div>Core Services</div>
+          <div class="g3">
+            <div class="svc-card"><div class="svc-name">⚡ auth-service<span class="badge bg">Node.js</span></div><div class="svc-desc">JWT issuance, refresh token rotation, OAuth2/OIDC, SAML, passkey/FIDO2, MFA</div><div class="svc-tags"><span class="svc-tag">Redis</span><span class="svc-tag">Postgres</span><span class="svc-tag">bcrypt</span></div></div>
+            <div class="svc-card"><div class="svc-name">👥 user-service<span class="badge bg">Node.js</span></div><div class="svc-desc">User profiles, contacts, presence status, avatar storage, account settings</div><div class="svc-tags"><span class="svc-tag">Postgres</span><span class="svc-tag">S3</span><span class="svc-tag">Redis</span></div></div>
+            <div class="svc-card"><div class="svc-name">🎥 meeting-service<span class="badge bg">Go</span></div><div class="svc-desc">Meeting CRUD, scheduling, recurring patterns, waiting room management</div><div class="svc-tags"><span class="svc-tag">Postgres</span><span class="svc-tag">Kafka</span><span class="svc-tag">Redis</span></div></div>
+            <div class="svc-card"><div class="svc-name">📡 signal-service<span class="badge bg">Go</span></div><div class="svc-desc">WebRTC signaling (SDP offer/answer, ICE candidates), room state, participant tracking</div><div class="svc-tags"><span class="svc-tag">Redis</span><span class="svc-tag">Socket.io</span><span class="svc-tag">Mediasoup</span></div></div>
+            <div class="svc-card"><div class="svc-name">🎞 media-service<span class="badge ba">Rust</span></div><div class="svc-desc">Mediasoup SFU, simulcast, bandwidth estimation, recording to S3</div><div class="svc-tags"><span class="svc-tag">Mediasoup</span><span class="svc-tag">S3</span><span class="svc-tag">FFmpeg</span></div></div>
+            <div class="svc-card"><div class="svc-name">💬 chat-service<span class="badge bg">Node.js</span></div><div class="svc-desc">Channels, DMs, threads, reactions, file sharing, CRDT message history</div><div class="svc-tags"><span class="svc-tag">Postgres</span><span class="svc-tag">Elasticsearch</span><span class="svc-tag">S3</span></div></div>
+          </div>
+          <div class="ph2"><div class="ph2-dot"></div>Feature & Platform Services</div>
+          <div class="g3">
+            <div class="svc-card"><div class="svc-name">🤖 ai-companion<span class="badge bp">Python</span></div><div class="svc-desc">LLM orchestration, federated model routing, transcription, summary, agent execution</div><div class="svc-tags"><span class="svc-tag">Kafka</span><span class="svc-tag">Claude API</span><span class="svc-tag">Whisper</span></div></div>
+            <div class="svc-card"><div class="svc-name">📅 calendar-service<span class="badge bg">Node.js</span></div><div class="svc-desc">Native calendar, Google/Outlook bidirectional sync, scheduler booking pages</div><div class="svc-tags"><span class="svc-tag">Postgres</span><span class="svc-tag">Google API</span><span class="svc-tag">MS Graph</span></div></div>
+            <div class="svc-card"><div class="svc-name">📞 phone-service<span class="badge bg">Go</span></div><div class="svc-desc">SIP stack, PSTN trunk, IVR builder, call queues, voicemail, SMS gateway</div><div class="svc-tags"><span class="svc-tag">FreeSWITCH</span><span class="svc-tag">Twilio</span><span class="svc-tag">Postgres</span></div></div>
+            <div class="svc-card"><div class="svc-name">🖼 whiteboard-service<span class="badge bg">Node.js</span></div><div class="svc-desc">CRDT-based infinite canvas sync, version snapshots, template library</div><div class="svc-tags"><span class="svc-tag">Yjs CRDT</span><span class="svc-tag">Redis</span><span class="svc-tag">S3</span></div></div>
+            <div class="svc-card"><div class="svc-name">📄 docs-service<span class="badge bg">Node.js</span></div><div class="svc-desc">Collaborative document editing (OT), AI writing, version history, backlinks</div><div class="svc-tags"><span class="svc-tag">Postgres</span><span class="svc-tag">S3</span><span class="svc-tag">Yjs</span></div></div>
+            <div class="svc-card"><div class="svc-name">💳 billing-service<span class="badge bg">Node.js</span></div><div class="svc-desc">Stripe subscription management, seat provisioning, invoice generation, usage metering</div><div class="svc-tags"><span class="svc-tag">Stripe</span><span class="svc-tag">Postgres</span><span class="svc-tag">Kafka</span></div></div>
+          </div>
+        </div>
+
+        <!-- ── REST API ── -->
+        <div id="panel-rest" class="panel">
+          <div class="ph1">REST API Reference</div>
+          <div class="pdesc">Base URL: <code style="font-family:var(--mono);color:var(--accent3);background:var(--bg3);padding:2px 8px;border-radius:4px">https://api.fasafas.app/v1</code> — All endpoints require <code style="font-family:var(--mono);color:var(--amber);background:var(--bg3);padding:2px 8px;border-radius:4px">Authorization: Bearer {token}</code> unless marked public.</div>
+
+          <div class="ph2"><div class="ph2-dot"></div>Authentication <span class="badge bg" style="font-size:10px">Public</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/register</span><span class="ep-note">body: {email, password, name}</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/login</span><span class="ep-note">→ {access_token, refresh_token}</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/refresh</span><span class="ep-note">body: {refresh_token}</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/logout</span><span class="ep-note">revokes current token</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/sso/saml</span><span class="ep-note">SAML 2.0 SP-initiated</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/mfa/setup</span><span class="ep-note">→ TOTP QR code</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/mfa/verify</span><span class="ep-note">body: {code}</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/passkey/register</span><span class="ep-note">FIDO2 credential creation</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/auth/passkey/authenticate</span><span class="ep-note">FIDO2 assertion</span></div>
+
+          <div class="ph2"><div class="ph2-dot"></div>Meetings</div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/meetings</span><span class="ep-note">?status=upcoming&limit=20&cursor=</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/meetings</span><span class="ep-note">body: MeetingCreateDTO</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/meetings/:id</span></div>
+          <div class="ep"><span class="meth PUT">PUT</span><span class="ep-path">/meetings/:id</span><span class="ep-note">partial update allowed</span></div>
+          <div class="ep"><span class="meth DEL">DEL</span><span class="ep-path">/meetings/:id</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/meetings/:id/start</span><span class="ep-note">→ {join_token, sfu_url}</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/meetings/:id/end</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/meetings/:id/participants</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/meetings/:id/recordings</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/meetings/:id/transcript</span><span class="ep-note">→ VTT + JSON</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/meetings/:id/summary</span><span class="ep-note">AI-generated summary</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/meetings/:id/breakout-rooms</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/meetings/personal-room</span><span class="ep-note">PMR settings</span></div>
+
+          <div class="ph2"><div class="ph2-dot"></div>Chat</div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/channels</span><span class="ep-note">?type=public|private|dm</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/channels</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/channels/:id/messages</span><span class="ep-note">cursor-paginated</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/channels/:id/messages</span></div>
+          <div class="ep"><span class="meth PUT">PUT</span><span class="ep-path">/messages/:id</span><span class="ep-note">edit own message</span></div>
+          <div class="ep"><span class="meth DEL">DEL</span><span class="ep-path">/messages/:id</span><span class="ep-note">soft delete</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/messages/:id/reactions</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/channels/:id/files</span><span class="ep-note">multipart/form-data</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/search</span><span class="ep-note">?q=&scope=messages|files|people</span></div>
+
+          <div class="ph2"><div class="ph2-dot"></div>AI Companion</div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/ai/query</span><span class="ep-note">conversational AI — streams SSE</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/ai/summarize/:meetingId</span><span class="ep-note">trigger summary generation</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/ai/summaries/:meetingId</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/ai/transcribe</span><span class="ep-note">upload audio → transcript</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/ai/notes/:meetingId</span><span class="ep-note">My Notes data</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/ai/research</span><span class="ep-note">deep research task — async</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/ai/daily-digest</span><span class="ep-note">AI daily briefing</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/ai/agents</span><span class="ep-note">create AI agent</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/ai/agents</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/ai/agents/:id/run</span><span class="ep-note">trigger agent manually</span></div>
+
+          <div class="ph2"><div class="ph2-dot"></div>Users & Admin</div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/users/me</span></div>
+          <div class="ep"><span class="meth PUT">PUT</span><span class="ep-path">/users/me</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/admin/users</span><span class="ep-note">🔒 Admin only</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/admin/users</span><span class="ep-note">🔒 create user</span></div>
+          <div class="ep"><span class="meth PUT">PUT</span><span class="ep-path">/admin/users/:id</span><span class="ep-note">🔒</span></div>
+          <div class="ep"><span class="meth POST">POST</span><span class="ep-path">/admin/users/:id/deactivate</span><span class="ep-note">🔒</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/admin/reports/usage</span><span class="ep-note">🔒</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/admin/audit-log</span><span class="ep-note">🔒 cursor-paginated</span></div>
+          <div class="ep"><span class="meth PUT">PUT</span><span class="ep-path">/admin/settings/ai</span><span class="ep-note">🔒 toggle AI features</span></div>
+          <div class="ep"><span class="meth PUT">PUT</span><span class="ep-path">/admin/settings/security</span><span class="ep-note">🔒</span></div>
+          <div class="ep"><span class="meth GET">GET</span><span class="ep-path">/admin/billing</span><span class="ep-note">🔒</span></div>
+        </div>
+
+        <!-- ── WEBSOCKET ── -->
+        <div id="panel-websocket" class="panel">
+          <div class="ph1">WebSocket & WebRTC</div>
+          <div class="pdesc">Socket.io namespaces. Connect: <code style="font-family:var(--mono);color:var(--accent3);background:var(--bg3);padding:2px 8px;border-radius:4px">wss://ws.fasafas.app</code> with <code style="font-family:var(--mono);color:var(--amber);background:var(--bg3);padding:2px 8px;border-radius:4px">auth: {token}</code> in handshake.</div>
+          <div class="g2">
+            <div class="card"><div class="ph3">Client → Server</div><ul class="fl">
+              <li><code style="font-family:var(--mono);color:var(--accent3)">meeting:join</code> — {meetingId, joinToken}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">meeting:leave</code></li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">meeting:chat</code> — {content, type}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">meeting:reaction</code> — {emoji}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">meeting:raise-hand</code> — {state}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">signal:offer</code> — {sdp, type:'offer'}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">signal:answer</code> — {sdp, type:'answer'}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">signal:ice-candidate</code> — {candidate}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">signal:produce</code> — {kind, rtpParams}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">signal:consume</code> — {producerId}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">chat:message</code> — {channelId, content}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">chat:typing</code> — {channelId, state}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">whiteboard:op</code> — {boardId, op}</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">presence:update</code> — {status}</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Server → Client</div><ul class="fl">
+              <li><code style="font-family:var(--mono);color:var(--green)">meeting:participant-joined</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">meeting:participant-left</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">meeting:participant-muted</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">meeting:host-changed</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">meeting:recording-started</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">meeting:ended</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">signal:new-producer</code> — {peerId, kind}</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">signal:peer-disconnected</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">chat:message:new</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">chat:message:edited</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">chat:message:deleted</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">chat:typing:start / stop</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">ai:transcript-update</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">ai:summary-ready</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">notification:new</code></li>
+              <li><code style="font-family:var(--mono);color:var(--green)">presence:user-updated</code></li>
+            </ul></div>
+          </div>
+          <div class="ph2"><div class="ph2-dot"></div>WebRTC SFU Architecture</div>
+          <div class="g3">
+            <div class="card"><div class="ph3">Mediasoup SFU</div><ul class="fl">
+              <li>Each participant → 1 upstream track to SFU</li>
+              <li>SFU selectively forwards to subscribers</li>
+              <li>Simulcast: 1080p / 480p / 240p layers</li>
+              <li>Bandwidth-adaptive layer switching</li>
+              <li>CPU/BW-aware track selection per subscriber</li>
+              <li>Active speaker detection → prioritise HD</li>
+              <li>Up to 500 participants per Worker</li>
+            </ul></div>
+            <div class="card"><div class="ph3">STUN / TURN</div><ul class="fl">
+              <li>STUN: global anycast, UDP 3478</li>
+              <li>TURN: regional fallback (US/EU/APAC)</li>
+              <li>TURN over TCP 443 (firewall bypass)</li>
+              <li>HMAC-SHA1 time-limited credentials</li>
+              <li>ICE trickle for fast peer connection</li>
+              <li>ICE restart on network change</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Audio Processing</div><ul class="fl">
+              <li>Opus codec (48 kHz, stereo)</li>
+              <li>Echo cancellation (AEC3)</li>
+              <li>AI noise suppression (RNNoise)</li>
+              <li>Auto Gain Control (AGC2)</li>
+              <li>Voice Activity Detection (VAD)</li>
+              <li>Original sound mode (musicians)</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- ── WEBHOOKS ── -->
+        <div id="panel-webhooks" class="panel">
+          <div class="ph1">Webhook Events</div>
+          <div class="pdesc">Subscribe at <code style="font-family:var(--mono);color:var(--accent3);background:var(--bg3);padding:2px 8px;border-radius:4px">POST /admin/webhooks</code>. All payloads are signed with <code style="font-family:var(--mono);color:var(--amber)">HMAC-SHA256</code> in the <code style="font-family:var(--mono);color:var(--green)">X-FasaFas-Signature</code> header.</div>
+          <div class="card">
+            <table style="width:100%;border-collapse:collapse;font-size:13px">
+              <thead><tr style="border-bottom:1px solid var(--border)"><th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.5px">Event</th><th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.5px">Key Payload Fields</th></tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">meeting.started</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">meeting_id, host_id, topic, start_time</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">meeting.ended</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">meeting_id, duration_seconds, participant_count</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">meeting.participant_joined</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">participant_id, user_id, join_time, device</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">meeting.recording.completed</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">recording_url, file_size, format, duration</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">meeting.summary.completed</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">summary_text, action_items[], chapters[]</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">chat.message.sent</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">message_id, channel_id, sender_id, content</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">user.created</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">user_id, email, role, plan, created_at</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">user.deactivated</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">user_id, deactivated_by, reason</td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">phone.call.started</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">call_id, caller, callee, direction</td></tr>
+                <tr><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">billing.subscription.updated</td><td style="padding:8px 12px;color:var(--text2);font-size:12px">plan, seats, addons[], effective_date</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── DATABASE SCHEMA ── -->
+        <div id="panel-schema" class="panel">
+          <div class="ph1">Database Schema</div>
+          <div class="pdesc">PostgreSQL 16 · All tables include <code style="font-family:var(--mono);color:var(--green)">created_at</code>, <code style="font-family:var(--mono);color:var(--green)">updated_at</code>, and soft-delete via <code style="font-family:var(--mono);color:var(--green)">deleted_at</code>. Multi-tenant via <code style="font-family:var(--mono);color:var(--teal)">account_id</code> + Row-Level Security.</div>
+
+          <div class="schema"><div class="schema-head">🟡 accounts (tenants)</div>
+            <div class="schema-row"><span class="sr-field pk">id</span><span class="sr-type">UUID PK</span><span class="sr-note">gen_random_uuid()</span></div>
+            <div class="schema-row"><span class="sr-field">name</span><span class="sr-type">VARCHAR(200)</span><span class="sr-note">organization name</span></div>
+            <div class="schema-row"><span class="sr-field">account_number</span><span class="sr-type">BIGINT UNIQUE</span><span class="sr-note">10-digit, auto-generated</span></div>
+            <div class="schema-row"><span class="sr-field">plan</span><span class="sr-type">ENUM</span><span class="sr-note">basic|pro|business|enterprise</span></div>
+            <div class="schema-row"><span class="sr-field">max_participants</span><span class="sr-type">INTEGER</span><span class="sr-note">per plan limit</span></div>
+            <div class="schema-row"><span class="sr-field">cloud_storage_bytes</span><span class="sr-type">BIGINT</span><span class="sr-note">allocated quota</span></div>
+            <div class="schema-row"><span class="sr-field">sso_config</span><span class="sr-type">JSONB</span><span class="sr-note">SAML metadata, IdP URL, cert</span></div>
+            <div class="schema-row"><span class="sr-field">data_region</span><span class="sr-type">VARCHAR(20)</span><span class="sr-note">us-east|eu-west|ap-southeast</span></div>
+            <div class="schema-row"><span class="sr-field">stripe_customer_id</span><span class="sr-type">VARCHAR(100)</span><span class="sr-note">Stripe customer reference</span></div>
+          </div>
+
+          <div class="schema" style="margin-top:10px"><div class="schema-head">🟡 users</div>
+            <div class="schema-row"><span class="sr-field pk">id</span><span class="sr-type">UUID PK</span><span class="sr-note"></span></div>
+            <div class="schema-row"><span class="sr-field fk">account_id</span><span class="sr-type">UUID FK</span><span class="sr-note">→ accounts.id</span></div>
+            <div class="schema-row"><span class="sr-field">email</span><span class="sr-type">VARCHAR(320)</span><span class="sr-note">UNIQUE, indexed</span></div>
+            <div class="schema-row"><span class="sr-field">display_name, first_name, last_name</span><span class="sr-type">VARCHAR</span><span class="sr-note"></span></div>
+            <div class="schema-row"><span class="sr-field">password_hash</span><span class="sr-type">VARCHAR(72)</span><span class="sr-note">bcrypt cost=12</span></div>
+            <div class="schema-row"><span class="sr-field">role</span><span class="sr-type">ENUM</span><span class="sr-note">member|admin|owner</span></div>
+            <div class="schema-row"><span class="sr-field">plan_type</span><span class="sr-type">ENUM</span><span class="sr-note">basic|pro|business|enterprise</span></div>
+            <div class="schema-row"><span class="sr-field">personal_meeting_id</span><span class="sr-type">BIGINT UNIQUE</span><span class="sr-note">10-digit PMR</span></div>
+            <div class="schema-row"><span class="sr-field">mfa_enabled, mfa_secret</span><span class="sr-type">BOOLEAN / VARCHAR</span><span class="sr-note">TOTP secret encrypted</span></div>
+            <div class="schema-row"><span class="sr-field">timezone, language</span><span class="sr-type">VARCHAR</span><span class="sr-note">IANA tz / BCP-47</span></div>
+            <div class="schema-row"><span class="sr-field">status</span><span class="sr-type">ENUM</span><span class="sr-note">active|pending|suspended|deactivated</span></div>
+            <div class="schema-row"><span class="sr-field">last_login_at, last_login_ip</span><span class="sr-type">TIMESTAMPTZ / INET</span><span class="sr-note"></span></div>
+          </div>
+
+          <div class="schema" style="margin-top:10px"><div class="schema-head">🟡 meetings</div>
+            <div class="schema-row"><span class="sr-field pk">id</span><span class="sr-type">UUID PK</span><span class="sr-note"></span></div>
+            <div class="schema-row"><span class="sr-field fk">host_id, account_id</span><span class="sr-type">UUID FK</span><span class="sr-note">→ users.id / accounts.id</span></div>
+            <div class="schema-row"><span class="sr-field">topic</span><span class="sr-type">VARCHAR(500)</span><span class="sr-note">NOT NULL</span></div>
+            <div class="schema-row"><span class="sr-field">meeting_number</span><span class="sr-type">BIGINT UNIQUE</span><span class="sr-note">11-digit meeting ID</span></div>
+            <div class="schema-row"><span class="sr-field">join_url</span><span class="sr-type">TEXT</span><span class="sr-note">invite link with embedded token</span></div>
+            <div class="schema-row"><span class="sr-field">password</span><span class="sr-type">VARCHAR(10)</span><span class="sr-note">passcode (hashed)</span></div>
+            <div class="schema-row"><span class="sr-field">status</span><span class="sr-type">ENUM</span><span class="sr-note">scheduled|started|ended|cancelled</span></div>
+            <div class="schema-row"><span class="sr-field">start_time, actual_start, actual_end</span><span class="sr-type">TIMESTAMPTZ</span><span class="sr-note"></span></div>
+            <div class="schema-row"><span class="sr-field">duration_minutes</span><span class="sr-type">INTEGER</span><span class="sr-note">scheduled duration</span></div>
+            <div class="schema-row"><span class="sr-field">waiting_room, require_auth</span><span class="sr-type">BOOLEAN</span><span class="sr-note"></span></div>
+            <div class="schema-row"><span class="sr-field">auto_recording</span><span class="sr-type">ENUM</span><span class="sr-note">none|local|cloud</span></div>
+            <div class="schema-row"><span class="sr-field">ai_transcription, my_notes_enabled</span><span class="sr-type">BOOLEAN</span><span class="sr-note"></span></div>
+            <div class="schema-row"><span class="sr-field">recurrence</span><span class="sr-type">JSONB</span><span class="sr-note">{type, interval, end_date, occurrences}</span></div>
+            <div class="schema-row"><span class="sr-field">settings</span><span class="sr-type">JSONB</span><span class="sr-note">additional meeting settings blob</span></div>
+          </div>
+
+          <div class="schema" style="margin-top:10px"><div class="schema-head">🟡 messages</div>
+            <div class="schema-row"><span class="sr-field pk">id</span><span class="sr-type">UUID PK</span><span class="sr-note"></span></div>
+            <div class="schema-row"><span class="sr-field fk">channel_id, sender_id, thread_parent_id</span><span class="sr-type">UUID FK</span><span class="sr-note">self-ref for threads</span></div>
+            <div class="schema-row"><span class="sr-field">content</span><span class="sr-type">TEXT</span><span class="sr-note">Markdown / Yjs delta</span></div>
+            <div class="schema-row"><span class="sr-field">type</span><span class="sr-type">ENUM</span><span class="sr-note">text|file|image|clip|system</span></div>
+            <div class="schema-row"><span class="sr-field">attachments</span><span class="sr-type">JSONB[]</span><span class="sr-note">[{name, url, size, mime}]</span></div>
+            <div class="schema-row"><span class="sr-field">reactions</span><span class="sr-type">JSONB</span><span class="sr-note">{"👍":[user_ids], "❤":[...]}</span></div>
+            <div class="schema-row"><span class="sr-field">edited_at, pinned_at, deleted_at</span><span class="sr-type">TIMESTAMPTZ</span><span class="sr-note">deleted_at = soft delete</span></div>
+          </div>
+
+          <div class="schema" style="margin-top:10px"><div class="schema-head">🟡 meeting_recordings</div>
+            <div class="schema-row"><span class="sr-field fk">meeting_id</span><span class="sr-type">UUID FK</span><span class="sr-note">→ meetings.id</span></div>
+            <div class="schema-row"><span class="sr-field">storage_path</span><span class="sr-type">TEXT</span><span class="sr-note">S3 object key</span></div>
+            <div class="schema-row"><span class="sr-field">format</span><span class="sr-type">ENUM</span><span class="sr-note">mp4|m4a|transcript_vtt|transcript_json|summary</span></div>
+            <div class="schema-row"><span class="sr-field">ai_summary</span><span class="sr-type">TEXT</span><span class="sr-note">LLM-generated summary</span></div>
+            <div class="schema-row"><span class="sr-field">ai_action_items</span><span class="sr-type">JSONB[]</span><span class="sr-note">[{text, assignee, due_date}]</span></div>
+            <div class="schema-row"><span class="sr-field">smart_chapters</span><span class="sr-type">JSONB[]</span><span class="sr-note">[{timestamp, title, summary}]</span></div>
+            <div class="schema-row"><span class="sr-field">share_url, share_passcode, share_expires_at</span><span class="sr-type">TEXT / TIMESTAMPTZ</span><span class="sr-note"></span></div>
+          </div>
+        </div>
+
+        <!-- ── REDIS & KAFKA ── -->
+        <div id="panel-redis" class="panel">
+          <div class="ph1">Redis & Kafka</div>
+          <div class="g2">
+            <div class="card"><div class="ph3">Redis Usage</div><ul class="fl">
+              <li><b>Session tokens</b> — JWT blocklist on logout (TTL = token expiry)</li>
+              <li><b>Refresh tokens</b> — {userId:tokenHash} key, 7-day TTL, rotated on use</li>
+              <li><b>Rate limiting</b> — sliding window per user/IP (100 req/min API, 10 req/s AI)</li>
+              <li><b>Meeting rooms</b> — active room state, participant maps (TTL: meeting + 1h)</li>
+              <li><b>Presence</b> — online/away/DND per user (TTL: 30s heartbeat)</li>
+              <li><b>Cache</b> — user profiles, account settings (TTL: 5 min)</li>
+              <li><b>Pub/Sub</b> — inter-service events (chat:new, presence:update)</li>
+              <li><b>Distributed locks</b> — prevent double-recording, double-billing</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Kafka Topics</div><ul class="fl">
+              <li><code style="font-family:var(--mono);color:var(--green)">meeting.events</code> — started, ended, participant events</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">recording.completed</code> — triggers transcription pipeline</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">ai.transcription.chunk</code> — real-time transcript segments</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">ai.summary.request</code> — triggers LLM summary job</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">chat.message.new</code> — fan-out to notification service</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">user.events</code> — created, deactivated, role-changed</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">billing.events</code> — plan changed, seat added/removed</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">analytics.ingest</code> — usage metrics → ClickHouse</li>
+              <li><code style="font-family:var(--mono);color:var(--green)">webhook.dispatch</code> — outbound customer webhook delivery</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- ── STORAGE ── -->
+        <div id="panel-storage" class="panel">
+          <div class="ph1">Storage & CDN</div>
+          <div class="g2">
+            <div class="card"><div class="ph3">S3 Bucket Structure</div><ul class="fl">
+              <li><code style="font-family:var(--mono);color:var(--accent3)">recordings/{accountId}/{meetingId}/</code> — MP4, M4A, chat</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">transcripts/{meetingId}/</code> — .vtt, .json</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">summaries/{meetingId}/</code> — summary.json, chapters.json</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">uploads/{accountId}/{channelId}/</code> — chat file attachments</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">whiteboards/{boardId}/</code> — snapshots, exports</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">clips/{userId}/</code> — async video files</li>
+              <li><code style="font-family:var(--mono);color:var(--accent3)">avatars/{userId}/</code> — profile pictures (CDN-distributed)</li>
+              <li>Presigned URLs: 15 min for downloads, 60 min for uploads</li>
+              <li>Lifecycle: recordings 90d → Glacier · transcripts: per retention policy</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Recording Pipeline</div><ul class="fl">
+              <li>SFU writes raw RTP tracks to S3 in real time (per-track segments)</li>
+              <li>meeting.ended Kafka event triggers Lambda processor</li>
+              <li>ECS Fargate task: FFmpeg mixes tracks → MP4 (active speaker) + M4A</li>
+              <li>Outputs uploaded to recordings/ bucket</li>
+              <li>recording.completed event → ai-companion-service consumer</li>
+              <li>Whisper large-v3 transcription (Batch job, ~0.5× real-time speed)</li>
+              <li>NLP: punctuation model, speaker diarization</li>
+              <li>Claude API: generate summary + smart chapters + action items</li>
+              <li>All AI outputs stored to summaries/ bucket + Postgres</li>
+              <li>meeting.summary.completed webhook fired to customer endpoint</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- ── AI ARCHITECTURE ── -->
+        <div id="panel-ai" class="panel">
+          <div class="ph1">AI Architecture</div>
+          <div class="pdesc">Federated model architecture. Model selection is dynamic based on task, latency requirements, and data privacy settings.</div>
+          <div class="card" style="margin-bottom:14px">
+            <table style="width:100%;border-collapse:collapse;font-size:13px">
+              <thead><tr style="border-bottom:1px solid var(--border)">
+                <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;text-transform:uppercase">Task</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;text-transform:uppercase">Model</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;text-transform:uppercase">Provider</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;text-transform:uppercase">Mode</th>
+              </tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-weight:600">Speech-to-Text</td><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">whisper-large-v3</td><td style="padding:8px 12px;color:var(--text2)">OpenAI</td><td style="padding:8px 12px"><span class="badge bg">Async</span></td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-weight:600">Meeting Summary</td><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">claude-3-5-sonnet</td><td style="padding:8px 12px;color:var(--text2)">Anthropic</td><td style="padding:8px 12px"><span class="badge bg">Async</span></td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-weight:600">In-Meeting Q&A</td><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">gpt-4o</td><td style="padding:8px 12px;color:var(--text2)">OpenAI</td><td style="padding:8px 12px"><span class="badge ba">Streaming SSE</span></td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-weight:600">Deep Research</td><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">gpt-4o + web search</td><td style="padding:8px 12px;color:var(--text2)">OpenAI</td><td style="padding:8px 12px"><span class="badge bp">Multi-step</span></td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-weight:600">Vector Embedding</td><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">text-embedding-3-large</td><td style="padding:8px 12px;color:var(--text2)">OpenAI</td><td style="padding:8px 12px"><span class="badge bg">Async</span></td></tr>
+                <tr style="border-bottom:1px solid rgba(23,37,64,.5)"><td style="padding:8px 12px;font-weight:600">On-Device (E2EE)</td><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">nemotron-nano</td><td style="padding:8px 12px;color:var(--text2)">NVIDIA</td><td style="padding:8px 12px"><span class="badge bam">On-Device</span></td></tr>
+                <tr><td style="padding:8px 12px;font-weight:600">Noise Suppression</td><td style="padding:8px 12px;font-family:var(--mono);color:var(--accent3);font-size:12px">RNNoise + custom</td><td style="padding:8px 12px;color:var(--text2)">Proprietary</td><td style="padding:8px 12px"><span class="badge bt">Real-Time</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── SECURITY MODEL ── -->
+        <div id="panel-security" class="panel">
+          <div class="ph1">Security Model</div>
+          <div class="g2">
+            <div class="card"><div class="ph3">Transport</div><ul class="fl">
+              <li>TLS 1.3 on all HTTPS (HSTS preloaded)</li>
+              <li>DTLS-SRTP for all WebRTC media streams</li>
+              <li>Certificate pinning on mobile apps</li>
+              <li>CSP headers on all web responses</li>
+              <li>CORS: strict origin allowlist only</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Auth</div><ul class="fl">
+              <li>JWT access tokens: RS256, 15 min expiry</li>
+              <li>Refresh tokens: 7-day rotation, single-use</li>
+              <li>OAuth 2.0 PKCE (mobile/SPA)</li>
+              <li>SAML 2.0 SP-initiated SSO</li>
+              <li>FIDO2 passkeys (WebAuthn level 2)</li>
+              <li>TOTP + SMS MFA</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Data</div><ul class="fl">
+              <li>AES-256-GCM at rest (S3 SSE-KMS)</li>
+              <li>Per-tenant KMS key (Enterprise)</li>
+              <li>PostgreSQL RLS: tenant isolation</li>
+              <li>PII masked in all application logs</li>
+              <li>SOC 2 Type II, HIPAA, GDPR, FedRAMP</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Meeting Security</div><ul class="fl">
+              <li>E2E encryption: per-meeting AES-GCM key</li>
+              <li>Passcode: bcrypt-hashed, never stored plain</li>
+              <li>Waiting room: host-admitted only</li>
+              <li>Deepfake detection: real-time synthetic media alert</li>
+              <li>Recording consent: mandatory announcement</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- ── DEPLOYMENT ── -->
+        <div id="panel-deploy" class="panel">
+          <div class="ph1">Deployment & Infrastructure</div>
+          <div class="g2">
+            <div class="card"><div class="ph3">Kubernetes Setup</div><ul class="fl">
+              <li>Multi-region: us-east-1, eu-west-1, ap-southeast-1</li>
+              <li>EKS (AWS) — Helm chart per service</li>
+              <li>Istio service mesh (mTLS, retries, circuit breakers)</li>
+              <li>HPA: auto-scale on CPU + custom Kafka lag metric</li>
+              <li>PodDisruptionBudget: min 2 replicas always running</li>
+              <li>Node affinity: media/AI pods on GPU nodes</li>
+              <li>Secrets: AWS Secrets Manager → External Secrets Operator</li>
+            </ul></div>
+            <div class="card"><div class="ph3">CI/CD Pipeline</div><ul class="fl">
+              <li>GitHub Actions: lint → test → build → push image</li>
+              <li>Docker images: multi-stage, distroless base (minimal attack surface)</li>
+              <li>ArgoCD: GitOps deployment, auto-sync main branch</li>
+              <li>Blue-green deployments for zero-downtime releases</li>
+              <li>Canary: 5% → 20% → 100% traffic shift with automated rollback</li>
+              <li>Smoke tests run post-deploy before full cutover</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Observability</div><ul class="fl">
+              <li>Metrics: Prometheus + Grafana (custom SLO dashboards)</li>
+              <li>Tracing: OpenTelemetry → Jaeger (distributed traces)</li>
+              <li>Logs: Fluent Bit → OpenSearch (structured JSON)</li>
+              <li>Alerting: PagerDuty escalation on SLO breach</li>
+              <li>Uptime: 99.9% SLA (Enterprise) · p50 API latency target: &lt;80ms</li>
+              <li>Chaos engineering: Gremlin quarterly drills</li>
+            </ul></div>
+            <div class="card"><div class="ph3">Database Ops</div><ul class="fl">
+              <li>PostgreSQL: primary + 2 read replicas per region</li>
+              <li>WAL streaming replication (RPO: &lt;1s)</li>
+              <li>PITR backups: every 5 min, 30-day retention</li>
+              <li>Daily pg_dump to S3 (compressed, encrypted)</li>
+              <li>RDS Proxy: connection pooling for Lambda / spiky traffic</li>
+              <li>Schema migrations: Flyway, forward-only, PR-reviewed</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- ── INFRA ── -->
+        <div id="panel-infra" class="panel">
+          <div class="ph1">Infrastructure Map</div>
+          <div class="card">
+            <div class="infra-item"><div class="infra-dot" style="background:var(--accent2)"></div><div><div class="infra-title">API Gateway — Nginx + Node.js</div><div class="infra-desc">TLS termination, rate limiting (100 req/min per user), JWT validation, service routing, request logging</div></div></div>
+            <div class="infra-item"><div class="infra-dot" style="background:var(--green)"></div><div><div class="infra-title">WebRTC Cluster — Mediasoup on Rust</div><div class="infra-desc">SFU nodes per region, auto-scaled, dedicated GPU instances for noise suppression and real-time transcription</div></div></div>
+            <div class="infra-item"><div class="infra-dot" style="background:var(--purple)"></div><div><div class="infra-title">STUN/TURN — coturn on anycast IPs</div><div class="infra-desc">10 regional TURN servers (US×3, EU×3, APAC×3, SA×1), UDP 3478 + TCP 443 fallback, 10 Gbps capacity</div></div></div>
+            <div class="infra-item"><div class="infra-dot" style="background:var(--amber)"></div><div><div class="infra-title">Kafka Cluster — 3 brokers per region</div><div class="infra-desc">Replication factor 3, min.insync.replicas 2, retention 7 days, Kafka Connect for ClickHouse sink</div></div></div>
+            <div class="infra-item"><div class="infra-dot" style="background:var(--teal)"></div><div><div class="infra-title">Redis Cluster — 6 nodes (3 primary, 3 replica)</div><div class="infra-desc">Cluster mode, AOF persistence, maxmemory-policy allkeys-lru, 64 GB total, Sentinel failover &lt;30s</div></div></div>
+            <div class="infra-item"><div class="infra-dot" style="background:var(--pink)"></div><div><div class="infra-title">CDN — CloudFront + Fastly (dual-stack)</div><div class="infra-desc">HLS streaming for recordings, signed URLs with 15-min TTL, edge caching of popular recordings, 450+ PoPs</div></div></div>
+            <div class="infra-item"><div class="infra-dot" style="background:var(--orange)"></div><div><div class="infra-title">AI Processing — ECS Fargate GPU tasks</div><div class="infra-desc">On-demand Fargate tasks for Whisper transcription and FFmpeg mixing. Scale to zero when idle. p3.2xlarge for heavy AI</div></div></div>
+          </div>
+        </div>
+
+        <!-- ── MEDIA PIPELINE ── -->
+        <div id="panel-media" class="panel">
+          <div class="ph1">Media Processing Pipeline</div>
+          <div class="card">
+            <ul class="fl">
+              <li><b>Step 1</b> — Mediasoup SFU records individual participant RTP tracks (per-track segmented files) directly to S3 during the meeting</li>
+              <li><b>Step 2</b> — On <code style="font-family:var(--mono);color:var(--green)">meeting.ended</code> Kafka event, Lambda triggers an ECS Fargate task</li>
+              <li><b>Step 3</b> — FFmpeg mixes all tracks: Active Speaker MP4 (video+audio), Gallery View MP4, Audio-only M4A, Chat transcript TXT</li>
+              <li><b>Step 4</b> — Mixed files uploaded to <code style="font-family:var(--mono);color:var(--accent3)">recordings/{accountId}/{meetingId}/</code> S3 bucket</li>
+              <li><b>Step 5</b> — <code style="font-family:var(--mono);color:var(--green)">recording.completed</code> Kafka event consumed by ai-companion-service</li>
+              <li><b>Step 6</b> — Audio extracted → Whisper large-v3 transcription (AWS Batch, ~0.5× real-time)</li>
+              <li><b>Step 7</b> — NLP pipeline: punctuation model, speaker diarization (assign speaker labels by voice)</li>
+              <li><b>Step 8</b> — Transcript stored as VTT + JSON to S3, written to Postgres (transcript_status → completed)</li>
+              <li><b>Step 9</b> — Claude API: generate summary, smart chapters, extract action items, identify key decisions</li>
+              <li><b>Step 10</b> — All AI outputs written to Postgres + S3 summaries bucket</li>
+              <li><b>Step 11</b> — <code style="font-family:var(--mono);color:var(--green)">meeting.summary.completed</code> webhook dispatched to customer endpoint</li>
+              <li><b>Step 12</b> — Socket.io push <code style="font-family:var(--mono);color:var(--green)">ai:summary-ready</code> to host's connected clients</li>
+              <li>Total pipeline time: ~3–8 minutes for a 1-hour meeting</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /app-main -->
+  </div><!-- /app-layout -->
+</div><!-- /app-screen -->
+
+<script>
+const CREDS = {'dev@fasafas.com':'Backend@2026','developer':'Backend@2026','devadmin':'Dev#FasaFas26'};
+
+function doLogin(){
+  const u=document.getElementById('l-user').value.trim();
+  const p=document.getElementById('l-pass').value;
+  const btn=document.getElementById('login-btn');
+  const err=document.getElementById('login-error');
+  if(!u||!p){showErr('Please enter username and password.');return;}
+  btn.disabled=true;btn.textContent='Verifying access…';
+  err.classList.remove('show');
+  setTimeout(()=>{
+    if(CREDS[u]===p){
+      btn.textContent='✓ Access Granted — Loading portal…';
+      btn.style.background='linear-gradient(135deg,#059669,#0d9488)';
+      setTimeout(()=>{
+        document.getElementById('login-screen').style.display='none';
+        document.getElementById('app-screen').style.display='block';
+        showToast('Developer portal unlocked 🔓');
+      },700);
+    } else {
+      showErr('Access denied. Invalid developer credentials.');
+      btn.disabled=false;btn.textContent='Access Developer Portal →';btn.style.background='';
+      document.getElementById('l-pass').value='';
+      document.getElementById('l-pass').focus();
     }
-    // Set the googtrans cookie that Google Translate reads
-    const host = window.location.hostname;
-    const val = '/en/' + langCode;
-    document.cookie = 'googtrans=' + val + '; path=/';
-    document.cookie = 'googtrans=' + val + '; path=/; domain=' + host;
+  },900);
+}
 
-    // Also trigger via the hidden Google Translate select if available
-    const trySelect = () => {
-      const sel = document.querySelector('.goog-te-combo');
-      if(sel){
-        sel.value = langCode;
-        sel.dispatchEvent(new Event('change'));
-      } else {
-        // Fallback: use translate.google.com redirect
-        const encoded = encodeURIComponent(window.location.href);
-        window.location.href = `https://translate.google.com/translate?sl=en&tl=${langCode}&u=${encoded}`;
-      }
-    };
-    setTimeout(trySelect, 500);
+function showErr(msg){
+  document.getElementById('err-msg').textContent=msg;
+  document.getElementById('login-error').classList.add('show');
+}
+
+function doLogout(){
+  if(confirm('Sign out of the developer portal?')){
+    document.getElementById('app-screen').style.display='none';
+    document.getElementById('login-screen').style.display='flex';
+    document.getElementById('l-user').value='';document.getElementById('l-pass').value='';
+    document.getElementById('login-btn').textContent='Access Developer Portal →';
+    document.getElementById('login-btn').style.background='';
+    document.getElementById('login-btn').disabled=false;
+    document.getElementById('login-error').classList.remove('show');
   }
+}
 
-  function buildUI(){
-    injectStyles();
+function fill(id,val){document.getElementById(id).value=val;showToast('Field filled — click Access Developer Portal');}
+function togglePw(){const i=document.getElementById('l-pass'),b=event.currentTarget;i.type=i.type==='password'?'text':'password';b.textContent=i.type==='password'?'👁':'🙈';}
 
-    // Button
-    const btn = document.createElement('button');
-    btn.id = 'fasa-translate-btn';
-    btn.title = 'Translate page';
-    btn.innerHTML = '🌐';
-    document.body.appendChild(btn);
+const titles={
+  overview:['🗂','Architecture Overview'],stack:['🧱','Tech Stack'],services:['⚙️','Microservices'],
+  infra:['☁️','Infrastructure'],rest:['🔌','REST Endpoints'],websocket:['⚡','WebSocket / WebRTC'],
+  webhooks:['🔗','Webhooks'],schema:['🗄️','Database Schema'],redis:['⚡','Redis & Kafka'],
+  storage:['📦','Storage & CDN'],ai:['🤖','AI Architecture'],media:['🎬','Media Pipeline'],
+  security:['🔒','Security Model'],deploy:['🚀','Deployment']
+};
 
-    // Panel
-    const panel = document.createElement('div');
-    panel.id = 'fasa-translate-panel';
-    panel.innerHTML = `
-      <div class="ftp-head">🌐 Translate Page</div>
-      <input class="ftp-search" id="ftp-search" placeholder="Search language…" autocomplete="off">
-      <div class="ftp-list" id="ftp-list"></div>
-      <div class="ftp-reset" id="ftp-reset">↺ Reset to English</div>
-    `;
-    document.body.appendChild(panel);
+function sw(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(n=>n.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id);
+  if(panel)panel.classList.add('active');
+  if(el)el.classList.add('active');
+  const meta=titles[id]||['📄',id];
+  document.getElementById('tb-icon').textContent=meta[0];
+  document.getElementById('tb-title').textContent=meta[1];
+}
 
-    // Populate list
-    const list = panel.querySelector('#ftp-list');
-    function renderList(filter){
-      list.innerHTML = '';
-      LANGUAGES.filter(l => !filter || l.name.toLowerCase().includes(filter.toLowerCase())).forEach(lang => {
-        const item = document.createElement('div');
-        item.className = 'ftp-item';
-        item.innerHTML = lang.name;
-        item.dataset.code = lang.code;
-        item.addEventListener('click', () => {
-          panel.querySelectorAll('.ftp-item').forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
-          btn.innerHTML = lang.code === 'en' ? '🌐' : lang.name.slice(0,2).toUpperCase();
-          doTranslate(lang.code);
-          panel.classList.remove('open');
-        });
-        list.appendChild(item);
-      });
-    }
-    renderList('');
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
 
-    // Search
-    panel.querySelector('#ftp-search').addEventListener('input', function(){
-      renderList(this.value.trim());
-    });
-
-    // Reset
-    panel.querySelector('#ftp-reset').addEventListener('click', () => {
-      clearTranslateCookie();
-      btn.innerHTML = '🌐';
-      panel.classList.remove('open');
-      location.reload();
-    });
-
-    // Toggle
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      panel.classList.toggle('open');
-      if(panel.classList.contains('open')){
-        panel.querySelector('#ftp-search').focus();
-      }
-    });
-
-    document.addEventListener('click', () => panel.classList.remove('open'));
-    panel.addEventListener('click', e => e.stopPropagation());
-  }
-
-  // Init
-  clearTranslateCookie(); // always reset on load
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', () => { injectGoogleTranslate(); buildUI(); });
-  } else {
-    injectGoogleTranslate();
-    buildUI();
-  }
-})();
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('login-screen').style.display!=='none')doLogin();
+});
+</script>
+<script src="../assets/js/translate.js"></script>
+</body>
+</html>
