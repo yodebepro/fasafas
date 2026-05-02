@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Video Meeting Platform</title>
+<style>
+:root{
+  --bg:#07101f;--bg2:#0d1b2e;--bg3:#132039;--card:#0f1f35;
+  --border:#1e3050;--accent:#2563eb;--accent2:#3b82f6;--accent3:#60a5fa;
+  --green:#10b981;--amber:#f59e0b;--red:#ef4444;--purple:#8b5cf6;
+  --teal:#14b8a6;--pink:#ec4899;--orange:#f97316;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
+  --font:'Segoe UI',system-ui,sans-serif;--mono:'Consolas','SF Mono',monospace;
+  --r:10px;--r2:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* ── HEADER ── */
+.g-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:56px;
+  background:rgba(7,16,31,.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.g-logo{font-size:18px;font-weight:800;color:var(--accent2);cursor:pointer;display:flex;align-items:center;gap:10px;letter-spacing:-.5px}
+.g-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+.g-logo-sub{font-size:10px;font-weight:400;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;align-self:center}
+.g-nav{display:flex;gap:6px;align-items:center}
+.g-btn{padding:6px 13px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.g-btn:hover{background:var(--bg3);color:var(--text);border-color:var(--accent2)}
+.g-btn.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.g-btn.pri:hover{background:#1d4ed8}
+.g-btn.schedule-btn{background:linear-gradient(135deg,#2563eb,#7c3aed);border:none;color:#fff;font-weight:700;padding:7px 16px;font-size:13px}
+.g-btn.schedule-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* ── PAGE SYSTEM ── */
+.page{display:none;padding-top:56px;min-height:100vh}
+.page.active{display:block}
+
+/* ── HOME HERO ── */
+.hero-wrap{
+  background:radial-gradient(ellipse at 20% 50%,rgba(37,99,235,.14) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.10) 0%,transparent 60%),var(--bg2);
+  padding:60px 44px 50px;border-bottom:1px solid var(--border);
+}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);border-radius:20px;padding:4px 14px;font-size:11px;color:var(--accent3);margin-bottom:18px;letter-spacing:.5px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite}
+.hero-title{font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:14px}
+.hero-title em{font-style:normal;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--text2);font-size:15px;max-width:560px;line-height:1.75;margin-bottom:28px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:10px 22px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .18s;font-family:var(--font)}
+.btn-pri{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;box-shadow:0 4px 20px rgba(37,99,235,.3)}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.4)}
+.btn-sec{background:transparent;color:var(--text2);border:1px solid var(--border)}
+.btn-sec:hover{background:var(--bg3);color:var(--text);border-color:var(--accent2)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:#059669;transform:translateY(-1px)}
+
+/* ── MODULE GRID ── */
+.modules-section{padding:40px 44px 60px}
+.sec-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--text3);margin-bottom:6px}
+.sec-title{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+.sec-desc{color:var(--text2);font-size:13px;margin-bottom:26px;line-height:1.7}
+.module-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:1100px){.module-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.module-grid{grid-template-columns:repeat(2,1fr)}}
+
+.mod-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:20px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;
+}
+.mod-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;background:radial-gradient(circle at 30% 30%,var(--mc,rgba(37,99,235,.08)),transparent 70%)}
+.mod-card:hover{border-color:var(--mc-b,var(--accent));transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.mod-card:hover::before{opacity:1}
+.mod-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:12px;background:var(--mc-bg,rgba(37,99,235,.15));border:1px solid var(--mc-b2,rgba(37,99,235,.25))}
+.mod-name{font-size:14px;font-weight:700;letter-spacing:-.2px;margin-bottom:5px}
+.mod-desc{color:var(--text2);font-size:12px;line-height:1.6;margin-bottom:12px}
+.mod-tags{display:flex;flex-wrap:wrap;gap:4px}
+.mod-tag{padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;background:var(--mc-tbg,rgba(37,99,235,.15));color:var(--mc-tc,#93c5fd);border:1px solid var(--mc-tb,rgba(37,99,235,.2))}
+.mod-arrow{position:absolute;top:14px;right:14px;color:var(--text3);font-size:14px;transition:all .2s}
+.mod-card:hover .mod-arrow{color:var(--mc-b,var(--accent));transform:translate(2px,-2px)}
+
+/* ── QUICK ACTIONS STRIP ── */
+.quick-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 44px 0;padding:24px 0;border-bottom:1px solid var(--border)}
+.quick-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:22px 24px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:16px;
+}
+.quick-card:hover{border-color:var(--qc-border,var(--accent));transform:translateY(-2px);background:var(--bg2)}
+.qc-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.qc-title{font-size:15px;font-weight:700;margin-bottom:2px}
+.qc-desc{font-size:12px;color:var(--text2)}
+
+/* ══════════════════════════════════════════
+   SCHEDULE MEETING PAGE
+══════════════════════════════════════════ */
+.sched-layout{display:grid;grid-template-columns:1fr 420px;gap:0;min-height:calc(100vh - 56px)}
+@media(max-width:900px){.sched-layout{grid-template-columns:1fr}}
+
+/* Form panel */
+.sched-form-panel{padding:36px 44px;border-right:1px solid var(--border);overflow-y:auto}
+.sched-h1{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+.sched-sub{color:var(--text2);font-size:13px;margin-bottom:28px}
+
+/* Form elements */
+.f-group{margin-bottom:20px}
+.f-label{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.f-label .req{color:var(--red);font-size:14px;line-height:1}
+.f-input{
+  width:100%;padding:11px 14px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--text);font-family:var(--font);font-size:13px;
+  transition:border-color .15s;outline:none;
+}
+.f-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.f-input::placeholder{color:var(--text3)}
+textarea.f-input{resize:vertical;min-height:80px}
+select.f-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* Toggle switch */
+.f-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(30,48,80,.5)}
+.f-toggle-row:last-child{border:none}
+.f-toggle-info .f-toggle-label{font-size:13px;font-weight:600;margin-bottom:2px}
+.f-toggle-info .f-toggle-desc{font-size:11px;color:var(--text3)}
+.tog-switch{position:relative;width:40px;height:22px;flex-shrink:0}
+.tog-switch input{opacity:0;width:0;height:0;position:absolute}
+.tog-slider{position:absolute;inset:0;border-radius:11px;background:var(--border);transition:.2s;cursor:pointer}
+.tog-slider::before{content:'';position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+.tog-switch input:checked + .tog-slider{background:var(--accent)}
+.tog-switch input:checked + .tog-slider::before{left:21px}
+
+/* Section divider */
+.f-section{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent3);margin:24px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+
+/* Radio group */
+.radio-group{display:flex;gap:8px;flex-wrap:wrap}
+.radio-opt{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:8px;border:1px solid var(--border);cursor:pointer;background:var(--bg3);transition:all .15s;font-size:13px}
+.radio-opt:hover{border-color:var(--accent2);background:rgba(37,99,235,.08)}
+.radio-opt input{accent-color:var(--accent);width:14px;height:14px;cursor:pointer}
+.radio-opt.selected{border-color:var(--accent);background:rgba(37,99,235,.12);color:var(--accent3)}
+
+/* Checkbox */
+.check-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer}
+.check-opt input{accent-color:var(--accent);width:15px;height:15px;margin-top:1px;cursor:pointer;flex-shrink:0}
+.check-opt-label{font-size:13px;font-weight:500}
+.check-opt-desc{font-size:11px;color:var(--text3);margin-top:2px}
+
+/* Submit button */
+.sched-submit{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:14px;border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;
+  transition:all .2s;margin-top:24px;font-family:var(--font);letter-spacing:-.2px;
+}
+.sched-submit:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 8px 28px rgba(37,99,235,.35)}
+.sched-submit:active{transform:translateY(0)}
+
+/* ── MEETING DETAILS PANEL (right side) ── */
+.sched-preview-panel{
+  background:var(--bg2);padding:36px 32px;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;
+}
+.preview-header{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.preview-header::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--amber)}
+
+/* Meeting card */
+.meet-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:22px;margin-bottom:14px;
+}
+.meet-card-title{font-size:16px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px;color:var(--accent3)}
+.meet-card-meta{font-size:12px;color:var(--text3);margin-bottom:16px;display:flex;flex-wrap:wrap;gap:10px}
+.meet-meta-item{display:flex;align-items:center;gap:4px}
+
+/* Copy row */
+.copy-row{
+  background:var(--bg3);border:1px solid var(--border);border-radius:9px;
+  padding:13px 14px;margin:10px 0;display:flex;align-items:center;gap:10px;
+}
+.copy-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:3px}
+.copy-value{font-size:13px;font-weight:600;color:var(--text);font-family:var(--mono);flex:1;word-break:break-all}
+.copy-value.link{color:var(--accent3);font-size:12px}
+.copy-btn{
+  padding:7px 12px;border-radius:6px;border:1px solid var(--border);
+  background:transparent;color:var(--text2);font-size:11px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:all .15s;font-family:var(--font);
+  display:flex;align-items:center;gap:5px;
+}
+.copy-btn:hover{background:rgba(37,99,235,.15);border-color:var(--accent2);color:var(--accent3)}
+.copy-btn.copied{background:rgba(16,185,129,.15);border-color:var(--green);color:var(--green)}
+.copy-icon{font-size:13px}
+
+/* Invite block */
+.invite-block{
+  background:var(--bg3);border:1px solid var(--border);border-radius:9px;
+  padding:14px;margin-top:14px;font-size:12px;line-height:1.8;color:var(--text2);
+  font-family:var(--mono);white-space:pre-wrap;word-break:break-word;
+}
+
+/* Status badge */
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.sb-scheduled{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.sb-pending{background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
+
+/* Action buttons row */
+.action-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.act-btn{flex:1;padding:9px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all .15s;min-width:80px;text-align:center}
+.act-start{background:var(--green);color:#fff}
+.act-start:hover{background:#059669}
+.act-edit{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.act-edit:hover{border-color:var(--accent2);color:var(--text)}
+.act-delete{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.25)}
+.act-delete:hover{background:rgba(239,68,68,.2)}
+
+/* Calendar chips */
+.cal-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.cal-chip{padding:7px 13px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2);transition:all .15s;display:flex;align-items:center;gap:5px}
+.cal-chip:hover{border-color:var(--accent2);color:var(--text);background:rgba(37,99,235,.08)}
+
+/* Upcoming meetings list */
+.upcoming-list{margin-top:8px}
+.upcoming-item{
+  padding:12px;border-radius:9px;background:var(--card);border:1px solid var(--border);
+  margin-bottom:8px;cursor:pointer;transition:all .15s;
+}
+.upcoming-item:hover{border-color:var(--accent2);background:var(--bg3)}
+.upi-title{font-size:13px;font-weight:700;margin-bottom:3px}
+.upi-meta{font-size:11px;color:var(--text3);display:flex;gap:10px;flex-wrap:wrap}
+.upi-join{font-size:11px;font-weight:700;color:var(--accent3);margin-top:6px;display:flex;align-items:center;gap:5px}
+
+/* Toast notification */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  background:var(--bg2);border:1px solid var(--green);border-radius:10px;
+  padding:12px 18px;display:flex;align-items:center;gap:10px;
+  color:var(--text);font-size:13px;font-weight:600;
+  transform:translateY(80px);opacity:0;transition:all .3s;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-icon{font-size:18px}
+
+/* ── MODULE PAGE ── */
+.mod-page-hero{
+  padding:36px 44px 32px;border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  display:flex;align-items:flex-start;gap:18px;position:relative;overflow:hidden;
+}
+.mod-page-hero::after{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,var(--mphc,rgba(37,99,235,.1)),transparent 70%);pointer-events:none}
+.mph-icon{width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;border:1px solid var(--border)}
+.mph-body{flex:1}
+.mph-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);margin-bottom:8px;cursor:pointer;transition:color .15s}
+.mph-back:hover{color:var(--accent3)}
+.mph-title{font-size:26px;font-weight:800;letter-spacing:-.6px;margin-bottom:6px}
+.mph-desc{color:var(--text2);font-size:13.5px;line-height:1.7;max-width:640px;margin-bottom:12px}
+.mph-badges{display:flex;flex-wrap:wrap;gap:6px}
+.mph-badge{padding:3px 10px;border-radius:5px;font-size:11px;font-weight:600}
+
+.mod-tabs{display:flex;gap:2px;padding:0 44px;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto}
+.mod-tab{padding:12px 18px;font-size:13px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.mod-tab:hover{color:var(--text2)}
+.mod-tab.active{color:var(--accent3);border-bottom-color:var(--accent)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.mp-body{padding:32px 44px;max-width:1200px}
+.mp-h2{font-size:18px;font-weight:700;letter-spacing:-.3px;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+.mp-h2:first-child{margin-top:0}
+.mp-h2 .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+.mp-h3{font-size:12px;font-weight:700;color:var(--accent3);margin:0 0 10px;text-transform:uppercase;letter-spacing:.8px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:850px){.g2,.g3{grid-template-columns:1fr}}
+.fcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.fl{list-style:none}
+.fl li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid rgba(30,48,80,.5);font-size:12.5px;color:var(--text2)}
+.fl li:last-child{border:none}
+.fl li::before{content:'→';color:var(--accent2);font-size:11px;margin-top:2px;flex-shrink:0}
+.ftable{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+.ftable th{background:var(--bg3);color:var(--text3);padding:8px 12px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+.ftable td{padding:8px 12px;border-bottom:1px solid rgba(30,48,80,.4);color:var(--text2);vertical-align:top}
+.ck{color:var(--green);font-weight:700}.da{color:var(--text3)}.pa{color:var(--amber)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.ba{background:rgba(37,99,235,.2);color:#93c5fd}.bg{background:rgba(16,185,129,.2);color:#6ee7b7}
+.bp{background:rgba(139,92,246,.2);color:#c4b5fd}.bam{background:rgba(245,158,11,.2);color:#fcd34d}
+.br{background:rgba(239,68,68,.2);color:#fca5a5}.bt{background:rgba(20,184,166,.2);color:#5eead4}
+.ep{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:8px 14px;margin:4px 0;font-family:var(--mono);font-size:12px;display:flex;align-items:center;gap:8px}
+.meth{padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;flex-shrink:0}
+.get{background:rgba(16,185,129,.2);color:#6ee7b7}.post{background:rgba(37,99,235,.2);color:#93c5fd}
+.put{background:rgba(245,158,11,.2);color:#fcd34d}.del{background:rgba(239,68,68,.2);color:#fca5a5}
+.ep-note{color:var(--text3);font-size:11px;margin-left:auto}
+
+/* Stat cards */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.stat-c{background:var(--bg3);border-radius:8px;padding:16px;border:1px solid var(--border)}
+.stat-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.stat-val{font-size:22px;font-weight:800;letter-spacing:-.5px}
+
+/* Tier cards */
+.tier-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.tier-c{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.tier-c.hot{border-color:var(--accent)}
+.tier-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:4px}
+.tier-price{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:2px}
+.tier-per{font-size:11px;color:var(--text3);margin-bottom:12px}
+.tier-feats{list-style:none;font-size:12px;color:var(--text2)}
+.tier-feats li{padding:3px 0;display:flex;gap:6px;border-bottom:1px solid rgba(30,48,80,.3)}
+.tier-feats li:last-child{border:none}
+.tier-feats li::before{content:'✓';color:var(--green);flex-shrink:0}
+
+/* adm toggle */
+.adm-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(30,48,80,.4)}
+.adm-row:last-child{border:none}
+.adm-label{font-size:13px;font-weight:500}.adm-desc{font-size:11px;color:var(--text3);margin-top:2px}
+.tog{width:36px;height:20px;border-radius:10px;background:var(--accent);position:relative;flex-shrink:0}
+.tog.off{background:var(--border)}
+.tog::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .15s}
+.tog:not(.off)::after{left:19px}
+
+.spec-block{background:var(--bg3);border:1px solid var(--border);border-radius:8px;margin:10px 0;overflow:hidden}
+.spec-head{padding:8px 14px;font-size:12px;font-weight:700;color:var(--accent3);border-bottom:1px solid var(--border);font-family:var(--mono);background:rgba(37,99,235,.08)}
+.spec-row{display:flex;padding:5px 14px;border-bottom:1px solid rgba(30,48,80,.3);font-size:11.5px;gap:12px}
+.spec-row:last-child{border:none}
+.sr-key{color:var(--text);min-width:160px;font-weight:500}.sr-val{color:var(--text2);flex:1}
+</style>
+</head>
+<body>
+
+<!-- ═══════ TOAST ═══════ -->
+<div class="toast" id="toast"><span class="toast-icon">✓</span><span id="toast-msg">Copied!</span></div>
+
+<!-- ═══════ HEADER ═══════ -->
+<header class="g-header">
+  <div class="g-logo" onclick="goHome()">
+    <div class="g-logo-dot"></div>
+    FasaFas
+    <span class="g-logo-sub">Video Platform</span>
+  </div>
+  <nav class="g-nav">
+    <button class="g-btn" onclick="goHome()">Home</button>
+    <button class="g-btn" onclick="showPage('p-pricing')">Pricing</button>
+    <button class="g-btn schedule-btn" onclick="showPage('p-schedule')">＋ Schedule Meeting</button>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════ -->
+<div id="p-home" class="page active">
+  <div class="hero-wrap">
+    <div class="hero-badge">Live · FasaFas Platform · 2026 Edition</div>
+    <h1 class="hero-title">Connect, Collaborate &<br><em>Create Together</em></h1>
+    <p class="hero-sub">FasaFas is an all-in-one AI-powered video meeting platform. Schedule meetings, chat, phone calls, whiteboards, docs, and AI companion — all in one place.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-pri" onclick="showPage('p-schedule')">＋ Schedule a Meeting</button>
+      <button class="btn btn-sec" onclick="joinWithId()">Join a Meeting</button>
+      <button class="btn btn-green" onclick="startInstantMeeting()">▶ Start Instant Meeting</button>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-strip">
+    <div class="quick-card" onclick="showPage('p-schedule')" style="--qc-border:#2563eb">
+      <div class="qc-icon" style="background:rgba(37,99,235,.15)">📅</div>
+      <div>
+        <div class="qc-title">Schedule Meeting</div>
+        <div class="qc-desc">Set up a video meeting with invite link, ID & passcode</div>
+      </div>
+    </div>
+    <div class="quick-card" onclick="location.href='pages/features/hd-video.html'" style="--qc-border:#10b981;cursor:pointer">
+      <div class="qc-icon" style="background:rgba(16,185,129,.15)">🎥</div>
+      <div>
+        <div class="qc-title">Meetings Blueprint</div>
+        <div class="qc-desc">All in-meeting controls, breakout rooms & AI features</div>
+      </div>
+    </div>
+    <div class="quick-card" onclick="location.href='pages/features/ai-companion.html'" style="--qc-border:#8b5cf6;cursor:pointer">
+      <div class="qc-icon" style="background:rgba(139,92,246,.15)">🤖</div>
+      <div>
+        <div class="qc-title">AI Companion</div>
+        <div class="qc-desc">Summaries, transcription, agents & deep research</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modules-section">
+    <div class="sec-label">Platform Modules</div>
+    <h2 class="sec-title">All FasaFas Features</h2>
+    <p class="sec-desc">Click any module to explore its complete blueprint — every UI component, form field, API endpoint, and admin control.</p>
+    <div class="module-grid">
+      <div class="mod-card" onclick="location.href='pages/features/hd-video.html'" style="--mc:rgba(37,99,235,.12);--mc-b:#2563eb;--mc-bg:rgba(37,99,235,.15);--mc-b2:rgba(37,99,235,.3);--mc-tbg:rgba(37,99,235,.15);--mc-tc:#93c5fd;--mc-tb:rgba(37,99,235,.25)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">🎥</div>
+        <div class="mod-name">Meetings</div>
+        <div class="mod-desc">HD video, screen share, breakout rooms, transcription, 500+ participants</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/hd-video.html'" style="cursor:pointer">📹 HD Video</span>
+          <span class="mod-tag" onclick="location.href='pages/features/webrtc-sfu.html'" style="cursor:pointer">📡 WebRTC SFU</span>
+          <span class="mod-tag" onclick="location.href='pages/features/breakout-rooms.html'" style="cursor:pointer">🚪 Breakout Rooms</span>
+          <span class="mod-tag" onclick="location.href='pages/features/ai-transcription.html'" style="cursor:pointer">🤖 AI Transcription</span>
+          <span class="mod-tag" onclick="location.href='pages/features/cloud-recording.html'" style="cursor:pointer">☁️ Cloud Recording</span>
+        </div>
+      </div>
+      <div class="mod-card" onclick="location.href='pages/features/team-chat.html'" style="--mc:rgba(20,184,166,.10);--mc-b:#14b8a6;--mc-bg:rgba(20,184,166,.15);--mc-b2:rgba(20,184,166,.3);--mc-tbg:rgba(20,184,166,.15);--mc-tc:#5eead4;--mc-tb:rgba(20,184,166,.25)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">💬</div>
+        <div class="mod-name">Team Chat</div>
+        <div class="mod-desc">Persistent channels, DMs, file sharing, threaded replies, search</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/team-chat/channels.html'" style="cursor:pointer">Channels</span>
+          <span class="mod-tag" onclick="location.href='pages/features/team-chat/dms.html'" style="cursor:pointer">DMs</span>
+          <span class="mod-tag" onclick="location.href='pages/features/team-chat/threads.html'" style="cursor:pointer">Threads</span>
+        </div>
+      </div>
+      <div class="mod-card" onclick="location.href='pages/features/phone.html'" style="--mc:rgba(16,185,129,.10);--mc-b:#10b981;--mc-bg:rgba(16,185,129,.15);--mc-b2:rgba(16,185,129,.3);--mc-tbg:rgba(16,185,129,.15);--mc-tc:#6ee7b7;--mc-tb:rgba(16,185,129,.25)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">📞</div>
+        <div class="mod-name">Phone / VoIP</div>
+        <div class="mod-desc">PSTN calling, IVR, voicemail, call queues, SMS, recording</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/phone/pstn.html'" style="cursor:pointer">PSTN</span>
+          <span class="mod-tag" onclick="location.href='pages/features/phone/ivr-builder.html'" style="cursor:pointer">IVR</span>
+          <span class="mod-tag" onclick="location.href='pages/features/phone/sms.html'" style="cursor:pointer">SMS</span>
+        </div>
+      </div>
+      <div class="mod-card" onclick="location.href='pages/features/ai-companion.html'" style="--mc:rgba(139,92,246,.12);--mc-b:#8b5cf6;--mc-bg:rgba(139,92,246,.15);--mc-b2:rgba(139,92,246,.3);--mc-tbg:rgba(139,92,246,.15);--mc-tc:#c4b5fd;--mc-tb:rgba(139,92,246,.25)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">🤖</div>
+        <div class="mod-name">AI Companion</div>
+        <div class="mod-desc">Meeting summaries, transcription, note-taking, deep research</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/ai-companion/deep-research.html'" style="cursor:pointer">GPT-4o</span>
+          <span class="mod-tag" onclick="location.href='pages/features/ai-companion/assistant.html'" style="cursor:pointer">Claude</span>
+          <span class="mod-tag" onclick="location.href='pages/features/ai-companion/agents.html'" style="cursor:pointer">Agents</span>
+        </div>
+      </div>
+      <div class="mod-card" onclick="location.href='pages/features/calendar.html'" style="--mc:rgba(245,158,11,.10);--mc-b:#f59e0b;--mc-bg:rgba(245,158,11,.15);--mc-b2:rgba(245,158,11,.3);--mc-tbg:rgba(245,158,11,.15);--mc-tc:#fcd34d;--mc-tb:rgba(245,158,11,.25)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">📅</div>
+        <div class="mod-name">Calendar</div>
+        <div class="mod-desc">Native calendar, Google/Outlook sync, smart scheduling</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/calendar/google-sync.html'" style="cursor:pointer">Google</span>
+          <span class="mod-tag" onclick="location.href='pages/features/calendar/outlook-sync.html'" style="cursor:pointer">Outlook</span>
+          <span class="mod-tag" onclick="location.href='pages/features/calendar/booking-url.html'" style="cursor:pointer">Booking</span>
+        </div>
+      </div>
+      <div class="mod-card" onclick="location.href='pages/features/whiteboard.html'" style="--mc:rgba(236,72,153,.10);--mc-b:#ec4899;--mc-bg:rgba(236,72,153,.15);--mc-b2:rgba(236,72,153,.3);--mc-tbg:rgba(236,72,153,.15);--mc-tc:#f9a8d4;--mc-tb:rgba(236,72,153,.25)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">🖼️</div>
+        <div class="mod-name">Whiteboard</div>
+        <div class="mod-desc">Infinite canvas, real-time collaboration, shapes, templates</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/whiteboard/crdt-sync.html'" style="cursor:pointer">CRDT</span>
+          <span class="mod-tag" onclick="location.href='pages/features/whiteboard/infinite-canvas.html'" style="cursor:pointer">Canvas</span>
+          <span class="mod-tag" onclick="location.href='pages/features/whiteboard/templates.html'" style="cursor:pointer">Templates</span>
+        </div>
+      </div>
+      <div class="mod-card" onclick="location.href='pages/features/docs.html'" style="--mc:rgba(96,165,250,.10);--mc-b:#60a5fa;--mc-bg:rgba(96,165,250,.12);--mc-b2:rgba(96,165,250,.25);--mc-tbg:rgba(96,165,250,.12);--mc-tc:#bfdbfe;--mc-tb:rgba(96,165,250,.2)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">📄</div>
+        <div class="mod-name">Docs (AI)</div>
+        <div class="mod-desc">Collaborative docs, AI writing assistant, deep research mode</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/docs/writing-mode.html'" style="cursor:pointer">AI Write</span>
+          <span class="mod-tag" onclick="location.href='pages/features/docs/deep-research.html'" style="cursor:pointer">Research</span>
+          <span class="mod-tag" onclick="location.href='pages/features/docs/co-editing.html'" style="cursor:pointer">Collab</span>
+        </div>
+      </div>
+      <div class="mod-card" onclick="location.href='pages/features/security.html'" style="--mc:rgba(239,68,68,.10);--mc-b:#ef4444;--mc-bg:rgba(239,68,68,.15);--mc-b2:rgba(239,68,68,.3);--mc-tbg:rgba(239,68,68,.15);--mc-tc:#fca5a5;--mc-tb:rgba(239,68,68,.25)">
+        <div class="mod-arrow">↗</div><div class="mod-icon">🔒</div>
+        <div class="mod-name">Security</div>
+        <div class="mod-desc">E2E encryption, SSO/SAML, MFA, deepfake detection, DLP</div>
+        <div class="mod-tags" onclick="event.stopPropagation()">
+          <span class="mod-tag" onclick="location.href='pages/features/security/e2ee.html'" style="cursor:pointer">E2EE</span>
+          <span class="mod-tag" onclick="location.href='pages/features/security/saml.html'" style="cursor:pointer">SSO</span>
+          <span class="mod-tag" onclick="location.href='pages/features/security/mfa.html'" style="cursor:pointer">MFA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SCHEDULE MEETING PAGE
+═══════════════════════════════════════ -->
+<div id="p-schedule" class="page">
+  <div class="sched-layout">
+
+    <!-- ─── LEFT: FORM ─── -->
+    <div class="sched-form-panel">
+      <div class="mph-back" onclick="goHome()" style="margin-bottom:16px">← Back to Home</div>
+      <div class="sched-h1">Schedule a Meeting</div>
+      <div class="sched-sub">Fill in the details below. Your meeting link, ID, and passcode will be generated automatically.</div>
+
+      <!-- TOPIC -->
+      <div class="f-group">
+        <div class="f-label">Meeting Topic <span class="req">*</span></div>
+        <input class="f-input" id="f-topic" type="text" placeholder="e.g. Weekly Team Standup" oninput="updatePreview()" maxlength="200">
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="f-group">
+        <div class="f-label">Description <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></div>
+        <textarea class="f-input" id="f-desc" placeholder="Add agenda, notes, or context for attendees…" rows="3"></textarea>
+      </div>
+
+      <!-- DATE & TIME -->
+      <div class="f-section">Date & Time</div>
+      <div class="f-row" style="margin-bottom:14px">
+        <div class="f-group" style="margin:0">
+          <div class="f-label">Date <span class="req">*</span></div>
+          <input class="f-input" id="f-date" type="date" oninput="updatePreview()">
+        </div>
+        <div class="f-group" style="margin:0">
+          <div class="f-label">Start Time <span class="req">*</span></div>
+          <input class="f-input" id="f-time" type="time" value="10:00" oninput="updatePreview()">
+        </div>
+      </div>
+      <div class="f-row" style="margin-bottom:14px">
+        <div class="f-group" style="margin:0">
+          <div class="f-label">Duration</div>
+          <select class="f-input" id="f-duration" onchange="updatePreview()">
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60" selected>1 hour</option>
+            <option value="90">1 hour 30 min</option>
+            <option value="120">2 hours</option>
+            <option value="180">3 hours</option>
+            <option value="240">4 hours</option>
+          </select>
+        </div>
+        <div class="f-group" style="margin:0">
+          <div class="f-label">Time Zone</div>
+          <select class="f-input" id="f-tz">
+            <option value="ET" selected>Eastern Time (ET)</option>
+            <option value="CT">Central Time (CT)</option>
+            <option value="MT">Mountain Time (MT)</option>
+            <option value="PT">Pacific Time (PT)</option>
+            <option value="GMT">GMT / UTC</option>
+            <option value="CET">Central European (CET)</option>
+            <option value="IST">India Standard (IST)</option>
+            <option value="JST">Japan Standard (JST)</option>
+            <option value="AEST">Australia Eastern (AEST)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- RECURRING -->
+      <div class="f-group">
+        <label class="check-opt">
+          <input type="checkbox" id="f-recurring" onchange="toggleRecurring()">
+          <div>
+            <div class="check-opt-label">Recurring Meeting</div>
+            <div class="check-opt-desc">Set a repeat pattern for this meeting</div>
+          </div>
+        </label>
+        <div id="recurring-panel" style="display:none;margin-top:12px">
+          <div class="f-row3">
+            <div class="f-group" style="margin:0">
+              <div class="f-label">Repeat</div>
+              <select class="f-input" id="f-repeat">
+                <option>Daily</option><option selected>Weekly</option><option>Bi-weekly</option><option>Monthly</option>
+              </select>
+            </div>
+            <div class="f-group" style="margin:0">
+              <div class="f-label">Every</div>
+              <select class="f-input" id="f-every">
+                <option>1 week</option><option>2 weeks</option><option>3 weeks</option>
+              </select>
+            </div>
+            <div class="f-group" style="margin:0">
+              <div class="f-label">End After</div>
+              <select class="f-input" id="f-occurrences">
+                <option>5 occurrences</option><option>10 occurrences</option><option>Custom date</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INVITEES -->
+      <div class="f-section">Invitees</div>
+      <div class="f-group">
+        <div class="f-label">Add Participants</div>
+        <input class="f-input" id="f-invitees" type="text" placeholder="Enter names or email addresses, separated by commas">
+        <div style="font-size:11px;color:var(--text3);margin-top:5px">They will receive an email invitation with the meeting link.</div>
+      </div>
+
+      <!-- MEETING ID -->
+      <div class="f-section">Meeting ID</div>
+      <div class="f-group">
+        <div class="radio-group" id="meeting-id-group">
+          <label class="radio-opt selected" id="rid-auto-label">
+            <input type="radio" name="meeting-id" value="auto" checked onchange="selectMeetingId('auto')">
+            Generate Automatically
+          </label>
+          <label class="radio-opt" id="rid-pmi-label">
+            <input type="radio" name="meeting-id" value="pmi" onchange="selectMeetingId('pmi')">
+            Personal Meeting ID &nbsp;<span style="color:var(--text3);font-size:11px" id="pmi-display"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SECURITY -->
+      <div class="f-section">Security</div>
+      <div class="fcard" style="padding:6px 14px">
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Passcode</div>
+            <div class="f-toggle-desc">Only users with the invite link or passcode can join</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <input class="f-input" id="f-passcode" type="text" value="" style="width:110px;padding:6px 10px;font-family:var(--mono);font-size:13px;letter-spacing:2px" maxlength="10" oninput="updatePreview()">
+            <label class="tog-switch"><input type="checkbox" id="tog-passcode" checked onchange="togglePasscode()"><span class="tog-slider"></span></label>
+          </div>
+        </div>
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Waiting Room</div>
+            <div class="f-toggle-desc">Only users admitted by host can join</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-waiting"><span class="tog-slider"></span></label>
+        </div>
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Require Authentication</div>
+            <div class="f-toggle-desc">Participants must be signed in to FasaFas to join</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-auth"><span class="tog-slider"></span></label>
+        </div>
+      </div>
+
+      <!-- VIDEO & AUDIO -->
+      <div class="f-section">Video & Audio</div>
+      <div class="f-row" style="margin-bottom:14px">
+        <div class="f-group" style="margin:0">
+          <div class="f-label">Host Video</div>
+          <div class="radio-group">
+            <label class="radio-opt selected" id="hv-on"><input type="radio" name="host-video" value="on" checked onchange="styleRadio('hv-on','hv-off')"> On</label>
+            <label class="radio-opt" id="hv-off"><input type="radio" name="host-video" value="off" onchange="styleRadio('hv-off','hv-on')"> Off</label>
+          </div>
+        </div>
+        <div class="f-group" style="margin:0">
+          <div class="f-label">Participant Video</div>
+          <div class="radio-group">
+            <label class="radio-opt" id="pv-on"><input type="radio" name="part-video" value="on" onchange="styleRadio('pv-on','pv-off')"> On</label>
+            <label class="radio-opt selected" id="pv-off"><input type="radio" name="part-video" value="off" checked onchange="styleRadio('pv-off','pv-on')"> Off</label>
+          </div>
+        </div>
+      </div>
+      <div class="f-group">
+        <div class="f-label">Audio</div>
+        <div class="radio-group">
+          <label class="radio-opt" id="aud-tel"><input type="radio" name="audio" value="tel" onchange="styleRadio('aud-tel','aud-comp','aud-both')"> Telephone</label>
+          <label class="radio-opt" id="aud-comp"><input type="radio" name="audio" value="comp" onchange="styleRadio('aud-comp','aud-tel','aud-both')"> Computer Audio</label>
+          <label class="radio-opt selected" id="aud-both"><input type="radio" name="audio" value="both" checked onchange="styleRadio('aud-both','aud-tel','aud-comp')"> Both</label>
+        </div>
+      </div>
+
+      <!-- AI & RECORDING -->
+      <div class="f-section">AI & Recording</div>
+      <div class="fcard" style="padding:6px 14px">
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Enable AI Transcription</div>
+            <div class="f-toggle-desc">Real-time captions + AI meeting summary after session</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-ai" checked><span class="tog-slider"></span></label>
+        </div>
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">My Notes (AI Note-Taker)</div>
+            <div class="f-toggle-desc">Allow everyone to use meeting transcript with My Notes</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-notes" checked><span class="tog-slider"></span></label>
+        </div>
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Auto-Record to Cloud</div>
+            <div class="f-toggle-desc">Recording starts automatically when meeting begins</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-record"><span class="tog-slider"></span></label>
+        </div>
+      </div>
+
+      <!-- ADVANCED -->
+      <div class="f-section">Advanced Options</div>
+      <div class="fcard" style="padding:6px 14px">
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Allow participants to join before host</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-jbh"><span class="tog-slider"></span></label>
+        </div>
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Mute participants upon entry</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-mute" checked><span class="tog-slider"></span></label>
+        </div>
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Enable Breakout Rooms</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-breakout" checked><span class="tog-slider"></span></label>
+        </div>
+        <div class="f-toggle-row">
+          <div class="f-toggle-info">
+            <div class="f-toggle-label">Require Registration</div>
+            <div class="f-toggle-desc">Attendees must register before joining</div>
+          </div>
+          <label class="tog-switch"><input type="checkbox" id="tog-reg"><span class="tog-slider"></span></label>
+        </div>
+      </div>
+
+      <!-- TEMPLATE -->
+      <div class="f-group" style="margin-top:20px">
+        <div class="f-label">Meeting Template</div>
+        <select class="f-input" id="f-template">
+          <option value="">None (use current settings)</option>
+          <option>Daily Standup</option>
+          <option>Weekly Team Review</option>
+          <option>Client Presentation</option>
+          <option>1:1 Check-in</option>
+          <option>All Hands</option>
+          <option>Interview</option>
+          <option>Training Session</option>
+        </select>
+      </div>
+
+      <button class="sched-submit" onclick="scheduleMeeting()">
+        📅 Schedule Meeting
+      </button>
+      <button class="sched-submit" onclick="scheduleMeeting()" style="background:var(--bg3);color:var(--text2);border:1px solid var(--border);margin-top:8px;font-weight:500;font-size:13px">
+        Save as Draft
+      </button>
+    </div>
+
+    <!-- ─── RIGHT: PREVIEW PANEL ─── -->
+    <div class="sched-preview-panel">
+      <div class="preview-header">Meeting Preview</div>
+
+      <!-- LIVE PREVIEW CARD -->
+      <div class="meet-card" id="preview-card">
+        <div class="meet-card-title" id="prev-title">My Meeting</div>
+        <div class="meet-card-meta">
+          <span class="meet-meta-item">📅 <span id="prev-date">—</span></span>
+          <span class="meet-meta-item">🕐 <span id="prev-time">10:00 AM</span></span>
+          <span class="meet-meta-item">⏱ <span id="prev-dur">1 hour</span></span>
+        </div>
+        <div style="margin-bottom:8px"><span class="status-badge sb-pending" id="prev-status">⏳ Not Scheduled</span></div>
+
+        <!-- MEETING LINK -->
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:14px 0 6px">Meeting Link</div>
+        <div class="copy-row">
+          <div style="flex:1">
+            <div class="copy-label">Invite URL</div>
+            <div class="copy-value link" id="prev-link">https://fasafas.app/j/— — —</div>
+          </div>
+          <button class="copy-btn" id="copy-link-btn" onclick="copyField('prev-link','copy-link-btn','Meeting link copied!')">
+            <span class="copy-icon">⎘</span> Copy
+          </button>
+        </div>
+
+        <!-- MEETING ID -->
+        <div class="copy-row">
+          <div style="flex:1">
+            <div class="copy-label">Meeting ID</div>
+            <div class="copy-value" id="prev-id" style="font-size:18px;letter-spacing:4px;color:var(--accent3)">— — —</div>
+          </div>
+          <button class="copy-btn" id="copy-id-btn" onclick="copyField('prev-id','copy-id-btn','Meeting ID copied!')">
+            <span class="copy-icon">⎘</span> Copy
+          </button>
+        </div>
+
+        <!-- PASSCODE -->
+        <div class="copy-row" id="passcode-row">
+          <div style="flex:1">
+            <div class="copy-label">Passcode</div>
+            <div class="copy-value" id="prev-pass" style="font-size:18px;letter-spacing:4px;color:var(--green)">— — — —</div>
+          </div>
+          <button class="copy-btn" id="copy-pass-btn" onclick="copyField('prev-pass','copy-pass-btn','Passcode copied!')">
+            <span class="copy-icon">⎘</span> Copy
+          </button>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-row">
+          <button class="act-btn act-start" onclick="launchMeeting(m.id, m.topic, 'Host')">▶ Start</button>
+          <button class="act-btn act-edit" onclick="showToast('Edit mode enabled')">✏️ Edit</button>
+          <button class="act-btn act-delete" onclick="showToast('Meeting deleted')">🗑 Delete</button>
+        </div>
+      </div>
+
+      <!-- COPY FULL INVITATION -->
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:18px 0 8px;display:flex;align-items:center;justify-content:space-between">
+        Full Invitation Text
+        <button class="copy-btn" id="copy-invite-btn" onclick="copyInvite()"><span class="copy-icon">⎘</span> Copy All</button>
+      </div>
+      <div class="invite-block" id="invite-text">Schedule your meeting to generate the full invitation.</div>
+
+      <!-- ADD TO CALENDAR -->
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:18px 0 8px">Add to Calendar</div>
+      <div class="cal-chips">
+        <div class="cal-chip" onclick="showToast('Opening Google Calendar…')">🗓 Google Calendar</div>
+        <div class="cal-chip" onclick="showToast('Opening Outlook…')">📧 Outlook</div>
+        <div class="cal-chip" onclick="showToast('Downloading .ics file…')">🍎 Apple Calendar</div>
+      </div>
+
+      <!-- UPCOMING MEETINGS -->
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:24px 0 10px">Upcoming Meetings</div>
+      <div class="upcoming-list" id="upcoming-list">
+        <div style="color:var(--text3);font-size:12px;padding:12px 0">No scheduled meetings yet. Schedule one using the form.</div>
+      </div>
+    </div>
+
+  </div><!-- /sched-layout -->
+</div><!-- /p-schedule -->
+
+<!-- ═══════════════════════════════════════
+     MODULE PAGE (dynamic)
+═══════════════════════════════════════ -->
+<div id="p-module" class="page">
+  <div id="mod-content"></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     BACKEND PAGE
+═══════════════════════════════════════ -->
+<div id="p-backend" class="page">
+  <div class="mod-page-hero" style="--mphc:rgba(16,185,129,.12)">
+    <div class="mph-icon" style="background:rgba(16,185,129,.15)">🏗️</div>
+    <div class="mph-body">
+      <div class="mph-back" onclick="goHome()">← Home</div>
+      <div class="mph-title">Backend & System Architecture</div>
+      <div class="mph-desc">Microservices, WebRTC, database schema, REST APIs, storage pipeline, and AI processing — the full FasaFas backend blueprint.</div>
+      <div class="mph-badges"><span class="badge ba">Node.js/Go</span><span class="badge bg">PostgreSQL</span><span class="badge bp">Redis+Kafka</span><span class="badge bt">WebRTC SFU</span><span class="badge bam">Kubernetes</span></div>
+    </div>
+  </div>
+  <div class="mod-tabs">
+    <div class="mod-tab active" onclick="switchTab(this,'bt-stack')">Tech Stack</div>
+    <div class="mod-tab" onclick="switchTab(this,'bt-api')">REST APIs</div>
+    <div class="mod-tab" onclick="switchTab(this,'bt-ws')">WebSocket/WebRTC</div>
+    <div class="mod-tab" onclick="switchTab(this,'bt-db')">Database Schema</div>
+    <div class="mod-tab" onclick="switchTab(this,'bt-services')">Microservices</div>
+  </div>
+  <div class="mp-body">
+    <div id="bt-stack" class="tab-pane active">
+      <div class="mp-h2"><div class="dot"></div>Full Technology Stack</div>
+      <div class="g3">
+        <div class="fcard"><div class="mp-h3">Frontend</div><ul class="fl"><li>React 18 + TypeScript</li><li>Electron (Desktop)</li><li>React Native (Mobile)</li><li>WebRTC (audio/video)</li><li>Redux + React Query</li><li>Socket.io client</li><li>Konva.js (Whiteboard)</li><li>IndexedDB (offline)</li></ul></div>
+        <div class="fcard"><div class="mp-h3">Backend Services</div><ul class="fl"><li>Node.js / Go (API Gateway)</li><li>Python (AI/ML)</li><li>Rust (media server)</li><li>Mediasoup (WebRTC SFU)</li><li>coturn (STUN/TURN)</li><li>Redis (sessions, cache)</li><li>Kafka (event streaming)</li><li>gRPC (internal comms)</li></ul></div>
+        <div class="fcard"><div class="mp-h3">Data & AI</div><ul class="fl"><li>PostgreSQL 16 (primary)</li><li>Elasticsearch (search)</li><li>S3-compatible storage</li><li>ClickHouse (analytics)</li><li>Whisper (speech-to-text)</li><li>Claude/GPT-4o (LLM)</li><li>pgvector (embeddings)</li><li>CDN: CloudFront/Fastly</li></ul></div>
+      </div>
+    </div>
+    <div id="bt-api" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>REST API Endpoints</div>
+      <div class="mp-h3">Meetings</div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/meetings<span class="ep-note">Create meeting</span></div>
+      <div class="ep"><span class="meth get" style="background:rgba(16,185,129,.2);color:#6ee7b7">GET</span>/api/v1/meetings<span class="ep-note">List meetings</span></div>
+      <div class="ep"><span class="meth get" style="background:rgba(16,185,129,.2);color:#6ee7b7">GET</span>/api/v1/meetings/:id</div>
+      <div class="ep"><span class="meth put">PUT</span>/api/v1/meetings/:id</div>
+      <div class="ep"><span class="meth del">DEL</span>/api/v1/meetings/:id</div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/meetings/:id/start<span class="ep-note">Generate join token</span></div>
+      <div class="ep"><span class="meth get" style="background:rgba(16,185,129,.2);color:#6ee7b7">GET</span>/api/v1/meetings/:id/summary<span class="ep-note">AI summary</span></div>
+      <div class="mp-h3" style="margin-top:16px">Authentication</div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/auth/register</div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/auth/login</div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/auth/sso/saml<span class="ep-note">SAML SSO</span></div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/auth/passkey/register</div>
+      <div class="mp-h3" style="margin-top:16px">AI Companion</div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/ai/query<span class="ep-note">Conversational AI</span></div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/ai/summarize/:meetingId</div>
+      <div class="ep"><span class="meth post">POST</span>/api/v1/ai/research<span class="ep-note">Deep research</span></div>
+    </div>
+    <div id="bt-ws" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>WebSocket & WebRTC</div>
+      <div class="g2">
+        <div class="fcard"><div class="mp-h3">Client → Server</div><ul class="fl"><li>meeting:join</li><li>meeting:leave</li><li>meeting:chat</li><li>meeting:reaction</li><li>signal:offer — WebRTC SDP offer</li><li>signal:answer</li><li>signal:ice-candidate</li><li>chat:message</li><li>whiteboard:op — CRDT op</li></ul></div>
+        <div class="fcard"><div class="mp-h3">Server → Client</div><ul class="fl"><li>meeting:participant-joined</li><li>meeting:participant-left</li><li>meeting:recording-started</li><li>meeting:ended</li><li>chat:message:new</li><li>chat:message:edited</li><li>ai:summary-ready</li><li>ai:transcript-update</li><li>notification:new</li></ul></div>
+      </div>
+    </div>
+    <div id="bt-db" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>Database Schema</div>
+      <div class="spec-block"><div class="spec-head">meetings table</div>
+        <div class="spec-row"><span class="sr-key" style="color:var(--amber)">id</span><span class="sr-val">UUID PK</span></div>
+        <div class="spec-row"><span class="sr-key" style="color:var(--teal)">host_id</span><span class="sr-val">UUID FK → users.id</span></div>
+        <div class="spec-row"><span class="sr-key">topic</span><span class="sr-val">VARCHAR(500) NOT NULL</span></div>
+        <div class="spec-row"><span class="sr-key">meeting_number</span><span class="sr-val">BIGINT UNIQUE (11-digit)</span></div>
+        <div class="spec-row"><span class="sr-key">password</span><span class="sr-val">VARCHAR(10) — passcode</span></div>
+        <div class="spec-row"><span class="sr-key">join_url</span><span class="sr-val">TEXT — invite link</span></div>
+        <div class="spec-row"><span class="sr-key">start_time</span><span class="sr-val">TIMESTAMPTZ</span></div>
+        <div class="spec-row"><span class="sr-key">duration_minutes</span><span class="sr-val">INTEGER</span></div>
+        <div class="spec-row"><span class="sr-key">status</span><span class="sr-val">ENUM: scheduled|started|ended|cancelled</span></div>
+        <div class="spec-row"><span class="sr-key">waiting_room, ai_transcription, auto_recording</span><span class="sr-val">BOOLEAN</span></div>
+        <div class="spec-row"><span class="sr-key">recurrence</span><span class="sr-val">JSONB {type, interval, end_date}</span></div>
+      </div>
+    </div>
+    <div id="bt-services" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>Microservices</div>
+      <div class="g3">
+        <div class="fcard"><div class="mp-h3">Core</div><ul class="fl"><li>auth-service</li><li>user-service</li><li>meeting-service</li><li>signal-service (WebRTC)</li><li>media-service (SFU)</li><li>chat-service</li><li>notification-service</li></ul></div>
+        <div class="fcard"><div class="mp-h3">Feature</div><ul class="fl"><li>calendar-service</li><li>phone-service (SIP)</li><li>whiteboard-service</li><li>docs-service</li><li>tasks-service</li><li>clips-service</li><li>webinar-service</li></ul></div>
+        <div class="fcard"><div class="mp-h3">Platform</div><ul class="fl"><li>ai-companion-service</li><li>transcription-service</li><li>billing-service</li><li>admin-service</li><li>analytics-service</li><li>storage-service</li><li>integration-service</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ADMIN PAGE
+═══════════════════════════════════════ -->
+<div id="p-admin" class="page">
+  <div class="mod-page-hero" style="--mphc:rgba(245,158,11,.10)">
+    <div class="mph-icon" style="background:rgba(245,158,11,.15)">⚙️</div>
+    <div class="mph-body">
+      <div class="mph-back" onclick="goHome()">← Home</div>
+      <div class="mph-title">Admin Panel</div>
+      <div class="mph-desc">Full admin control over users, meetings, AI, billing, and security across the FasaFas account.</div>
+    </div>
+  </div>
+  <div class="mod-tabs">
+    <div class="mod-tab active" onclick="switchTab(this,'at-users')">Users</div>
+    <div class="mod-tab" onclick="switchTab(this,'at-meetings')">Meetings</div>
+    <div class="mod-tab" onclick="switchTab(this,'at-ai')">AI Settings</div>
+    <div class="mod-tab" onclick="switchTab(this,'at-billing')">Billing</div>
+    <div class="mod-tab" onclick="switchTab(this,'at-security')">Security</div>
+  </div>
+  <div class="mp-body">
+    <div id="at-users" class="tab-pane active">
+      <div class="mp-h2"><div class="dot"></div>User Management</div>
+      <div class="g2">
+        <div class="fcard"><div class="mp-h3">Per-User Actions</div><ul class="fl"><li>Edit profile, email, department</li><li>Assign/remove license</li><li>Promote/demote role</li><li>Activate/deactivate account</li><li>Resend invitation</li><li>Force password reset</li><li>Revoke all sessions</li><li>Delete user + transfer content</li><li>GDPR data export</li></ul></div>
+        <div class="fcard"><div class="mp-h3">Bulk Operations</div><ul class="fl"><li>Import via CSV</li><li>Export all users to CSV</li><li>Bulk assign license</li><li>Bulk activate/deactivate</li><li>SCIM provisioning (Okta, Azure AD)</li><li>LDAP/Active Directory sync</li><li>Information barriers: block group A ↔ B</li></ul></div>
+      </div>
+    </div>
+    <div id="at-meetings" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>Account-Wide Meeting Settings</div>
+      <div class="fcard">
+        <div class="adm-row"><div><div class="adm-label">Waiting Room (default)</div><div class="adm-desc">All new meetings default to waiting room enabled</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Passcode Required</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Auto Cloud Recording</div></div><div class="tog off"></div></div>
+        <div class="adm-row"><div><div class="adm-label">AI Transcription Default On</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Mute Participants on Entry</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Allow Screen Sharing</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Breakout Rooms</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Polling</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">AI Avatars (Realistic)</div></div><div class="tog off"></div></div>
+      </div>
+    </div>
+    <div id="at-ai" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>AI Companion Controls</div>
+      <div class="fcard">
+        <div class="adm-row"><div><div class="adm-label">AI Companion Master Toggle</div><div class="adm-desc">Enable/disable ALL AI features account-wide</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Meeting Summaries</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Live Transcription</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">My Notes</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Action Item Extraction</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Deep Research Mode</div></div><div class="tog off"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Agent Builder</div></div><div class="tog off"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Deepfake Detection</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Opt Out of AI Model Training</div></div><div class="tog"></div></div>
+      </div>
+    </div>
+    <div id="at-billing" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>Billing Dashboard</div>
+      <div class="stat-grid">
+        <div class="stat-c"><div class="stat-label">Current Plan</div><div class="stat-val" style="color:var(--accent2)">Pro</div></div>
+        <div class="stat-c"><div class="stat-label">Licenses</div><div class="stat-val" style="color:var(--green)">12/20</div></div>
+        <div class="stat-c"><div class="stat-label">Next Billing</div><div class="stat-val">May 30</div></div>
+        <div class="stat-c"><div class="stat-label">Monthly</div><div class="stat-val" style="color:var(--amber)">$159.96</div></div>
+      </div>
+    </div>
+    <div id="at-security" class="tab-pane">
+      <div class="mp-h2"><div class="dot"></div>Security Controls</div>
+      <div class="fcard">
+        <div class="adm-row"><div><div class="adm-label">Enforce MFA</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Allow Google/Apple SSO</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">SAML SSO</div></div><div class="tog off"></div></div>
+        <div class="adm-row"><div><div class="adm-label">End-to-End Encryption</div></div><div class="tog off"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Restrict Recording Download</div></div><div class="tog"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Information Barriers</div></div><div class="tog off"></div></div>
+        <div class="adm-row"><div><div class="adm-label">Audit Log (365 days)</div></div><div class="tog"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PRICING PAGE
+═══════════════════════════════════════ -->
+<div id="p-pricing" class="page">
+  <div class="mod-page-hero" style="--mphc:rgba(245,158,11,.10)">
+    <div class="mph-icon" style="background:rgba(245,158,11,.15)">💰</div>
+    <div class="mph-body">
+      <div class="mph-back" onclick="goHome()">← Home</div>
+      <div class="mph-title">FasaFas Pricing</div>
+      <div class="mph-desc">All plans, AI add-ons, and feature comparison.</div>
+    </div>
+  </div>
+  <div class="mp-body">
+    <div class="mp-h2"><div class="dot"></div>Workplace Plans</div>
+    <div class="tier-strip">
+      <div class="tier-c"><div class="tier-name">Basic</div><div class="tier-price">Free</div><div class="tier-per">1 user · forever</div><ul class="tier-feats"><li>40 min meetings</li><li>100 participants</li><li>3 whiteboards</li><li>AI (3 meetings/mo)</li></ul></div>
+      <div class="tier-c hot"><div class="tier-name">Pro ⭐</div><div class="tier-price" style="color:var(--accent2)">$13.33</div><div class="tier-per">/user/mo annual</div><ul class="tier-feats"><li>30 hour meetings</li><li>Unlimited AI</li><li>10 GB cloud recording</li><li>Mail + Calendar</li><li>Unlimited clips</li></ul></div>
+      <div class="tier-c"><div class="tier-name">Business</div><div class="tier-price" style="color:var(--green)">$18.33</div><div class="tier-per">/user/mo annual</div><ul class="tier-feats"><li>300 participants</li><li>SSO/SAML</li><li>Unlimited whiteboards</li><li>DLP APIs</li></ul></div>
+      <div class="tier-c"><div class="tier-name">Enterprise</div><div class="tier-price" style="color:var(--amber)">Custom</div><div class="tier-per">Contact sales</div><ul class="tier-feats"><li>500+ participants</li><li>Unlimited storage</li><li>99.9% SLA</li><li>Dedicated CSM</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ JS ═══════ -->
+<script>
+// ── STATE ──
+let meetingId = '';
+let passcode = '';
+let meetingLink = '';
+let pmiId = '571 610 0699';
+let usePmi = false;
+let scheduledMeetings = [];
+
+// ── INIT ──
+window.addEventListener('load', () => {
+  generateIds();
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth()+1).padStart(2,'0');
+  const dd = String(today.getDate()).padStart(2,'0');
+  document.getElementById('f-date').value = `${yyyy}-${mm}-${dd}`;
+  document.getElementById('pmi-display').textContent = pmiId;
+  updatePreview();
+});
+
+function generateIds() {
+  // Generate 11-digit meeting ID
+  const raw = Math.floor(10000000000 + Math.random()*90000000000).toString();
+  meetingId = raw.slice(0,3)+' '+raw.slice(3,6)+' '+raw.slice(6,10);
+  // Generate 6-char passcode
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+  passcode = Array.from({length:6},()=>chars[Math.floor(Math.random()*chars.length)]).join('');
+  document.getElementById('f-passcode').value = passcode;
+}
+
+function updatePreview() {
+  const topic = document.getElementById('f-topic').value.trim() || 'My Meeting';
+  const rawDate = document.getElementById('f-date').value;
+  const rawTime = document.getElementById('f-time').value;
+  const durVal = document.getElementById('f-duration').value;
+  const tz = document.getElementById('f-tz').value;
+
+  // Format date
+  let dateStr = '—';
+  if(rawDate){
+    const d = new Date(rawDate+'T00:00:00');
+    dateStr = d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+  }
+
+  // Format time
+  let timeStr = '—';
+  if(rawTime){
+    const [h,m] = rawTime.split(':');
+    const hr = parseInt(h);
+    const ampm = hr>=12?'PM':'AM';
+    const hr12 = hr%12||12;
+    timeStr = `${hr12}:${m} ${ampm} ${tz}`;
+  }
+
+  // Duration label
+  const durLabels = {'15':'15 min','30':'30 min','45':'45 min','60':'1 hour','90':'1 hr 30 min','120':'2 hours','180':'3 hours','240':'4 hours'};
+  const durStr = durLabels[durVal] || durVal+' min';
+
+  // Current passcode from input
+  const pc = document.getElementById('f-passcode').value || passcode;
+  const currentId = usePmi ? pmiId.replace(/\s/g,'') : meetingId.replace(/\s/g,'');
+  const numericId = usePmi ? pmiId : meetingId;
+
+  meetingLink = `https://fasafas.app/j/${currentId}?pwd=${btoa(pc).replace(/=/g,'')}`;
+
+  document.getElementById('prev-title').textContent = topic;
+  document.getElementById('prev-date').textContent = dateStr;
+  document.getElementById('prev-time').textContent = timeStr;
+  document.getElementById('prev-dur').textContent = durStr;
+  document.getElementById('prev-id').textContent = numericId;
+  document.getElementById('prev-pass').textContent = pc;
+  document.getElementById('prev-link').textContent = meetingLink;
+  document.getElementById('prev-status').className = 'status-badge sb-pending';
+  document.getElementById('prev-status').textContent = '⏳ Not Yet Saved';
+}
+
+function scheduleMeeting() {
+  const topic = document.getElementById('f-topic').value.trim();
+  if(!topic){
+    showToast('Please enter a meeting topic!', true);
+    document.getElementById('f-topic').focus();
+    return;
+  }
+  const rawDate = document.getElementById('f-date').value;
+  const rawTime = document.getElementById('f-time').value;
+  if(!rawDate||!rawTime){
+    showToast('Please select a date and time!', true);
+    return;
+  }
+
+  const pc = document.getElementById('f-passcode').value || passcode;
+  const numericId = usePmi ? pmiId : meetingId;
+  const currentId = numericId.replace(/\s/g,'');
+  meetingLink = `https://fasafas.app/j/${currentId}?pwd=${btoa(pc).replace(/=/g,'')}`;
+
+  // Update status
+  document.getElementById('prev-status').className = 'status-badge sb-scheduled';
+  document.getElementById('prev-status').textContent = '✓ Scheduled';
+  document.getElementById('prev-link').textContent = meetingLink;
+  document.getElementById('prev-id').textContent = numericId;
+  document.getElementById('prev-pass').textContent = pc;
+
+  // Build invite text
+  const tz = document.getElementById('f-tz').value;
+  const durVal = document.getElementById('f-duration').value;
+  const durLabels = {'15':'15 minutes','30':'30 minutes','45':'45 minutes','60':'1 hour','90':'1 hour 30 minutes','120':'2 hours','180':'3 hours','240':'4 hours'};
+  const dur = durLabels[durVal]||durVal+' minutes';
+  const d = new Date(rawDate+'T00:00:00');
+  const dateStr = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  const [h,m] = rawTime.split(':');
+  const hr=parseInt(h),ampm=hr>=12?'PM':'AM',hr12=hr%12||12;
+  const timeStr = `${hr12}:${m} ${ampm} ${tz}`;
+
+  const dialIn = `  US: +1 646-558-8656\n  UK: +44 330 088 5830\n  AU: +61 2 8015 6011`;
+  const invite = `FasaFas Meeting Invitation\n\n${topic} is inviting you to a scheduled FasaFas meeting.\n\nTopic:    ${topic}\nDate:     ${dateStr}\nTime:     ${timeStr}\nDuration: ${dur}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\nJoin FasaFas Meeting\n${meetingLink}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nMeeting ID:  ${numericId}\nPasscode:    ${pc}\n\nDial-In by Phone:\n${dialIn}\n\nOne-tap mobile:\n  +16465588656,,${currentId}#,,,,*${pc}# US\n\nPowered by FasaFas`;
+  document.getElementById('invite-text').textContent = invite;
+
+  // Add to upcoming list
+  const meeting = {topic,dateStr,timeStr,id:numericId,link:meetingLink,passcode:pc};
+  scheduledMeetings.unshift(meeting);
+  renderUpcoming();
+
+  showToast('Meeting scheduled! Click ▶ Start to launch it now.');
+  generateIds();
+}
+
+/* ── Launch a REAL meeting via pre-join → Jitsi ── */
+function launchMeeting(id, topic, host) {
+  const roomId = (id || 'fasa-'+Math.random().toString(36).substr(2,8)).toString().replace(/\s+/g,'');
+  // Generate a passcode if this is a new meeting (host side)
+  const passcode = localStorage.getItem('fasafas_pass_'+roomId) || Math.random().toString(36).substr(2,6).toUpperCase();
+  localStorage.setItem('fasafas_pass_'+roomId, passcode);
+
+  const params = new URLSearchParams({
+    id:    roomId,
+    topic: topic || 'FasaFas Meeting',
+    host:  host  || 'Host',
+    pass:  passcode,
+    role:  'host',   // only the person launching is host
+    time:  new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})
+  });
+  window.location.href = 'pages/prejoin.html?' + params.toString();
+}
+
+function startInstantMeeting() {
+  const id = 'fasa-' + Math.random().toString(36).substr(2,8);
+  launchMeeting(id, 'Instant Meeting', 'You');
+}
+
+function joinWithId() {
+  const rawId = prompt('Enter Meeting ID:');
+  if(!rawId || !rawId.trim()) return;
+  // When joining with an ID, go to the join page as a participant
+  window.location.href = 'pages/join.html?id=' + encodeURIComponent(rawId.trim());
+}
+
+function renderUpcoming() {
+  const list = document.getElementById('upcoming-list');
+  if(!scheduledMeetings.length){
+    list.innerHTML='<div style="color:var(--text3);font-size:12px;padding:12px 0">No scheduled meetings yet.</div>';
+    return;
+  }
+  list.innerHTML = scheduledMeetings.slice(0,5).map(m=>`
+    <div class="upcoming-item">
+      <div class="upi-title">${m.topic}</div>
+      <div class="upi-meta"><span>📅 ${m.dateStr}</span><span>🕐 ${m.timeStr}</span></div>
+      <div class="upi-meta" style="margin-top:4px"><span>ID: ${m.id}</span><span>Code: ${m.passcode}</span></div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <div class="upi-join" onclick="launchMeeting('${m.id.replace(/\s/g,'')}','${m.topic}','Host')" style="background:var(--green);color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:700">▶ Start</div>
+        <div class="upi-join" onclick="copyText('${m.link}','Meeting link copied!')">⎘ Copy Link</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function copyField(valueId, btnId, msg) {
+  const val = document.getElementById(valueId).textContent;
+  copyText(val, msg, btnId);
+}
+
+function copyText(text, msg, btnId) {
+  navigator.clipboard.writeText(text).then(()=>{
+    showToast(msg);
+    if(btnId){
+      const btn = document.getElementById(btnId);
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<span class="copy-icon">✓</span> Copied!';
+      btn.classList.add('copied');
+      setTimeout(()=>{btn.innerHTML=orig;btn.classList.remove('copied')},2000);
+    }
+  }).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(msg);
+  });
+}
+
+function copyInvite() {
+  copyText(document.getElementById('invite-text').textContent, 'Full invitation copied!', 'copy-invite-btn');
+}
+
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  const tm = document.getElementById('toast-msg');
+  tm.textContent = msg;
+  t.style.borderColor = isError ? 'var(--red)' : 'var(--green)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+function toggleRecurring() {
+  const panel = document.getElementById('recurring-panel');
+  panel.style.display = document.getElementById('f-recurring').checked ? 'block' : 'none';
+}
+
+function togglePasscode() {
+  const row = document.getElementById('passcode-row');
+  const checked = document.getElementById('tog-passcode').checked;
+  row.style.opacity = checked ? '1' : '0.4';
+  document.getElementById('f-passcode').disabled = !checked;
+}
+
+function selectMeetingId(type) {
+  usePmi = type==='pmi';
+  document.getElementById('rid-auto-label').classList.toggle('selected', !usePmi);
+  document.getElementById('rid-pmi-label').classList.toggle('selected', usePmi);
+  updatePreview();
+}
+
+function styleRadio(...ids) {
+  // First id is selected, rest are not
+  ids.forEach((id,i)=>{
+    const el = document.getElementById(id);
+    if(el) el.classList.toggle('selected', i===0);
+  });
+}
+
+// ── PAGE NAVIGATION ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function goHome() { showPage('p-home'); }
+
+function switchTab(el, targetId) {
+  const container = el.closest('.page, #mod-content');
+  container.querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('active'));
+  container.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  const pane = container.querySelector('#'+targetId);
+  if(pane) pane.classList.add('active');
+}
+
+// ── MODULE DATA ──
+const MODS = {
+  meetings:{
+    icon:'🎥',name:'Meetings',color:'#2563eb',bg:'rgba(37,99,235,.15)',hc:'rgba(37,99,235,.12)',
+    desc:'HD video conferencing with WebRTC, AI transcription, breakout rooms, recordings, and post-meeting intelligence.',
+    badges:['HD Video','WebRTC SFU','Breakout Rooms','AI Transcription','Cloud Recording'],
+    tabs:[{id:'mt-form',label:'Schedule Form Fields'},{id:'mt-controls',label:'In-Meeting Controls'},{id:'mt-breakout',label:'Breakout Rooms'},{id:'mt-ai',label:'AI Features'},{id:'mt-plans',label:'Plan Comparison'}],
+    content:`
+<div id="mt-form" class="tab-pane active">
+<div class="mp-h2"><div class="dot"></div>Schedule Meeting — All Form Fields</div>
+<div class="g2">
+<div class="fcard"><div class="mp-h3">Core Fields</div><ul class="fl">
+<li>Topic (required, max 200 chars)</li><li>Description (rich-text, optional)</li>
+<li>Date picker (calendar popover)</li><li>Time picker (12/24-hour, timezone-aware)</li>
+<li>Duration (15 min → 4 hours)</li><li>Timezone selector (IANA list, auto-detect)</li>
+<li>Recurring toggle → pattern config</li><li>Invitees (multi-email input)</li>
+<li>Registration Required toggle</li><li>Meeting ID: Auto or Personal (PMR)</li>
+<li>Meeting Template selector</li><li>Whiteboard + Doc attachment</li>
+</ul></div>
+<div class="fcard"><div class="mp-h3">Security & Options</div><ul class="fl">
+<li>Passcode: auto-generated 6-char (editable)</li>
+<li>Waiting Room toggle</li><li>Require Authentication toggle</li>
+<li>Host Video: On / Off</li><li>Participant Video: On / Off</li>
+<li>Audio: Telephone / Computer / Both</li>
+<li>AI Transcription toggle</li><li>My Notes toggle</li>
+<li>Auto-Record (None / Local / Cloud)</li>
+<li>Mute on entry, Join before host, Breakout Rooms</li>
+<li>Save button · Save as Draft · Cancel</li>
+</ul></div>
+</div>
+</div>
+<div id="mt-controls" class="tab-pane">
+<div class="mp-h2"><div class="dot"></div>In-Meeting Controls</div>
+<div class="g2">
+<div class="fcard"><div class="mp-h3">Bottom Toolbar</div><ul class="fl">
+<li>Mute / Unmute (+ device picker)</li><li>Start / Stop Video (+ settings)</li>
+<li>Security (lock, permissions)</li><li>Participants panel toggle</li>
+<li>Share Screen (full/window/tab/region)</li><li>Chat panel toggle</li>
+<li>Reactions (emoji + raise hand)</li><li>Record (local/cloud)</li>
+<li>Breakout Rooms</li><li>More menu (Polls, Q&A, Whiteboard, Apps)</li>
+<li>Leave / End for All</li>
+</ul></div>
+<div class="fcard"><div class="mp-h3">Host Participant Controls</div><ul class="fl">
+<li>Mute / Unmute individual</li><li>Stop participant video</li>
+<li>Spotlight (pin for everyone)</li><li>Rename participant</li>
+<li>Put in Waiting Room</li><li>Remove from meeting</li>
+<li>Transfer host role</li><li>Make co-host</li>
+<li>Toggle screen share permission</li><li>Send private chat</li>
+</ul></div>
+</div>
+</div>
+<div id="mt-breakout" class="tab-pane">
+<div class="mp-h2"><div class="dot"></div>Breakout Rooms</div>
+<div class="fcard"><ul class="fl">
+<li>Create up to 50 breakout rooms</li>
+<li>Assign: Automatic / Manual / Self-select</li>
+<li>Rename each room individually</li>
+<li>Set auto-close timer with countdown warning</li>
+<li>Broadcast message to all rooms simultaneously</li>
+<li>Host can join / leave any room at will</li>
+<li>Participants raise hand to request help</li>
+<li>Move participants between rooms mid-session</li>
+<li>Share files to all rooms at once</li>
+<li>Enable whiteboard per breakout room</li>
+<li>Return all to main session (host)</li>
+</ul></div>
+</div>
+<div id="mt-ai" class="tab-pane">
+<div class="mp-h2"><div class="dot"></div>AI In-Meeting Features</div>
+<div class="g2">
+<div class="fcard"><div class="mp-h3">During Meeting</div><ul class="fl">
+<li>Live transcription (rolling sidebar, speaker-labeled)</li>
+<li>My Notes: AI captures key points in real time</li>
+<li>In-meeting Q&A (ask AI about current session)</li>
+<li>Late joiner catch-up summary</li>
+<li>Real-time voice translation</li>
+<li>Deepfake detection alerts</li>
+<li>AI noise suppression + background blur</li>
+</ul></div>
+<div class="fcard"><div class="mp-h3">Post-Meeting</div><ul class="fl">
+<li>AI meeting summary card (editable)</li>
+<li>Smart chapters (timestamped topics)</li>
+<li>Action items with suggested assignees</li>
+<li>Full searchable transcript</li>
+<li>Auto-share summary to Slack</li>
+<li>Export action items to Tasks</li>
+<li>Attendance report + poll results</li>
+</ul></div>
+</div>
+</div>
+<div id="mt-plans" class="tab-pane">
+<div class="mp-h2"><div class="dot"></div>Meeting Features by Plan</div>
+<table class="ftable">
+<tr><th>Feature</th><th>Basic</th><th>Pro</th><th>Business</th><th>Enterprise</th></tr>
+<tr><td>Duration</td><td>40 min</td><td>30 hrs</td><td>30 hrs</td><td>30 hrs</td></tr>
+<tr><td>Participants</td><td>100</td><td>100</td><td>300</td><td>500+</td></tr>
+<tr><td>Cloud recording</td><td class="da">—</td><td>10 GB</td><td>10 GB</td><td>Unlimited</td></tr>
+<tr><td>AI summaries</td><td>3/mo</td><td class="ck">Unlimited</td><td class="ck">Unlimited</td><td class="ck">Unlimited</td></tr>
+<tr><td>Breakout rooms</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+<tr><td>E2E Encryption</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+</table>
+</div>
+`
+  },
+  chat:{icon:'💬',name:'Team Chat',color:'#14b8a6',bg:'rgba(20,184,166,.15)',hc:'rgba(20,184,166,.10)',desc:'Persistent messaging with channels, DMs, file sharing, AI-powered search, and custom agents.',badges:['Channels','DMs','Threads','AI Search'],tabs:[{id:'ch-main',label:'Overview'}],content:`<div id="ch-main" class="tab-pane active"><div class="mp-h2"><div class="dot"></div>Team Chat Features</div><div class="g2"><div class="fcard"><div class="mp-h3">Channels & DMs</div><ul class="fl"><li>Public and private channels</li><li>Direct messages (1:1 and group)</li><li>Threaded replies</li><li>File sharing (drag-and-drop)</li><li>Voice messages</li><li>Custom emoji</li><li>Message scheduling</li><li>@mention @channel @here</li></ul></div><div class="fcard"><div class="mp-h3">AI Chat</div><ul class="fl"><li>AI summarizes unread threads</li><li>@Zoomie / @FasaFas AI agent in channels</li><li>AI suggested replies</li><li>Semantic search (intent-aware)</li><li>AI translates messages</li><li>Smart notification filtering</li><li>Action item extraction from threads</li></ul></div></div></div>`
+  },
+  phone:{icon:'📞',name:'Phone / VoIP',color:'#10b981',bg:'rgba(16,185,129,.15)',hc:'rgba(16,185,129,.10)',desc:'Enterprise VoIP with PSTN calling, IVR, voicemail AI, call queues, and SMS.',badges:['PSTN','IVR','Voicemail AI','SMS'],tabs:[{id:'ph-main',label:'Overview'}],content:`<div id="ph-main" class="tab-pane active"><div class="mp-h2"><div class="dot"></div>Phone Features</div><div class="g2"><div class="fcard"><div class="mp-h3">Calling</div><ul class="fl"><li>PSTN inbound and outbound calls</li><li>Dial pad with contact lookup</li><li>Hold, transfer, conference</li><li>Call recording with consent</li><li>Elevate call to video meeting</li><li>E911 location settings</li></ul></div><div class="fcard"><div class="mp-h3">Voicemail & IVR</div><ul class="fl"><li>Visual voicemail with AI transcription</li><li>AI action items from voicemail → Tasks</li><li>IVR visual builder (no-code)</li><li>Call queues (sequential/round-robin)</li><li>SMS from business number</li><li>AI Virtual Receptionist (SMS)</li></ul></div></div></div>`
+  },
+  ai:{icon:'🤖',name:'AI Companion',color:'#8b5cf6',bg:'rgba(139,92,246,.15)',hc:'rgba(139,92,246,.12)',desc:'Federated AI: Claude, GPT-4o, Whisper, Nemotron. Summaries, transcription, deep research, agents.',badges:['Claude','GPT-4o','Whisper','Agents','Deep Research'],tabs:[{id:'ai-main',label:'Overview'}],content:`<div id="ai-main" class="tab-pane active"><div class="mp-h2"><div class="dot"></div>AI Companion Features</div><div class="g2"><div class="fcard"><div class="mp-h3">In-Meeting AI</div><ul class="fl"><li>Live transcription (Whisper large-v3)</li><li>My Notes: real-time AI note capture</li><li>Smart chapters & action items</li><li>Late joiner AI catch-up</li><li>Real-time voice translation</li><li>Deepfake detection</li></ul></div><div class="fcard"><div class="mp-h3">AI Hub & Docs</div><ul class="fl"><li>Conversational AI assistant</li><li>Deep research reports</li><li>Writing Mode (co-author with AI)</li><li>Agent builder (no-code)</li><li>Google Drive/OneDrive retrieval</li><li>Daily summary digest</li></ul></div></div></div>`
+  },
+  calendar:{icon:'📅',name:'Calendar',color:'#f59e0b',bg:'rgba(245,158,11,.15)',hc:'rgba(245,158,11,.10)',desc:'Native calendar, booking pages, Google/Outlook sync, and smart scheduling AI.',badges:['Native Cal','Booking','Google Sync','Outlook'],tabs:[{id:'ca-main',label:'Overview'}],content:`<div id="ca-main" class="tab-pane active"><div class="mp-h2"><div class="dot"></div>Calendar Features</div><div class="g2"><div class="fcard"><div class="mp-h3">Calendar</div><ul class="fl"><li>Day/Week/Month/Agenda views</li><li>Create events + Zoom link auto-added</li><li>RSVP tracking</li><li>Google Calendar bidirectional sync</li><li>Outlook/Exchange sync</li><li>Free/busy overlay for invitees</li></ul></div><div class="fcard"><div class="mp-h3">Scheduler</div><ul class="fl"><li>Personal booking URL</li><li>Custom availability + buffer times</li><li>Custom intake form questions</li><li>Confirmation + reminder emails</li><li>Round-robin team scheduling</li><li>Multiple booking pages (Business+)</li></ul></div></div></div>`
+  },
+  whiteboard:{icon:'🖼️',name:'Whiteboard',color:'#ec4899',bg:'rgba(236,72,153,.15)',hc:'rgba(236,72,153,.10)',desc:'Infinite CRDT-synced canvas with shapes, sticky notes, mindmaps, and 100+ templates.',badges:['Infinite Canvas','CRDT','Templates','Shapes'],tabs:[{id:'wb-main',label:'Overview'}],content:`<div id="wb-main" class="tab-pane active"><div class="mp-h2"><div class="dot"></div>Whiteboard Features</div><div class="g2"><div class="fcard"><div class="mp-h3">Canvas Tools</div><ul class="fl"><li>Infinite canvas (pan + zoom)</li><li>Pen, highlighter, eraser</li><li>Shapes: rect, circle, diamond, arrow</li><li>Smart connectors (auto-route)</li><li>Sticky notes (color themes)</li><li>Tables, frames, image insert</li><li>Mindmap auto-layout</li></ul></div><div class="fcard"><div class="mp-h3">Collaboration</div><ul class="fl"><li>CRDT real-time sync</li><li>Named cursors per participant</li><li>Follow mode + presenter mode</li><li>Comments on canvas objects</li><li>Version history + restore</li><li>100+ templates (Kanban, retro, etc.)</li><li>Export: PNG, PDF, SVG</li></ul></div></div></div>`
+  },
+  docs:{icon:'📄',name:'Docs (AI)',color:'#60a5fa',bg:'rgba(96,165,250,.15)',hc:'rgba(96,165,250,.10)',desc:'AI-first collaborative docs with Writing Mode, Deep Research, and meeting transcript integration.',badges:['AI Writing','Deep Research','Collab'],tabs:[{id:'dc-main',label:'Overview'}],content:`<div id="dc-main" class="tab-pane active"><div class="mp-h2"><div class="dot"></div>AI Docs Features</div><div class="g2"><div class="fcard"><div class="mp-h3">Editor</div><ul class="fl"><li>Rich text: headings, lists, tables, code</li><li>Real-time co-editing</li><li>Inline comments + suggestions</li><li>Embed Zoom recordings, whiteboards</li><li>Nested sub-pages</li><li>Version history</li></ul></div><div class="fcard"><div class="mp-h3">AI Features</div><ul class="fl"><li>Writing Mode: AI co-author</li><li>Deep Research: multi-source reports</li><li>Create doc from meeting transcript</li><li>Mind map generation</li><li>Action items → Tasks</li><li>Grammar + style suggestions</li></ul></div></div></div>`
+  },
+  security:{icon:'🔒',name:'Security',color:'#ef4444',bg:'rgba(239,68,68,.15)',hc:'rgba(239,68,68,.12)',desc:'E2EE, SSO/SAML, MFA, passkeys, deepfake detection, DLP, SOC 2, HIPAA, GDPR.',badges:['E2EE','SSO/SAML','MFA','Passkeys','DLP','SOC 2'],tabs:[{id:'sec-main',label:'Overview'}],content:`<div id="sec-main" class="tab-pane active"><div class="mp-h2"><div class="dot"></div>Security Features</div><div class="g2"><div class="fcard"><div class="mp-h3">Authentication</div><ul class="fl"><li>TLS 1.3 + DTLS-SRTP (WebRTC)</li><li>JWT (15 min) + rotating refresh tokens</li><li>OAuth 2.0 PKCE (Google, Apple, MS)</li><li>SAML 2.0 SSO</li><li>FIDO2 Passkeys / biometric</li><li>TOTP + SMS MFA</li><li>Session revocation (all devices)</li></ul></div><div class="fcard"><div class="mp-h3">Compliance</div><ul class="fl"><li>E2E encryption (AES-256-GCM)</li><li>SOC 2 Type II certified</li><li>HIPAA BAA</li><li>GDPR / CCPA data controls</li><li>FedRAMP authorized</li><li>Deepfake detection (real-time)</li><li>DLP + information barriers</li></ul></div></div></div>`
+  }
+};
+
+function showMod(key) {
+  const m = MODS[key];
+  if(!m) return;
+  const tabBtns = m.tabs.map((t,i)=>`<div class="mod-tab${i===0?' active':''}" onclick="switchTab(this,'${t.id}')">${t.label}</div>`).join('');
+  document.getElementById('mod-content').innerHTML = `
+    <div class="mod-page-hero" style="--mphc:${m.hc}">
+      <div class="mph-icon" style="background:${m.bg};border-color:${m.color}33">${m.icon}</div>
+      <div class="mph-body">
+        <div class="mph-back" onclick="goHome()">← Back to Home</div>
+        <div class="mph-title">${m.name}</div>
+        <div class="mph-desc">${m.desc}</div>
+        <div class="mph-badges">${m.badges.map(b=>`<span class="mph-badge" style="background:${m.bg};color:${m.color};border:1px solid ${m.color}44">${b}</span>`).join('')}</div>
+      </div>
+    </div>
+    <div class="mod-tabs">${tabBtns}</div>
+    <div class="mp-body">${m.content}</div>`;
+  showPage('p-module');
+}
+</script>
+<script src="assets/js/translate.js"></script>
+</body>
+</html>

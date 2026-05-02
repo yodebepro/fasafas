@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — HLS Streaming & Playback</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">HLS Streaming & Playback</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link active" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">▶️</span>
+      <h1 class="hero-title"><em>HLS Streaming & Playback</em></h1>
+      <p class="hero-desc">HLS (HTTP Live Streaming) lets you watch recordings instantly via browser without downloading — with adaptive bitrate, chapter navigation, speed control, and transcript sync.</p>
+      <div class="hero-tags"><span class="h-tag">Instant Stream</span><span class="h-tag">ABR</span><span class="h-tag">m3u8</span><span class="h-tag">Chapter Jump</span><span class="h-tag">Keyboard Shortcuts</span><span class="h-tag">Speed Control</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-hls')">HLS Technology</div>
+<div class="tab " onclick="sw(this,'t-controls')">Player Controls</div>
+<div class="tab " onclick="sw(this,'t-abr')">Adaptive Quality</div></div>
+    <div class="content">
+      <div id="t-hls" class="tab-pane active"><div class="ph1">HLS Technology — How Instant Streaming Works</div>
+<div class="card"><ul class="fl">
+<li>HLS (RFC 8216) splits the recording into 6-second .ts (MPEG Transport Stream) segments</li>
+<li>An m3u8 playlist file indexes all segments and their URLs</li>
+<li>The browser downloads segments sequentially — starts playing as soon as the first few arrive</li>
+<li>Segments are available as soon as the SFU generates them during the meeting — not waiting for MP4 mix</li>
+<li>Multiple quality playlists: 1080p, 720p, 480p, 240p — browser picks based on download speed</li>
+<li>CDN (CloudFront) caches segments globally — faster loading for distributed teams</li>
+<li>Presigned segment URLs: expire after 24 hours, regenerated on demand — prevents unauthorized access</li>
+</ul></div></div>
+<div id="t-controls" class="tab-pane "><div class="ph1">Recording Player Controls</div>
+<div class="spec"><div class="spec-head">▶️ Playback Controls</div>
+<div class="spec-row"><span class="sk">Play / Pause</span><span class="sv">Space bar or click play button</span></div>
+<div class="spec-row"><span class="sk">Seek</span><span class="sv">Click timeline, or keyboard ← → (10s skip), Shift+← → (30s skip)</span></div>
+<div class="spec-row"><span class="sk">Speed</span><span class="sv">0.5× / 0.75× / 1× / 1.25× / 1.5× / 2× — keyboard S cycles</span></div>
+<div class="spec-row"><span class="sk">Quality</span><span class="sv">Auto (ABR) / 1080p / 720p / 480p / 240p — manual override in settings cog</span></div>
+<div class="spec-row"><span class="sk">Full screen</span><span class="sv">F key or double-click video</span></div>
+<div class="spec-row"><span class="sk">Next chapter</span><span class="sv">N key — jumps to next Smart Chapter boundary</span></div>
+<div class="spec-row"><span class="sk">Previous chapter</span><span class="sv">P key — jumps to previous Smart Chapter</span></div>
+<div class="spec-row"><span class="sk">Caption toggle</span><span class="sv">C key — show/hide transcript overlay on video</span></div>
+</div></div>
+<div id="t-abr" class="tab-pane "><div class="ph1">Adaptive Bitrate in Playback</div>
+<div class="card"><ul class="fl">
+<li>ABR (Adaptive Bitrate) adjusts which HLS quality playlist is downloaded based on your download speed</li>
+<li>If your connection is fast: 1080p segments downloaded — crystal clear playback</li>
+<li>If your connection slows: player automatically switches to 720p or 480p — no buffering, just a quality drop</li>
+<li>Buffer target: 3 segments ahead (18 seconds) — enough to handle brief network interruptions</li>
+<li>Quality indicator: the gear icon in the player shows current quality level</li>
+<li>Manual override: select a fixed quality in the quality menu to prevent ABR from switching</li>
+<li>Mobile: default quality capped at 480p to preserve cellular data (configurable per device)</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="pipeline.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Processing Pipeline</div></div></a>
+      <span class="nav-counter">Feature 5 of 11</span>
+      <a class="nav-pg" href="ai-output.html"><div><div class="nav-label">Next</div><div class="nav-title">AI Post-Processing</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

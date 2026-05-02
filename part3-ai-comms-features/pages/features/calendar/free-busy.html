@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Free / Busy Overlay for Invitees</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../calendar.html">← Calendar</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Free / Busy Overlay for Invitees</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Calendar Features</div>
+    <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
+<a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
+<a class="sb-link" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
+<a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
+<a class="sb-link" href="outlook-sync.html"><span class="sb-num">5</span><span class="sb-icon">🔄</span>Outlook / Exchange Sync</a>
+<a class="sb-link active" href="free-busy.html"><span class="sb-num">6</span><span class="sb-icon">👁</span>Free / Busy Overlay for Invitees</a>
+<a class="sb-link" href="booking-url.html"><span class="sb-num">7</span><span class="sb-icon">🔗</span>Personal Booking URL</a>
+<a class="sb-link" href="availability.html"><span class="sb-num">8</span><span class="sb-icon">⏰</span>Custom Availability & Buffer Times</a>
+<a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
+<a class="sb-link" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
+<a class="sb-link" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
+<a class="sb-link" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../calendar.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">👁</span>
+      <h1 class="hero-title"><em>Free / Busy Overlay for Invitees</em></h1>
+      <p class="hero-desc">See your invitees' availability as colored overlays on your calendar before scheduling — AI suggests the best meeting time based on everyone's free/busy without seeing their private event titles.</p>
+      <div class="hero-tags"><span class="h-tag">Availability Overlay</span><span class="h-tag">Best Time Finder</span><span class="h-tag">AI Suggestion</span><span class="h-tag">No Title Shared</span><span class="h-tag">Respectful</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Free/Busy Overlay</div>
+<div class="tab " onclick="sw(this,'t2')">AI Best Time Finder</div>
+<div class="tab " onclick="sw(this,'t3')">Privacy Settings</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Free/Busy Overlay for Invitees</div><div class='card' ><ul class='fl'><li>When creating an event: add invitees → their free/busy status overlaid on the time selector</li><li>Green/white slots: invitee is free</li><li>Red/dark slots: invitee is busy (another meeting in their calendar)</li><li>Overlay mode: 'Find a time' view shows all attendees' schedules stacked horizontally</li><li>Scroll forward/backward to find a slot where everyone is free</li><li>Works for: FasaFas users (real-time), Google Calendar users (synced), and Outlook users (synced)</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>AI Best Time Finder</div><div class='card' ><ul class='fl'><li>After adding all invitees → click 'Suggest Best Time'</li><li>AI analyzes everyone's free/busy + your stated meeting duration</li><li>Considers: not too early/late in the day, preferred meeting hours, avoid lunch blocks</li><li>Returns 3 suggested times ranked by: number of conflicts, time of day preference</li><li>Click a suggestion → event time pre-filled, one more click to save</li><li>AI learns from your scheduling patterns — times you consistently accept or reject</li></ul><div class='hl'><div class='hl-title'>What AI Can't See</div><div class='hl-body'>AI only accesses free/busy status — not event titles, descriptions, or attendees of existing events. Privacy is maintained throughout.</div></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Controlling Your Free/Busy Visibility</div><div class='spec'><div class='spec-head'>🔒 Free/Busy Privacy Options</div><div class='spec-row'><span class='sk'>Show free/busy (default)</span><span class='sv'>Others can see your availability when scheduling — recommended for teams</span></div><div class='spec-row'><span class='sk'>Show full details</span><span class='sv'>Others can see event title and free/busy — for highly collaborative teams</span></div><div class='spec-row'><span class='sk'>Hide all</span><span class='sv'>Your calendar shows as always free to others — for maximum privacy</span></div><div class='spec-row'><span class='sk'>Custom per calendar</span><span class='sv'>Different privacy settings for different calendars you own</span></div><div class='spec-row'><span class='sk'>Admin policy</span><span class='sv'>Admin can set minimum free/busy sharing requirement for the account</span></div></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="outlook-sync.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Outlook / Exchange Sync</div></div></a><span class="nav-counter">Feature 6 of 12</span><a class="nav-pg" href="booking-url.html"><div><div class="nav-label">Next</div><div class="nav-title">Personal Booking URL</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

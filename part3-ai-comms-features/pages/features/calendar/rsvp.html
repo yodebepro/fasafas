@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — RSVP Tracking</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../calendar.html">← Calendar</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">RSVP Tracking</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Calendar Features</div>
+    <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
+<a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
+<a class="sb-link active" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
+<a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
+<a class="sb-link" href="outlook-sync.html"><span class="sb-num">5</span><span class="sb-icon">🔄</span>Outlook / Exchange Sync</a>
+<a class="sb-link" href="free-busy.html"><span class="sb-num">6</span><span class="sb-icon">👁</span>Free / Busy Overlay for Invitees</a>
+<a class="sb-link" href="booking-url.html"><span class="sb-num">7</span><span class="sb-icon">🔗</span>Personal Booking URL</a>
+<a class="sb-link" href="availability.html"><span class="sb-num">8</span><span class="sb-icon">⏰</span>Custom Availability & Buffer Times</a>
+<a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
+<a class="sb-link" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
+<a class="sb-link" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
+<a class="sb-link" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../calendar.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">✅</span>
+      <h1 class="hero-title"><em>RSVP Tracking</em></h1>
+      <p class="hero-desc">Track who's attending your meeting in real time — see who accepted, declined, or hasn't responded, send reminders to non-responders, and get an attendance report after the event.</p>
+      <div class="hero-tags"><span class="h-tag">Accept / Decline / Maybe</span><span class="h-tag">Real-Time Status</span><span class="h-tag">Reminders</span><span class="h-tag">Attendance Report</span><span class="h-tag">One-Click</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">RSVP Interface</div>
+<div class="tab " onclick="sw(this,'t2')">Host Dashboard</div>
+<div class="tab " onclick="sw(this,'t3')">Attendance Report</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Attendee RSVP Experience</div><div class='card' ><ul class='fl'><li>Invitee receives an email: Accept / Decline / Maybe buttons — one click, no sign-in required</li><li>Or: accepts via calendar app (Google Calendar, Outlook) — response synced back to FasaFas</li><li>In-app notification: FasaFas users see an 'Invitation pending' badge on the event</li><li>Response options: ✅ Accept · ❌ Decline · ❓ Maybe · Add a note with your response</li><li>Change response: invitee can update RSVP at any time before the meeting</li><li>Add to calendar: all email invites include .ics attachment for non-FasaFas calendar users</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Host RSVP Dashboard</div><div class='card' ><ul class='fl'><li>Event detail → Attendees tab shows real-time RSVP status per person</li><li>Status badges: ✅ Accepted · ❌ Declined · ❓ Maybe · ⏳ No response</li><li>Filter: show only non-responders to send a targeted reminder</li><li>Send reminder: select non-responders → 'Send Reminder' → custom email sent</li><li>Re-invite: add a new invitee to an existing event → they receive invitation email immediately</li><li>Remove attendee: remove from event without canceling for everyone else</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Post-Event Attendance Report</div><div class='card' ><ul class='fl'><li>After the meeting ends, FasaFas generates an attendance report automatically</li><li>Report includes: who actually joined the meeting vs who RSVP'd yes</li><li>Join time, leave time, and total duration per participant</li><li>Report emailed to the event organizer + available in Hub → Calendar → Reports</li><li>Compare: invited vs accepted vs attended — useful for recurring team meetings</li><li>Export: CSV download for HR or compliance reporting</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="create-events.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Create Events + Auto Meeting Link</div></div></a><span class="nav-counter">Feature 3 of 12</span><a class="nav-pg" href="google-sync.html"><div><div class="nav-label">Next</div><div class="nav-title">Google Calendar Bidirectional Sync</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

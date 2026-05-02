@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — AI Transcription</title>
+<link rel="stylesheet" href="../../assets/css/features.css">
+<style>
+:root{--hero-glow:rgba(139,92,246,.14);--hero-color:#8b5cf6;--hero-eyebrow-bg:rgba(139,92,246,.14);--hero-eyebrow-b:rgba(139,92,246,.3);--hero-eyebrow-c:#8b5cf6;--tab-color:#8b5cf6}
+.var(--bg){background:var(--bg)}
+</style>
+
+<style>
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.feat-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.feat-cards{grid-template-columns:1fr}}
+.feat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px 18px;cursor:pointer;transition:all .2s;
+  text-decoration:none;display:flex;flex-direction:column;gap:9px;
+  position:relative;overflow:hidden;
+}
+.feat-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;
+  background:radial-gradient(circle at 20% 20%,var(--card-glow,rgba(37,99,235,.07)),transparent 70%)}
+.feat-card:hover{border-color:var(--card-c,var(--accent));transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.feat-card:hover::before{opacity:1}
+.fc-top{display:flex;align-items:center;gap:11px}
+.fc-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--card-ibg,rgba(37,99,235,.12));border:1px solid var(--card-ib,rgba(37,99,235,.2))}
+.fc-num{position:absolute;top:11px;right:13px;font-size:10px;font-weight:700;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 7px}
+.fc-title{font-size:13.5px;font-weight:800;letter-spacing:-.2px;color:var(--text)}
+.fc-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.fc-tags-str{font-size:10.5px;color:var(--card-c,var(--accent3));font-weight:600;opacity:.8}
+.fc-arrow{font-size:16px;color:var(--text3);position:absolute;bottom:12px;right:14px;transition:all .2s}
+.feat-card:hover .fc-arrow{color:var(--card-c,var(--accent));transform:translate(2px,-2px)}
+</style>
+
+</head>
+<body>
+<header class="f-header">
+  <a class="f-logo" href="../../index.html"><div class="f-logo-dot"></div>FasaFas</a>
+  <nav class="f-nav">
+    <a class="f-back" href="../../index.html">← Back to Platform</a>
+    <a class="f-schedule" href="../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="breadcrumb">
+  <a href="../../index.html">Home</a><span class="sep">/</span>
+  <a href="../../index.html">Meetings</a><span class="sep">/</span>
+  <span class="cur">AI Transcription</span>
+</div>
+
+<div class="f-hero">
+  <div class="hero-eyebrow">📹 Meetings Feature</div>
+  <span class="f-hero-icon">🎙️</span>
+  <h1 class="f-hero-title"><em>AI Transcription</em></h1>
+  <p class="f-hero-desc">Whisper large-v3 powers real-time transcription in 30+ languages with speaker diarization, My Notes, AI summaries, smart chapters, and action item extraction.</p>
+</div>
+
+<!-- STAT STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--border);background:var(--bg2)">
+
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">STT Model</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#8b5cf6">Whisper</div>
+    <div style="font-size:11px;color:var(--text3)">large-v3 by OpenAI</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Languages</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#8b5cf6">100+</div>
+    <div style="font-size:11px;color:var(--text3)">Auto-detected</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Accuracy</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#8b5cf6">~3%</div>
+    <div style="font-size:11px;color:var(--text3)">WER English</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Post-Meeting</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#8b5cf6">~15 min</div>
+    <div style="font-size:11px;color:var(--text3)">Summary ready</div>
+  </div>
+</div>
+
+<!-- FEATURE CARDS -->
+<div style="padding:32px 44px 48px;background:var(--bg)">
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:6px">Feature Details</div>
+  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px">Click any feature to explore it fully</h2>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:22px;line-height:1.7">Every capability has its own dedicated page with step-by-step explanations, technical details, and configuration guides.</p>
+  <div class="feat-cards">
+
+    <a class="feat-card" href="ai-transcription/live-captions.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">01</div>
+      <div class="fc-top"><div class="fc-icon">📝</div><div class="fc-title">Live Captions</div></div>
+      <div class="fc-desc">Real-time captions overlay during meetings</div>
+      <div class="fc-tags-str">1–2s Delay · Font Size · Toggle · WCAG</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/whisper-engine.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">02</div>
+      <div class="fc-top"><div class="fc-icon">🧠</div><div class="fc-title">Whisper STT Engine</div></div>
+      <div class="fc-desc">How OpenAI Whisper large-v3 transcribes</div>
+      <div class="fc-tags-str">3-sec Chunks · VAD · Word Timestamps</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/diarization.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">03</div>
+      <div class="fc-top"><div class="fc-icon">👤</div><div class="fc-title">Speaker Diarization</div></div>
+      <div class="fc-desc">Labeling who said what in the transcript</div>
+      <div class="fc-tags-str">Pyannote · 20 Speakers · Auto-Correct</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/smart-recog.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">04</div>
+      <div class="fc-top"><div class="fc-icon">🎤</div><div class="fc-title">Smart Recognition</div></div>
+      <div class="fc-desc">Voice registration maps speakers to real names</div>
+      <div class="fc-tags-str">30-sec Enroll · Encrypted · Opt-In Only</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/my-notes.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">05</div>
+      <div class="fc-top"><div class="fc-icon">📒</div><div class="fc-title">My Notes</div></div>
+      <div class="fc-desc">Personal AI note-taker during any meeting</div>
+      <div class="fc-tags-str">AI Highlights · Tags · Hub Sync · 3rd Party</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/ai-summary.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">06</div>
+      <div class="fc-top"><div class="fc-icon">📋</div><div class="fc-title">AI Meeting Summary</div></div>
+      <div class="fc-desc">Auto-generated structured summary</div>
+      <div class="fc-tags-str">Claude Sonnet · Editable · Slack Push</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/smart-chapters.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">07</div>
+      <div class="fc-top"><div class="fc-icon">📖</div><div class="fc-title">Smart Chapters</div></div>
+      <div class="fc-desc">Timestamped topic navigation for recordings</div>
+      <div class="fc-tags-str">5–10 Chapters · Clickable · JSON API</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/action-items.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">08</div>
+      <div class="fc-top"><div class="fc-icon">✅</div><div class="fc-title">Action Item Extraction</div></div>
+      <div class="fc-desc">AI detects and structures tasks from transcript</div>
+      <div class="fc-tags-str">NLP · Assignee · Due Date · → Tasks</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/translated.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">09</div>
+      <div class="fc-top"><div class="fc-icon">🌐</div><div class="fc-title">Translated Captions</div></div>
+      <div class="fc-desc">Real-time captions in 30+ languages</div>
+      <div class="fc-tags-str">$5/user Add-On · DeepL · 500ms Delay</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/transcript-view.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">10</div>
+      <div class="fc-top"><div class="fc-icon">🔍</div><div class="fc-title">Transcript Viewer</div></div>
+      <div class="fc-desc">Searchable, clickable, speaker-labeled</div>
+      <div class="fc-tags-str">Full-Text Search · Click-to-Seek · VTT</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="ai-transcription/privacy.html"
+       style="--card-c:#8b5cf6;--card-glow:rgba(139,92,246,.14);--card-ibg:rgba(139,92,246,.14);--card-ib:rgba(139,92,246,.3)">
+      <div class="fc-num">11</div>
+      <div class="fc-top"><div class="fc-icon">🔐</div><div class="fc-title">Privacy & Consent</div></div>
+      <div class="fc-desc">Controls, consent flows, and data handling</div>
+      <div class="fc-tags-str">Consent Banner · Opt-Out · GDPR · Admin</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- FEATURE NAV STRIP -->
+<div class="feat-nav">
+  <a class="feat-nav-item " href="hd-video.html"><div class="fni-icon">📹</div><div class="fni-label">HD Video</div></a>
+  <a class="feat-nav-item " href="webrtc-sfu.html"><div class="fni-icon">📡</div><div class="fni-label">WebRTC SFU</div></a>
+  <a class="feat-nav-item " href="breakout-rooms.html"><div class="fni-icon">🚪</div><div class="fni-label">Breakout Rooms</div></a>
+  <a class="feat-nav-item current" href="ai-transcription.html"><div class="fni-icon">🤖</div><div class="fni-label">AI Transcription</div></a>
+  <a class="feat-nav-item " href="cloud-recording.html"><div class="fni-icon">☁️</div><div class="fni-label">Cloud Recording</div></a>
+</div>
+<script src="../../assets/js/translate.js"></script>
+</body>
+</html>

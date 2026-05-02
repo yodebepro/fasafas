@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Processing Pipeline</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Processing Pipeline</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link active" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">⚙️</span>
+      <h1 class="hero-title"><em>Processing Pipeline</em></h1>
+      <p class="hero-desc">After your meeting ends, FasaFas runs a multi-stage automated pipeline to mix the recording, generate the transcript, and produce the AI summary — all without any action from you.</p>
+      <div class="hero-tags"><span class="h-tag">FFmpeg</span><span class="h-tag">ECS Fargate</span><span class="h-tag">Kafka</span><span class="h-tag">Whisper</span><span class="h-tag">Claude</span><span class="h-tag">3–8 Min Total</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-steps')">Pipeline Steps</div>
+<div class="tab " onclick="sw(this,'t-timing')">Timing</div>
+<div class="tab " onclick="sw(this,'t-errors')">Error Handling</div></div>
+    <div class="content">
+      <div id="t-steps" class="tab-pane active"><div class="ph1">Complete Processing Pipeline</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">SFU streams raw RTP tracks to S3 during meeting</div><div class="step-desc">As the meeting runs, each participant's audio and video RTP streams are written as segmented files to S3 in real time. Nothing to process when meeting ends — tracks already in cloud.</div></div></li>
+<li><div><div class="step-title">meeting.ended Kafka event triggers pipeline</div><div class="step-desc">When host clicks End Meeting, the meeting-service publishes a meeting.ended event to Kafka. The media-service's Lambda consumer picks it up and starts the pipeline.</div></div></li>
+<li><div><div class="step-title">ECS Fargate task launched for FFmpeg mixing</div><div class="step-desc">A Fargate task with the FFmpeg container is spun up. It reads all participant track segments from S3, mixes them according to the active-speaker timeline, and produces: MP4 (video+audio), M4A (audio only), and chat TXT.</div></div></li>
+<li><div><div class="step-title">HLS segments generated in parallel</div><div class="step-desc">While the MP4 is being mixed, an HLS (.m3u8 playlist with .ts chunks) is generated from the raw tracks so you can start watching via streaming before the MP4 download is ready.</div></div></li>
+<li><div><div class="step-title">recording.completed Kafka event fired</div><div class="step-desc">Files uploaded to recordings S3 bucket. recording.completed event published to Kafka. ai-companion-service and notification-service consume this event.</div></div></li>
+<li><div><div class="step-title">Whisper transcription job (AWS Batch)</div><div class="step-desc">Audio extracted from MP4 → sent to Whisper large-v3. Speaker diarization runs in parallel (Pyannote.audio). Both results merged into speaker-labeled VTT and JSON transcript files.</div></div></li>
+<li><div><div class="step-title">Claude AI: summary + chapters + action items</div><div class="step-desc">Full labeled transcript sent to Claude Sonnet. Returns: 3–5 paragraph summary, 5–10 smart chapters with titles, action items list, key decisions. All written to Postgres + S3.</div></div></li>
+<li><div><div class="step-title">Host notification + webhook fired</div><div class="step-desc">meeting.summary.completed webhook sent to customer endpoint. WebSocket push to host's active browser: "Your meeting summary is ready." Hub updates with all assets.</div></div></li>
+</ol></div></div>
+<div id="t-timing" class="tab-pane "><div class="ph1">Expected Processing Times</div>
+<div class="spec"><div class="spec-head">⏱️ Approximate Pipeline Timing</div>
+<div class="spec-row"><span class="sk">HLS stream ready</span><span class="sv">~1–2 minutes after meeting end (watch while processing)</span></div>
+<div class="spec-row"><span class="sk">MP4 download ready</span><span class="sv">~2–5 minutes (depends on meeting duration; 1 hr meeting ≈ 3 min mix)</span></div>
+<div class="spec-row"><span class="sk">Transcript ready</span><span class="sv">~5–8 minutes (Whisper processes at ~0.5× real-time speed)</span></div>
+<div class="spec-row"><span class="sk">AI summary ready</span><span class="sv">~8–15 minutes (Claude processes full transcript in ~30–90 seconds)</span></div>
+<div class="spec-row"><span class="sk">Total pipeline</span><span class="sv">Typically 10–20 minutes for a 1-hour meeting; up to 40 min for 3+ hours</span></div>
+<div class="spec-row"><span class="sk">Failure retry</span><span class="sv">Each stage retries up to 3 times with exponential backoff before alerting</span></div>
+</div></div>
+<div id="t-errors" class="tab-pane "><div class="ph1">Pipeline Error Handling</div>
+<div class="card"><ul class="fl">
+<li>Each pipeline stage is independently idempotent — can retry any stage without corrupting output</li>
+<li>If FFmpeg mix fails: alert sent to infrastructure team; host notified to retry from Hub</li>
+<li>If Whisper fails: transcript marked as "Processing failed" — host can manually request re-run</li>
+<li>If Claude fails: summary generation retried up to 3 times; if all fail, summary shows "Generation failed — try regenerate"</li>
+<li>Partial success: if transcript succeeds but summary fails, transcript is still available</li>
+<li>Long meetings (&gt;4 hours): Whisper job split into 30-minute chunks and run in parallel</li>
+<li>Status updates visible in Hub → Recordings → processing indicator per recording</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="cloud-vs-local.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Cloud vs Local Recording</div></div></a>
+      <span class="nav-counter">Feature 4 of 11</span>
+      <a class="nav-pg" href="hls-playback.html"><div><div class="nav-label">Next</div><div class="nav-title">HLS Streaming & Playback</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

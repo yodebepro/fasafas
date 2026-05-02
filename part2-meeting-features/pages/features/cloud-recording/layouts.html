@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Recording Layouts</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Recording Layouts</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link active" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">🎬</span>
+      <h1 class="hero-title"><em>Recording Layouts</em></h1>
+      <p class="hero-desc">Choose how your recording looks — the active speaker framed large, a grid of all participants, the shared screen without faces, or a side-by-side split view.</p>
+      <div class="hero-tags"><span class="h-tag">Active Speaker</span><span class="h-tag">Gallery View</span><span class="h-tag">Screen Only</span><span class="h-tag">Side-by-Side</span><span class="h-tag">Audio Only M4A</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-types')">Layout Types</div>
+<div class="tab " onclick="sw(this,'t-select')">How to Select</div>
+<div class="tab " onclick="sw(this,'t-recommend')">Which to Use</div></div>
+    <div class="content">
+      <div id="t-types" class="tab-pane active"><div class="ph1">Recording Layout Options</div>
+<div class="spec"><div class="spec-head">🎬 Available Recording Layouts</div>
+<div class="spec-row"><span class="sk">Active Speaker</span><span class="sv">Current speaker shown in a large main frame. Switches automatically as speakers change. Best for most meetings. Default.</span></div>
+<div class="spec-row"><span class="sk">Gallery View</span><span class="sv">Grid of all participants on camera. Fixed — doesn't change when someone speaks. Captures group dynamics.</span></div>
+<div class="spec-row"><span class="sk">Shared Screen Only</span><span class="sv">Records only the content being shared (slides, app, browser). No participant video. Smallest file size. Best for software demos.</span></div>
+<div class="spec-row"><span class="sk">Speaker + Screen (Side-by-Side)</span><span class="sv">Split view: shared screen on left, active speaker thumbnail on right. Great for presentations with a visible presenter.</span></div>
+<div class="spec-row"><span class="sk">Audio Only (M4A)</span><span class="sv">No video — just the audio track. Very small file. Good for podcast-format or voice-memo use cases.</span></div>
+</div></div>
+<div id="t-select" class="tab-pane "><div class="ph1">How to Select Your Recording Layout</div>
+<div class="card"><ul class="fl">
+<li>During a meeting: click Record → Record to Cloud → select layout from dropdown before clicking Start</li>
+<li>In settings: Settings → Recording → Cloud Recording → check which layouts to enable as options</li>
+<li>Per-meeting default: in the Schedule Meeting form, select the default layout for that specific meeting</li>
+<li>Multiple layouts simultaneously: check all desired layouts — FasaFas records all of them in parallel (each produces a separate file)</li>
+<li>Admin can restrict which layouts are available to prevent non-compliant recordings</li>
+<li>Layout selection cannot be changed after recording has started — you must stop and restart with the new layout</li>
+</ul></div></div>
+<div id="t-recommend" class="tab-pane "><div class="ph1">Layout Recommendations by Meeting Type</div>
+<div class="tbl-wrap"><table class="tbl">
+<tr><th>Meeting Type</th><th>Recommended Layout</th><th>Reason</th></tr>
+<tr><td>Team standup</td><td>Active Speaker</td><td>Focus on who's speaking; efficient file size</td></tr>
+<tr><td>Product presentation</td><td>Speaker + Screen</td><td>Show slides AND presenter face together</td></tr>
+<tr><td>Technical demo</td><td>Screen Only</td><td>No faces needed; clear view of the application</td></tr>
+<tr><td>All-hands meeting</td><td>Gallery View</td><td>Capture the group, important for culture records</td></tr>
+<tr><td>Interview</td><td>Active Speaker</td><td>Both candidate and interviewer captured as they speak</td></tr>
+<tr><td>Training session</td><td>Speaker + Screen</td><td>Instructor visible while showing training material</td></tr>
+<tr><td>Podcast / discussion</td><td>Audio Only (M4A)</td><td>Small file, easy to distribute as audio</td></tr>
+</table></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="auto-record.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Auto-Record Setup</div></div></a>
+      <span class="nav-counter">Feature 2 of 11</span>
+      <a class="nav-pg" href="cloud-vs-local.html"><div><div class="nav-label">Next</div><div class="nav-title">Cloud vs Local Recording</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

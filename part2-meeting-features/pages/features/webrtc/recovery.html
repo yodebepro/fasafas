@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Error Recovery</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Error Recovery</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link active" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">🔁</span>
+      <h1 class="hero-title"><em>Error Recovery</em></h1>
+      <p class="hero-desc">FasaFas has multiple layers of automatic error recovery — from brief network blips to full disconnections — designed to keep you in the meeting with minimal disruption.</p>
+      <div class="hero-tags"><span class="h-tag">ICE Restart</span><span class="h-tag">Socket.io Reconnect</span><span class="h-tag">Quality Fallback</span><span class="h-tag">Auto-Retry</span><span class="h-tag">3-Attempt Logic</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-layers')">Recovery Layers</div>
+<div class="tab " onclick="sw(this,'t-timeline')">Recovery Timeline</div>
+<div class="tab " onclick="sw(this,'t-indicators')">Quality Indicators</div></div>
+    <div class="content">
+      <div id="t-layers" class="tab-pane active"><div class="ph1">Error Recovery Layers</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Layer 1 — NACK (Packet Retransmission)</div><div class="step-desc">If a single RTP packet is lost, a NACK request is sent. The sender retransmits the missing packet. Handles &lt;3% packet loss with no visible impact. Adds &lt;30ms delay.</div></div></li>
+<li><div><div class="step-title">Layer 2 — FEC (Forward Error Correction)</div><div class="step-desc">Opus audio includes FEC — parity packets that let the receiver reconstruct up to one lost packet without retransmission. Best for bursty packet loss.</div></div></li>
+<li><div><div class="step-title">Layer 3 — Simulcast Layer Drop</div><div class="step-desc">If packet loss exceeds 5% or REMB drops significantly, SFU switches to a lower simulcast layer (1080p → 480p → 240p). Video continues — just at lower quality.</div></div></li>
+<li><div><div class="step-title">Layer 4 — ICE Restart</div><div class="step-desc">If the entire WebRTC transport fails (e.g., network interface change), ICE Restart re-negotiates the connection path. Audio may drop for 1–3 seconds. Session preserved.</div></div></li>
+<li><div><div class="step-title">Layer 5 — Socket.io Reconnect + Full Re-Join</div><div class="step-desc">If ICE Restart fails 3 times, Socket.io reconnects with exponential backoff (1s, 2s, 4s…). After socket reconnects, the meeting client re-joins the room automatically.</div></div></li>
+</ol></div></div>
+<div id="t-timeline" class="tab-pane "><div class="ph1">Recovery Timeline for a Network Drop</div>
+<div class="spec"><div class="spec-head">⏱️ What Happens When Your WiFi Drops for 5 Seconds</div>
+<div class="spec-row"><span class="sk">0–500ms</span><span class="sv">NACK retransmissions for missing packets. Jitter buffer masks loss. No visible impact.</span></div>
+<div class="spec-row"><span class="sk">500ms–2s</span><span class="sv">Packet loss exceeds threshold. SFU drops to 240p layer for your stream. Audio switches to comfort noise.</span></div>
+<div class="spec-row"><span class="sk">2–5s</span><span class="sv">ICE consent checks fail. ICE Restart triggered. "Reconnecting..." indicator appears in meeting UI.</span></div>
+<div class="spec-row"><span class="sk">5–7s</span><span class="sv">Network recovers. ICE Restart completes. New transport established (may route via TURN this time).</span></div>
+<div class="spec-row"><span class="sk">7–10s</span><span class="sv">REMB recovers. SFU ramps back up to 480p, then 1080p. Audio full quality restored.</span></div>
+</div></div>
+<div id="t-indicators" class="tab-pane "><div class="ph1">Connection Quality Indicators</div>
+<div class="spec"><div class="spec-head">📶 Quality Indicators in Meeting UI</div>
+<div class="spec-row"><span class="sk">5 green bars</span><span class="sv">Excellent — &lt;1% packet loss, RTT &lt;50ms, full 1080p</span></div>
+<div class="spec-row"><span class="sk">4 bars</span><span class="sv">Good — &lt;3% loss, RTT &lt;100ms, 1080p or 480p</span></div>
+<div class="spec-row"><span class="sk">3 bars</span><span class="sv">Fair — 3–5% loss, RTT 100–200ms, 480p</span></div>
+<div class="spec-row"><span class="sk">2 bars (amber)</span><span class="sv">Poor — 5–10% loss, RTT 200–300ms, 240p — quality issues likely</span></div>
+<div class="spec-row"><span class="sk">1 bar (red)</span><span class="sv">Bad — &gt;10% loss or RTT &gt;300ms — audio may break, ICE Restart possible</span></div>
+<div class="spec-row"><span class="sk">Reconnecting banner</span><span class="sv">ICE Restart in progress — brief 1–5 second interruption expected</span></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="codecs.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Video Codecs</div></div></a>
+      <span class="nav-counter">Feature 10 of 11</span>
+      <a class="nav-pg" href="regions.html"><div><div class="nav-label">Next</div><div class="nav-title">Regional Server Clusters</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Custom Availability & Buffer Times</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../calendar.html">← Calendar</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Custom Availability & Buffer Times</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Calendar Features</div>
+    <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
+<a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
+<a class="sb-link" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
+<a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
+<a class="sb-link" href="outlook-sync.html"><span class="sb-num">5</span><span class="sb-icon">🔄</span>Outlook / Exchange Sync</a>
+<a class="sb-link" href="free-busy.html"><span class="sb-num">6</span><span class="sb-icon">👁</span>Free / Busy Overlay for Invitees</a>
+<a class="sb-link" href="booking-url.html"><span class="sb-num">7</span><span class="sb-icon">🔗</span>Personal Booking URL</a>
+<a class="sb-link active" href="availability.html"><span class="sb-num">8</span><span class="sb-icon">⏰</span>Custom Availability & Buffer Times</a>
+<a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
+<a class="sb-link" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
+<a class="sb-link" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
+<a class="sb-link" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../calendar.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">⏰</span>
+      <h1 class="hero-title"><em>Custom Availability & Buffer Times</em></h1>
+      <p class="hero-desc">Define exactly when you're available for bookings — working hours per day, buffer time between meetings, minimum advance notice, and specific dates to block out.</p>
+      <div class="hero-tags"><span class="h-tag">Working Hours</span><span class="h-tag">Buffer Times</span><span class="h-tag">Minimum Notice</span><span class="h-tag">Blocked Dates</span><span class="h-tag">Timezone</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Availability Settings</div>
+<div class="tab " onclick="sw(this,'t2')">Buffer Times</div>
+<div class="tab " onclick="sw(this,'t3')">Overrides</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Configuring Your Availability</div><div class='spec'><div class='spec-head'>⏰ Availability Settings</div><div class='spec-row'><span class='sk'>Working hours</span><span class='sv'>Set open hours per day of week — e.g., Mon–Fri 9 AM–5 PM, Thu closes at 3 PM</span></div><div class='spec-row'><span class='sk'>Timezone</span><span class='sv'>Default timezone for your availability — guest sees slots in their timezone</span></div><div class='spec-row'><span class='sk'>Minimum notice</span><span class='sv'>How far in advance a meeting must be booked — e.g., 4 hours or 24 hours minimum</span></div><div class='spec-row'><span class='sk'>Maximum future</span><span class='sv'>How far out bookings are allowed — e.g., no bookings more than 60 days in advance</span></div><div class='spec-row'><span class='sk'>Slot duration</span><span class='sv'>15 / 30 / 45 / 60 / 90 / 120 minutes — or offer guest a choice</span></div><div class='spec-row'><span class='sk'>Slot start increments</span><span class='sv'>Every 15 min, 30 min, or hour — controls granularity of available slot times</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Buffer Times Between Meetings</div><div class='card' ><ul class='fl'><li>Before buffer: ensure X minutes free before each booked meeting — for prep time</li><li>After buffer: ensure X minutes free after each meeting — for wrap-up and context switching</li><li>Both buffers can be different (e.g., 5 min before, 15 min after)</li><li>Buffers block out your calendar — other meetings can't be scheduled during buffer slots</li><li>Buffers don't appear on your booking page — guests only see bookable slots that respect buffers</li><li>Override: manually schedule a meeting into a buffer slot from your own calendar if needed</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Availability Overrides</div><div class='card' ><ul class='fl'><li>One-off override: block out a specific date or date range — for vacation, travel, conference</li><li>Or: add extra hours on a specific date — e.g., make Saturday bookable just this week</li><li>Holiday sync: connect to public holiday calendar for your country → auto-blocked</li><li>Override doesn't affect your regular availability template — only that specific date</li><li>Booking page reflects overrides in real time — guests immediately see the blocked/open dates</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="booking-url.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Personal Booking URL</div></div></a><span class="nav-counter">Feature 8 of 12</span><a class="nav-pg" href="intake-form.html"><div><div class="nav-label">Next</div><div class="nav-title">Custom Intake Form Questions</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

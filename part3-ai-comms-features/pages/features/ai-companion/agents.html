@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Agent Builder</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-companion.html">← Ai Companion</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Agent Builder</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Ai Companion Features</div>
+    <a class="sb-link" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
+<a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
+<a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
+<a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
+<a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
+<a class="sb-link active" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
+<a class="sb-link" href="drive-retrieval.html"><span class="sb-num">11</span><span class="sb-icon">🗂️</span>Drive Retrieval</a>
+<a class="sb-link" href="daily-digest.html"><span class="sb-num">12</span><span class="sb-icon">📊</span>Daily Digest</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-companion.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">⚡</span>
+      <h1 class="hero-title"><em>Agent Builder</em></h1>
+      <p class="hero-desc">Build custom AI agents with a no-code visual flow editor — connect triggers (meeting ended, file uploaded) to AI actions (send email, create task, post to Slack) in minutes, with no programming required.</p>
+      <div class="hero-tags"><span class="h-tag">Visual Builder</span><span class="h-tag">Triggers</span><span class="h-tag">Actions</span><span class="h-tag">No Code</span><span class="h-tag">Automation</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Agent Builder</div>
+<div class="tab " onclick="sw(this,'t2')">Triggers & Actions</div>
+<div class="tab " onclick="sw(this,'t3')">Examples</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Agent Builder Interface</div><div class='card' ><ul class='fl'><li>Canvas-based drag-and-drop flow editor — zero code required</li><li>Each flow: one Trigger → optional Conditions → optional AI Steps → one or more Actions</li><li>Add <b>Conditions</b> for branching: 'if meeting had 5+ participants, then…'</li><li>Add <b>AI Steps</b> between trigger and action: 'summarize transcript before sending email'</li><li>Test with a sample event before activating</li><li>View run history: succeeded, failed, skipped — with full payload logs</li><li>Agents run on FasaFas infrastructure — no external server or cron job needed</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Available Triggers &amp; Actions</div><div class='g2'><div class='card' ><div class='ph3'>Triggers (When)</div><ul class='fl'><li>🎥 Meeting ended</li><li>📝 Summary ready</li><li>☁️ Recording completed</li><li>📁 File uploaded to channel</li><li>📅 Daily/weekly schedule (cron)</li><li>✅ Action item overdue</li><li>💬 Keyword mentioned in chat</li><li>📞 Voicemail received</li><li>🔗 External webhook received</li></ul></div><div class='card' ><div class='ph3'>Actions (Then)</div><ul class='fl'><li>📧 Send email with AI-generated content</li><li>💬 Post to Slack channel</li><li>✅ Create task in Tasks / Asana / Jira</li><li>📄 Create or update a Doc</li><li>📁 Move file to Google Drive / OneDrive</li><li>🤖 Run a custom AI prompt</li><li>🔗 Call a webhook (HTTP POST)</li><li>📊 Update a spreadsheet row</li><li>🔔 Send in-app notification</li></ul></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Common Agent Examples</div><div class='g3'><div class='card' ><div class='ph3' style='color:var(--fc)'>Auto Follow-Up Email</div><ul class='fl'><li><b>Trigger:</b> Meeting ended</li><li><b>AI Step:</b> Generate follow-up email from summary</li><li><b>Action:</b> Send email to all attendees</li></ul></div><div class='card' ><div class='ph3' style='color:var(--green)'>Slack Summary Bot</div><ul class='fl'><li><b>Trigger:</b> Summary ready</li><li><b>Action:</b> Post summary excerpt to Slack channel</li><li>Includes: decisions, actions, recording link</li></ul></div><div class='card' ><div class='ph3' style='color:var(--accent2)'>Overdue Task Reminder</div><ul class='fl'><li><b>Trigger:</b> Action item overdue (daily)</li><li><b>Action:</b> Notify assignee</li><li><b>Escalation:</b> Also notify manager after 3 days</li></ul></div></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="writing-mode.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Writing Mode</div></div></a><span class="nav-counter">Feature 10 of 12</span><a class="nav-pg" href="drive-retrieval.html"><div><div class="nav-label">Next</div><div class="nav-title">Drive Retrieval</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

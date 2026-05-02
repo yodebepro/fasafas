@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Speaker Diarization</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Speaker Diarization</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link active" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">👤</span>
+      <h1 class="hero-title"><em>Speaker Diarization</em></h1>
+      <p class="hero-desc">Speaker diarization labels each transcript line with who was speaking — automatically, without any setup. Smart Recognition then maps speaker IDs to real names using voice registration.</p>
+      <div class="hero-tags"><span class="h-tag">Pyannote.audio</span><span class="h-tag">Speaker Labels</span><span class="h-tag">20 Speakers</span><span class="h-tag">Cross-Talk</span><span class="h-tag">Auto-Correct</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How Diarization Works</div>
+<div class="tab " onclick="sw(this,'t-quality')">Quality Factors</div>
+<div class="tab " onclick="sw(this,'t-vs')">Auto vs Smart Recognition</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">How Speaker Diarization Works</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Individual audio tracks captured per participant</div><div class="step-desc">Instead of mixing all audio, the SFU provides separate audio tracks per participant to the diarization pipeline. This is the most accurate approach — no need to separate voices post-mix.</div></div></li>
+<li><div><div class="step-title">Pyannote.audio 3.0 assigns speaker segments</div><div class="step-desc">Pyannote analyzes each track and produces speaker segments: "Speaker A: 0:00–0:12, Speaker B: 0:14–0:28..." with millisecond precision.</div></div></li>
+<li><div><div class="step-title">Speaker IDs assigned: Speaker 1, Speaker 2, etc.</div><div class="step-desc">Without Smart Recognition, speakers are labeled generically. The ID is consistent throughout the meeting — "Speaker 1" in minute 3 is the same person as "Speaker 1" in minute 40.</div></div></li>
+<li><div><div class="step-title">Segments merged with Whisper transcript</div><div class="step-desc">Each Whisper word timestamp is matched to a speaker segment. The combined result: "Speaker 1 [00:02:14]: The budget for Q3 is approved."</div></div></li>
+<li><div><div class="step-title">Retroactive correction if speaker ID changes</div><div class="step-desc">If Pyannote initially assigns two segments to different speakers but later determines they're the same (based on longer voice sample), it retroactively corrects the earlier segments.</div></div></li>
+</ol></div></div>
+<div id="t-quality" class="tab-pane "><div class="ph1">Diarization Quality Factors</div>
+<div class="g2">
+<div class="card"><div class="ph3">What Helps Accuracy</div><ul class="fl">
+<li>Each participant uses their own dedicated microphone (not speakerphone or shared mic)</li>
+<li>Clear turn-taking — one person speaks at a time</li>
+<li>Good audio quality (minimal background noise, no echo)</li>
+<li>Smart Recognition enrolled (maps IDs to real names)</li>
+<li>Meetings under 2 hours (cumulative model drift in very long sessions)</li>
+</ul></div>
+<div class="card"><div class="ph3">What Hurts Accuracy</div><ul class="fl">
+<li>Shared microphones (conference room speakerphone) — multiple people per mic channel</li>
+<li>Overlapping speech — two people talking simultaneously confuses segment assignment</li>
+<li>Background talkers (TVs, radio) can be classified as a unique speaker</li>
+<li>Very similar voice types (e.g., identical twins on the same call)</li>
+<li>Participants speaking in different rooms with vastly different acoustic environments</li>
+</ul></div>
+</div></div>
+<div id="t-vs" class="tab-pane "><div class="ph1">Automatic Labels vs Smart Recognition Names</div>
+<div class="tbl-wrap"><table class="tbl">
+<tr><th>Feature</th><th>Automatic Labels</th><th>Smart Recognition</th></tr>
+<tr><td>Setup required</td><td class="ck">None — works immediately</td><td>30-sec voice scan (one-time)</td></tr>
+<tr><td>Label in transcript</td><td>"Speaker 1, Speaker 2…"</td><td>"Jane Doe, Marcus Smith…"</td></tr>
+<tr><td>Works without login</td><td class="ck">Yes (guest participants)</td><td class="da">Registered users only</td></tr>
+<tr><td>Accuracy</td><td>High (segment level)</td><td>Very high (name level)</td></tr>
+<tr><td>Privacy opt-in needed</td><td class="da">No</td><td class="ck">Yes (explicit opt-in)</td></tr>
+</table></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="whisper-engine.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Whisper STT Engine</div></div></a>
+      <span class="nav-counter">Feature 3 of 11</span>
+      <a class="nav-pg" href="smart-recog.html"><div><div class="nav-label">Next</div><div class="nav-title">Smart Recognition</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

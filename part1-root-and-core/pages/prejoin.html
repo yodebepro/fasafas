@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Join Meeting</title>
+<style>
+:root{
+  --bg:#07101f;--bg2:#0d1b2e;--bg3:#132039;--card:#0f1f35;
+  --border:#1e3050;--accent:#2563eb;--green:#10b981;--red:#ef4444;--amber:#f59e0b;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
+  --font:'Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;height:100%;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:54px;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.hdr-logo{font-size:18px;font-weight:900;color:#3b82f6;text-decoration:none;display:flex;align-items:center;gap:8px}
+.hdr-dot{width:7px;height:7px;border-radius:50%;background:#3b82f6}
+.hdr-back{padding:5px 13px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .15s;font-family:var(--font)}
+.hdr-back:hover{background:var(--bg3);color:var(--text)}
+
+.wrap{max-width:920px;margin:0 auto;padding:40px 24px;display:grid;grid-template-columns:1fr 340px;gap:24px}
+@media(max-width:700px){.wrap{grid-template-columns:1fr;padding:24px 16px}}
+
+/* Video preview */
+.preview-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.video-area{position:relative;background:#000;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+#preview-video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:none}
+.video-placeholder{text-align:center;color:var(--text3)}
+.video-placeholder-icon{font-size:48px;margin-bottom:12px}
+.video-placeholder-text{font-size:13px}
+.camera-off-overlay{position:absolute;inset:0;background:#07101f;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text3);font-size:13px;gap:8px}
+.cam-off-icon{font-size:40px}
+
+.controls-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:16px}
+.ctrl-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .2s;flex-shrink:0}
+.ctrl-btn:hover{background:var(--card)}
+.ctrl-btn.on{background:var(--bg3);border-color:var(--accent)}
+.ctrl-btn.off{background:rgba(239,68,68,.15);border-color:var(--red)}
+.ctrl-btn.off .icon{opacity:.6}
+.ctrl-label{font-size:10px;color:var(--text3);text-align:center;font-weight:600;letter-spacing:.3px;text-transform:uppercase}
+.ctrl-group{display:flex;flex-direction:column;align-items:center;gap:4px}
+
+/* Status indicators */
+.status-row{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--bg3);border-top:1px solid var(--border);font-size:12px;color:var(--text2)}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sdot-good{background:var(--green);animation:pulse 2s infinite}
+.sdot-bad{background:var(--red)}
+.sdot-waiting{background:var(--amber);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Right panel */
+.panel-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.panel-title{font-size:18px;font-weight:800;letter-spacing:-.4px}
+.panel-sub{font-size:12px;color:var(--text3)}
+
+.meeting-info{background:var(--bg3);border-radius:10px;padding:14px}
+.info-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(30,48,80,.5);font-size:13px}
+.info-row:last-child{border:none}
+.info-key{color:var(--text3);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.info-val{color:var(--text);font-weight:600;font-family:monospace}
+
+.field-group{display:flex;flex-direction:column;gap:6px}
+.field-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3)}
+.field-input{padding:10px 12px;border-radius:9px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:14px;outline:none;transition:border-color .15s;width:100%}
+.field-input:focus{border-color:var(--accent)}
+
+/* Device selectors */
+.device-group{display:flex;flex-direction:column;gap:6px}
+.device-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3)}
+.device-select{width:100%;padding:9px 10px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;cursor:pointer;outline:none}
+.device-select:focus{border-color:var(--accent)}
+
+.join-btn{
+  width:100%;padding:14px;border-radius:11px;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:#fff;font-size:15px;font-weight:800;border:none;cursor:pointer;
+  transition:all .2s;font-family:var(--font);letter-spacing:-.2px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.join-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,99,235,.4)}
+.join-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.join-btn.loading{background:var(--bg3);color:var(--text2)}
+
+.perm-warn{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:12px 14px;font-size:13px;color:#fca5a5;display:none}
+.perm-warn.show{display:block}
+.perm-warn a{color:#f87171;cursor:pointer;text-decoration:underline}
+
+.audio-bar-wrap{padding:0 4px}
+.audio-label{font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.audio-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.audio-fill{height:100%;background:linear-gradient(90deg,var(--green),#34d399);border-radius:3px;width:0%;transition:width .08s}
+
+.err-msg{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:10px 14px;font-size:13px;color:#fca5a5;display:none}
+.err-msg.show{display:block}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a class="hdr-logo" href="../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <a class="hdr-back" href="../index.html">← Back</a>
+</header>
+
+<div class="wrap">
+
+  <!-- LEFT: Video Preview -->
+  <div class="preview-card">
+    <div class="video-area" id="video-area">
+      <video id="preview-video" autoplay muted playsinline></video>
+      <div class="camera-off-overlay" id="cam-off">
+        <div class="cam-off-icon">📷</div>
+        <div>Camera is off</div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <div class="ctrl-group">
+        <button class="ctrl-btn on" id="mic-btn" onclick="toggleMic()" title="Toggle microphone">🎙️</button>
+        <div class="ctrl-label">Mic</div>
+      </div>
+      <div class="ctrl-group">
+        <button class="ctrl-btn on" id="cam-btn" onclick="toggleCam()" title="Toggle camera">📹</button>
+        <div class="ctrl-label">Camera</div>
+      </div>
+      <div class="ctrl-group">
+        <button class="ctrl-btn on" id="speaker-btn" title="Speaker on">🔊</button>
+        <div class="ctrl-label">Speaker</div>
+      </div>
+    </div>
+
+    <!-- Audio level indicator -->
+    <div class="audio-bar-wrap" id="audio-bar-wrap" style="padding:0 16px 12px">
+      <div class="audio-label">Microphone Level</div>
+      <div class="audio-bar"><div class="audio-fill" id="audio-fill"></div></div>
+    </div>
+
+    <!-- Status row -->
+    <div class="status-row">
+      <div class="status-dot" id="cam-status-dot" style="background:var(--amber);animation:pulse 1s infinite"></div>
+      <span id="cam-status-text">Requesting camera access…</span>
+    </div>
+
+    <!-- Error -->
+    <div class="err-msg" id="err-msg" style="margin:0 16px 12px">
+      <strong>Camera/Microphone blocked.</strong> Please allow access in your browser's address bar (🔒 → Camera → Allow), then <a onclick="location.reload()">refresh this page</a>.
+    </div>
+
+    <!-- Device selectors -->
+    <div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:10px">
+      <div class="device-group">
+        <div class="device-label">Camera</div>
+        <select class="device-select" id="cam-select" onchange="switchCamera(this.value)"><option>Detecting cameras…</option></select>
+      </div>
+      <div class="device-group">
+        <div class="device-label">Microphone</div>
+        <select class="device-select" id="mic-select" onchange="switchMic(this.value)"><option>Detecting microphones…</option></select>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Meeting Info + Join -->
+  <div class="panel-card">
+    <div>
+      <div class="panel-title" id="meeting-topic">Meeting</div>
+      <div class="panel-sub" id="meeting-sub">Ready to join</div>
+    </div>
+
+    <div class="meeting-info" id="meeting-info-box">
+      <div class="info-row"><span class="info-key">Meeting ID</span><span class="info-val" id="info-id">—</span></div>
+      <div class="info-row"><span class="info-key">Host</span><span class="info-val" id="info-host">—</span></div>
+      <div class="info-row"><span class="info-key">Start Time</span><span class="info-val" id="info-time">—</span></div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Your Display Name</div>
+      <input class="field-input" id="display-name" type="text" placeholder="Enter your name" value="">
+    </div>
+
+    <div class="perm-warn" id="perm-warn">
+      ⚠️ To join this meeting, please allow camera and microphone access. <a onclick="retryPermissions()">Click here to try again</a>.
+    </div>
+
+    <button class="join-btn" id="join-btn" onclick="joinMeeting()">
+      🎥 Join Meeting
+    </button>
+
+    <div style="font-size:11px;color:var(--text3);text-align:center;line-height:1.7">
+      By joining, you agree to FasaFas's Terms of Service. This meeting may be recorded.
+    </div>
+
+    <!-- Optional: join without video -->
+    <div style="text-align:center">
+      <a onclick="joinAudioOnly()" style="font-size:12px;color:#60a5fa;cursor:pointer;text-decoration:underline">
+        Join with audio only
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let localStream = null;
+let audioCtx = null;
+let analyser = null;
+let micEnabled = true;
+let camEnabled = true;
+let animFrame = null;
+let currentVideoDeviceId = null;
+let currentAudioDeviceId = null;
+
+// Parse URL params
+const params = new URLSearchParams(window.location.search);
+const meetingId = params.get('id') || ('fasa-' + Math.random().toString(36).substr(2,8));
+const topic     = params.get('topic') || 'FasaFas Meeting';
+const host      = params.get('host') || 'Host';
+const startTime = params.get('time') || new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+const userRole  = params.get('role') || 'participant';   // 'host' or 'participant'
+const passcode  = params.get('pass') || '';
+
+// Populate info
+document.getElementById('meeting-topic').textContent = topic;
+document.getElementById('meeting-sub').textContent = 'Meeting ID: ' + meetingId;
+document.getElementById('info-id').textContent = meetingId;
+document.getElementById('info-host').textContent = host;
+document.getElementById('info-time').textContent = startTime;
+
+// Display name from localStorage if saved
+const saved = localStorage.getItem('fasafas_name');
+if(saved) document.getElementById('display-name').value = saved;
+
+async function getMedia(videoDeviceId, audioDeviceId) {
+  const constraints = {
+    video: videoDeviceId ? {deviceId:{exact:videoDeviceId}, width:{ideal:1280}, height:{ideal:720}} : {width:{ideal:1280},height:{ideal:720}},
+    audio: audioDeviceId ? {deviceId:{exact:audioDeviceId}} : true
+  };
+  return navigator.mediaDevices.getUserMedia(constraints);
+}
+
+async function init() {
+  try {
+    // Request permissions
+    localStream = await getMedia();
+
+    // Show video
+    const video = document.getElementById('preview-video');
+    video.srcObject = localStream;
+    video.style.display = 'block';
+    document.getElementById('cam-off').style.display = 'none';
+
+    // Status
+    document.getElementById('cam-status-dot').className = 'status-dot sdot-good';
+    document.getElementById('cam-status-text').textContent = 'Camera and microphone ready ✓';
+
+    // Enumerate devices and populate selects
+    await populateDevices();
+
+    // Audio level meter
+    startAudioMeter();
+
+    // Store device IDs
+    const videoTrack = localStream.getVideoTracks()[0];
+    const audioTrack = localStream.getAudioTracks()[0];
+    if(videoTrack) currentVideoDeviceId = videoTrack.getSettings().deviceId;
+    if(audioTrack) currentAudioDeviceId = audioTrack.getSettings().deviceId;
+
+  } catch(err) {
+    console.error('Media error:', err);
+    document.getElementById('cam-status-dot').className = 'status-dot sdot-bad';
+    document.getElementById('cam-status-text').textContent = 'Camera/mic access denied';
+    document.getElementById('err-msg').classList.add('show');
+    document.getElementById('perm-warn').classList.add('show');
+
+    // Try audio only as fallback
+    try {
+      localStream = await navigator.mediaDevices.getUserMedia({audio:true});
+      document.getElementById('cam-status-text').textContent = 'Microphone only — camera blocked';
+      document.getElementById('cam-status-dot').className = 'status-dot sdot-waiting';
+      document.getElementById('cam-btn').classList.replace('on','off');
+      camEnabled = false;
+      startAudioMeter();
+      await populateDevices();
+    } catch(e2) {
+      // All media blocked
+    }
+  }
+}
+
+async function populateDevices() {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+
+  const camSel = document.getElementById('cam-select');
+  const micSel = document.getElementById('mic-select');
+  camSel.innerHTML = '';
+  micSel.innerHTML = '';
+
+  const cams = devices.filter(d => d.kind === 'videoinput');
+  const mics = devices.filter(d => d.kind === 'audioinput');
+
+  if(cams.length === 0) camSel.innerHTML = '<option value="">No camera found</option>';
+  cams.forEach((d, i) => {
+    const opt = document.createElement('option');
+    opt.value = d.deviceId;
+    opt.text = d.label || `Camera ${i+1}`;
+    if(d.deviceId === currentVideoDeviceId) opt.selected = true;
+    camSel.appendChild(opt);
+  });
+
+  if(mics.length === 0) micSel.innerHTML = '<option value="">No microphone found</option>';
+  mics.forEach((d, i) => {
+    const opt = document.createElement('option');
+    opt.value = d.deviceId;
+    opt.text = d.label || `Microphone ${i+1}`;
+    if(d.deviceId === currentAudioDeviceId) opt.selected = true;
+    micSel.appendChild(opt);
+  });
+}
+
+async function switchCamera(deviceId) {
+  if(!deviceId || !localStream) return;
+  currentVideoDeviceId = deviceId;
+  // Stop old video track
+  localStream.getVideoTracks().forEach(t => t.stop());
+  try {
+    const newStream = await navigator.mediaDevices.getUserMedia({video:{deviceId:{exact:deviceId}}});
+    const newTrack = newStream.getVideoTracks()[0];
+    localStream.removeTrack(localStream.getVideoTracks()[0]);
+    localStream.addTrack(newTrack);
+    document.getElementById('preview-video').srcObject = null;
+    document.getElementById('preview-video').srcObject = localStream;
+  } catch(e) { console.error('Camera switch error:', e); }
+}
+
+async function switchMic(deviceId) {
+  if(!deviceId || !localStream) return;
+  currentAudioDeviceId = deviceId;
+  localStream.getAudioTracks().forEach(t => t.stop());
+  try {
+    const newStream = await navigator.mediaDevices.getUserMedia({audio:{deviceId:{exact:deviceId}}});
+    const newTrack = newStream.getAudioTracks()[0];
+    if(localStream.getAudioTracks().length > 0) localStream.removeTrack(localStream.getAudioTracks()[0]);
+    localStream.addTrack(newTrack);
+    startAudioMeter();
+  } catch(e) { console.error('Mic switch error:', e); }
+}
+
+function startAudioMeter() {
+  if(animFrame) cancelAnimationFrame(animFrame);
+  if(!localStream) return;
+  const audioTracks = localStream.getAudioTracks();
+  if(audioTracks.length === 0) return;
+  try {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 256;
+    const src = audioCtx.createMediaStreamSource(localStream);
+    src.connect(analyser);
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    const fill = document.getElementById('audio-fill');
+    function draw(){
+      if(!micEnabled){ fill.style.width='0%'; animFrame=requestAnimationFrame(draw); return; }
+      analyser.getByteFrequencyData(data);
+      const avg = data.reduce((a,b)=>a+b,0)/data.length;
+      fill.style.width = Math.min(avg*2.5, 100)+'%';
+      animFrame = requestAnimationFrame(draw);
+    }
+    draw();
+  } catch(e) { console.warn('Audio meter error:', e); }
+}
+
+function toggleMic() {
+  micEnabled = !micEnabled;
+  const btn = document.getElementById('mic-btn');
+  if(localStream) localStream.getAudioTracks().forEach(t => t.enabled = micEnabled);
+  btn.textContent = micEnabled ? '🎙️' : '🔇';
+  btn.className = 'ctrl-btn ' + (micEnabled ? 'on' : 'off');
+}
+
+function toggleCam() {
+  camEnabled = !camEnabled;
+  const btn = document.getElementById('cam-btn');
+  const video = document.getElementById('preview-video');
+  const overlay = document.getElementById('cam-off');
+  if(localStream) localStream.getVideoTracks().forEach(t => t.enabled = camEnabled);
+  btn.textContent = camEnabled ? '📹' : '🚫';
+  btn.className = 'ctrl-btn ' + (camEnabled ? 'on' : 'off');
+  video.style.display = camEnabled ? 'block' : 'none';
+  overlay.style.display = camEnabled ? 'none' : 'flex';
+}
+
+async function retryPermissions() {
+  document.getElementById('err-msg').classList.remove('show');
+  document.getElementById('perm-warn').classList.remove('show');
+  await init();
+}
+
+function joinMeeting() {
+  const name = document.getElementById('display-name').value.trim() || 'Guest';
+  localStorage.setItem('fasafas_name', name);
+
+  // Stop local preview (Jitsi will take over)
+  if(localStream) localStream.getTracks().forEach(t => t.stop());
+  if(animFrame) cancelAnimationFrame(animFrame);
+  if(audioCtx) audioCtx.close();
+
+  const btn = document.getElementById('join-btn');
+  btn.disabled = true;
+  btn.textContent = 'Launching meeting room…';
+
+  const outParams = new URLSearchParams({
+    id:    meetingId,
+    topic: topic,
+    name:  name,
+    cam:   camEnabled ? '1' : '0',
+    mic:   micEnabled ? '1' : '0',
+    role:  userRole,
+    pass:  passcode,
+  });
+  window.location.href = 'meeting-room.html?' + outParams.toString();
+}
+
+function joinAudioOnly() {
+  if(localStream) localStream.getVideoTracks().forEach(t => { t.enabled = false; });
+  camEnabled = false;
+  document.getElementById('cam-btn').className = 'ctrl-btn off';
+  document.getElementById('cam-btn').textContent = '🚫';
+  joinMeeting();
+}
+
+// Init on load
+init();
+</script>
+<script src="../assets/js/translate.js"></script>
+<script src="../assets/js/translate.js"></script>
+</body>
+</html>

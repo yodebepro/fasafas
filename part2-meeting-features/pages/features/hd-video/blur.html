@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Background Blur</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#60a5fa;--fc-bg:rgba(96,165,250,.14);--fc-b:rgba(96,165,250,.3);--fc-dim:rgba(96,165,250,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../hd-video.html">HD Video</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../hd-video.html">HD Video</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Background Blur</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">HD Video Features</div>
+    <a class="sb-link" href="resolution.html"><span class="sb-num">1</span><span class="sb-icon">🖥️</span>1080p Resolution</a>
+<a class="sb-link" href="adaptive.html"><span class="sb-num">2</span><span class="sb-icon">📶</span>Adaptive Bitrate</a>
+<a class="sb-link" href="backgrounds.html"><span class="sb-num">3</span><span class="sb-icon">🌄</span>Virtual Backgrounds</a>
+<a class="sb-link active" href="blur.html"><span class="sb-num">4</span><span class="sb-icon">🎨</span>Background Blur</a>
+<a class="sb-link" href="studio.html"><span class="sb-num">5</span><span class="sb-icon">💄</span>Studio Effects & Lighting</a>
+<a class="sb-link" href="avatar-real.html"><span class="sb-num">6</span><span class="sb-icon">🧑</span>AI Avatar (Realistic)</a>
+<a class="sb-link" href="avatar-style.html"><span class="sb-num">7</span><span class="sb-icon">🎭</span>AI Avatar (Stylized)</a>
+<a class="sb-link" href="gallery.html"><span class="sb-num">8</span><span class="sb-icon">⬛</span>Gallery View</a>
+<a class="sb-link" href="speaker.html"><span class="sb-num">9</span><span class="sb-icon">🎙️</span>Speaker View</a>
+<a class="sb-link" href="dynamic.html"><span class="sb-num">10</span><span class="sb-icon">🧠</span>Dynamic Gallery (AI)</a>
+<a class="sb-link" href="camera.html"><span class="sb-num">11</span><span class="sb-icon">📷</span>Camera & Device Settings</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../hd-video.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📹 HD Video Feature</div>
+      <span class="hero-icon">🎨</span>
+      <h1 class="hero-title"><em>Background Blur</em></h1>
+      <p class="hero-desc">Blur your background with a single click. FasaFas uses AI portrait segmentation to detect and separate you from your background — without a greenscreen or special camera.</p>
+      <div class="hero-tags"><span class="h-tag">AI Portrait</span><span class="h-tag">Subtle Blur</span><span class="h-tag">Strong Blur</span><span class="h-tag">WebGL</span><span class="h-tag">No Greenscreen</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How It Works</div>
+<div class="tab " onclick="sw(this,'t-levels')">Blur Levels</div>
+<div class="tab " onclick="sw(this,'t-tips')">Tips</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">AI Background Blur — How It Works</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Portrait segmentation model runs on your device</div><div class="step-desc">A TFLite ML model analyzes each video frame (30×/sec) and creates a mask — a pixel-level map of "person" vs "background". Runs entirely on-device for privacy.</div></div></li>
+<li><div><div class="step-title">WebGL applies Gaussian blur to the background mask</div><div class="step-desc">The GPU uses the person mask to apply a Gaussian blur filter only to the background pixels. Your face and body remain sharp.</div></div></li>
+<li><div><div class="step-title">Edges are feathered for realism</div><div class="step-desc">The boundary between you and the background is softened (feathered) so the blur doesn't have a harsh cutout look. Glasses, hair, and fine details are handled by the model.</div></div></li>
+<li><div><div class="step-title">The blurred frame replaces your raw camera output</div><div class="step-desc">The processed frame is passed to WebRTC as your video source. All participants see the blurred version — your camera itself is unchanged.</div></div></li>
+</ol></div></div>
+<div id="t-levels" class="tab-pane "><div class="ph1">Blur Intensity Levels</div>
+<div class="spec"><div class="spec-head">🔵 Blur Settings</div>
+<div class="spec-row"><span class="sk">No blur</span><span class="sv">Raw camera — background fully visible</span></div>
+<div class="spec-row"><span class="sk">Subtle blur</span><span class="sv">Light Gaussian blur — background recognizable but soft (σ=8)</span></div>
+<div class="spec-row"><span class="sk">Strong blur</span><span class="sv">Heavy blur — background completely indistinct (σ=24), professional look</span></div>
+</div>
+<div class="hl"><div class="hl-title">Which blur level to use?</div>
+<div class="hl-body">Subtle blur is great for home offices where you want to acknowledge your environment while reducing visual clutter. Strong blur is ideal for messy or very private backgrounds where you want full concealment without using an artificial background scene.</div></div></div>
+<div id="t-tips" class="tab-pane "><div class="ph1">Getting the Best Blur Results</div>
+<div class="card"><ul class="fl">
+<li>Good front lighting gives the segmentation model cleaner edges — face a window or desk lamp</li>
+<li>High-contrast outfits (dark clothes against a light wall) help the model distinguish you from background</li>
+<li>Avoid wearing clothes that match your background color (camouflage effect confuses the model)</li>
+<li>Glasses are handled well — if edges look odd, try increasing lighting</li>
+<li>Hair can sometimes bleed into background at the edges — this is a known limitation of portrait models without greenscreen</li>
+<li>If your device is slow, switch from Strong to Subtle blur to reduce GPU load</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="backgrounds.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Virtual Backgrounds</div></div></a>
+      <span class="nav-counter">Feature 4 of 11</span>
+      <a class="nav-pg" href="studio.html"><div><div class="nav-label">Next</div><div class="nav-title">Studio Effects & Lighting</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Outlook / Exchange Sync</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../calendar.html">← Calendar</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Outlook / Exchange Sync</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Calendar Features</div>
+    <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
+<a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
+<a class="sb-link" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
+<a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
+<a class="sb-link active" href="outlook-sync.html"><span class="sb-num">5</span><span class="sb-icon">🔄</span>Outlook / Exchange Sync</a>
+<a class="sb-link" href="free-busy.html"><span class="sb-num">6</span><span class="sb-icon">👁</span>Free / Busy Overlay for Invitees</a>
+<a class="sb-link" href="booking-url.html"><span class="sb-num">7</span><span class="sb-icon">🔗</span>Personal Booking URL</a>
+<a class="sb-link" href="availability.html"><span class="sb-num">8</span><span class="sb-icon">⏰</span>Custom Availability & Buffer Times</a>
+<a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
+<a class="sb-link" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
+<a class="sb-link" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
+<a class="sb-link" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../calendar.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🔄</span>
+      <h1 class="hero-title"><em>Outlook / Exchange Sync</em></h1>
+      <p class="hero-desc">Connect Microsoft Outlook or Exchange Server — personal and room calendars sync bidirectionally, RSVPs propagate, and you can book conference rooms directly from FasaFas.</p>
+      <div class="hero-tags"><span class="h-tag">Exchange</span><span class="h-tag">Office 365</span><span class="h-tag">Bidirectional</span><span class="h-tag">Room Booking</span><span class="h-tag">On-Premise</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Sync Features</div>
+<div class="tab " onclick="sw(this,'t2')">Setup</div>
+<div class="tab " onclick="sw(this,'t3')">Room Booking</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Outlook / Exchange Sync Features</div><div class='card' ><ul class='fl'><li>Same bidirectional sync as Google — events, RSVPs, and deletions sync in both directions</li><li>Supports: Office 365 (cloud) and Exchange Server (on-premise, 2016+)</li><li>Sync scope: up to 90 days history on initial connect; real-time going forward</li><li>Meeting categories / labels: synced with Outlook color categories</li><li>Recurrence patterns: weekly, monthly, custom patterns all sync correctly</li><li>Private events: appear as 'Busy' in FasaFas without sharing title or description</li></ul></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Setup</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Settings → Integrations → Microsoft Calendar → Connect</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Sign in with Microsoft (Office 365) or enter Exchange Server URL + credentials</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Grant calendar access permissions</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Select calendars to sync (personal + any shared/room calendars you manage)</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Initial sync completes in 1–3 minutes</div><div class='step-desc'></div></div></li></ol></div><div class='spec'><div class='spec-head'>🔧 Exchange Server Support</div><div class='spec-row'><span class='sk'>Versions</span><span class='sv'>Exchange 2016, 2019, and Exchange Online (Office 365)</span></div><div class='spec-row'><span class='sk'>Protocol</span><span class='sv'>EWS (Exchange Web Services) — standard Microsoft protocol</span></div><div class='spec-row'><span class='sk'>Authentication</span><span class='sv'>Modern Auth (OAuth2) preferred; NTLM supported for legacy Exchange</span></div><div class='spec-row'><span class='sk'>On-premise</span><span class='sv'>Requires FasaFas connector agent installed on your network (Enterprise plan)</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Room & Resource Booking</div><div class='card' ><ul class='fl'><li>If you have access to room calendars in Exchange, they sync and appear in FasaFas</li><li>When creating an event in FasaFas → 'Add Rooms' → browse your Exchange room directory</li><li>Select available rooms (real-time availability shown)</li><li>Room is booked in Exchange automatically when you save the FasaFas event</li><li>Room conflicts: FasaFas shows rooms as unavailable if already booked in Exchange</li><li>Cancel event in FasaFas → room booking automatically cancelled in Exchange</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="google-sync.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Google Calendar Bidirectional Sync</div></div></a><span class="nav-counter">Feature 5 of 12</span><a class="nav-pg" href="free-busy.html"><div><div class="nav-label">Next</div><div class="nav-title">Free / Busy Overlay for Invitees</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

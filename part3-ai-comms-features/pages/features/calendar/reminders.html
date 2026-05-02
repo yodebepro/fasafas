@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Confirmation & Reminder Emails</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#93c5fd;--fc-bg:rgba(37,99,235,.14);--fc-b:rgba(37,99,235,.3);--fc-dim:rgba(37,99,235,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../calendar.html">← Calendar</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../calendar.html">Calendar</a><span class="bc-sep">/</span><span class="bc-cur">Confirmation & Reminder Emails</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Calendar Features</div>
+    <a class="sb-link" href="day-week-view.html"><span class="sb-num">1</span><span class="sb-icon">📅</span>Day / Week / Month / Agenda Views</a>
+<a class="sb-link" href="create-events.html"><span class="sb-num">2</span><span class="sb-icon">➕</span>Create Events + Auto Meeting Link</a>
+<a class="sb-link" href="rsvp.html"><span class="sb-num">3</span><span class="sb-icon">✅</span>RSVP Tracking</a>
+<a class="sb-link" href="google-sync.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>Google Calendar Bidirectional Sync</a>
+<a class="sb-link" href="outlook-sync.html"><span class="sb-num">5</span><span class="sb-icon">🔄</span>Outlook / Exchange Sync</a>
+<a class="sb-link" href="free-busy.html"><span class="sb-num">6</span><span class="sb-icon">👁</span>Free / Busy Overlay for Invitees</a>
+<a class="sb-link" href="booking-url.html"><span class="sb-num">7</span><span class="sb-icon">🔗</span>Personal Booking URL</a>
+<a class="sb-link" href="availability.html"><span class="sb-num">8</span><span class="sb-icon">⏰</span>Custom Availability & Buffer Times</a>
+<a class="sb-link" href="intake-form.html"><span class="sb-num">9</span><span class="sb-icon">📋</span>Custom Intake Form Questions</a>
+<a class="sb-link active" href="reminders.html"><span class="sb-num">10</span><span class="sb-icon">📧</span>Confirmation & Reminder Emails</a>
+<a class="sb-link" href="round-robin.html"><span class="sb-num">11</span><span class="sb-icon">🔄</span>Round-Robin Team Scheduling</a>
+<a class="sb-link" href="multiple-pages.html"><span class="sb-num">12</span><span class="sb-icon">📄</span>Multiple Booking Pages (Business+)</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../calendar.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">📧</span>
+      <h1 class="hero-title"><em>Confirmation & Reminder Emails</em></h1>
+      <p class="hero-desc">Guests automatically receive a confirmation email when they book, a reminder 24 hours before, and another 1 hour before — fully customizable and including a one-click cancellation link.</p>
+      <div class="hero-tags"><span class="h-tag">Auto-Confirm</span><span class="h-tag">Reminder Emails</span><span class="h-tag">SMS</span><span class="h-tag">Custom Templates</span><span class="h-tag">Cancellation Links</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Email Sequence</div>
+<div class="tab " onclick="sw(this,'t2')">Customization</div>
+<div class="tab " onclick="sw(this,'t3')">Cancellation & Rescheduling</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Automated Email Sequence</div><div class='spec'><div class='spec-head'>📧 Default Email Sequence</div><div class='spec-row'><span class='sk'>Instant confirmation</span><span class='sv'>Sent immediately when booking is confirmed — includes meeting link, Zoom/FasaFas room, calendar attach (.ics)</span></div><div class='spec-row'><span class='sk'>24-hour reminder</span><span class='sv'>Day-before reminder with event details and join link</span></div><div class='spec-row'><span class='sk'>1-hour reminder</span><span class='sv'>Final reminder — most impactful for reducing no-shows</span></div><div class='spec-row'><span class='sk'>Custom reminders</span><span class='sv'>Add reminders at any interval: 1 week, 3 days, 2 hours, 15 minutes — any combination</span></div><div class='spec-row'><span class='sk'>Follow-up email</span><span class='sv'>Optional: send after the meeting with meeting summary or a 'How was it?' survey</span></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Email Customization</div><div class='card' ><ul class='fl'><li>Custom email templates per booking page — use your own copy and branding</li><li>Variables: {guest_name} {meeting_title} {meeting_time} {meeting_link} {host_name} — auto-filled</li><li>HTML editor: custom styling, logo, signature</li><li>SMS reminders: enable for guests who provide a phone number — sent alongside email</li><li>Language: emails sent in guest's browser language (if detectable), or your configured default</li><li>'From' name: emails appear to come from you (your name via FasaFas's sending infrastructure)</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Cancellation &amp; Rescheduling</div><div class='card' ><ul class='fl'><li>All confirmation emails include: 'Need to cancel or reschedule? Click here'</li><li>Cancel: one click → you notified → event removed from both calendars</li><li>Reschedule: guest sees your current availability → picks a new slot → both calendars updated</li><li>Host cancels: click 'Cancel' on the event → guest receives a cancellation email with optional message</li><li>Last-minute cancel protection: admin can set a policy that blocks cancellations within 2 hours of the meeting</li><li>No-show handling: automatic 'You missed our meeting' follow-up (optional toggle)</li></ul></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="intake-form.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Custom Intake Form Questions</div></div></a><span class="nav-counter">Feature 10 of 12</span><a class="nav-pg" href="round-robin.html"><div><div class="nav-label">Next</div><div class="nav-title">Round-Robin Team Scheduling</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

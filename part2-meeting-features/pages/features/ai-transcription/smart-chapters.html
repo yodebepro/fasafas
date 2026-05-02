@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Smart Chapters</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Smart Chapters</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link active" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">📖</span>
+      <h1 class="hero-title"><em>Smart Chapters</em></h1>
+      <p class="hero-desc">Smart Chapters divides the recording into named, timestamped sections based on topic changes in the transcript — so anyone can jump directly to the part they need.</p>
+      <div class="hero-tags"><span class="h-tag">Topic Detection</span><span class="h-tag">Timestamped</span><span class="h-tag">Clickable Navigation</span><span class="h-tag">Recording Player</span><span class="h-tag">JSON Export</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How Chapters Are Created</div>
+<div class="tab " onclick="sw(this,'t-display')">Chapter Display</div>
+<div class="tab " onclick="sw(this,'t-api')">API & Export</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">How Smart Chapters Are Created</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Topic segmentation on the transcript</div><div class="step-desc">After the meeting ends, Claude processes the full transcript looking for significant topic shifts. A "topic shift" is identified when the semantic content changes substantially from the preceding 2–3 minutes.</div></div></li>
+<li><div><div class="step-title">Chapter boundaries marked</div><div class="step-desc">Each topic shift becomes a chapter boundary. The AI ensures chapters are at least 3 minutes long to avoid too many micro-chapters. A typical 60-minute meeting has 5–10 chapters.</div></div></li>
+<li><div><div class="step-title">Chapter titles generated</div><div class="step-desc">Claude creates a 2–6 word descriptive title for each chapter. Examples: "Q3 Budget Review", "New Hire Onboarding Plan", "Action Items & Next Steps".</div></div></li>
+<li><div><div class="step-title">Chapter summaries written</div><div class="step-desc">A 1–2 sentence summary is written for each chapter — enough context to decide whether to watch that section without watching the whole recording.</div></div></li>
+</ol></div></div>
+<div id="t-display" class="tab-pane "><div class="ph1">Displaying Chapters in the Recording Player</div>
+<div class="g2">
+<div class="card"><div class="ph3">Player Integration</div><ul class="fl">
+<li>Chapter markers shown as vertical lines on the recording timeline</li>
+<li>Hovering a marker shows the chapter title in a tooltip</li>
+<li>Chapters listed in a sidebar panel on the right of the player</li>
+<li>Click any chapter title → player jumps to that timestamp instantly</li>
+<li>Chapter titles also shown as overlay text when the chapter starts during playback</li>
+<li>Keyboard shortcut: Next Chapter (N) / Previous Chapter (P)</li>
+</ul></div>
+<div class="card"><div class="ph3">In the Meeting Summary Card</div><ul class="fl">
+<li>Smart chapters listed under the AI summary text</li>
+<li>Each chapter shows: timestamp, title, 1-sentence summary</li>
+<li>Click a chapter in the summary → opens recording at that moment</li>
+<li>Chapters shareable: copy a deep link to any specific chapter</li>
+<li>Chapters adjust automatically if the recording is trimmed</li>
+</ul></div>
+</div></div>
+<div id="t-api" class="tab-pane "><div class="ph1">API and Export</div>
+<div class="code">{
+  "smart_chapters": [
+    {
+      "index": 1,
+      "start_time": 0,
+      "end_time": 480,
+      "title": "Introductions",
+      "summary": "Team introductions and agenda overview for the Q3 review.",
+      "key_speakers": ["Jane Doe", "Marcus Smith"]
+    },
+    {
+      "index": 2,
+      "start_time": 480,
+      "end_time": 1620,
+      "title": "Q3 Budget Review",
+      "summary": "Detailed review of Q3 spend vs forecast across all departments.",
+      "key_speakers": ["Ana Lopez"]
+    }
+  ]
+}</div>
+<div class="card" style="margin-top:14px"><ul class="fl">
+<li>GET /api/v1/meetings/:id/summary → includes smart_chapters array</li>
+<li>Also delivered via meeting.summary.completed webhook</li>
+<li>Export as JSON, CSV, or as formatted text in summary email</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="ai-summary.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">AI Meeting Summary</div></div></a>
+      <span class="nav-counter">Feature 7 of 11</span>
+      <a class="nav-pg" href="action-items.html"><div><div class="nav-label">Next</div><div class="nav-title">Action Item Extraction</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

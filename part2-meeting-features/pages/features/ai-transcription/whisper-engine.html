@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Whisper STT Engine</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Whisper STT Engine</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link active" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">🧠</span>
+      <h1 class="hero-title"><em>Whisper STT Engine</em></h1>
+      <p class="hero-desc">OpenAI Whisper large-v3 is the speech-to-text engine powering FasaFas transcription. It's one of the most accurate multilingual STT models available, handling accents, technical vocabulary, and noisy audio.</p>
+      <div class="hero-tags"><span class="h-tag">Whisper large-v3</span><span class="h-tag">OpenAI</span><span class="h-tag">3-Second Chunks</span><span class="h-tag">Word Timestamps</span><span class="h-tag">100+ Languages</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-how')">How Whisper Works</div>
+<div class="tab " onclick="sw(this,'t-accuracy')">Accuracy & Limitations</div>
+<div class="tab " onclick="sw(this,'t-e2ee')">E2EE Mode</div></div>
+    <div class="content">
+      <div id="t-how" class="tab-pane active"><div class="ph1">How Whisper Processes Meeting Audio</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Audio extracted from SFU</div><div class="step-desc">The media-service subscribes to a mixed audio track from Mediasoup (all participants combined, or individual tracks for diarization). This audio is captured server-side — no extra permission needed from participants.</div></div></li>
+<li><div><div class="step-title">Chunked into 3-second segments using VAD</div><div class="step-desc">Voice Activity Detection identifies speech boundaries. Chunks are cut at silence points to avoid splitting words mid-utterance. Overlap of 0.5s between chunks prevents edge words being missed.</div></div></li>
+<li><div><div class="step-title">Chunks sent to Whisper large-v3 API</div><div class="step-desc">Each 3-second chunk encoded as 16kHz mono WAV and sent to the Whisper inference endpoint (either OpenAI API or self-hosted on FasaFas GPU infrastructure for Enterprise).</div></div></li>
+<li><div><div class="step-title">Whisper returns text + word timestamps</div><div class="step-desc">Response includes: transcribed text, word-level timestamps (start/end for every word), detected language, and confidence scores per segment.</div></div></li>
+<li><div><div class="step-title">NLP post-processing</div><div class="step-desc">A punctuation model adds commas, periods, and capitals. Custom vocabulary dictionary corrects product names, person names, and domain jargon.</div></div></li>
+</ol></div></div>
+<div id="t-accuracy" class="tab-pane "><div class="ph1">Accuracy & Known Limitations</div>
+<div class="g2">
+<div class="card"><div class="ph3">Accuracy (WER benchmarks)</div><ul class="fl">
+<li>English (clear audio, single speaker): ~2–4% WER (Word Error Rate)</li>
+<li>English (multiple speakers, accents): ~5–10% WER</li>
+<li>French, German, Spanish, Portuguese: ~5–8% WER</li>
+<li>Japanese, Mandarin: ~8–12% WER (logographic languages)</li>
+<li>Technical vocabulary: ~10–20% WER without custom dictionary</li>
+<li>Custom dictionary: reduce technical WER to ~5–8%</li>
+</ul></div>
+<div class="card"><div class="ph3">Known Limitations</div><ul class="fl">
+<li>Heavy accents may increase WER by 5–15% vs native speech</li>
+<li>Overlapping speech (two people talking at once) reduces accuracy significantly</li>
+<li>Very loud background noise (construction, crowded cafe) raises WER</li>
+<li>Proper nouns (company names, people's names) often need custom dictionary correction</li>
+<li>Numbers and dates sometimes formatted inconsistently across chunks</li>
+<li>Code-switching (mixing languages mid-sentence) may cause switching issues</li>
+</ul></div>
+</div></div>
+<div id="t-e2ee" class="tab-pane "><div class="ph1">Transcription in End-to-End Encrypted Meetings</div>
+<div class="hl"><div class="hl-title">E2EE Disables Server-Side Transcription</div>
+<div class="hl-body">When End-to-End Encryption is enabled, the server cannot access the audio stream — so server-side transcription using Whisper is not possible. E2EE + transcription are mutually exclusive.</div></div>
+<div class="card"><ul class="fl">
+<li>E2EE meetings: server-side transcription is disabled automatically</li>
+<li>On-device alternative: NVIDIA Nemotron-Nano runs locally on compatible devices (no audio leaves device)</li>
+<li>On-device transcription accuracy: lower than Whisper large-v3 (~15–20% WER)</li>
+<li>On-device is available in the desktop app on Windows/Mac with Nemotron hardware requirements</li>
+<li>Summary generation also disabled in E2EE mode (Claude cannot access the transcript)</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="live-captions.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Live Captions</div></div></a>
+      <span class="nav-counter">Feature 2 of 11</span>
+      <a class="nav-pg" href="diarization.html"><div><div class="nav-label">Next</div><div class="nav-title">Speaker Diarization</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

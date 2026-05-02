@@ -1,0 +1,27 @@
+{
+  "name": "fasafas-platform",
+  "version": "1.0.0",
+  "description": "FasaFas — AI-Powered Video Meeting Platform Frontend Blueprint",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 3000 --no-clipboard",
+    "dev": "npx live-server --port=3000 --open=index.html",
+    "preview": "npx serve . -p 3000"
+  },
+  "keywords": [
+    "video-meeting",
+    "webrtc",
+    "zoom-clone",
+    "fasafas",
+    "ai-companion",
+    "collaboration"
+  ],
+  "author": "FasaFas",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

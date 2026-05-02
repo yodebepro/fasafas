@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Video Codecs</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Video Codecs</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link active" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">🎞️</span>
+      <h1 class="hero-title"><em>Video Codecs</em></h1>
+      <p class="hero-desc">FasaFas supports five video codecs. The right one is selected automatically based on browser, hardware, and network — but understanding each helps when optimizing quality.</p>
+      <div class="hero-tags"><span class="h-tag">VP8</span><span class="h-tag">VP9</span><span class="h-tag">H.264</span><span class="h-tag">H.265</span><span class="h-tag">AV1</span><span class="h-tag">Browser Support</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-overview')">Codec Comparison</div>
+<div class="tab " onclick="sw(this,'t-selection')">Auto-Selection Logic</div>
+<div class="tab " onclick="sw(this,'t-compat')">Browser Compatibility</div></div>
+    <div class="content">
+      <div id="t-overview" class="tab-pane active"><div class="ph1">Video Codec Comparison</div>
+<div class="tbl-wrap"><table class="tbl">
+<tr><th>Codec</th><th>Year</th><th>Compression</th><th>CPU Cost (encode)</th><th>GPU Encode</th><th>Typical Use</th></tr>
+<tr><td>VP8</td><td>2010</td><td>Baseline</td><td>Low</td><td>Some</td><td>Default fallback, wide compat</td></tr>
+<tr><td>VP9</td><td>2013</td><td>30% better than VP8</td><td>Medium</td><td>Some</td><td>Chrome/Firefox default, SVC</td></tr>
+<tr><td>H.264 (AVC)</td><td>2003</td><td>Similar to VP8</td><td>Very Low (HW)</td><td>Universal</td><td>Safari, mobile, hardware HW encode</td></tr>
+<tr><td>H.265 (HEVC)</td><td>2013</td><td>50% better than H.264</td><td>Medium</td><td>Newer GPUs</td><td>Premium recordings (not WebRTC)</td></tr>
+<tr><td>AV1</td><td>2018</td><td>30% better than VP9</td><td>High (no HW yet widely)</td><td>Limited</td><td>Chrome 115+, future-forward</td></tr>
+</table></div></div>
+<div id="t-selection" class="tab-pane "><div class="ph1">Automatic Codec Selection</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Browser capability check</div><div class="step-desc">RTCPeerConnection.getCapabilities('video') returns the list of supported codecs and their capabilities (hardware encode support, SVC layers, etc.).</div></div></li>
+<li><div><div class="step-title">Negotiate with SFU</div><div class="step-desc">SDP offer/answer negotiation: FasaFas prefers AV1 &gt; VP9+SVC &gt; H.264 (HW) &gt; VP9 &gt; VP8. Both sides agree on the highest-priority mutually supported codec.</div></div></li>
+<li><div><div class="step-title">Apply codec in RTCRtpSender</div><div class="step-desc">setCodecPreferences() API applied before the offer to express FasaFas preference. Supported on Chrome/Edge/Firefox — polyfilled on Safari.</div></div></li>
+</ol></div></div>
+<div id="t-compat" class="tab-pane "><div class="ph1">Browser Codec Compatibility Matrix</div>
+<div class="tbl-wrap"><table class="tbl">
+<tr><th>Codec</th><th>Chrome</th><th>Firefox</th><th>Safari</th><th>Edge</th></tr>
+<tr><td>VP8</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓ (v14+)</td><td class="ck">✓</td></tr>
+<tr><td>VP9</td><td class="ck">✓</td><td class="ck">✓</td><td class="da">—</td><td class="ck">✓</td></tr>
+<tr><td>H.264 (HW)</td><td class="ck">✓</td><td class="pa">SW only</td><td class="ck">✓ HW</td><td class="ck">✓</td></tr>
+<tr><td>AV1</td><td class="ck">v116+</td><td class="pa">Partial</td><td class="da">—</td><td class="ck">v120+</td></tr>
+<tr><td>H.265 (HEVC)</td><td class="da">—</td><td class="da">—</td><td class="ck">Recordings only</td><td class="da">—</td></tr>
+</table></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="audio.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Audio Processing</div></div></a>
+      <span class="nav-counter">Feature 9 of 11</span>
+      <a class="nav-pg" href="recovery.html"><div><div class="nav-label">Next</div><div class="nav-title">Error Recovery</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

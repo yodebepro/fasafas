@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Drive Retrieval</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#c4b5fd;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-companion.html">← Ai Companion</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../ai-companion.html">Ai Companion</a><span class="bc-sep">/</span><span class="bc-cur">Drive Retrieval</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Ai Companion Features</div>
+    <a class="sb-link" href="live-transcription.html"><span class="sb-num">1</span><span class="sb-icon">🎙️</span>Live Transcription</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">2</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">3</span><span class="sb-icon">📖</span>Smart Chapters & Actions</a>
+<a class="sb-link" href="late-joiner.html"><span class="sb-num">4</span><span class="sb-icon">🏃</span>Late Joiner Catch-Up</a>
+<a class="sb-link" href="voice-translation.html"><span class="sb-num">5</span><span class="sb-icon">🌐</span>Real-Time Voice Translation</a>
+<a class="sb-link" href="deepfake.html"><span class="sb-num">6</span><span class="sb-icon">🛡️</span>Deepfake Detection</a>
+<a class="sb-link" href="assistant.html"><span class="sb-num">7</span><span class="sb-icon">💬</span>AI Assistant</a>
+<a class="sb-link" href="deep-research.html"><span class="sb-num">8</span><span class="sb-icon">🔬</span>Deep Research</a>
+<a class="sb-link" href="writing-mode.html"><span class="sb-num">9</span><span class="sb-icon">✍️</span>Writing Mode</a>
+<a class="sb-link" href="agents.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>Agent Builder</a>
+<a class="sb-link active" href="drive-retrieval.html"><span class="sb-num">11</span><span class="sb-icon">🗂️</span>Drive Retrieval</a>
+<a class="sb-link" href="daily-digest.html"><span class="sb-num">12</span><span class="sb-icon">📊</span>Daily Digest</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-companion.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">🗂️</span>
+      <h1 class="hero-title"><em>Drive Retrieval</em></h1>
+      <p class="hero-desc">Connect your cloud storage and ask AI questions about your files — AI fetches, reads, and answers from your documents using retrieval-augmented generation, without you needing to open or search anything manually.</p>
+      <div class="hero-tags"><span class="h-tag">Google Drive</span><span class="h-tag">OneDrive</span><span class="h-tag">RAG</span><span class="h-tag">Semantic Search</span><span class="h-tag">Read-Only</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">How RAG Works</div>
+<div class="tab " onclick="sw(this,'t2')">Supported Sources</div>
+<div class="tab " onclick="sw(this,'t3')">Setup & Privacy</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Drive Retrieval (RAG) Pipeline</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Connect cloud storage (one-time OAuth)</div><div class='step-desc'>Authorize FasaFas to read your Google Drive or OneDrive. Read-only access — cannot modify, delete, or share your files.</div></div></li><li><div><div class='step-title'>FasaFas indexes metadata (not content)</div><div class='step-desc'>File names, types, modified dates, and owners indexed. Content is only fetched on-demand when you ask a question.</div></div></li><li><div><div class='step-title'>You ask a question</div><div class='step-desc'>'What were the conclusions in the Q3 analyst report?' or 'Find the NDA template for enterprise clients.'</div></div></li><li><div><div class='step-title'>Semantic search identifies relevant files</div><div class='step-desc'>text-embedding-3-large embeds your query. pgvector similarity search finds top matching files by semantic meaning, not just keywords.</div></div></li><li><div><div class='step-title'>AI reads files and answers</div><div class='step-desc'>Relevant content fetched and passed to Claude with your question. Answer includes quotes and references to specific file and section.</div></div></li></ol></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Supported Sources</div><div class='spec'><div class='spec-head'>📁 Integrations</div><div class='spec-row'><span class='sk'>Google Drive</span><span class='sv'>Docs, Sheets, Slides, PDFs, Word, text files</span></div><div class='spec-row'><span class='sk'>Microsoft OneDrive</span><span class='sv'>Word, Excel, PowerPoint, PDFs, text files</span></div><div class='spec-row'><span class='sk'>Dropbox</span><span class='sv'>All common document formats (Business plan)</span></div><div class='spec-row'><span class='sk'>Box</span><span class='sv'>Enterprise plan only</span></div><div class='spec-row'><span class='sk'>FasaFas Docs</span><span class='sv'>Always included — no additional setup</span></div><div class='spec-row'><span class='sk'>Meeting Transcripts</span><span class='sv'>Always searchable — no setup needed</span></div></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Setup &amp; Privacy</div><div class='card' ><ol class='steps'><li><div><div class='step-title'>Hub → Integrations → Cloud Storage</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Click 'Connect Google Drive' or 'Connect OneDrive'</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Complete OAuth in popup — grant read-only access</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Choose which folders to index (or all)</div><div class='step-desc'></div></div></li><li><div><div class='step-title'>Initial index completes in 5–30 minutes depending on file count</div><div class='step-desc'></div></div></li></ol></div><div class='hl'><div class='hl-title'>Privacy</div><div class='hl-body'>File contents are only fetched when you ask a question — never stored persistently. Admin can restrict Drive Retrieval per group. FasaFas never accesses files outside the folders you explicitly authorize.</div></div></div></div>
+    <div class="nav-strip"><a class="nav-pg" href="agents.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Agent Builder</div></div></a><span class="nav-counter">Feature 11 of 12</span><a class="nav-pg" href="daily-digest.html"><div><div class="nav-label">Next</div><div class="nav-title">Daily Digest</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>

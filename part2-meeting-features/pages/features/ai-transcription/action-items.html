@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Action Item Extraction</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#8b5cf6;--fc-bg:rgba(139,92,246,.14);--fc-b:rgba(139,92,246,.3);--fc-dim:rgba(139,92,246,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../ai-transcription.html">AI Transcription</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../ai-transcription.html">AI Transcription</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Action Item Extraction</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">AI Transcription Features</div>
+    <a class="sb-link" href="live-captions.html"><span class="sb-num">1</span><span class="sb-icon">📝</span>Live Captions</a>
+<a class="sb-link" href="whisper-engine.html"><span class="sb-num">2</span><span class="sb-icon">🧠</span>Whisper STT Engine</a>
+<a class="sb-link" href="diarization.html"><span class="sb-num">3</span><span class="sb-icon">👤</span>Speaker Diarization</a>
+<a class="sb-link" href="smart-recog.html"><span class="sb-num">4</span><span class="sb-icon">🎤</span>Smart Recognition</a>
+<a class="sb-link" href="my-notes.html"><span class="sb-num">5</span><span class="sb-icon">📒</span>My Notes</a>
+<a class="sb-link" href="ai-summary.html"><span class="sb-num">6</span><span class="sb-icon">📋</span>AI Meeting Summary</a>
+<a class="sb-link" href="smart-chapters.html"><span class="sb-num">7</span><span class="sb-icon">📖</span>Smart Chapters</a>
+<a class="sb-link active" href="action-items.html"><span class="sb-num">8</span><span class="sb-icon">✅</span>Action Item Extraction</a>
+<a class="sb-link" href="translated.html"><span class="sb-num">9</span><span class="sb-icon">🌐</span>Translated Captions</a>
+<a class="sb-link" href="transcript-view.html"><span class="sb-num">10</span><span class="sb-icon">🔍</span>Transcript Viewer</a>
+<a class="sb-link" href="privacy.html"><span class="sb-num">11</span><span class="sb-icon">🔐</span>Privacy & Consent</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../ai-transcription.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">🤖 AI Transcription Feature</div>
+      <span class="hero-icon">✅</span>
+      <h1 class="hero-title"><em>Action Item Extraction</em></h1>
+      <p class="hero-desc">FasaFas automatically detects action items, tasks, and commitments from the meeting transcript — then structures them with suggested assignees and due dates, ready to push to Tasks or any project management tool.</p>
+      <div class="hero-tags"><span class="h-tag">NLP Extraction</span><span class="h-tag">Assignee Detection</span><span class="h-tag">Due Date Parsing</span><span class="h-tag">→ Tasks</span><span class="h-tag">Jira / Asana</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-detection')">Detection Logic</div>
+<div class="tab " onclick="sw(this,'t-structure')">Action Item Structure</div>
+<div class="tab " onclick="sw(this,'t-push')">Push to Tasks</div></div>
+    <div class="content">
+      <div id="t-detection" class="tab-pane active"><div class="ph1">How Action Items Are Detected</div>
+<div class="card"><ul class="fl">
+<li>Claude scans the full transcript for commitment and assignment language patterns:</li>
+<li><b>Commitment phrases:</b> "I'll take care of…", "I will send…", "I'm going to…", "I'll follow up on…"</li>
+<li><b>Assignment phrases:</b> "Can you [name]…", "[Name] will handle…", "Action for [name]:"</li>
+<li><b>Deadline phrases:</b> "by Friday", "end of day", "next sprint", "before the 15th", "this week"</li>
+<li><b>Decision-action pairs:</b> "We decided to [X] — [Name] will lead it"</li>
+<li>Each detection includes: task description, speaker (suggested assignee), timestamp in recording</li>
+<li>Confidence score attached: High / Medium / Needs Review</li>
+<li>"Needs Review" items appear in a separate section requiring host confirmation</li>
+</ul></div></div>
+<div id="t-structure" class="tab-pane "><div class="ph1">Action Item Structure</div>
+<div class="code">{
+  "action_items": [
+    {
+      "id": "ai_001",
+      "text": "Send updated budget spreadsheet to the board",
+      "assignee_name": "Ana Lopez",
+      "assignee_user_id": "usr_xyz",
+      "due_date": "2026-05-07",
+      "due_date_source": "by next Wednesday",
+      "transcript_timestamp": 1842,
+      "confidence": "high",
+      "transcript_quote": "Ana, can you send the updated budget to the board by next Wednesday?"
+    }
+  ]
+}</div></div>
+<div id="t-push" class="tab-pane "><div class="ph1">Pushing Action Items to Tasks & Integrations</div>
+<div class="g2">
+<div class="card"><div class="ph3">FasaFas Tasks</div><ul class="fl">
+<li>One-click: "Push All Action Items to Tasks" from the summary page</li>
+<li>Or individually push each item with the → Tasks button</li>
+<li>Assignee, due date, and source meeting pre-filled</li>
+<li>Assignee receives a notification with the task and meeting link</li>
+<li>Task completion tracked in the AI daily digest</li>
+</ul></div>
+<div class="card"><div class="ph3">External Tool Integration</div><ul class="fl">
+<li><b>Asana:</b> creates task in specified project, assignee mapped by email</li>
+<li><b>Jira:</b> creates issue in specified board, description includes transcript quote</li>
+<li><b>Monday.com:</b> creates item in specified board</li>
+<li><b>Notion:</b> appends to a specified database page</li>
+<li><b>Zapier:</b> webhook trigger on each action item → any destination</li>
+</ul></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="smart-chapters.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Smart Chapters</div></div></a>
+      <span class="nav-counter">Feature 8 of 11</span>
+      <a class="nav-pg" href="translated.html"><div><div class="nav-label">Next</div><div class="nav-title">Translated Captions</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

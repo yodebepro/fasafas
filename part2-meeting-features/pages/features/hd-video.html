@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — HD Video</title>
+<link rel="stylesheet" href="../../assets/css/features.css">
+<style>
+:root{--hero-glow:rgba(96,165,250,.14);--hero-color:#60a5fa;--hero-eyebrow-bg:rgba(96,165,250,.14);--hero-eyebrow-b:rgba(96,165,250,.3);--hero-eyebrow-c:#60a5fa;--tab-color:#60a5fa}
+.var(--bg){background:var(--bg)}
+</style>
+
+<style>
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.feat-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.feat-cards{grid-template-columns:1fr}}
+.feat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px 18px;cursor:pointer;transition:all .2s;
+  text-decoration:none;display:flex;flex-direction:column;gap:9px;
+  position:relative;overflow:hidden;
+}
+.feat-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;
+  background:radial-gradient(circle at 20% 20%,var(--card-glow,rgba(37,99,235,.07)),transparent 70%)}
+.feat-card:hover{border-color:var(--card-c,var(--accent));transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.feat-card:hover::before{opacity:1}
+.fc-top{display:flex;align-items:center;gap:11px}
+.fc-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--card-ibg,rgba(37,99,235,.12));border:1px solid var(--card-ib,rgba(37,99,235,.2))}
+.fc-num{position:absolute;top:11px;right:13px;font-size:10px;font-weight:700;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 7px}
+.fc-title{font-size:13.5px;font-weight:800;letter-spacing:-.2px;color:var(--text)}
+.fc-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.fc-tags-str{font-size:10.5px;color:var(--card-c,var(--accent3));font-weight:600;opacity:.8}
+.fc-arrow{font-size:16px;color:var(--text3);position:absolute;bottom:12px;right:14px;transition:all .2s}
+.feat-card:hover .fc-arrow{color:var(--card-c,var(--accent));transform:translate(2px,-2px)}
+</style>
+
+</head>
+<body>
+<header class="f-header">
+  <a class="f-logo" href="../../index.html"><div class="f-logo-dot"></div>FasaFas</a>
+  <nav class="f-nav">
+    <a class="f-back" href="../../index.html">← Back to Platform</a>
+    <a class="f-schedule" href="../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="breadcrumb">
+  <a href="../../index.html">Home</a><span class="sep">/</span>
+  <a href="../../index.html">Meetings</a><span class="sep">/</span>
+  <span class="cur">HD Video</span>
+</div>
+
+<div class="f-hero">
+  <div class="hero-eyebrow">📹 Meetings Feature</div>
+  <span class="f-hero-icon">📹</span>
+  <h1 class="f-hero-title"><em>HD Video</em></h1>
+  <p class="f-hero-desc">Up to 1080p per tile, adaptive bitrate, AI backgrounds, studio effects, AI avatars, and intelligent layouts. Click any feature below to explore it fully.</p>
+</div>
+
+<!-- STAT STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--border);background:var(--bg2)">
+
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Max Resolution</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#60a5fa">1080p</div>
+    <div style="font-size:11px;color:var(--text3)">Full HD per tile</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Frame Rate</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#60a5fa">60fps</div>
+    <div style="font-size:11px;color:var(--text3)">Premium add-on</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Quality Layers</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#60a5fa">3</div>
+    <div style="font-size:11px;color:var(--text3)">1080p/480p/240p</div>
+  </div>
+  <div style="padding:16px 28px;border-right:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:4px">Codecs</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-.5px;color:#60a5fa">5</div>
+    <div style="font-size:11px;color:var(--text3)">VP8/VP9/H264/AV1</div>
+  </div>
+</div>
+
+<!-- FEATURE CARDS -->
+<div style="padding:32px 44px 48px;background:var(--bg)">
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:6px">Feature Details</div>
+  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px">Click any feature to explore it fully</h2>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:22px;line-height:1.7">Every capability has its own dedicated page with step-by-step explanations, technical details, and configuration guides.</p>
+  <div class="feat-cards">
+
+    <a class="feat-card" href="hd-video/resolution.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">01</div>
+      <div class="fc-top"><div class="fc-icon">🖥️</div><div class="fc-title">1080p Resolution</div></div>
+      <div class="fc-desc">Full HD clarity at up to 1920×1080</div>
+      <div class="fc-tags-str">1080p · H.264 · VP9 · Per Tile</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/adaptive.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">02</div>
+      <div class="fc-top"><div class="fc-icon">📶</div><div class="fc-title">Adaptive Bitrate</div></div>
+      <div class="fc-desc">Auto-switches quality to match your network</div>
+      <div class="fc-tags-str">Simulcast · REMB · TWCC · Seamless</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/backgrounds.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">03</div>
+      <div class="fc-top"><div class="fc-icon">🌄</div><div class="fc-title">Virtual Backgrounds</div></div>
+      <div class="fc-desc">Static, animated, and AI-generated scenes</div>
+      <div class="fc-tags-str">50+ Scenes · Custom Upload · AI Gen</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/blur.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">04</div>
+      <div class="fc-top"><div class="fc-icon">🎨</div><div class="fc-title">Background Blur</div></div>
+      <div class="fc-desc">AI portrait segmentation, no greenscreen</div>
+      <div class="fc-tags-str">Subtle · Strong · WebGL · No Hardware</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/studio.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">05</div>
+      <div class="fc-top"><div class="fc-icon">💄</div><div class="fc-title">Studio Effects & Lighting</div></div>
+      <div class="fc-desc">Appearance enhancement and auto light correction</div>
+      <div class="fc-tags-str">Auto Lighting · Skin Smooth · Low-Light</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/avatar-real.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">06</div>
+      <div class="fc-top"><div class="fc-icon">🧑</div><div class="fc-title">AI Avatar (Realistic)</div></div>
+      <div class="fc-desc">A digital you that mirrors your expressions live</div>
+      <div class="fc-tags-str">30-sec Setup · Expression Mirror · GPU</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/avatar-style.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">07</div>
+      <div class="fc-top"><div class="fc-icon">🎭</div><div class="fc-title">AI Avatar (Stylized)</div></div>
+      <div class="fc-desc">Animated character for Meetings and Clips</div>
+      <div class="fc-tags-str">Illustrated · Anime · 3D Cartoon · TTS</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/gallery.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">08</div>
+      <div class="fc-top"><div class="fc-icon">⬛</div><div class="fc-title">Gallery View</div></div>
+      <div class="fc-desc">Up to 49 participant tiles per page</div>
+      <div class="fc-tags-str">49 Tiles · Pagination · Equal Grid</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/speaker.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">09</div>
+      <div class="fc-top"><div class="fc-icon">🎙️</div><div class="fc-title">Speaker View</div></div>
+      <div class="fc-desc">Active speaker large with thumbnail strip</div>
+      <div class="fc-tags-str">VAD Switching · Side-by-Side · 1080p</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/dynamic.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">10</div>
+      <div class="fc-top"><div class="fc-icon">🧠</div><div class="fc-title">Dynamic Gallery (AI)</div></div>
+      <div class="fc-desc">Smart layout that auto-sizes tiles by activity</div>
+      <div class="fc-tags-str">AI Scoring · Weighted Tiles · Pro+</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+
+    <a class="feat-card" href="hd-video/camera.html"
+       style="--card-c:#60a5fa;--card-glow:rgba(96,165,250,.14);--card-ibg:rgba(96,165,250,.14);--card-ib:rgba(96,165,250,.3)">
+      <div class="fc-num">11</div>
+      <div class="fc-top"><div class="fc-icon">📷</div><div class="fc-title">Camera & Device Settings</div></div>
+      <div class="fc-desc">Resolution, frame rate, device selection</div>
+      <div class="fc-tags-str">Device Picker · Preview · 2nd Camera</div>
+      <div class="fc-arrow">↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- FEATURE NAV STRIP -->
+<div class="feat-nav">
+  <a class="feat-nav-item current" href="hd-video.html"><div class="fni-icon">📹</div><div class="fni-label">HD Video</div></a>
+  <a class="feat-nav-item " href="webrtc-sfu.html"><div class="fni-icon">📡</div><div class="fni-label">WebRTC SFU</div></a>
+  <a class="feat-nav-item " href="breakout-rooms.html"><div class="fni-icon">🚪</div><div class="fni-label">Breakout Rooms</div></a>
+  <a class="feat-nav-item " href="ai-transcription.html"><div class="fni-icon">🤖</div><div class="fni-label">AI Transcription</div></a>
+  <a class="feat-nav-item " href="cloud-recording.html"><div class="fni-icon">☁️</div><div class="fni-label">Cloud Recording</div></a>
+</div>
+<script src="../../assets/js/translate.js"></script>
+</body>
+</html>

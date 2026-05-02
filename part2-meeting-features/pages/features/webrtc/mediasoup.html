@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Mediasoup Architecture</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Mediasoup Architecture</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link active" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">⚙️</span>
+      <h1 class="hero-title"><em>Mediasoup Architecture</em></h1>
+      <p class="hero-desc">Mediasoup is the open-source SFU library at FasaFas's core. Combined with a Rust media server for performance-critical paths, it handles routing for hundreds of participants per room.</p>
+      <div class="hero-tags"><span class="h-tag">Node.js</span><span class="h-tag">Rust Media</span><span class="h-tag">Workers</span><span class="h-tag">Routers</span><span class="h-tag">Producers/Consumers</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-arch')">Architecture</div>
+<div class="tab " onclick="sw(this,'t-concepts')">Key Concepts</div>
+<div class="tab " onclick="sw(this,'t-scale')">Scaling</div></div>
+    <div class="content">
+      <div id="t-arch" class="tab-pane active"><div class="ph1">Mediasoup Architecture in FasaFas</div>
+<div class="g2">
+<div class="card"><div class="ph3">Component Stack</div><ul class="fl">
+<li><b>Rust media server</b> — wraps Mediasoup for performance-critical packet handling</li>
+<li><b>Mediasoup 3.x</b> — core SFU library (Node.js control plane, C++ media plane)</li>
+<li><b>Workers</b> — one Worker process per CPU core; each Worker handles multiple Routers</li>
+<li><b>Routers</b> — one Router per meeting room; handles all media for that room</li>
+<li><b>WebRtcTransports</b> — one send + one receive transport per participant</li>
+<li><b>Producers</b> — each participant's audio/video track (created on send transport)</li>
+<li><b>Consumers</b> — subscriptions: one Consumer per Producer per subscriber</li>
+</ul></div>
+<div class="card"><div class="ph3">Data Flow</div><ul class="fl">
+<li>Participant A publishes video → creates Producer on their send Transport</li>
+<li>signal-service notifies all other participants of the new Producer</li>
+<li>Each subscriber sends signal:consume → server creates Consumer on their receive Transport</li>
+<li>Mediasoup routes RTP packets from Producer directly to each Consumer</li>
+<li>No decoding — just packet forwarding with simulcast layer selection</li>
+<li>RTCP feedback flows back from Consumer → Producer for bitrate control</li>
+</ul></div>
+</div></div>
+<div id="t-concepts" class="tab-pane "><div class="ph1">Mediasoup Key Concepts</div>
+<div class="spec"><div class="spec-head">⚙️ Glossary</div>
+<div class="spec-row"><span class="sk">Worker</span><span class="sv">OS process — one per CPU core, isolated crash boundary</span></div>
+<div class="spec-row"><span class="sk">Router</span><span class="sv">Meeting room context — manages all Transports, Producers, Consumers in a room</span></div>
+<div class="spec-row"><span class="sk">WebRtcTransport</span><span class="sv">ICE + DTLS connection for one participant (send or receive direction)</span></div>
+<div class="spec-row"><span class="sk">Producer</span><span class="sv">An outgoing media track (participant's camera or mic). Has RTP parameters.</span></div>
+<div class="spec-row"><span class="sk">Consumer</span><span class="sv">A subscription to a Producer — one per (subscriber, Producer) pair</span></div>
+<div class="spec-row"><span class="sk">PipeTransport</span><span class="sv">Connect two Routers (on different servers) to bridge large meetings across machines</span></div>
+<div class="spec-row"><span class="sk">PlainTransport</span><span class="sv">Non-WebRTC transport for recording — SFU writes raw RTP to FFmpeg</span></div>
+</div></div>
+<div id="t-scale" class="tab-pane "><div class="ph1">Scaling Mediasoup</div>
+<div class="card"><ul class="fl">
+<li>Single Worker handles ~50–80 simultaneous participants (depends on bitrate and CPU)</li>
+<li>Multiple Workers per machine — one per CPU core (a 32-core server = 32 Workers)</li>
+<li>Load balancer assigns new rooms to the least-loaded Worker</li>
+<li>Rooms &gt;200 participants: PipeTransports connect Routers across multiple servers</li>
+<li>Kubernetes HPA auto-scales SFU pods when CPU &gt;70% for &gt;60 seconds</li>
+<li>Node affinity: SFU pods scheduled on bare-metal nodes (not burstable) for predictable latency</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="sfu-vs.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">SFU vs P2P vs MCU</div></div></a>
+      <span class="nav-counter">Feature 2 of 11</span>
+      <a class="nav-pg" href="stun.html"><div><div class="nav-label">Next</div><div class="nav-title">STUN Servers</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Share Link & Passcode</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Share Link & Passcode</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link active" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">🔗</span>
+      <h1 class="hero-title"><em>Share Link & Passcode</em></h1>
+      <p class="hero-desc">Share recordings with a single link — optionally protected by passcode, restricted to specific email domains, set to expire automatically, and with download disabled for viewers.</p>
+      <div class="hero-tags"><span class="h-tag">Shareable URL</span><span class="h-tag">Passcode</span><span class="h-tag">Expiry Date</span><span class="h-tag">Disable Download</span><span class="h-tag">Domain Restrict</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-generate')">Generating a Share Link</div>
+<div class="tab " onclick="sw(this,'t-options')">Access Control Options</div>
+<div class="tab " onclick="sw(this,'t-analytics')">Link Analytics</div></div>
+    <div class="content">
+      <div id="t-generate" class="tab-pane active"><div class="ph1">Generating a Share Link</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">Open the recording in Hub → Recordings</div></div></li>
+<li><div><div class="step-title">Click "Share" → "Copy Link"</div><div class="step-desc">A shareable URL is instantly generated. The link includes an embedded access token.</div></div></li>
+<li><div><div class="step-title">Configure access settings (optional)</div><div class="step-desc">Set passcode, expiry date, domain restriction, or download toggle before copying.</div></div></li>
+<li><div><div class="step-title">Share the URL</div><div class="step-desc">Paste in email, Slack, Notion, or anywhere. The recipient can watch without a FasaFas account (unless you enable "require sign-in").</div></div></li>
+</ol></div></div>
+<div id="t-options" class="tab-pane "><div class="ph1">Access Control Options</div>
+<div class="spec"><div class="spec-head">🔒 Share Link Settings</div>
+<div class="spec-row"><span class="sk">Passcode protect</span><span class="sv">Set a 6-character passcode — viewer must enter it before watching</span></div>
+<div class="spec-row"><span class="sk">Link expiry</span><span class="sv">Set the link to expire after 7 / 30 / 90 / 180 days or a custom date</span></div>
+<div class="spec-row"><span class="sk">Disable download</span><span class="sv">Viewer can watch via browser but cannot download the MP4 file</span></div>
+<div class="spec-row"><span class="sk">Require sign-in</span><span class="sv">Viewer must have a FasaFas account and be signed in to watch</span></div>
+<div class="spec-row"><span class="sk">Domain restriction</span><span class="sv">Only viewers with @yourcompany.com email accounts can access</span></div>
+<div class="spec-row"><span class="sk">Revoke link</span><span class="sv">Instantly disable the link — all previous copies stop working</span></div>
+</div></div>
+<div id="t-analytics" class="tab-pane "><div class="ph1">Recording Share Analytics</div>
+<div class="card"><ul class="fl">
+<li>Total views: how many times the recording has been opened</li>
+<li>Unique viewers: distinct accounts/browsers that accessed it</li>
+<li>Completion rate: % of viewers who watched to the end</li>
+<li>Watch heatmap: which parts of the recording were rewatched most</li>
+<li>Viewer list: names of signed-in viewers (if "require sign-in" is enabled)</li>
+<li>Geographic distribution: countries where the recording was viewed</li>
+<li>Time of view: timestamps of each viewing session</li>
+<li>Download count: how many times the MP4 was downloaded (if downloads enabled)</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="trim-edit.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Trim & Edit Tools</div></div></a>
+      <span class="nav-counter">Feature 8 of 11</span>
+      <a class="nav-pg" href="download.html"><div><div class="nav-label">Next</div><div class="nav-title">Download Formats</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

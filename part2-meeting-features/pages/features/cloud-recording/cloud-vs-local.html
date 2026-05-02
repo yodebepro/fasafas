@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Cloud vs Local Recording</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#14b8a6;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../cloud-recording.html">Cloud Recording</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../cloud-recording.html">Cloud Recording</a><span class="bc-sep">/</span>
+  <span class="bc-cur">Cloud vs Local Recording</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Cloud Recording Features</div>
+    <a class="sb-link" href="auto-record.html"><span class="sb-num">1</span><span class="sb-icon">⏺</span>Auto-Record Setup</a>
+<a class="sb-link" href="layouts.html"><span class="sb-num">2</span><span class="sb-icon">🎬</span>Recording Layouts</a>
+<a class="sb-link active" href="cloud-vs-local.html"><span class="sb-num">3</span><span class="sb-icon">💾</span>Cloud vs Local Recording</a>
+<a class="sb-link" href="pipeline.html"><span class="sb-num">4</span><span class="sb-icon">⚙️</span>Processing Pipeline</a>
+<a class="sb-link" href="hls-playback.html"><span class="sb-num">5</span><span class="sb-icon">▶️</span>HLS Streaming & Playback</a>
+<a class="sb-link" href="ai-output.html"><span class="sb-num">6</span><span class="sb-icon">🤖</span>AI Post-Processing</a>
+<a class="sb-link" href="trim-edit.html"><span class="sb-num">7</span><span class="sb-icon">✂️</span>Trim & Edit Tools</a>
+<a class="sb-link" href="share-link.html"><span class="sb-num">8</span><span class="sb-icon">🔗</span>Share Link & Passcode</a>
+<a class="sb-link" href="download.html"><span class="sb-num">9</span><span class="sb-icon">⬇️</span>Download Formats</a>
+<a class="sb-link" href="storage.html"><span class="sb-num">10</span><span class="sb-icon">📦</span>Storage & Retention</a>
+<a class="sb-link" href="compliance.html"><span class="sb-num">11</span><span class="sb-icon">🏛️</span>Compliance & Legal Hold</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../cloud-recording.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">☁️ Cloud Recording Feature</div>
+      <span class="hero-icon">💾</span>
+      <h1 class="hero-title"><em>Cloud vs Local Recording</em></h1>
+      <p class="hero-desc">Cloud recording stores your meeting in FasaFas's secure infrastructure with AI post-processing. Local recording saves an MP4 directly to your device — no cloud, no AI, works on all plans.</p>
+      <div class="hero-tags"><span class="h-tag">Cloud: No Upload</span><span class="h-tag">Local: All Plans</span><span class="h-tag">AI: Cloud Only</span><span class="h-tag">Storage Quota</span><span class="h-tag">Privacy</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-compare')">Feature Comparison</div>
+<div class="tab " onclick="sw(this,'t-cloud')">Cloud Details</div>
+<div class="tab " onclick="sw(this,'t-local')">Local Details</div></div>
+    <div class="content">
+      <div id="t-compare" class="tab-pane active"><div class="ph1">Cloud vs Local — Full Comparison</div>
+<div class="tbl-wrap"><table class="tbl">
+<tr><th>Feature</th><th>Cloud Recording</th><th>Local Recording</th></tr>
+<tr><td>Plans available</td><td>Pro, Business, Enterprise</td><td>All plans (including Basic)</td></tr>
+<tr><td>Storage</td><td>FasaFas cloud (counts toward quota)</td><td>Your local device (no quota impact)</td></tr>
+<tr><td>Upload required</td><td class="ck">No — recorded server-side</td><td class="da">N/A — saves locally</td></tr>
+<tr><td>CPU impact on your device</td><td class="ck">None</td><td>Moderate (encoding)</td></tr>
+<tr><td>Accessibility after meeting</td><td>Any device, any browser</td><td>Only the recording device</td></tr>
+<tr><td>AI transcript + summary</td><td class="ck">Yes — automatic</td><td class="da">No</td></tr>
+<tr><td>Smart chapters</td><td class="ck">Yes</td><td class="da">No</td></tr>
+<tr><td>Share via link</td><td class="ck">Yes (instant link)</td><td class="da">Must upload manually</td></tr>
+<tr><td>Playback while recording</td><td class="ck">Yes (HLS streaming)</td><td class="da">No</td></tr>
+<tr><td>E2EE compatible</td><td class="da">No (server sees audio)</td><td class="ck">Yes</td></tr>
+</table></div></div>
+<div id="t-cloud" class="tab-pane "><div class="ph1">Cloud Recording Details</div>
+<div class="card"><ul class="fl">
+<li>Recorded by Mediasoup SFU server-side — zero CPU impact on your device</li>
+<li>Available to stream within ~2 minutes of meeting end (HLS stream ready before MP4 mix is complete)</li>
+<li>MP4 download typically ready 5–10 minutes after meeting end</li>
+<li>Stored encrypted in Amazon S3 with per-account AES-256 key</li>
+<li>AI pipeline (transcription + summary + chapters + action items) runs automatically after mixing</li>
+<li>Accessible from any device after meeting via Hub → Recordings</li>
+<li>Storage counted: ~0.8 GB per hour of meeting at 1080p Active Speaker layout</li>
+</ul></div></div>
+<div id="t-local" class="tab-pane "><div class="ph1">Local Recording Details</div>
+<div class="card"><ul class="fl">
+<li>Recorded by your browser/app using MediaRecorder API — no server involvement</li>
+<li>Saved to your system's Downloads folder as MP4 (or configured path)</li>
+<li>Available immediately when you stop recording (no processing needed)</li>
+<li>Quality depends on your device CPU — powerful machines produce higher quality local recordings</li>
+<li>No AI post-processing — no automatic transcript, summary, or action items</li>
+<li>Host can restrict local recording: participants cannot record unless host permits</li>
+<li>Works in E2EE meetings — the only recording option when E2EE is enabled</li>
+<li>File name format: [Meeting-Name]_[Date]_[Time].mp4</li>
+</ul></div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="layouts.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Recording Layouts</div></div></a>
+      <span class="nav-counter">Feature 3 of 11</span>
+      <a class="nav-pg" href="pipeline.html"><div><div class="nav-label">Next</div><div class="nav-title">Processing Pipeline</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — STUN Servers</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#10b981;--fc-bg:rgba(16,185,129,.14);--fc-b:rgba(16,185,129,.3);--fc-dim:rgba(16,185,129,.07); }</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../webrtc-sfu.html">WebRTC SFU</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc">
+  <a href="../../../index.html">Home</a><span class="bc-sep">/</span>
+  <a href="../webrtc-sfu.html">WebRTC SFU</a><span class="bc-sep">/</span>
+  <span class="bc-cur">STUN Servers</span>
+</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">WebRTC SFU Features</div>
+    <a class="sb-link" href="sfu-vs.html"><span class="sb-num">1</span><span class="sb-icon">📊</span>SFU vs P2P vs MCU</a>
+<a class="sb-link" href="mediasoup.html"><span class="sb-num">2</span><span class="sb-icon">⚙️</span>Mediasoup Architecture</a>
+<a class="sb-link active" href="stun.html"><span class="sb-num">3</span><span class="sb-icon">🔍</span>STUN Servers</a>
+<a class="sb-link" href="turn.html"><span class="sb-num">4</span><span class="sb-icon">🔄</span>TURN Relay Servers</a>
+<a class="sb-link" href="ice.html"><span class="sb-num">5</span><span class="sb-icon">🧊</span>ICE Negotiation</a>
+<a class="sb-link" href="simulcast.html"><span class="sb-num">6</span><span class="sb-icon">📶</span>Simulcast</a>
+<a class="sb-link" href="bwe.html"><span class="sb-num">7</span><span class="sb-icon">📡</span>Bandwidth Estimation</a>
+<a class="sb-link" href="audio.html"><span class="sb-num">8</span><span class="sb-icon">🎵</span>Audio Processing</a>
+<a class="sb-link" href="codecs.html"><span class="sb-num">9</span><span class="sb-icon">🎞️</span>Video Codecs</a>
+<a class="sb-link" href="recovery.html"><span class="sb-num">10</span><span class="sb-icon">🔁</span>Error Recovery</a>
+<a class="sb-link" href="regions.html"><span class="sb-num">11</span><span class="sb-icon">🌍</span>Regional Server Clusters</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../webrtc-sfu.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">📡 WebRTC SFU Feature</div>
+      <span class="hero-icon">🔍</span>
+      <h1 class="hero-title"><em>STUN Servers</em></h1>
+      <p class="hero-desc">STUN servers help your device discover its public IP address — the first step in establishing a direct WebRTC connection to the SFU, bypassing your router's NAT.</p>
+      <div class="hero-tags"><span class="h-tag">NAT Traversal</span><span class="h-tag">Public IP Discovery</span><span class="h-tag">UDP 3478</span><span class="h-tag">Anycast</span><span class="h-tag">Zero Media Flow</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t-what')">What STUN Does</div>
+<div class="tab " onclick="sw(this,'t-how')">STUN Flow</div>
+<div class="tab " onclick="sw(this,'t-infra')">FasaFas STUN Infra</div></div>
+    <div class="content">
+      <div id="t-what" class="tab-pane active"><div class="ph1">What STUN Does and Why It's Needed</div>
+<div class="hl"><div class="hl-title">The NAT Problem</div>
+<div class="hl-body">Most home and office devices sit behind a NAT router. The device has a private IP (e.g., 192.168.1.x) but the internet sees a different public IP (e.g., 203.0.113.42). WebRTC needs both devices to know each other's public IP + port to connect directly. STUN is how a device discovers what its public-facing IP and port look like from the internet's perspective.</div></div>
+<div class="card"><ul class="fl">
+<li>STUN = Session Traversal Utilities for NAT (RFC 5389)</li>
+<li>Your device sends a UDP packet to the STUN server</li>
+<li>STUN server replies with: "I see you as 203.0.113.42:54321"</li>
+<li>Your device now knows its public IP:port (called a server-reflexive candidate)</li>
+<li>This candidate is shared with the SFU via ICE signaling</li>
+<li>SFU tries to send media to that IP:port — if it works, the connection is established</li>
+<li>No media ever flows through STUN — it's purely discovery</li>
+</ul></div></div>
+<div id="t-how" class="tab-pane "><div class="ph1">STUN Binding Request Flow</div>
+<div class="card"><ol class="steps">
+<li><div><div class="step-title">ICE agent sends STUN Binding Request to stun.fasafas.app:3478 (UDP)</div></div></li>
+<li><div><div class="step-title">STUN server reads the packet's source IP:port as seen by the internet</div></div></li>
+<li><div><div class="step-title">STUN server sends a Binding Response back with the mapped address (public IP:port)</div></div></li>
+<li><div><div class="step-title">ICE agent adds this as a "server reflexive" ICE candidate</div></div></li>
+<li><div><div class="step-title">Candidate is sent to SFU via signal:ice-candidate WebSocket event</div></div></li>
+<li><div><div class="step-title">SFU tries connecting to this IP:port — if NAT allows it, connection succeeds</div></div></li>
+</ol></div></div>
+<div id="t-infra" class="tab-pane "><div class="ph1">FasaFas STUN Infrastructure</div>
+<div class="spec"><div class="spec-head">🌍 Global STUN Deployment</div>
+<div class="spec-row"><span class="sk">Total nodes</span><span class="sv">10 nodes globally (US×3, EU×3, APAC×3, SA×1)</span></div>
+<div class="spec-row"><span class="sk">Routing</span><span class="sv">Anycast IP — DNS routes you to the nearest STUN node automatically</span></div>
+<div class="spec-row"><span class="sk">Protocol</span><span class="sv">UDP port 3478 (primary) · TCP port 3478 (fallback)</span></div>
+<div class="spec-row"><span class="sk">Round-trip target</span><span class="sv">&lt;20ms STUN RTT for users within region</span></div>
+<div class="spec-row"><span class="sk">Availability SLA</span><span class="sv">99.99% (multi-region redundancy)</span></div>
+<div class="spec-row"><span class="sk">Rate limit</span><span class="sv">100 STUN requests/sec per client IP to prevent abuse</span></div>
+</div></div>
+    </div>
+    <div class="nav-strip">
+      <a class="nav-pg" href="mediasoup.html"><div>←</div><div><div class="nav-label">Previous</div><div class="nav-title">Mediasoup Architecture</div></div></a>
+      <span class="nav-counter">Feature 3 of 11</span>
+      <a class="nav-pg" href="turn.html"><div><div class="nav-label">Next</div><div class="nav-title">TURN Relay Servers</div></div><div>→</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function sw(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+<script src="../../../assets/js/translate.js"></script>
+</body>
+</html>
