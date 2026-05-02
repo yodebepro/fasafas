@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FasaFas — Public & Private Channels</title>
+<link rel="stylesheet" href="../../../assets/css/subpage.css">
+<style>:root{ --fc:#5eead4;--fc-bg:rgba(20,184,166,.14);--fc-b:rgba(20,184,166,.3);--fc-dim:rgba(20,184,166,.07); }</style>
+</head><body>
+<header class="hdr">
+  <a class="hdr-logo" href="../../../index.html"><div class="hdr-dot"></div>FasaFas</a>
+  <nav class="hdr-nav">
+    <a class="hdr-btn" href="../team-chat.html">← Team Chat</a>
+    <a class="hdr-btn" href="../../../index.html">Home</a>
+    <a class="hdr-btn pri" href="../../../index.html">＋ Schedule Meeting</a>
+  </nav>
+</header>
+<div class="bc"><a href="../../../index.html">Home</a><span class="bc-sep">/</span><a href="../team-chat.html">Team Chat</a><span class="bc-sep">/</span><span class="bc-cur">Public & Private Channels</span></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">Team Chat Features</div>
+    <a class="sb-link active" href="channels.html"><span class="sb-num">1</span><span class="sb-icon">📢</span>Public & Private Channels</a>
+<a class="sb-link" href="dms.html"><span class="sb-num">2</span><span class="sb-icon">💌</span>Direct Messages (1:1 & Group)</a>
+<a class="sb-link" href="threads.html"><span class="sb-num">3</span><span class="sb-icon">🧵</span>Threaded Replies</a>
+<a class="sb-link" href="file-sharing.html"><span class="sb-num">4</span><span class="sb-icon">📁</span>File Sharing</a>
+<a class="sb-link" href="voice-messages.html"><span class="sb-num">5</span><span class="sb-icon">🎤</span>Voice Messages</a>
+<a class="sb-link" href="custom-emoji.html"><span class="sb-num">6</span><span class="sb-icon">😄</span>Custom Emoji</a>
+<a class="sb-link" href="message-scheduling.html"><span class="sb-num">7</span><span class="sb-icon">⏰</span>Message Scheduling</a>
+<a class="sb-link" href="mentions.html"><span class="sb-num">8</span><span class="sb-icon">@</span>@mention @channel @here</a>
+<a class="sb-link" href="ai-summaries.html"><span class="sb-num">9</span><span class="sb-icon">🤖</span>AI Summarizes Unread Threads</a>
+<a class="sb-link" href="ai-agent.html"><span class="sb-num">10</span><span class="sb-icon">⚡</span>@FasaFas AI Agent in Channels</a>
+<a class="sb-link" href="ai-replies.html"><span class="sb-num">11</span><span class="sb-icon">💡</span>AI Suggested Replies</a>
+<a class="sb-link" href="semantic-search.html"><span class="sb-num">12</span><span class="sb-icon">🔍</span>Semantic Search</a>
+<a class="sb-link" href="ai-translate.html"><span class="sb-num">13</span><span class="sb-icon">🌐</span>AI Message Translation</a>
+<a class="sb-link" href="action-items.html"><span class="sb-num">14</span><span class="sb-icon">✅</span>Action Item Extraction from Threads</a>
+    <div class="sb-div"></div>
+    <a class="sb-back" href="../team-chat.html">← Overview</a>
+  </aside>
+  <div class="main">
+    <div class="hero">
+      <div class="hero-eye">Feature Detail</div>
+      <span class="hero-icon">📢</span>
+      <h1 class="hero-title"><em>Public & Private Channels</em></h1>
+      <p class="hero-desc">Organize team conversations into persistent, searchable channels — public ones anyone can join, private ones by invitation only — with full message history, file sharing, and AI summaries.</p>
+      <div class="hero-tags"><span class="h-tag">Public Channels</span><span class="h-tag">Private Channels</span><span class="h-tag">#topic</span><span class="h-tag">Unlimited Members</span><span class="h-tag">Channel Settings</span></div>
+    </div>
+    <div class="tabs"><div class="tab active" onclick="sw(this,'t1')">Channel Types</div>
+<div class="tab " onclick="sw(this,'t2')">Channel Management</div>
+<div class="tab " onclick="sw(this,'t3')">Notifications</div></div>
+    <div class="content"><div id="t1" class="tab-pane active"><div class='ph1'>Public vs Private Channels</div><div class='g2'><div class='card' ><div class='ph3'>Public Channels</div><ul class='fl'><li>Visible to all members in the workspace</li><li>Anyone can join without an invitation</li><li>Searchable in the channel directory</li><li>Good for: #announcements #general #engineering #marketing</li><li>Message history accessible to all current and new members</li><li>Admin can set read-only channels (e.g., #announcements)</li><li>Unlimited members per channel</li></ul></div><div class='card' ><div class='ph3'>Private Channels</div><ul class='fl'><li>Visible only to invited members</li><li>New members must be added by an existing member or admin</li><li>Not searchable in the public channel directory</li><li>Good for: leadership discussions, confidential projects, HR matters</li><li>History only accessible to current members — not visible to new members added later</li><li>Admin can view all private channel messages (Enterprise with audit rights)</li></ul></div></div></div>
+<div id="t2" class="tab-pane "><div class='ph1'>Channel Management</div><div class='card' ><ul class='fl'><li>Create a channel: + icon in sidebar or /channel in any message box</li><li>Set channel name, description, and purpose (visible in directory)</li><li>Pin important messages to top of channel</li><li>Add channel-specific integrations (e.g., GitHub notifications to #engineering)</li><li>Archive a channel: history preserved but no new messages accepted</li><li>Convert a public channel to private (irreversible — admin only)</li><li>Transfer ownership to another member</li><li>Mute a channel: stop notifications while keeping membership</li></ul></div></div>
+<div id="t3" class="tab-pane "><div class='ph1'>Notification Settings per Channel</div><div class='spec'><div class='spec-head'>🔔 Per-Channel Notification Modes</div><div class='spec-row'><span class='sk'>All messages</span><span class='sv'>Every message triggers a notification — for high-priority channels</span></div><div class='spec-row'><span class='sk'>@mentions only</span><span class='sv'>Notified only when someone @mentions you in that channel (default)</span></div><div class='spec-row'><span class='sk'>Nothing</span><span class='sv'>Completely silenced — no notifications for this channel</span></div><div class='spec-row'><span class='sk'>Highlight words</span><span class='sv'>Custom keywords that trigger notifications even without an @mention</span></div><div class='spec-row'><span class='sk'>Mute channel</span><span class='sv'>Override all notifications — useful for channels you monitor periodically</span></div></div></div></div>
+    <div class="nav-strip"><div class="nav-pg end">← Start</div><span class="nav-counter">Feature 1 of 14</span><a class="nav-pg" href="dms.html"><div><div class="nav-label">Next</div><div class="nav-title">Direct Messages (1:1 & Group)</div></div><div>→</div></a></div>
+  </div>
+</div>
+<script>function sw(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(id).classList.add('active');}</script>
+<script src="../../../assets/js/translate.js"></script>
+</body></html>
